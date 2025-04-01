@@ -16,7 +16,8 @@ By following this blueprint, you can identify and localize issues such as therma
 
 Below is a simplified overview:
 
-<img width="888" alt="Screenshot 2025-03-13 101052" src="https://github.com/user-attachments/assets/723a8861-388c-4585-b53f-778c2d5c73d6" />
+<img width="893" alt="image" src="https://github.com/user-attachments/assets/e44f7ffe-19cf-48be-a026-e27fddfbed3c" />
+
 
 ### Key Points
 
@@ -171,6 +172,30 @@ This is an example of json file which be used to deploy into OCI AI Blueprints:
 }
 ```
 ---
+
+## Explanation of Healthcheck Recipe Fields
+
+| Field                                  | Type        | Example Value                                                                 | Description |
+|---------------------------------------|-------------|-------------------------------------------------------------------------------|-------------|
+| `recipe_id`                           | string      | `"healthcheck"`                                                              | Identifier for the recipe |
+| `recipe_mode`                         | string      | `"job"`                                                                      | Whether the recipe runs as a one-time job or a service |
+| `deployment_name`                     | string      | `"healthcheck"`                                                              | Name of the deployment/job |
+| `recipe_image_uri`                    | string      | `"iad.ocir.io/.../healthcheck_v0.3"`                                         | URI of the container image stored in OCI Container Registry |
+| `recipe_node_shape`                   | string      | `"VM.GPU.A10.2"`                                                              | Compute shape to use for this job |
+| `output_object_storage.bucket_name`   | string      | `"healthcheck2"`                                                              | Name of the Object Storage bucket to write results |
+| `output_object_storage.mount_location`| string      | `"/healthcheck_results"`                                                     | Directory inside the container where the bucket will be mounted |
+| `output_object_storage.volume_size_in_gbs` | integer | `20`                                                                         | Storage volume size (GB) for the mounted bucket |
+| `recipe_container_command_args`       | list        | `[--dtype, float16, --output_dir, /healthcheck_results, --expected_gpus, A10:2,A100:0,H100:0]` | Arguments passed to the container |
+| `--dtype`                             | string      | `"float16"`                                                                   | Precision type for computations (e.g. float16, float32) |
+| `--output_dir`                        | string      | `"/healthcheck_results"`                                                     | Directory for writing output (maps to mounted bucket) |
+| `--expected_gpus`                     | string      | `"A10:2,A100:0,H100:0"`                                                       | Expected GPU types and counts |
+| `recipe_replica_count`                | integer     | `1`                                                                          | Number of replicas (containers) to run |
+| `recipe_nvidia_gpu_count`            | integer     | `2`                                                                          | Number of GPUs to allocate |
+| `recipe_node_pool_size`              | integer     | `1`                                                                          | Number of nodes to provision |
+| `recipe_node_boot_volume_size_in_gbs`| integer     | `200`                                                                         | Size of the boot volume (GB) |
+| `recipe_ephemeral_storage_size`      | integer     | `100`                                                                         | Ephemeral scratch storage size (GB) |
+| `recipe_shared_memory_volume_size_limit_in_mb` | integer | `1000`                                                                   | Size of shared memory volume (`/dev/shm`) in MB |
+| `recipe_use_shared_node_pool`        | boolean     | `true`                                                                       | Whether to run on a shared node pool |
 
 ## 8. Contact
 
