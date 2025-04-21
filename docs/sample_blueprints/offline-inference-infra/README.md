@@ -1,5 +1,3 @@
-Here’s your rewritten `README.md`, styled similarly to the CPU inference blueprint but focused on **offline GPU inference using the SGLang backend**.
-
 # Offline Inference Blueprint - Infra (SGLang + vLLM)
 
 This blueprint provides a configurable framework to run **offline LLM inference benchmarks** using either the SGLang or vLLM backends. It is designed for cloud GPU environments and supports automated performance benchmarking with MLflow logging.
