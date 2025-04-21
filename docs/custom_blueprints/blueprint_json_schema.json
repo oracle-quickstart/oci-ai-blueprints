@@ -208,6 +208,20 @@
             },
             "additionalProperties": false
           },
+          "recipe_readiness_probe_params": {
+             "type": "object",
+             "properties": {
+               "failure_threshold": { "type": "number" },
+               "endpoint_path": { "type": "string" },
+               "port": { "type": "integer" },
+               "scheme": { "type": "string" },
+               "initial_delay_seconds": { "type": "number" },
+               "period_seconds": { "type": "number" },
+               "success_threshold": { "type": "integer" },
+               "timeout_seconds": { "type": "number" }
+             },
+             "additionalProperties": false
+           },
           "recipe_container_port": {
             "type": "string"
           },
@@ -356,6 +370,21 @@
           "shared_node_pool_mig_config": {
             "type": "string"
           },
+          "shared_node_pool_custom_node_selectors": {
+             "type": "array",
+             "items": {
+               "additionalProperties": false,
+               "required": ["key", "value"],
+               "properties": {
+                 "key": {
+                   "type": "string"
+                 },
+                 "value": {
+                   "type": "string"
+                 }
+               }
+             }
+           },
           "mig_resource_request": {
             "type": "string"
           },
@@ -368,6 +397,12 @@
               "type": "string"
             }
           },
+          "multinode_num_nodes_to_use_from_shared_pool": {
+             "type": "integer"
+           },
+           "multinode_rdma_enabled_in_shared_pool": {
+             "type": "boolean"
+           },
           "recipe_node_pool_name": {
             "type": "string"
           },

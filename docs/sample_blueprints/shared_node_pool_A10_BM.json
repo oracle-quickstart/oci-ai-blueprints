@@ -1,7 +1,7 @@
 {
   "deployment_name": "BM.GPU.A10.4 shared pool",
   "recipe_mode": "shared_node_pool",
-  "shared_node_pool_size": 1,
+  "shared_node_pool_size": 2,
   "shared_node_pool_shape": "BM.GPU.A10.4",
   "shared_node_pool_boot_volume_size_in_gbs": 500
 }

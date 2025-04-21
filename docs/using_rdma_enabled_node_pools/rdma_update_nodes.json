@@ -1,0 +1,10 @@
+{
+    "recipe_mode": "update",
+    "deployment_name": "startupaddnode1",
+    "recipe_node_name": "10.0.10.164",
+    "recipe_node_labels": {
+        "corrino": "h100pool",
+        "corrino/pool-shared-any": "true",
+        "corrino/rdma": "true"
+    }
+}

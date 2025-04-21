@@ -32,122 +32,94 @@ Use multi-node inference whenever you are trying to use a very large model that 
 
 ## How to use it?
 
-We are using [vLLM](https://docs.vllm.ai/en/latest/serving/distributed_serving.html) and [KubeRay](https://github.com/ray-project/kuberay?tab=readme-ov-file) which is the Kubernetes operator for [Ray applications](https://github.com/ray-project/ray).
+We are using [vLLM](https://docs.vllm.ai/en/latest/serving/distributed_serving.html) and [Ray](https://github.com/ray-project/ray) using the [LeaderWorkerSet (LWS)](https://github.com/kubernetes-sigs/lws) to manage state between multiple nodes.
 
-In order to use multi-node inference in an OCI Blueprint, use the following blueprint as a starter: [LINK](../sample_blueprints/multinode_inference_VM_A10.json)
+In order to use multi-node inference in an OCI Blueprint, first deploy a shared node pool with blueprints using [this recipe](../sample_blueprints/shared_node_pool_A10_VM.json).
 
-The blueprint creates a RayCluster which is made up of one head node and worker nodes. The head node is identical to other worker nodes (in terms of ability to run workloads on it), except that it also runs singleton processes responsible for cluster management.
+Then, use the following blueprint to deploy serving software: [LINK](../sample_blueprints/multinode_inference_VM_A10.json)
 
-More documentation on RayCluster terminology [here](https://docs.ray.io/en/latest/cluster/key-concepts.html#ray-cluster).
+The blueprint creates a LeaderWorkerSet which is made up of one head node and worker nodes. The head node is identical to other worker nodes (in terms of ability to run workloads on it), except that it also runs singleton processes responsible for cluster management.
+
+More documentation on LWS terminology [here](https://lws.sigs.k8s.io/docs/).
 
 ## Required Blueprint Parameters
 
 The following parameters are required:
 
-- `"blueprint_mode": "raycluster"` -> blueprint_mode must be set to raycluster
+- `"recipe_mode": "service"` -> recipe_mode must be set to `service`
 
-- `blueprint_container_port` -> the port to access the inference endpoint
+- `"recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:ray2430_vllmv083"` -> currently, the only image we have supporting distributed inference.
+
+- `recipe_container_port` -> the port to access the inference endpoint
 
 - `deployment_name` -> name of this deployment
 
-- `blueprint_node_shape` -> OCI name of the Compute shape chosen (use exact names as found here: https://docs.oracle.com/en-us/iaas/Content/Compute/References/computeshapes.htm)
+- `recipe_replica_count` -> the number of replicas (copies) of your blueprint.
 
-- `input_object_storage` (plus the parameters required inside this object)
+- `recipe_node_shape` -> OCI name of the Compute shape chosen (use exact names as found here: https://docs.oracle.com/en-us/iaas/Content/Compute/References/computeshapes.htm)
 
-- `blueprint_node_pool_size` -> the number of physical nodes to launch (will be equal to `num_worker_nodes` plus 1 for the head node)
+- `input_object_storage` (plus the parameters required inside this object). volume_size_in_gbs creates a block volume to store your model, so ensure this is sufficient to hold your model (roughly 1.5x model size).
 
-- `blueprint_node_boot_volume_size_in_gbs` -> size of boot volume for each node launched in the node pool (make sure it is at least 1.5x the size of your model)
+- `recipe_ephemeral_storage_size` -> size of the attached block volume that will be used to store any ephemeral data (a separate block volume is managed by input_object_storage to house model).
 
-- `blueprint_ephemeral_storage_size` -> size of the attached block volume that will be used to store the model for reference by each node (make sure it is at least 1.5x the size of your model)
+- `recipe_nvidia_gpu_count` -> the number of GPUs per node (since head and worker nodes are identical, it is the number of GPUs in the shape you have specified. Ex: VM.GPU.A10.2 would have 2 GPUs)
 
-- `blueprint_nvidia_gpu_count` -> the number of GPUs per node (since head and worker nodes are identical, it is the number of GPUs in the shape you have specified. Ex: VM.GPU.A10.2 would have 2 GPUs)
+- `recipe_use_shared_node_pool` -> `true` - currently, multinode inference is only available on shared node pool deployments (for compatibility with RDMA shapes).
 
-- `"blueprint_raycluster_params"` object -> which includes the following properties:
+- `multinode_num_nodes_to_use_from_shared_pool` -> the total number of nodes (as an integer) you want to use to serve this model. This number must be less than the size of the shared node pool, and will only use schedulable nodes in the pool.
 
-- `model_path_in_container` : the file path to the model in the container
+- [OPTIONAL] `"multinode_rdma_enabled_in_shared_pool": "true"` -> If you have deployed an HPC cluster with RDMA enabled for node pools - [see here for details](../deploy_ai_blueprints_onto_hpc_cluster) - enable RDMA communication between nodes (currently only supported for BM.GPU.H100.8). This will fail validation if RDMA is not supported for shape type, or node is missing appropriate labels described in linked doc.
 
-- `head_node_num_cpus` : the number of OCPUs allocated to the head node (must match `worker_node_num_cpus`)
-
-- `head_node_num_gpus` : the number of GPUs allocated the head node (must match `worker_node_num_gpus`)
-
-- `head_node_cpu_mem_in_gbs` : the amount of CPU memory allocated to the head node (must match `worker_node_cpu_mem_in_gbs`)
-
-- `num_worker_nodes` : the number of worker nodes you want to deploy (must be equal to `blueprint_node_pool_size` - 1)
-
-- `worker_node_num_cpus` : the number of OCPUs allocated to the head node (must match `head_node_num_cpus`)
-
-- `worker_node_num_gpus` : the number of GPUs allocated the head node (must match `head_node_num_gpus`)
-
-- `worker_node_cpu_mem_in_gbs` : the amount of CPU memory allocated to the head node (must match `head_node_cpu_mem_in_gbs`)
-
-- [OPTIONAL] `redis_port` : the port to use for Redis inside the cluster (default is 6379)
-
-- [OPTIONAL] `dashboard_port` : port on which the Ray dashboard will be available on inside the cluster (default is 8265)
-
-- [OPTIONAL] `metrics_export_port`: port where metrics are exposed from inside the cluster (default is 8080)
-
-- [OPTIONAL] `rayclient_server_port`: Ray client server port for external connections (default is 10001)
-
-- [OPTIONAL] `head_image_uri`: Container image for the head node of the ray cluster (default is `vllm/vllm-openai:v0.7.2`)
-
-- [OPTIONAL] `worker_image_uri`: Container image for the worker nodes of the ray cluster (default is `vllm/vllm-openai:v0.7.2`)
-
-- [OPTIONAL] `rayjob_image_uri`: Container image for the K8s Job that is applied after the head and worker nodes are in ready state (in the future, we will change this to be a RayJob CRD but are using K8s Job for now) (default is `vllm/vllm-openai:v0.7.2`)
+- [OPTIONAL] `recipe_readiness_probe_params` -> Readiness probe to ensure that service is ready to serve requests. Parameter details found [here](../startup_liveness_readiness_probes/README.md).
 
 ## Requirements
 
-- **Kuberay Operator Installed** = Make sure that the kuberay operator is installed (this is installed via the Resource Manager if the Kuberay option is selected - default is selected). Any OCI AI Blueprints installation before 2/24/25 will need to be reinstalled via the latest quickstarts release in order to ensure Kuberay is installed in your OCI AI Blueprints instance.
+- **Kuberay Operator Installed** = Make sure that the leaderworkerset (LWS) operator is installed (this is installed via the Resource Manager). Any OCI AI Blueprints installation before 4/17/25 will need to be reinstalled via the latest quickstarts release in order to ensure Kuberay is installed in your OCI AI Blueprints instance.
 
 - **Same shape for worker and head nodes** = Cluster must be uniform in regards to node shape and size (same shape, number of GPUs, number of CPUs etc.) for the worker nodes and head nodes.
 
 - **Chosen shape must have GPUs** = no CPU inferencing is available at the moment
 
-- Only job supported right now using Ray cluster and OCI Blueprints is vLLM Distributed Inference. This will change in the future.
-
-- All nodes in the multi-node inferencing blueprint's node pool will be allocated to Ray (subject to change). You cannot assign just a portion; the entire node pool is reserved for the Ray cluster.
-
-## Interacting with Ray Cluster
-
-Once the multi-node inference blueprint has been successfully deployed, you will have access to the following URLs:
-
-1. **Ray Dashboard:** Ray provides a web-based dashboard for monitoring and debugging Ray applications. The visual representation of the system state, allows users to track the performance of applications and troubleshoot issues.
-   **To find the URL for the API Inference Endpoint:** Go to `workspace` API endpoint and the URL will be under "blueprints" object. The object will be labeled `<deployment_name>-raycluster-dashboard`. The format for the URL is `<deployment_name>.<assigned_service_endpoint>.com`
-   **Example URL:** `https://dashboard.rayclustervmtest10.132-226-50-64.nip.io`
-
-2. **API Inference Endpoint:** This is the API endpoint you will use to do inferencing across the multiple nodes. It follows the [OpenAI API spec](https://platform.openai.com/docs/api-reference/introduction)
-   **To find the URL for the API Inference Endpoint:** Go to `workspace` API endpoint and the URL will be under "recipes" object. The object will be labeled `<deployment_name>-raycluster-app`. The format for the URL is `<deployment_name>.<assigned_service_endpoint>.com`
-   **Example curl command:** `curl --request GET --location 'rayclustervmtest10.132-226-50-64.nip.io/v1/models'`
+- We only provide one distributed inference image which contains vLLM + Ray and some custom launching with LWS. It is possible that other frameworks are supported, but they are untested.
 
 # Quickstart Guide: Multi-Node Inference
 
-Follow these 6 simple steps to deploy your multi-node RayCluster using OCI AI Blueprints.
+Follow these 6 simple steps to deploy your multi-node inference using OCI AI Blueprints.
 
-1. **Create Your Deployment Blueprint**
+1. **Deploy your shared node pool**
+   - Deploy a shared node pool containing at least 2 nodes for inference. Note: Existing shared node pools can be used!
+     - as a template, follow [this BM.A10](../sample_blueprints/shared_node_pool_A10_BM.json) or [this VM.A10](../sample_blueprints/shared_node_pool_A10_VM.json).
+2. **Create Your Deployment Blueprint**
    - Create a JSON configuration (blueprint) that defines your RayCluster. Key parameters include:
-     - `"recipe_mode": "raycluster"`
+     - `"recipe_mode": "service"`
      - `deployment_name`, `recipe_node_shape`, `recipe_container_port`
      - `input_object_storage` (and its required parameters)
-     - `recipe_node_pool_size` (head node + worker nodes)
      - `recipe_nvidia_gpu_count` (GPUs per node)
-     - A nested `"recipe_raycluster_params"` object with properties like `model_path_in_container`, `head_node_num_cpus`, `head_node_num_gpus`, `head_node_cpu_mem_in_gbs`, `num_worker_nodes`, etc.
+     - `multinode_num_nodes_to_use_from_shared_pool` (number of nodes to use from pool per replica)
    - Refer to the [sample blueprint for parameter value examples](../sample_blueprints/multinode_inference_VM_A10.json)
    - Refer to the [Required Blueprint Parameters](#Required_Blueprint_Parameters) section for full parameter details.
-   - Ensure that the head and worker nodes are provisioned uniformly, as required by the cluster’s configuration.
-2. **Deploy the Blueprint via OCI AI Blueprints**
+3. **Deploy the Blueprint via OCI AI Blueprints**
    - Deploy the blueprint json via the `deployment` POST API
-3. **Monitor Your Deployment**
+4. **Monitor Your Deployment**
    - Check deployment status using OCI AI Blueprint’s logs via the `deployment_logs` API endpoint
-4. **Verify Cluster Endpoints**
-
+5. **Verify Cluster Endpoints**
    - Once deployed, locate your service endpoints:
-     - **Ray Dashboard:** Typically available at `https://dashboard.<deployment_name>.<assigned_service_endpoint>.com`
-     - **API Inference Endpoint:** Accessible via `https://<deployment_name>.<assigned_service_endpoint>.com`
-   - Use these URLs to confirm that the cluster is running and ready to handle inference requests.
+     - **API Inference Endpoint:** Accessible via `https://<deployment_name>.<assigned_service_endpoint>.nip.io`
 
-5. **Start Inference and Scale as Needed**
+6. **Start Inference and Scale as Needed**
    - Test your deployment by sending a sample API request:
      ```bash
-     curl --request GET --location 'https://dashboard.<deployment_name>.<assigned_service_endpoint>.com/v1/models'
+     curl -L 'https://<deployment_name>.<assigned_service_endpoint>.nip.io/metrics'
+     ...
+     curl -L https://<deployment_name>.<assigned_service_endpoint>.nip.io/v1/completions \
+     -H "Content-Type: application/json" \
+     -d '{
+         "model": "/models",
+         "prompt": "San Francisco is a",
+         "max_tokens": 512,
+         "temperature": 0
+     }' | jq
+
      ```
 
 Happy deploying!
