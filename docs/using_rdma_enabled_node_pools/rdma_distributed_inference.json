@@ -1,0 +1,46 @@
+{
+    "recipe_id": "llm_inference_nvidia",
+    "recipe_mode": "service",
+    "deployment_name": "405b",
+    "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:ray2430_vllmv083",
+    "recipe_node_shape": "BM.GPU.H100.8",
+    "recipe_replica_count": 1,
+    "recipe_container_port": "8000",
+    "recipe_nvidia_gpu_count": 8,
+    "recipe_use_shared_node_pool": true,
+    "multinode_rdma_enabled_in_shared_pool": true,
+    "multinode_num_nodes_to_use_from_shared_pool": 2,
+    "input_object_storage": [
+      {
+        "par": "https://iduyx1qnmway.objectstorage.eu-frankfurt-1.oci.customer-oci.com/p/7N2O5JFirNX_CG70t-HPILzHvlTMP4FC9f_eauJVECosqNafIYxwcDwhItQHvaDK/n/iduyx1qnmway/b/llama31405binstruct/o/",
+        "mount_location": "/models",
+        "volume_size_in_gbs": 500
+      }
+    ],
+    "recipe_container_env": [
+      {"key": "NCCL_DEBUG", "value": "INFO"},
+      {"key": "NCCL_DEBUG_SUBSYS", "value": "INIT,NET,ENV"}
+    ],
+    "recipe_readiness_probe_params": {
+      "endpoint_path": "/health",
+      "port": 8000,
+      "initial_delay_seconds": 20,
+      "period_seconds": 10
+    },
+    "recipe_container_command_args": [
+      "--port",
+      "8000",
+      "--model",
+      "/models",
+      "--tensor-parallel-size",
+      "8",
+      "--gpu-memory-utilization",
+      "0.90",
+      "--pipeline-parallel-size",
+      "2",
+      "--distributed-executor-backend",
+      "ray"
+    ],
+    "recipe_ephemeral_storage_size": 100,
+    "recipe_shared_memory_volume_size_limit_in_mb": 10000
+}
