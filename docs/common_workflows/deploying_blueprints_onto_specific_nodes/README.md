@@ -25,21 +25,24 @@ If you have existing node pools in your original OKE cluster that you'd like Blu
 6. Modify the "recipe_node_name" field to the private IP address you found in step 1 above.
 7. Click "POST". This is a fast operation.
 8. Wait about 20 seconds and refresh the page. It should look like:
+
 ```json
 [
-    {
-        "mode": "update",
-        "recipe_id": null,
-        "creation_date": "2025-03-28 11:12 AM UTC",
-        "deployment_uuid": "750a________cc0bfd",
-        "deployment_name": "startupaddnode",
-        "deployment_status": "completed",
-        "deployment_directive": "commission"
-    }
+  {
+    "mode": "update",
+    "recipe_id": null,
+    "creation_date": "2025-03-28 11:12 AM UTC",
+    "deployment_uuid": "750a________cc0bfd",
+    "deployment_name": "startupaddnode",
+    "deployment_status": "completed",
+    "deployment_directive": "commission"
+  }
 ]
 ```
 
-To add any additional labels to nodes that you may wish to use later to specify deployment targets, this field can take any arbitrary number of labels to apply to a given node:
+### Adding additional labels
+
+To add any additional labels to nodes that you may wish to use later to specify deployment targets, this field (`recipe_node_labels`) can take any arbitrary number of labels to apply to a given node. For example, in the blueprint json, you could add the following:
 
 ```json
 "recipe_node_labels": {
@@ -48,7 +51,6 @@ To add any additional labels to nodes that you may wish to use later to specify 
   "key3": "value3"
 }
 ```
-
 
 ## Deploy a blueprint
 
@@ -67,10 +69,10 @@ Now that you have artifically created a shared node pool using the node labels a
   "recipe_replica_count": 1,
   "recipe_nvidia_gpu_count": 4,
   "shared_node_pool_custom_node_selectors": [
-      {
-        "key": "corrino",
-        "value": "a10pool"
-      }
+    {
+      "key": "corrino",
+      "value": "a10pool"
+    }
   ]
 }
 ```

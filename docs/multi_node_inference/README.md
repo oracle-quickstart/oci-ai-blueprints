@@ -30,6 +30,10 @@ Use multi-node inference whenever you are trying to use a very large model that 
 4. Determine which shapes you have access to and how much GPU memory each instance of that shape has: https://docs.oracle.com/en-us/iaas/Content/Compute/References/computeshapes.htm (ex: VM.GPU2.1 has 16 GB of GPU memory per instance). Note that as of right now, you must use the same shape across the entire node pool when using multi-node inference. Mix and match of shape types is not supported within the node pool used for the multi-node inference blueprint.
 5. Divide the total GPU memory size needed (from Step #3) by the amount of GPU memory per instance of the shape you chose in Step #4. Round up to the nearest whole number. This will be the total number of nodes you will need in your node pool for the given shape and model.
 
+## RDMA + Multinode Inference
+
+Want to use RDMA with multinode inference? [See here for details](../deploy_ai_blueprints_onto_hpc_cluster)
+
 ## How to use it?
 
 We are using [vLLM](https://docs.vllm.ai/en/latest/serving/distributed_serving.html) and [Ray](https://github.com/ray-project/ray) using the [LeaderWorkerSet (LWS)](https://github.com/kubernetes-sigs/lws) to manage state between multiple nodes.
@@ -74,7 +78,7 @@ The following parameters are required:
 
 ## Requirements
 
-- **Kuberay Operator Installed** = Make sure that the leaderworkerset (LWS) operator is installed (this is installed via the Resource Manager). Any OCI AI Blueprints installation before 4/17/25 will need to be reinstalled via the latest quickstarts release in order to ensure Kuberay is installed in your OCI AI Blueprints instance.
+- **LWS Operator Installed** = Make sure that the leaderworkerset (LWS) operator is installed (this is installed via the Resource Manager). Any OCI AI Blueprints installation before 4/17/25 will need to be reinstalled via the latest quickstarts release in order to ensure LWS is installed in your OCI AI Blueprints instance.
 
 - **Same shape for worker and head nodes** = Cluster must be uniform in regards to node shape and size (same shape, number of GPUs, number of CPUs etc.) for the worker nodes and head nodes.
 
@@ -103,11 +107,14 @@ Follow these 6 simple steps to deploy your multi-node inference using OCI AI Blu
 4. **Monitor Your Deployment**
    - Check deployment status using OCI AI Blueprint’s logs via the `deployment_logs` API endpoint
 5. **Verify Cluster Endpoints**
+
    - Once deployed, locate your service endpoints:
      - **API Inference Endpoint:** Accessible via `https://<deployment_name>.<assigned_service_endpoint>.nip.io`
 
 6. **Start Inference and Scale as Needed**
+
    - Test your deployment by sending a sample API request:
+
      ```bash
      curl -L 'https://<deployment_name>.<assigned_service_endpoint>.nip.io/metrics'
      ...
