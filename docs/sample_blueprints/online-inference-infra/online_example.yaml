@@ -1,0 +1,16 @@
+benchmark_type: online
+model: meta/llama3-8b-instruct
+input_len: 64
+output_len: 32
+max_requests: 5
+timeout: 300
+num_concurrent: 1
+results_dir: /workspace/results_on
+llm_api: openai
+llm_api_key: dummy-key
+llm_api_base: http://localhost:8001/v1
+experiment_name: local-bench
+run_name: llama3-test
+mlflow_uri: http://mlflow-benchmarking.corrino-oci.com:5000
+llmperf_path: /opt/llmperf-src
+metadata: test=localhost
