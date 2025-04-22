@@ -41,6 +41,7 @@ Offline inference is ideal for:
 
 This blueprint supports benchmark execution via a job-mode recipe using a YAML config file. The recipe mounts a model and config file from Object Storage, runs offline inference, and logs metrics.
 
+Notes : Make sure your output object storage is in the same tenancy as your stack. 
 ---
 
 ### Sample Recipe (Job Mode for Offline SGLang Inference)
