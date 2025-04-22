@@ -24,7 +24,7 @@ This guide helps you install and use **OCI AI Blueprints** for the first time. Y
 
 Instead of creating an OKE cluster manually, you can deploy a **VCN + OKE cluster** in one click. Use the button below to open Oracle Cloud’s Resource Manager:
 
-[![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?region=home&zipUrl=https://github.com/oracle-quickstart/oci-ai-blueprints/releases/download/release-2025-04-01/cluster_release-2025-04-01.zip)
+[![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?region=home&zipUrl=https://github.com/oracle-quickstart/oci-ai-blueprints/releases/download/release-2025-04-22/cluster_release-2025-04-22.zip)
 
 1. Click **Deploy to Oracle Cloud** above.
 2. In **Create Stack**:
@@ -42,7 +42,7 @@ Now that your cluster is ready, follow these steps to install OCI AI Blueprints 
 
 1. Click the **Deploy to Oracle Cloud** button below to open another Resource Manager stack—this one for OCI AI Blueprints:
 
-   [![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?region=home&zipUrl=https://github.com/oracle-quickstart/oci-ai-blueprints/releases/download/release-2025-04-01/app_release-2025-04-01.zip)
+   [![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?region=home&zipUrl=https://github.com/oracle-quickstart/oci-ai-blueprints/releases/download/release-2025-04-22/app_release-2025-04-22.zip)
 
 2. In the **Create Stack** wizard:
    - Provide a **name** (e.g., _oci-ai-blueprints-stack_).
@@ -67,10 +67,13 @@ Now that your cluster is ready, follow these steps to install OCI AI Blueprints 
 4. **Monitor Deployment**: The portal will show the status of your deployment. Once it transitions to a **Running** or **Monitoring** state, you can test the endpoint as described in the portal UI.
 
 ---
+
 ## Step 5: Access the AI Blueprints API
+
 1. Follow the instruction to access the AI Blueprints API via web and/or CURL/Postman: [Ways to Access OCI AI Blueprints](./docs/api_documentation/accessing_oci_ai_blueprints/README.md#ways-to-access-oci-ai-blueprints)
 
 ---
+
 ## Cleanup
 
 When you are finished, you can remove the resources you created in **two steps**, in this order:
