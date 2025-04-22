@@ -14,6 +14,7 @@ This blueprint enables you to:
 | Title                         | Description                                                                 |
 |------------------------------|-----------------------------------------------------------------------------|
 |Offline inference with LLaMA 3|Benchmarks Meta-Llama-3.1-8B model using SGLang on VM.GPU.A10.2 with 2 GPUs. |
+|Offline inference with LLAMA 3- vLLM| Benchmarks Meta-Llama-3.1-8B model using vLLM on VM.GPU.A10.2 with 2 GPUs.|
 
 You can access these pre-filled samples from the OCI AI Blueprint portal.
 
@@ -46,33 +47,41 @@ This blueprint supports benchmark execution via a job-mode recipe using a YAML c
 
 ```json
 {
-  "recipe_id": "offline_inference_sglang",
-  "recipe_mode": "job",
-  "deployment_name": "Offline Inference Benchmark",
-  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:llm-benchmark-0409-v2",
-  "recipe_node_shape": "VM.GPU.A10.2",
-  "input_object_storage": [
-    {
-      "par": "https://objectstorage.ap-melbourne-1.oraclecloud.com/p/Z2q73uuLCAxCbGXJ99CIeTxnCTNipsE-1xHE9HYfCz0RBYPTcCbqi9KHViUEH-Wq/n/iduyx1qnmway/b/mymodels/o/",
-      "mount_location": "/models",
-      "volume_size_in_gbs": 500,
-      "include": [
-        "example_sglang.yaml",
-        "NousResearch/Meta-Llama-3.1-8B"
-      ]
-    }
-  ],
-  "recipe_container_command_args": [
-    "/models/example_sglang.yaml"
-  ],
-  "recipe_replica_count": 1,
-  "recipe_container_port": "8000",
-  "recipe_nvidia_gpu_count": 2,
-  "recipe_node_pool_size": 1,
-  "recipe_node_boot_volume_size_in_gbs": 200,
-  "recipe_ephemeral_storage_size": 100,
-  "recipe_shared_memory_volume_size_limit_in_mb": 200
-}
+    "recipe_id": "offline_inference_sglang",
+    "recipe_mode": "job",
+    "deployment_name": "Offline Inference Benchmark",
+    "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:llm-benchmark-0409-v4",
+    "recipe_node_shape": "VM.GPU.A10.2",
+    "input_object_storage": [
+      {
+        "par": "https://objectstorage.ap-melbourne-1.oraclecloud.com/p/0T99iRADcM08aVpumM6smqMIcnIJTFtV2D8ZIIWidUP9eL8GSRyDMxOb9Va9rmRc/n/iduyx1qnmway/b/mymodels/o/",
+        "mount_location": "/models",
+        "volume_size_in_gbs": 500,
+        "include": [
+          "new_example_sglang.yaml",
+          "NousResearch/Meta-Llama-3.1-8B"
+        ]
+      }
+    ],
+    "output_object_storage": [
+      {
+        "bucket_name": "inference_output",
+        "mount_location": "/mlcommons_output",
+        "volume_size_in_gbs": 200
+      }
+    ],
+    "recipe_container_command_args": [
+      "/models/new_example_sglang.yaml"
+    ],
+    "recipe_replica_count": 1,
+    "recipe_container_port": "8000",
+    "recipe_nvidia_gpu_count": 2,
+    "recipe_node_pool_size": 1,
+    "recipe_node_boot_volume_size_in_gbs": 200,
+    "recipe_ephemeral_storage_size": 100,
+    "recipe_shared_memory_volume_size_limit_in_mb": 200
+  }
+  
 ```
 
 ---
@@ -100,6 +109,43 @@ top_p: 0.9
 mlflow_uri: http://mlflow-benchmarking.corrino-oci.com:5000
 experiment_name: "sglang-bench-doc-test-new"
 run_name: "llama3-8b-sglang-test"
+
+
+save_metrics_path: /mlcommons_output/benchmark_output_llama3_sglang.json
+
+```
+
+```yaml
+benchmark_type: offline
+model: /models/NousResearch/Meta-Llama-3.1-8B
+tokenizer: /models/NousResearch/Meta-Llama-3.1-8B
+
+input_len: 12
+output_len: 12
+num_prompts: 2
+seed: 42
+tensor_parallel_size: 8
+
+# vLLM-specific
+#quantization: awq
+dtype: half
+gpu_memory_utilization: 0.99
+num_scheduler_steps: 10
+device: cuda
+enforce_eager: true
+kv_cache_dtype: auto
+enable_prefix_caching: true
+distributed_executor_backend: mp
+
+# Output
+#output_json: ./128_128.json
+
+# MLflow
+mlflow_uri: http://mlflow-benchmarking.corrino-oci.com:5000
+experiment_name: test-bm-suite-doc
+run_name: llama3-vllm-test
+save_metrics_path:  /mlcommons_output/benchmark_output_llama3_vllm.json
+
 ```
 
 ---
@@ -116,3 +162,95 @@ run_name: "llama3-8b-sglang-test"
 
 If a dataset is provided:
 - `accuracy`
+
+
+### Top-level Deployment Keys
+
+| Key | Description |
+|-----|-------------|
+| `recipe_id` | Identifier of the recipe to run; here, it's an offline SGLang benchmark job. |
+| `recipe_mode` | Specifies this is a `job`, meaning it runs to completion and exits. |
+| `deployment_name` | Human-readable name for the job. |
+| `recipe_image_uri` | Docker image containing the benchmark code and dependencies. |
+| `recipe_node_shape` | Shape of the VM or GPU node to run the job (e.g., VM.GPU.A10.2). |
+
+### Input Object Storage
+
+| Key | Description |
+|-----|-------------|
+| `input_object_storage` | List of inputs to mount from Object Storage. |
+| `par` | Pre-Authenticated Request (PAR) link to a bucket/folder. |
+| `mount_location` | Files are mounted to this path inside the container. |
+| `volume_size_in_gbs` | Size of the mount volume. |
+| `include` | Only these files/folders from the bucket are mounted (e.g., model + config). |
+
+### Output Object Storage
+
+| Key | Description |
+|-----|-------------|
+| `output_object_storage` | Where to store outputs like benchmark logs or results. |
+| `bucket_name` | Name of the output bucket in OCI Object Storage. |
+| `mount_location` | Mount point inside container where outputs are written. |
+| `volume_size_in_gbs` | Size of this volume in GBs. |
+
+### Runtime & Infra Settings
+
+| Key | Description |
+|-----|-------------|
+| `recipe_container_command_args` | Path to the YAML config that defines benchmark parameters. |
+| `recipe_replica_count` | Number of job replicas to run (usually 1 for inference). |
+| `recipe_container_port` | Port (optional for offline mode; required if API is exposed). |
+| `recipe_nvidia_gpu_count` | Number of GPUs allocated to this job. |
+| `recipe_node_pool_size` | Number of nodes in the pool (1 means 1 VM). |
+| `recipe_node_boot_volume_size_in_gbs` | Disk size for OS + dependencies. |
+| `recipe_ephemeral_storage_size` | Local scratch space in GBs. |
+| `recipe_shared_memory_volume_size_limit_in_mb` | Shared memory (used by some inference engines). |
+
+---
+
+## **Sample Config File (`example_sglang.yaml`)**
+
+This file is consumed by the container during execution to configure the benchmark run.
+
+### Inference Setup
+
+| Key | Description |
+|-----|-------------|
+| `benchmark_type` | Set to `offline` to indicate local execution with no HTTP server. |
+| `offline_backend` | Backend engine to use (`sglang` or `vllm`). |
+| `model_path` | Path to the model directory (already mounted via Object Storage). |
+| `tokenizer_path` | Path to the tokenizer (usually same as model path). |
+| `trust_remote_code` | Enables loading models that require custom code (Hugging Face). |
+| `conv_template` | Prompt formatting template to use (e.g., `llama-2`). |
+
+### Benchmark Parameters
+
+| Key | Description |
+|-----|-------------|
+| `input_len` | Number of tokens in the input prompt. |
+| `output_len` | Number of tokens to generate. |
+| `num_prompts` | Number of total prompts to run (e.g., 64 prompts x 128 output tokens). |
+| `max_seq_len` | Max sequence length supported by the model (e.g., 4096). |
+| `max_batch_size` | Max batch size per inference run (depends on GPU memory). |
+| `dtype` | Precision (e.g., float16, bfloat16, auto). |
+
+### Sampling Settings
+
+| Key | Description |
+|-----|-------------|
+| `temperature` | Controls randomness in generation (lower = more deterministic). |
+| `top_p` | Top-p sampling for diversity (0.9 keeps most probable tokens). |
+
+### MLflow Logging
+
+| Key | Description |
+|-----|-------------|
+| `mlflow_uri` | MLflow server to log performance metrics. |
+| `experiment_name` | Experiment name to group runs in MLflow UI. |
+| `run_name` | Custom name to identify this particular run. |
+
+### Output
+
+| Key | Description |
+|-----|-------------|
+| `save_metrics_path` | Path inside the container where metrics will be saved as JSON. |
