@@ -38,13 +38,20 @@ Offline inference is ideal for:
 ---
 
 ## Running the Benchmark
+- Things need to run the benchmark 
+  - Model checkpoints pre-downloaded and stored in an object storage.
+  - Make sure to get a PAR for the object storage where the models are saved. With listing, write and read perimissions
+  - A Bucket to save the outputs. This does not take a PAR, so should be a bucket in the same tenancy as to where you have your OCI blueprints stack
+  - Config `.yaml` file that has all the parameters required to run the benhcmark. This includes input_len, output_len, gpu_utilization value etc. 
+  - Deployment `.json` to deploy your blueprint. 
+  - Sample deployment and config files are provided below along with links.
 
 This blueprint supports benchmark execution via a job-mode recipe using a YAML config file. The recipe mounts a model and config file from Object Storage, runs offline inference, and logs metrics.
 
 Notes : Make sure your output object storage is in the same tenancy as your stack. 
 ---
 
-### Sample Recipe (Job Mode for Offline SGLang Inference)
+### [Sample Blueprint (Job Mode for Offline SGLang Inference)](dhttps://github.com/oracle-quickstart/oci-ai-blueprints/blob/offline-inference-benchmark/docs/sample_blueprints/offline-inference-infra/offline_deployment_sglang.json)
 
 ```json
 {
@@ -86,8 +93,50 @@ Notes : Make sure your output object storage is in the same tenancy as your stac
 ```
 
 ---
+### [Sample Blueprint (Job Mode for Offline vLLM Inference)](dhttps://github.com/oracle-quickstart/oci-ai-blueprints/blob/offline-inference-benchmark/docs/sample_blueprints/offline-inference-infra/offline_deployment_sglang.json)
 
-## Sample Config File (`example_sglang.yaml`)
+```json
+{
+    "recipe_id": "offline_inference_vllm",
+    "recipe_mode": "job",
+    "deployment_name": "Offline Inference Benchmark vllm",
+    "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:llm-benchmark-0409-v4",
+    "recipe_node_shape": "VM.GPU.A10.2",
+    "input_object_storage": [
+      {
+        "par": "https://objectstorage.ap-melbourne-1.oraclecloud.com/p/0T99iRADcM08aVpumM6smqMIcnIJTFtV2D8ZIIWidUP9eL8GSRyDMxOb9Va9rmRc/n/iduyx1qnmway/b/mymodels/o/",
+        "mount_location": "/models",
+        "volume_size_in_gbs": 500,
+        "include": [
+          "offline_vllm_example.yaml",
+          "NousResearch/Meta-Llama-3.1-8B"
+        ]
+      }
+    ],
+    "output_object_storage": [
+      {
+        "bucket_name": "inference_output",
+        "mount_location": "/mlcommons_output",
+        "volume_size_in_gbs": 200
+      }
+    ],
+    "recipe_container_command_args": [
+      "/models/offline_vllm_example.yaml"
+    ],
+    "recipe_replica_count": 1,
+    "recipe_container_port": "8000",
+    "recipe_nvidia_gpu_count": 2,
+    "recipe_node_pool_size": 1,
+    "recipe_node_boot_volume_size_in_gbs": 200,
+    "recipe_ephemeral_storage_size": 100,
+    "recipe_shared_memory_volume_size_limit_in_mb": 200
+  }
+  
+```
+
+---
+
+## [Sample Config File SGlang - 1 (`new_example_sglang.yaml`)](https://github.com/oracle-quickstart/oci-ai-blueprints/blob/offline-inference-benchmark/docs/sample_blueprints/offline-inference-infra/new_example_sglang.yaml)
 
 ```yaml
 benchmark_type: offline
@@ -115,7 +164,7 @@ run_name: "llama3-8b-sglang-test"
 save_metrics_path: /mlcommons_output/benchmark_output_llama3_sglang.json
 
 ```
-
+## [Sample Config File - 2 vLLM (`offline_vllm_example.yaml`)](https://github.com/oracle-quickstart/oci-ai-blueprints/blob/offline-inference-benchmark/docs/sample_blueprints/offline-inference-infra/offline_vllm_example.yaml)
 ```yaml
 benchmark_type: offline
 model: /models/NousResearch/Meta-Llama-3.1-8B
