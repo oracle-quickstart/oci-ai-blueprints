@@ -20,5 +20,5 @@ experiment_name: "sglang-bench-doc-test-new"
 run_name: "llama3-8b-sglang-test"
 
 
-save_metrics_path: /mlcommons_output/benchmark_output_llama3_sglang.json
+save_metrics_path: /benchmarking_output/benchmark_output_llama3_sglang.json
 
