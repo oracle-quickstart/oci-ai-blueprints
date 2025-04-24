@@ -66,7 +66,7 @@ Notes : Make sure your output object storage is in the same tenancy as your stac
         "mount_location": "/models",
         "volume_size_in_gbs": 500,
         "include": [
-          "new_example_sglang.yaml",
+          "offline_sglang_example.yaml",
           "NousResearch/Meta-Llama-3.1-8B"
         ]
       }
@@ -74,12 +74,12 @@ Notes : Make sure your output object storage is in the same tenancy as your stac
     "output_object_storage": [
       {
         "bucket_name": "inference_output",
-        "mount_location": "/mlcommons_output",
+        "mount_location": "/benchmarking_output",
         "volume_size_in_gbs": 200
       }
     ],
     "recipe_container_command_args": [
-      "/models/new_example_sglang.yaml"
+      "/models/offline_sglang_example.yaml"
     ],
     "recipe_replica_count": 1,
     "recipe_container_port": "8000",
@@ -93,7 +93,7 @@ Notes : Make sure your output object storage is in the same tenancy as your stac
 ```
 
 ---
-### [Sample Blueprint (Job Mode for Offline vLLM Inference)](dhttps://github.com/oracle-quickstart/oci-ai-blueprints/blob/offline-inference-benchmark/docs/sample_blueprints/offline-inference-infra/offline_deployment_sglang.json)
+### [Sample Blueprint (Job Mode for Offline vLLM Inference)](dhttps://github.com/oracle-quickstart/oci-ai-blueprints/blob/offline-inference-benchmark/docs/sample_blueprints/offline-inference-infra/offline_deployment_vllm.json)
 
 ```json
 {
@@ -116,7 +116,7 @@ Notes : Make sure your output object storage is in the same tenancy as your stac
     "output_object_storage": [
       {
         "bucket_name": "inference_output",
-        "mount_location": "/mlcommons_output",
+        "mount_location": "/benchmarking_output",
         "volume_size_in_gbs": 200
       }
     ],
@@ -161,7 +161,7 @@ experiment_name: "sglang-bench-doc-test-new"
 run_name: "llama3-8b-sglang-test"
 
 
-save_metrics_path: /mlcommons_output/benchmark_output_llama3_sglang.json
+save_metrics_path: /benchmarking_output/benchmark_output_llama3_sglang.json
 
 ```
 ## [Sample Config File - 2 vLLM (`offline_vllm_example.yaml`)](https://github.com/oracle-quickstart/oci-ai-blueprints/blob/offline-inference-benchmark/docs/sample_blueprints/offline-inference-infra/offline_vllm_example.yaml)
@@ -194,7 +194,7 @@ distributed_executor_backend: mp
 mlflow_uri: http://mlflow-benchmarking.corrino-oci.com:5000
 experiment_name: test-bm-suite-doc
 run_name: llama3-vllm-test
-save_metrics_path:  /mlcommons_output/benchmark_output_llama3_vllm.json
+save_metrics_path:  /benchmarking_output/benchmark_output_llama3_vllm.json
 
 ```
 
