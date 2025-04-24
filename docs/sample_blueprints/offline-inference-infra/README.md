@@ -136,7 +136,7 @@ Notes : Make sure your output object storage is in the same tenancy as your stac
 
 ---
 
-## [Sample Config File SGlang - 1 (`new_example_sglang.yaml`)](https://github.com/oracle-quickstart/oci-ai-blueprints/blob/offline-inference-benchmark/docs/sample_blueprints/offline-inference-infra/new_example_sglang.yaml)
+## [Sample Config File SGlang - 1 (`new_example_sglang.yaml`)](https://github.com/oracle-quickstart/oci-ai-blueprints/blob/offline-inference-benchmark/docs/sample_blueprints/offline-inference-infra/offline_sglang_example.yaml)
 
 ```yaml
 benchmark_type: offline
