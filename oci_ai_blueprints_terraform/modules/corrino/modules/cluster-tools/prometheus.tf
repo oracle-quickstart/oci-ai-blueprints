@@ -37,8 +37,40 @@ extraScrapeConfigs: |
 nodeExporter:
   hostRootfs: false
 
+server:
+  persistentVolume:
+    enabled: true
+    existingClaim: prometheus-pvc
+
 EOF
   ]
 
+  depends_on = [kubernetes_persistent_volume_claim_v1.prometheus]
+  count = var.prometheus_enabled ? 1 : 0
+}
+
+resource "kubernetes_persistent_volume_claim_v1" "prometheus" {
+  metadata {
+    name      = "prometheus-pvc"
+    namespace = kubernetes_namespace.cluster_tools.0.id
+  }
+
+  spec {
+    access_modes = ["ReadWriteOnce"]
+
+    resources {
+      requests = {
+        storage = "50Gi"
+      }
+    }
+
+    storage_class_name = "oci-bv"
+  }
+
+  wait_until_bound = false
+
+  timeouts {
+    create = "5m"
+  }
   count = var.prometheus_enabled ? 1 : 0
 }

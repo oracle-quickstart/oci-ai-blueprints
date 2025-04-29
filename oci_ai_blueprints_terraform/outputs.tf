@@ -126,12 +126,6 @@ output "corrino_api_url" {
   depends_on  = [module.oke-quickstart.helm_release_ingress_nginx]
 }
 
-# output "corrino_portal_url" {
-#   value       = format("https://${local.public_endpoint.portal}")
-#   description = "Portal Service"
-#   depends_on  = [module.oke-quickstart.helm_release_ingress_nginx]
-# }
-
 output "blueprints_portal_url" {
   value       = format("https://${local.public_endpoint.blueprint_portal}")
   description = "Blueprint Portal Service"
