@@ -111,6 +111,7 @@ sidecar:
     label: grafana_dashboard
 persistence:
   enabled: true
+  existingClaim: grafana-pvc
 plugins:
   - oci-logs-datasource
   - oci-metrics-datasource
@@ -150,6 +151,49 @@ datasources:
 EOF
   ]
 
+  depends_on = [kubernetes_persistent_volume_claim_v1.grafana]
+  count = var.grafana_enabled ? 1 : 0
+}
+
+resource "kubernetes_config_map" "vllm_dashboard" {
+  metadata {
+    name      = "vllm-custom-dashboard"
+    namespace = kubernetes_namespace.cluster_tools[0].id
+    labels = {
+      grafana_dashboard = "true"
+    }
+  }
+
+  data = {
+    "vllm-dashboard.json" = file("${path.module}/dashboards/vllm-dashboard.json")
+  }
+}
+
+resource "kubernetes_persistent_volume_claim_v1" "grafana" {
+  metadata {
+    name      = "grafana-pvc"
+    namespace = kubernetes_namespace.cluster_tools.0.id
+  }
+
+  spec {
+    access_modes = ["ReadWriteOnce"]
+
+    resources {
+      requests = {
+        storage = "50Gi"
+      }
+    }
+
+    storage_class_name = "oci-bv"
+  }
+
+  wait_until_bound = false
+
+  timeouts {
+    create = "5m"
+  }
+
+  depends_on = [ kubernetes_persistent_volume_claim_v1.prometheus ]
   count = var.grafana_enabled ? 1 : 0
 }
 
@@ -210,6 +254,7 @@ resource "kubernetes_ingress_v1" "grafana" {
 
   count = (var.grafana_enabled && var.ingress_nginx_enabled) ? 1 : 0
 }
+
 ## Kubernetes Secret: Grafana Admin Password
 data "kubernetes_secret" "grafana" {
   metadata {

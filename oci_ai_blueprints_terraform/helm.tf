@@ -1,28 +1,62 @@
-
-#    REPO_NAME="community-charts"
-#    CHART_CANONICAL_NAME="mlflow"
-#    CHART_URL='https://community-charts.github.io/helm-charts'
-#    RELEASE_NAME="mlflow"
-#    NAMESPACE="default"
-#    COMPONENT="mlflow"
-
-
 resource "helm_release" "mlflow" {
   name       = "mlflow"
   repository = "https://community-charts.github.io/helm-charts"
   chart      = "mlflow"
-  namespace  = "default"
+  namespace  = "cluster-tools"
   wait       = false
+  version    = "0.16.5"
 
+  values = [
+    <<EOF
+extraVolumes:
+  - name: mlflow-volume
+    persistentVolumeClaim:
+      claimName: mlflow-pvc
+
+extraVolumeMounts:
+  - name: mlflow-volume
+    mountPath: /mlruns
+
+extraArgs:
+  backendStoreUri: file:///mlruns/store
+  defaultArtifactRoot: /mlruns/artifacts
+
+extraEnvVars:
+  MLFLOW_TRACKING_URI: file:///mlruns/store
+EOF
+  ]
+
+  depends_on = [ kubernetes_persistent_volume_claim_v1.mlflow ]
   count = var.bring_your_own_mlflow ? 0 : 1
 }
 
-#    REPO_NAME="nvidia"
-#    CHART_CANONICAL_NAME="gpu-operator"
-#    CHART_URL="https://helm.ngc.nvidia.com/nvidia"
-#    NAMESPACE="gpu-operator"
-#    RELEASE_NAME="nvidia-dcgm"
-#    COMPONENT="nvidia_dcgm_er"
+resource "kubernetes_persistent_volume_claim_v1" "mlflow" {
+  metadata {
+    name      = "mlflow-pvc"
+    namespace = "cluster-tools"
+  }
+
+  spec {
+    access_modes = ["ReadWriteOnce"]
+
+    resources {
+      requests = {
+        storage = "50Gi"
+      }
+    }
+
+    storage_class_name = "oci-bv"
+  }
+
+  wait_until_bound = false
+
+  timeouts {
+    create = "5m"
+  }
+
+  depends_on = [ kubernetes_ingress_v1.grafana_ingress ]
+  count = var.bring_your_own_mlflow ? 0 : 1
+}
 
 resource "helm_release" "nvidia-dcgm" {
   name             = "nvidia-dcgm"
@@ -31,6 +65,7 @@ resource "helm_release" "nvidia-dcgm" {
   namespace        = "gpu-operator"
   create_namespace = true
   wait             = false
+  version          = "v25.3.0"
 
   # Create the release if either DCGM or MIG is enabled.
   count = var.bring_your_own_nvidia_gpu_operator ? 0 : 1
@@ -51,6 +86,7 @@ resource "helm_release" "keda" {
   namespace        = "keda"
   create_namespace = true
   wait             = false
+  version          = "2.17.0"
 
   count = var.bring_your_own_keda ? 0 : 1
 }

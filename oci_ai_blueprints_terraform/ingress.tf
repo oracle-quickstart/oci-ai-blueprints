@@ -33,41 +33,6 @@ resource "kubernetes_ingress_v1" "corrino_cp_ingress" {
   depends_on = [module.oke-quickstart.helm_release_ingress_nginx]
 }
 
-# resource "kubernetes_ingress_v1" "corrino_portal_ingress" {
-#   wait_for_load_balancer = true
-#   metadata {
-#     name = "corrino-portal-ingress"
-#     annotations = {
-#       "cert-manager.io/cluster-issuer"             = "letsencrypt-prod"
-#       "nginx.ingress.kubernetes.io/rewrite-target" = "/"
-#     }
-#   }
-#   spec {
-#     ingress_class_name = "nginx"
-#     tls {
-#       hosts       = [local.public_endpoint.portal]
-#       secret_name = "corrino-portal-tls"
-#     }
-#     rule {
-#       host = local.public_endpoint.portal
-#       http {
-#         path {
-#           path = "/"
-#           backend {
-#             service {
-#               name = kubernetes_service.corrino_portal_service.metadata.0.name
-#               port {
-#                 number = 80
-#               }
-#             }
-#           }
-#         }
-#       }
-#     }
-#   }
-#   depends_on = [module.oke-quickstart.helm_release_ingress_nginx]
-# }
-
 resource "kubernetes_ingress_v1" "oci_ai_blueprints_portal_ingress" {
   wait_for_load_balancer = true
   metadata {
@@ -179,7 +144,7 @@ resource "kubernetes_ingress_v1" "mlflow_ingress" {
   wait_for_load_balancer = true
   metadata {
     name      = "mlflow-ingress"
-    namespace = "default"
+    namespace = "cluster-tools"
     annotations = {
       "cert-manager.io/cluster-issuer"             = "letsencrypt-prod"
       "nginx.ingress.kubernetes.io/rewrite-target" = "/"

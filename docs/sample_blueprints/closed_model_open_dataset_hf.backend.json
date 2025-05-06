@@ -13,7 +13,7 @@
   "recipe_container_env": [
     {
       "key": "Mlflow_Endpoint",
-      "value": "http://mlflow.default.svc.cluster.local:5000"
+      "value": "http://mlflow.cluster-tools.svc.cluster.local:5000"
     },
     {
       "key": "Mlflow_Exp_Name",
