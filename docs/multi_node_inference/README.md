@@ -32,7 +32,7 @@ Use multi-node inference whenever you are trying to use a very large model that 
 
 ## RDMA + Multinode Inference
 
-Want to use RDMA with multinode inference? [See here for details](../docs/using_rdma_enabled_node_pools)
+Want to use RDMA with multinode inference? [See here for details](../using_rdma_enabled_node_pools)
 
 ## How to use it?
 
