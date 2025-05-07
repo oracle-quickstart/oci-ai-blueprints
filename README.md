@@ -44,11 +44,15 @@ After you install OCI AI Blueprints to an OKE cluster in your tenancy, you can d
 
 | Blueprint                    | Description                                                                                                                             |
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------|
-| [**LLM Inference with vLLM**](./docs/sample_blueprints/vllm-inference)  | Deploy Llama 2/3/3.1 7B/8B models using NVIDIA GPU shapes and the vLLM inference engine with auto-scaling.                              |
+| [**LLM & VLM Inference with vLLM**](./docs/sample_blueprints/vllm-inference)  | Deploy Llama 2/3/3.1 7B/8B models using NVIDIA GPU shapes and the vLLM inference engine with auto-scaling.                              |
 | [**Fine-Tuning Benchmarking**](./docs/sample_blueprints/lora-benchmarking) | Run MLCommons quantized Llama-2 70B LoRA finetuning on A100 for performance benchmarking.                                               |
 | [**LoRA Fine-Tuning**](./docs/sample_blueprints/lora-fine-tuning)         | LoRA fine-tuning of custom or HuggingFace models using any dataset. Includes flexible hyperparameter tuning.                            |
 | [**Health Check**](./docs/sample_blueprints/gpu-health-check)             | Comprehensive evaluation of GPU performance to ensure optimal hardware readiness before initiating any intensive computational workload.|
 | [**CPU Inference**](./docs/sample_blueprints/cpu-inference)            | Leverage Ollama to test CPU-based inference with models like Mistral, Gemma, and more.                                                  |
+| [**Multi-node Inference with RDMA and vLLM**](./docs/multi_node_inference)            | Deploy Llama-405B sized LLMs across multiple nodes with RDMA using H100 nodes with vLLM and LeaderWorkerSet.                                          |
+| [**Scaled Inference with vLLM**](./docs/auto_scaling)            | Serve LLMs with auto-scaling using KEDA, which scales to multiple GPUs and nodes using application metrics like inference latency.|
+| [**LLM Inference with MIG**](./docs/mig_multi_instance_gpu)            | Deploy LLMs to a fraction of a GPU with Nvidia’s multi-instance GPUs and serve them with vLLM.                                                 |
+| [**Health Check**](./docs/sample_blueprints/gpu-health-check)            | Comprehensive evaluation of GPU performance to ensure optimal hardware readiness before initiating any intensive computational workload.                 |
 
 ## Support & Contact
 
