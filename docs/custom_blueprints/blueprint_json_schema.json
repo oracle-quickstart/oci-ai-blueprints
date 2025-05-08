@@ -43,8 +43,7 @@
               "service",
               "job",
               "update",
-              "shared_node_pool",
-              "raycluster"
+              "shared_node_pool"
             ]
           },
           "recipe_replica_count": {
@@ -411,66 +410,6 @@
           },
           "skip_quota_validation": {
             "type": "boolean"
-          },
-          "recipe_raycluster_params": {
-            "type": "object",
-            "properties": {
-              "head_node_num_cpus": {
-                "type": "integer"
-              },
-              "head_node_num_gpus": {
-                "type": "integer"
-              },
-              "head_node_cpu_mem_in_gbs": {
-                "type": "integer"
-              },
-              "num_worker_nodes": {
-                "type": "integer"
-              },
-              "worker_node_num_cpus": {
-                "type": "integer"
-              },
-              "worker_node_num_gpus": {
-                "type": "integer"
-              },
-              "worker_node_cpu_mem_in_gbs": {
-                "type": "integer"
-              },
-              "model_path_in_container": {
-                "type": "string"
-              },
-              "redis_port": {
-                "type": "integer"
-              },
-              "dashboard_port": {
-                "type": "integer"
-              },
-              "metrics_export_port": {
-                "type": "integer"
-              },
-              "rayclient_server_port": {
-                "type": "integer"
-              },
-              "worker_image_uri": {
-                "type": "string"
-              },
-              "head_image_uri": {
-                "type": "string"
-              },
-              "rayjob_image_uri": {
-                "type": "string"
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "head_node_num_cpus",
-              "head_node_num_gpus",
-              "head_node_cpu_mem_in_gbs",
-              "num_worker_nodes",
-              "worker_node_num_cpus",
-              "worker_node_num_gpus",
-              "worker_node_cpu_mem_in_gbs"
-            ]
           }
         },
         "required": ["recipe_mode", "deployment_name"],
