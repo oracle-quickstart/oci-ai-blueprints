@@ -23,8 +23,9 @@ This will be replaced as soon as we start tagging. Wanted framework in place.
 
 ### Oracle Services
 
-|Service|Version|
-|Oracle Kubernetes Engine|v1.31.1|
+|         Service          | Version |
+| :----------------------: | :-----: |
+| Oracle Kubernetes Engine | v1.31.1 |
 
 ---
 
@@ -124,7 +125,6 @@ This will be replaced as soon as we start tagging. Wanted framework in place.
 |       MLFlow        | 0.16.5  |   https://community-charts.github.io/helm-charts   |
 | NVIDIA GPU Operator | v25.3.0 |         https://helm.ngc.nvidia.com/nvidia         |
 |        Keda         | 2.17.0  |         https://kedacore.github.io/charts          |
-|        Kueue        | 0.11.4  |         oci://registry.k8s.io/kueue/charts         |
 
 ### Container Versions
 
