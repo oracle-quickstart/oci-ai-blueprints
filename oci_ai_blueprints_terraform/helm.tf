@@ -26,8 +26,8 @@ extraEnvVars:
 EOF
   ]
 
-  depends_on = [ kubernetes_persistent_volume_claim_v1.mlflow ]
-  count = var.bring_your_own_mlflow ? 0 : 1
+  depends_on = [kubernetes_persistent_volume_claim_v1.mlflow]
+  count      = var.bring_your_own_mlflow ? 0 : 1
 }
 
 resource "kubernetes_persistent_volume_claim_v1" "mlflow" {
@@ -54,8 +54,8 @@ resource "kubernetes_persistent_volume_claim_v1" "mlflow" {
     create = "5m"
   }
 
-  depends_on = [ kubernetes_ingress_v1.grafana_ingress ]
-  count = var.bring_your_own_mlflow ? 0 : 1
+  depends_on = [kubernetes_ingress_v1.grafana_ingress]
+  count      = var.bring_your_own_mlflow ? 0 : 1
 }
 
 resource "helm_release" "nvidia-dcgm" {
@@ -100,5 +100,18 @@ resource "helm_release" "lws" {
   version          = "0.1.0" // Optional: specify the version if needed
 
   count = var.bring_your_own_lws ? 0 : 1
+}
+
+
+resource "helm_release" "kueue" {
+  name             = "kueue"
+  repository       = "oci://registry.k8s.io/kueue/charts"
+  chart            = "kueue"
+  namespace        = "kueue-system"
+  create_namespace = true
+  wait             = false
+  version          = "0.11.4"
+
+  count = var.bring_your_own_kueue ? 0 : 1
 }
 

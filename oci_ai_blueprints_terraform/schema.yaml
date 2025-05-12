@@ -233,6 +233,16 @@ variableGroups:
           - ${bring_your_own_cluster}
           - true
 
+  - title: "Kubernetes Queue System"
+    variables:
+    - bring_your_own_kueue
+    - existent_kueue_namespace
+    visible:
+      and:
+        - eq:
+          - ${bring_your_own_cluster}
+          - true
+
 #  - title: "Oracle Digital Assistant support"
 #    variables:
 #    - oda_enabled
@@ -1034,7 +1044,24 @@ variables:
     visible:
       and:
         - bring_your_own_lws
-  
+
+  bring_your_own_kueue:
+    type: boolean
+    title: "Use your own Kueue installation from existing cluster?"
+    description: "Only use this if you already have Kueue installed on your existing cluster."
+    visible:
+      and:
+        - bring_your_own_cluster
+
+  existent_kueue_namespace:
+    type: string
+    title: "Existing Kueue Namespace"
+    description: "Kubernetes namespace of existing Kueue Installation."
+    required: true
+    visible:
+      and:
+        - bring_your_own_kueue
+        
   # Data Sharing
   share_data_with_corrino_team_enabled:
     type: boolean
