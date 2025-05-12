@@ -1,0 +1,45 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: team-b-vllm-inference
+  namespace: team-b
+  annotations:
+    kueue.x-k8s.io/queue-name: team-b-queue
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      nodeSelector:
+        gpu-type: a100
+      containers:
+        - name: vllm
+          image: vllm/vllm-openai:latest
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              python3 -m vllm.entrypoints.openai.api_server --model facebook/opt-1.3b --port 8000 &
+              echo "Waiting for server to come up..."
+              until curl -s http://localhost:8000/v1/completions > /dev/null; do
+                echo "Still waiting for vLLM..."
+                sleep 2
+              done
+              echo "Server is up. Running inference..."
+              curl -s http://localhost:8000/v1/completions \
+                -H "Content-Type: application/json" \
+                -d '{"model": "facebook/opt-1.3b", "prompt": "What is AI?", "max_tokens": 50}'
+              echo "Done."
+              sleep 3
+
+
+
+          resources:
+            requests:
+              cpu: "4"
+              memory: "16Gi"
+              nvidia.com/gpu: "6"
+            limits:
+              cpu: "4"
+              memory: "16Gi"
+              nvidia.com/gpu: "6"
+
+

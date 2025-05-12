@@ -1,0 +1,137 @@
+# ------------------------------
+# Job 1 - High Priority, 8 GPUs , remember for this team we have 16 gpus quota
+# ------------------------------
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: team-a-vllm-high-1
+  namespace: team-a
+  annotations:
+    kueue.x-k8s.io/queue-name: team-a-queue
+spec:
+  template:
+    spec:
+      priorityClassName: team-high-priority
+      restartPolicy: Never
+      nodeSelector:
+        gpu-type: a100
+      containers:
+        - name: vllm
+          image: vllm/vllm-openai:latest
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              echo "HIGH priority job 1 running"
+              python3 -m vllm.entrypoints.openai.api_server --model facebook/opt-1.3b --port 8000 &
+              until curl -s http://localhost:8000/v1/completions > /dev/null; do sleep 2; done
+              curl -s http://localhost:8000/v1/completions \
+                -H "Content-Type: application/json" \
+                -d '{"model": "facebook/opt-1.3b", "prompt": "High priority job 1", "max_tokens": 50}'
+              echo "HIGH priority job 1 done"
+              sleep 3
+          resources:
+            requests:
+              cpu: "4"
+              memory: "16Gi"
+              nvidia.com/gpu: "8"
+            limits:
+              cpu: "4"
+              memory: "16Gi"
+              nvidia.com/gpu: "8"
+
+---
+# ------------------------------
+# Job 2 - High Priority, 8 GPUs
+# ------------------------------
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: team-a-vllm-high-2
+  namespace: team-a
+  annotations:
+    kueue.x-k8s.io/queue-name: team-a-queue
+spec:
+  template:
+    metadata:
+      labels:
+        job-group: shared-node-job
+    spec:
+      priorityClassName: team-high-priority
+      restartPolicy: Never
+      nodeSelector:
+        gpu-type: a100
+      containers:
+        - name: vllm
+          image: vllm/vllm-openai:latest
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              echo "HIGH priority job 2 running"
+              python3 -m vllm.entrypoints.openai.api_server --model facebook/opt-1.3b --port 8000 &
+              until curl -s http://localhost:8000/v1/completions > /dev/null; do sleep 2; done
+              curl -s http://localhost:8000/v1/completions \
+                -H "Content-Type: application/json" \
+                -d '{"model": "facebook/opt-1.3b", "prompt": "High priority job 2", "max_tokens": 50}'
+              echo "HIGH priority job 2 done"
+              sleep 3
+          resources:
+            requests:
+              cpu: "4"
+              memory: "16Gi"
+              nvidia.com/gpu: "6"
+            limits:
+              cpu: "4"
+              memory: "16Gi"
+              nvidia.com/gpu: "8"
+
+---
+# ------------------------------
+# Job 3 - Low Priority, 2 GPUs (Flexible Placement, shared node)
+# ------------------------------
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: team-a-vllm-low
+  namespace: team-a
+  annotations:
+    kueue.x-k8s.io/queue-name: team-a-queue
+spec:
+  template:
+    spec:
+      priorityClassName: team-low-priority
+      restartPolicy: Never
+      nodeSelector:
+        gpu-type: a100
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchLabels:
+                    job-group: shared-node-job
+                topologyKey: "kubernetes.io/hostname"
+      containers:
+        - name: vllm
+          image: vllm/vllm-openai:latest
+          command: ["/bin/bash", "-c"]
+          args:
+            - |
+              echo "LOW priority job running"
+              python3 -m vllm.entrypoints.openai.api_server --model facebook/opt-1.3b --port 8000 &
+              until curl -s http://localhost:8000/v1/completions > /dev/null; do sleep 2; done
+              curl -s http://localhost:8000/v1/completions \
+                -H "Content-Type: application/json" \
+                -d '{"model": "facebook/opt-1.3b", "prompt": "low priority job 1", "max_tokens": 50}'
+              echo "LOW priority job done"
+              sleep 3
+          resources:
+            requests:
+              cpu: "4"
+              memory: "16Gi"
+              nvidia.com/gpu: "2"
+            limits:
+              cpu: "4"
+              memory: "16Gi"
+              nvidia.com/gpu: "2"
+

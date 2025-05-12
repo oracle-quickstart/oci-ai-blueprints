@@ -1,0 +1,8 @@
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: ResourceFlavor
+metadata:
+  name: a100
+spec:
+  nodeLabels:
+    gpu-type: a100
+

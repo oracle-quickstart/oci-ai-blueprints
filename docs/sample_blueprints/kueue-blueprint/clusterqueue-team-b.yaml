@@ -1,0 +1,20 @@
+apiVersion: kueue.x-k8s.io/v1beta1
+kind: ClusterQueue
+metadata:
+  name: team-b-cluster-queue
+spec:
+  cohort: shared-gpus
+  namespaceSelector:
+    matchLabels:
+      team: team-b
+  resourceGroups:
+    - coveredResources: ["cpu", "memory", "nvidia.com/gpu"]
+      flavors:
+        - name: a100
+          resources:
+            - name: cpu
+              nominalQuota: 256
+            - name: memory
+              nominalQuota: 2Ti
+            - name: nvidia.com/gpu
+              nominalQuota: 8
