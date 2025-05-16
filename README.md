@@ -52,7 +52,7 @@ After you install OCI AI Blueprints to an OKE cluster in your tenancy, you can d
 | [**Multi-node Inference with RDMA and vLLM**](./docs/multi_node_inference)            | Deploy Llama-405B sized LLMs across multiple nodes with RDMA using H100 nodes with vLLM and LeaderWorkerSet.                                          |
 | [**Scaled Inference with vLLM**](./docs/auto_scaling)            | Serve LLMs with auto-scaling using KEDA, which scales to multiple GPUs and nodes using application metrics like inference latency.|
 | [**LLM Inference with MIG**](./docs/mig_multi_instance_gpu)            | Deploy LLMs to a fraction of a GPU with Nvidia’s multi-instance GPUs and serve them with vLLM.                                                 |
-| [**Health Check**](./docs/sample_blueprints/gpu-health-check)            | Comprehensive evaluation of GPU performance to ensure optimal hardware readiness before initiating any intensive computational workload.                 |
+| [**Job Queuing**](./docs/sample_blueprints/teams)            | Take advantage of job queuing and enforce resource quotas and fair sharing between teams.                 |
 
 ## Support & Contact
 
