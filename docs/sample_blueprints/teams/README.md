@@ -1,6 +1,7 @@
-# Teams
+# Job Queuing
+**Job Queuing** feature in OCI AI Blueprints leverage Kueue, a Kubernetes job queuing system, to manage AI/ML workloads more efficiently. Job Queueing introduces workload queuing, prioritization, and resource-aware scheduling, ensuring that jobs are admitted based on available quotas and resource policies. This features enables fair sharing, dynamic resource allocation, and improved utilization of GPUs across workloads.
 
-**Teams** feature in OCI AI Blueprints lets admins enforce resource quotas and fair sharing between teams to decide when and where a job (batch, HPC, and AI/ML workloads) should wait or run within the cluster.
+**Teams** in OCI AI Blueprints lets admins enforce resource quotas and fair sharing between teams to decide when and where a job (batch, HPC, and AI/ML workloads) should wait or run within the cluster.
 
 Each bucket (a _team_) has hard _nominal quotas_, soft _borrowing_ / _lending_ limits, an optional _priority threshold_, and a friendly name you reference in any job blueprint.  
 Behind the scenes, the blueprint engine uses Kueue and wires up a `ClusterQueue`, `LocalQueue`, and a `Cohort` so workloads from different teams share idle capacity fairly while respecting their quotas. ([Kueue Docs](https://kueue.sigs.k8s.io/docs/overview/))
