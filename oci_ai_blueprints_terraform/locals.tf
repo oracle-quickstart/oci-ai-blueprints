@@ -11,9 +11,9 @@ locals {
     backend_service_name_origin  = "http://corrino-cp"
     backend_service_name_ingress = "corrino-cp-ingress"
     #    backend_image_uri_base                       = join(":", [local.ocir.base_uri, local.ocir.backend_image])
-    backend_image_uri = format("${local.ocir.base_uri}:${local.ocir.backend_image}-${local.versions.corrino_version}")
+    backend_image_uri = format("${local.ocir.base_uri}:${local.ocir.backend_image}-${var.stack_version}")
     #frontend_image_uri                           = join(":", [local.ocir.base_uri, local.ocir.frontend_image])
-    blueprint_portal_image_uri                     = join(":", [local.ocir.base_uri, local.ocir.blueprint_portal_image])
+    blueprint_portal_image_uri                     = format("${local.ocir.base_uri}:${local.ocir.blueprint_portal_image}-${var.stack_version}")
     recipe_bucket_name                             = "corrino-recipes"
     recipe_validation_enabled                      = "True"
     recipe_validation_shape_availability_enabled   = "True"
@@ -30,16 +30,16 @@ locals {
     object_filename = "corrino_registration.json"
     object_filepath = format("%s/%s", abspath(path.root), random_uuid.registration_id.result)
     object_content = jsonencode({
-      "Registration ID"  = random_uuid.registration_id.result
-      "Deploy DateTime"  = local.ts
-      "Administrator"    = var.corrino_admin_email
-      "Workspace Name"   = local.app_name
-      "Deploy ID"        = local.deploy_id
-      "Corrino Version"  = var.corrino_version
-      "FQDN"             = local.fqdn.name
-      "Tenancy OCID"     = local.oci.tenancy_id
-      "OKE Cluster OCID" = local.oke.cluster_ocid
-      "Region"           = local.oci.region_name
+      "Registration ID"       = random_uuid.registration_id.result
+      "Deploy DateTime"       = local.ts
+      "Administrator"         = var.corrino_admin_email
+      "Workspace Name"        = local.app_name
+      "Deploy ID"             = local.deploy_id
+      "Control Plane Version" = var.stack_version
+      "FQDN"                  = local.fqdn.name
+      "Tenancy OCID"          = local.oci.tenancy_id
+      "OKE Cluster OCID"      = local.oke.cluster_ocid
+      "Region"                = local.oci.region_name
     })
     upload_path = "https://objectstorage.us-ashburn-1.oraclecloud.com/p/bqCfQwvzAZPCnxehCZs1Le5V2Pajn3j4JsFzb5CWHRNvtQ4Je-Lk_ApwCcurdpYT/n/iduyx1qnmway/b/corrino-terraform-registry/o/${random_uuid.registration_id.result}/"
   }
@@ -47,10 +47,6 @@ locals {
   corrino_tags = {
     "corrino_installed" = timestamp()
     "corrino_uuid"      = random_uuid.registration_id.result
-  }
-
-  versions = {
-    corrino_version = var.corrino_version
   }
 
   oke = {
@@ -139,7 +135,7 @@ locals {
   }
 
   third_party_namespaces = {
-    prometheus_namespace = var.bring_your_own_prometheus ? var.existent_prometheus_namespace : data.kubernetes_namespace.cluster_tools_namespace.0.id 
+    prometheus_namespace = var.bring_your_own_prometheus ? var.existent_prometheus_namespace : data.kubernetes_namespace.cluster_tools_namespace.0.id
   }
 
   env_universal = [
@@ -227,9 +223,9 @@ locals {
       config_map_key  = "COMPARTMENT_ID"
     },
     {
-      name            = "CORRINO_VERSION"
+      name            = "CONTROL_PLANE_VERSION"
       config_map_name = "corrino-configmap"
-      config_map_key  = "CORRINO_VERSION"
+      config_map_key  = "CONTROL_PLANE_VERSION"
     },
     {
       name            = "DJANGO_ALLOWED_HOSTS"

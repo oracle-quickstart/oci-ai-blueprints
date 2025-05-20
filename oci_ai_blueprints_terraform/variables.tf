@@ -65,9 +65,8 @@ variable "policy_creation_enabled" {
   default     = false
 }
 
-variable "corrino_version" {
-  type    = string
-  default = "latest"
+variable "stack_version" {
+  type = string
 }
 
 variable "share_data_with_corrino_team_enabled" {

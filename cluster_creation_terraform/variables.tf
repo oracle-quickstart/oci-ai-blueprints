@@ -2,7 +2,8 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at http://oss.oracle.com/licenses/upl.
 # 
 variable "oci_ai_blueprints_link_variable" {
-  default = "https://cloud.oracle.com/resourcemanager/stacks/create?region=home&zipUrl=https://github.com/oracle-quickstart/oci-ai-blueprints/releases/download/release-2025-05-16/release_2025_05_16_app.zip"
+  type    = string
+  default = file("${path.module}/OCI_AI_BLUEPRINTS_LINK")
 }
 
 # OKE Variables

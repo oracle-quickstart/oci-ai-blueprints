@@ -2,6 +2,10 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at http://oss.oracle.com/licenses/upl.
 # 
 
+output "cluster_creation_stack_version" {
+  value = file("${path.module}/CLUSTER_CREATION_STACK_VERSION")
+}
+
 output "oke_cluster_name" {
   value = oci_containerengine_cluster.oke_cluster[0].name
 }

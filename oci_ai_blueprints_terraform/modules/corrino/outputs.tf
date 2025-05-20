@@ -3,9 +3,7 @@
 # 
 
 # Deployment outputs
-output "stack_version" {
-  value = file("${path.module}/VERSION")
-}
+
 output "deploy_id" {
   value = local.deploy_id
 }
@@ -55,9 +53,9 @@ output "cluster_tools_namespace" {
 }
 
 output "helm_release_ingress_nginx" {
-   value = module.cluster-tools.helm_release_ingress_nginx
+  value = module.cluster-tools.helm_release_ingress_nginx
 }
 
 output "helm_release_grafana" {
-   value = module.cluster-tools.helm_release_grafana
+  value = module.cluster-tools.helm_release_grafana
 }
