@@ -112,6 +112,7 @@ resource "helm_release" "kueue" {
   wait             = false
   version          = "0.11.4"
 
-  count = var.bring_your_own_kueue ? 0 : 1
+  count      = var.bring_your_own_kueue ? 0 : 1
+  depends_on = [kubernetes_job.corrino_migration_job, kubernetes_job.wallet_extractor_job]
 }
 

@@ -20,6 +20,11 @@ source:
 
 outputGroups:
 
+  - title: Versions
+    outputs:
+      - oci_ai_blueprints_stack_version
+      - stack_version
+
   - title: "OCI AI Blueprints Portal"
     outputs:
       - blueprints_portal_url
@@ -54,19 +59,14 @@ variableGroups:
     - region
     visible: false
 
+  - title: "Version Control"
+    variables:
+    - stack_version
+
 
   - title: "Prerequisites"
     variables:
     - is_oke_cluster_setup
-
-  # - title: "Corrino Workspace"
-  #   variables:
-  #   - app_name
-  #   - deploy_id
-  #   - corrino_version
-#    - show_advanced
-#    - mushop_atp
-    # - mushop_oss
 
   - title: "OCI AI Blueprints Admin"
     variables:
@@ -416,15 +416,6 @@ variables:
 #    description: "Shows advanced options, allowing enable customer-managed encryption keys, select your ssh key, select/unselect cluster utilities, do not create policies, and other advanced options"
 #    visible: true
 
-  # Corrino Version
-
-  corrino_version:
-    type: string
-    title: "OCI AI Blueprints Version"
-    description: "This is the version of OCI AI Blueprints software that will be installed."
-    required: true
-    default: "latest"
-    visible: false
 
   # --------------------
   # Corrino Users
@@ -458,8 +449,30 @@ variables:
     required: true
     default: false
     visible: true
-    
-    
+
+
+
+  # ---------------------------------
+  # Version Control
+  # ---------------------------------
+  stack_version:
+    title: "Stack Version"
+    type: enum
+    enum:
+      - "v1.0.0"
+    default: "v1.0.0"
+    required: true
+    visible: true
+
+
+  oci_ai_blueprints_stack_version:
+    type: string
+    title: "OCI AI Blueprints Stack Version"
+    description: "The version of this stack"
+    required: true
+    visible: false
+
+
   # --------------------
   # ADB
   # --------------------
@@ -1224,13 +1237,6 @@ variables:
 #      - autonomous_database_password
 
 
-#  - title: Dev Notes
-#    outputs:
-##      - dev
-#      - deploy_id
-#      - corrino_source_code
-#      - corrino_version
-
 outputs:
 
   external_ip:
@@ -1334,9 +1340,6 @@ outputs:
     visible: false
 
   corrino_source_code:
-    visible: false
-
-  corrino_version:
     visible: false
 
   cluster_region:

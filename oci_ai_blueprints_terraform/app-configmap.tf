@@ -10,7 +10,7 @@ resource "kubernetes_config_map" "corrino-configmap" {
     ADDON_GRAFANA_USER                             = local.addon.grafana_user
     BACKEND_SERVICE_NAME                           = local.app.backend_service_name
     COMPARTMENT_ID                                 = local.oci.compartment_id
-    CORRINO_VERSION                                = local.versions.corrino_version
+    CONTROL_PLANE_VERSION                          = var.stack_version
     DJANGO_ALLOWED_HOSTS                           = local.django.allowed_hosts
     DJANGO_CSRF_TRUSTED_ORIGINS                    = local.django.csrf_trusted_origins
     DJANGO_SECRET                                  = local.django.secret

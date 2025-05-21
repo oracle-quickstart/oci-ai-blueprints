@@ -20,6 +20,11 @@ variableGroups:
     - region
     visible: false
 
+  - title: "Stack Version"
+    variables:
+    - cluster_creation_stack_version
+    visible: true
+
   - title: "Advanced Configuration?"
     variables: 
     - show_advanced
@@ -131,6 +136,13 @@ variables:
 
 outputs:
 
+  cluster_creation_stack_version:
+    type: string
+    title: "Stack Version"
+    description: "The version of this stack"
+    required: true
+    visible: true
+
   oke_cluster_name:
     type: string
     title: "OKE Cluster Name"
@@ -195,6 +207,11 @@ outputGroups:
   - title: "Next Step: Deploy OCI AI Blueprints"
     outputs:
       - oci_ai_blueprints_link_for_section
+
+
+  - title: "Cluster Creation Stack Version"
+    outputs:
+      - cluster_creation_stack_version
 
   - title: OKE Cluster Details
     outputs:

@@ -101,9 +101,13 @@ output "external_ip" {
 output "corrino_source_code" {
   value = "https://github.com/oracle-quickstart/corrino/"
 }
-output "corrino_version" {
+output "stack_version" {
   #  value = file("${path.module}/VERSION")
-  value = local.versions.corrino_version
+  value = var.stack_version
+}
+
+output "oci_ai_blueprints_stack_version" {
+  value = file("${path.module}/OCI_AI_BLUEPRINTS_STACK_VERSION")
 }
 
 output "corrino_admin_username_output" {
