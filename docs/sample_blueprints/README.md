@@ -12,4 +12,4 @@ You may use any recipe json as the payload in the `/deployment` endpoint. You ar
 
 | Blueprint Name | Type      | File Name                                          | Description                                                          |
 | -------------- | --------- | -------------------------------------------------- | -------------------------------------------------------------------- |
-| Autoscaling    | Inference | [autoscaling_recipe.json](autoscaling_recipe.json) | vLLM inference with autoscaling and Meta Lllama 3 70B instruct model |
+| Autoscaling    | Inference | [docs/sample_blueprints/auto_scaling/autoscaling_blueprint.json](auto_scaling/autoscaling_blueprint.json) | vLLM inference with autoscaling and Meta Lllama 3 70B instruct model |

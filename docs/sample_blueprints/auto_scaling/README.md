@@ -178,7 +178,7 @@ Pod auto-scaling allows a blueprint to scale within a single node, up to the num
 
 #### Additional Considerations:
 
-Pod autoscaling can be paired with startup and liveness probes to verify that a blueprint is both ready to receive requests and continuing to function properly. For more information, visit [our startup and liveness probe doc](../startup_liveness_probes/README.md).
+Pod autoscaling can be paired with startup and liveness probes to verify that a blueprint is both ready to receive requests and continuing to function properly. For more information, visit [our startup and liveness probe doc](../startup_liveness_readiness_probes/README.md).
 
 ## Node + Pod Auto-Scaling (Scaling Beyond a Single Node)
 
@@ -264,7 +264,7 @@ When a single node can no longer handle additional replicas, OCI AI Blueprints w
 
 ## Example Blueprint and Testing
 
-The following [example_blueprint](../sample_blueprints/autoscaling_blueprint.json) shows a minimum basic example of how to use autoscaling with vLLM. Paste this in your deployment, and then post to launch the blueprint.
+The following [example_blueprint](autoscaling_blueprint.json) shows a minimum basic example of how to use autoscaling with vLLM. Paste this in your deployment, and then post to launch the blueprint.
 
 Note, the `scaling_threshold` parameter here is intentionally set very low to kick off scaling at a lighter load. It is better to use the defaults.
 

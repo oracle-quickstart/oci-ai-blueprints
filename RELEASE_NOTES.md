@@ -17,7 +17,7 @@ TODO (This file is intended to serve as a template for now):
 ### Changed
  - Kuberay replaced by LeaderWorkerSet
  - MLFlow, Prometheus, and Grafana now use persistent volume claims instead of local storage
- - Anchored all versions of helm installs to specific versions which can be found [here](./docs/software_versions/QuickStartVersions.md#helm-chart-versions).
+ - Anchored all versions of helm installs to specific versions which can be found [here](docs/versioning/QuickStartVersions.md).
 
 ### Fixed
  - Fixed an issue with mlflow deployments where all mlflow experiments would fail because "Experiment 1" did not exist - bug in mlflow and using :memory: as the runs database.

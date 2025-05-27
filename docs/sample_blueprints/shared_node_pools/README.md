@@ -102,4 +102,4 @@ Note that the parameters:
 
 ## Sample Blueprints
 
-[shared_node_pool_A10_BM](../sample_blueprints/shared_node_pool_A10_BM.json)
+[shared_node_pool_A10_BM](shared_node_pool_A10_BM.json)

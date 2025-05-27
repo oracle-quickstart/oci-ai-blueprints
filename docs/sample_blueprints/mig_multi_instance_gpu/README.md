@@ -67,7 +67,7 @@ Apart from the existing requirements for a shared node pool found [here](../shar
 - `"shared_node_pool_mig_config"` - the mig congfiguration to apply to each node in the node pool. Possible values are in the [Mig Configurations](#mig-configurations). This will apply the node to each node in the pool, but if you want to update a specific node that can be done via the `update` mode described in the next section.
 - `"recipe_max_pods_per_node"`: [OPTIONAL: DEFAULT = 90] - by default, since MIG can slice up to 56 times for a full BM.GPU.H100.8, the default 31 pods by OKE is insufficient. As part of shared_node_pool deployment for MIG, this value is increased to 90 to fit all slice configurations + some buffer room. The maximum value is proportedly 110. It is not recommended to change this value, as it can not be modified after deployment of a pool. In order to change it, a node must be removed from the pool and re-added with the new value.
 
-A sample blueprint for the mig enabled shared pool can be found [in sample blueprints](../sample_blueprints/mig_enabled_shared_node_pool.json).
+A sample blueprint for the mig enabled shared pool can be found [in sample blueprints](mig_enabled_shared_node_pool.json).
 
 #### update mig configuration:
 
@@ -83,9 +83,9 @@ In future iterations, we will add support to temporarily pause work and reschedu
 - `"recipe_node_name"` - One of `"recipe_node_name"` or `"recipe_node_pool_name"` must be provided - this is the private IP address of the node. This will only apply the passed mig configuration to the specified node, rather than the whole pool. This option currently only supports a single node at a time.
 - `"recipe_node_pool_name"` - One of `"recipe_node_name"` or `"recipe_node_pool_name"` must be provided - this is the name of the node pool. This will apply the passed mig configuration to the whole pool, rather than a specific node.
 
-A sample blueprint to update using **node name**: [mig_update_shared_pool_with_node_name.json](../sample_blueprints/mig_update_node_with_node_name.json).
+A sample blueprint to update using **node name**: [mig_update_shared_pool_with_node_name.json](mig_update_node_with_node_name.json).
 
-A sample blueprint to update using **node pool name**: [mig_update_shared_pool_with_node_pool_name.json](../sample_blueprints/mig_update_shared_pool_with_node_pool_name.json).
+A sample blueprint to update using **node pool name**: [mig_update_shared_pool_with_node_pool_name.json](mig_inference_single_replica.json).
 
 ### Use MIG Resource in Blueprint
 
@@ -110,9 +110,9 @@ The list of available MIG resource requests:
 
 If you would like to run the same blueprint across many slices (which may be the case with LLM inference), increase the number of replicas in `recipe_replica_count`.
 
-A sample blueprint with multiple replicas can be found here: [mig_inference_multiple_replicas.json](../sample_blueprints/mig_inference_multiple_replicas.json).
+A sample blueprint with multiple replicas can be found here: [mig_inference_multiple_replicas.json](mig_inference_single_replica.json).
 
-A sample blueprint with a single replica can be found here: [mig_inference_single_replica.json](../sample_blueprints/mig_inference_single_replica.json).
+A sample blueprint with a single replica can be found here: [mig_inference_single_replica.json](mig_inference_single_replica_10gb.json).
 
 ## Quickstart
 
@@ -127,7 +127,7 @@ The following is a quickstart with the example flow of using MIG for blueprint d
 
 Executing the blueprints below would be an exact representation of the above.
 
-1. Launch shared pool: [shared_mig_pool.json](../sample_blueprints/mig_enabled_shared_node_pool.json)
-2. Launch MIG inference when pool is active: [mig_inference.json](../sample_blueprints/mig_inference_single_replica.json)
-3. Evaluate performance and determine update is needed to reduce memory from 20gb slice to 10gb slice: [update_mig.json](../sample_blueprints/mig_update_node_with_node_name.json)
-4. Launch recipe again, this time selecting 1g.10gb resource: [mig_inference.json](../sample_blueprints/mig_inference_single_replica_10gb.json)
+1. Launch shared pool: [shared_mig_pool.json](mig_enabled_shared_node_pool.json)
+2. Launch MIG inference when pool is active: [mig_inference.json](mig_inference_single_replica_10gb.json)
+3. Evaluate performance and determine update is needed to reduce memory from 20gb slice to 10gb slice: [update_mig.json](mig_update_node_with_node_name.json)
+4. Launch recipe again, this time selecting 1g.10gb resource: [mig_inference.json](mig_inference_single_replica_10gb.json)

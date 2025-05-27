@@ -22,7 +22,7 @@ Rather than installing blueprints onto a new cluster, a user may want to leverag
 
 ## Step 1: Set Up Policies in Your Tenancy
 
-Some or all of these policies may be in place as required by OKE. Please review the required policies listed [here](docs/iam_policies/README.md) and add any required policies which are missing.
+Some or all of these policies may be in place as required by OKE. Please review the required policies listed [here](docs/iam_policies.md) and add any required policies which are missing.
 
 1. If you are **not** a tenancy administrator, ask your admin to add additional required policies in the **root compartment**.
 2. If you **are** a tenancy administrator, you can either manually add the additional policies to an existing dynamic group, or let the resource manager deploy the required policies during stack creation.
@@ -83,7 +83,7 @@ If you have existing node pools in your original OKE cluster that you'd like Blu
    - If you get a warning about security, sometimes it takes a bit for the certificates to get signed. This will go away once that process completes on the OKE side.
 3. Login with the `Admin Username` and `Admin Password` in the Application information tab.
 4. Click the link next to "deployment" which will take you to a page with "Deployment List", and a content box.
-5. Paste in the sample blueprint json found [here](./docs/sample_blueprints/add_node_to_control_plane.json).
+5. Paste in the sample blueprint json found [here](docs/sample_blueprints/exisiting_cluster_installation/add_node_to_control_plane.json).
 6. Modify the "recipe_node_name" field to the private IP address you found in step 1 above.
 7. Click "POST". This is a fast operation.
 8. Wait about 20 seconds and refresh the page. It should look like:
@@ -111,7 +111,7 @@ If you have existing node pools in your original OKE cluster that you'd like Blu
 5. If you added a node from [Step 4](./INSTALLING_ONTO_EXISTING_CLUSTER_README.md#step-4-add-existing-nodes-to-cluster-optional), use the following shared node pool [blueprint](./docs/sample_blueprints/shared_node_pools/vllm_inference_sample_shared_pool_blueprint.json).
    - Depending on the node shape, you will need to change:
      `"recipe_node_shape": "BM.GPU.A10.4"` to match your shape.
-6. If you did not add a node, or just want to deploy a fresh node, use the following [blueprint](./docs/sample_blueprints/vllm_inference_sample_blueprint.json).
+6. If you did not add a node, or just want to deploy a fresh node, use the following [blueprint](docs/sample_blueprints/vllm-inference/vllm_inference_sample_blueprint.json).
 7. Paste the blueprint you selected into context box on the deployment page and click "POST"
 8. To monitor the deployment, go back to "Api Root" and click "deployment_logs".
    - If you are deploying without a shared node pool, it can take 10-30 minutes to bring up a node, depending on shape and whether it is bare-metal or virtual.
@@ -227,5 +227,5 @@ TEST SUITE: None
 
 ## Need Help?
 
-- Check out [Known Issues & Solutions](docs/known_issues/README.md) for troubleshooting common problems.
+- Check out [Known Issues & Solutions](docs/known_issues.md) for troubleshooting common problems.
 - For questions or additional support, contact [vishnu.kammari@oracle.com](mailto:vishnu.kammari@oracle.com) or [grant.neuman@oracle.com](mailto:grant.neuman@oracle.com).
