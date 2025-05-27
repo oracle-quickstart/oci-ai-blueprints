@@ -32,13 +32,13 @@
 
 ## Features
 
-| Feature                        | Description                                                                                                                             | Instructions                                       |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| **Customize Blueprints**       | Tailor existing OCI AI Blueprints to suit your exact AI workload needs—everything from hyperparameters to node counts and hardware.     | [Read More](../custom_blueprints/README.md)      |
-| **Updating OCI AI Blueprints** | Keep your OCI AI Blueprints environment current with the latest control plane and portal updates.                                       | [Read More](../installing_new_updates/README.md) |
-| **Shared Node Pool**           | Use longer-lived resources (e.g., bare metal nodes) across multiple blueprints or to persist resources after a blueprint is undeployed. | [Read More](../shared_node_pools/README.md)      |
-| **File Storage Service**       | Store and supply model weights using OCI File Storage Service for blueprint deployments.                                                | [Read More](../fss/README.md)                    |
-| **Auto-Scaling**               | Automatically adjust resource usage based on infrastructure or application-level metrics to optimize performance and costs.             | [Read More](../auto_scaling/README.md)           |
+| Feature                        | Description                                                                                                                             | Instructions                                                  |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| **Customize Blueprints**       | Tailor existing OCI AI Blueprints to suit your exact AI workload needs—everything from hyperparameters to node counts and hardware.     | [Read More](../custom_blueprints/README.md)                   |
+| **Updating OCI AI Blueprints** | Keep your OCI AI Blueprints environment current with the latest control plane and portal updates.                                       | [Read More](../installing_new_updates/README.md)              |
+| **Shared Node Pool**           | Use longer-lived resources (e.g., bare metal nodes) across multiple blueprints or to persist resources after a blueprint is undeployed. | [Read More](../sample_blueprints/shared_node_pools/README.md) |
+| **File Storage Service**       | Store and supply model weights using OCI File Storage Service for blueprint deployments.                                                | [Read More](../fss/README.md)                                 |
+| **Auto-Scaling**               | Automatically adjust resource usage based on infrastructure or application-level metrics to optimize performance and costs.             | [Read More](../sample_blueprints/auto_scaling/README.md)      |
 
 ---
 
@@ -92,4 +92,4 @@ A: Any NVIDIA GPUs available in your OCI region (A10, A100, H100, etc.).
 A: Yes, though testing on clusters running other workloads is ongoing. We recommend a clean cluster for best stability.
 
 **Q: How do I run multiple blueprints on the same node?**  
-A: Enable shared node pools. [Read more here](../shared_node_pools/README.md).
+A: Enable shared node pools. [Read more here](../sample_blueprints/shared_node_pools/README.md).
