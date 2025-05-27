@@ -34,11 +34,11 @@
 | recipe_container_env                         | string  | No       | Values of the recipe container init arguments. See the Blueprint Arguments section below for details. Example: `[{"key": "tensor_parallel_size","value": "2"},{"key": "model_name","value": "NousResearch/Meta-Llama-3.1-8B-Instruct"},{"key": "Model_Path","value": "/models/NousResearch/Meta-Llama-3.1-8B-Instruct"}]`                                                         |
 | skip_capacity_validation                     | boolean | No       | Determines whether validation checks on shape capacity are performed before initiating deployment. If your deployment is failing validation due to capacity errors but you believe this not to be true, you should set `skip_capacity_validation` to be `true` in the recipe JSON to bypass all checks for Shape capacity.                                                        |
 
-For autoscaling parameters, visit [autoscaling](../auto_scaling/README.md#basic-configurations).
+For autoscaling parameters, visit [autoscaling](sample_blueprints/auto_scaling/README.md).
 
-For multinode inference parameters, visit [multinode inference](../multi_node_inference/README.md#how-to-use-it)
+For multinode inference parameters, visit [multinode inference](sample_blueprints/multi-node-inference/README.md)
 
-For MIG parameters, visit [MIG shared pool configurations](../mig_multi_instance_gpu/README.md#mig-recipe-configuration), [update MIG configuration](../mig_multi_instance_gpu/README.md#update-mig-configuration), and [MIG recipe configuration](../mig_multi_instance_gpu/README.md#use-mig-resource-in-recipe).
+For MIG parameters, visit [MIG shared pool configurations](sample_blueprints/mig_multi_instance_gpu/mig_inference_single_replica.json), [update MIG configuration](sample_blueprints/mig_multi_instance_gpu/mig_inference_single_replica.json), and [MIG recipe configuration](sample_blueprints/mig_multi_instance_gpu/mig_inference_single_replica.json).
 
 ### Blueprint Container Arguments
 
@@ -92,13 +92,13 @@ This recipe deploys the vLLM container image. Follow the vLLM docs to pass the c
 There are 3 blueprints that we are providing out of the box. Following are example recipe.json snippets that you can use to deploy the blueprints quickly for a test run.
 |Blueprint|Scenario|Sample JSON|
 |----|----|----
-|LLM Inference using NVIDIA shapes and vLLM|Deployment with default Llama-3.1-8B model using PAR|View sample JSON here [here](./vllm_inference_sample_recipe.json)
-|MLCommons Llama-2 Quantized 70B LORA Fine-Tuning on A100|Default deployment with model and dataset ingested using PAR|View sample JSON here [here](./mlcommons_lora_finetune_nvidia_sample_recipe.json)
-|LORA Fine-Tune Blueprint|Open Access Model Open Access Dataset Download from Huggingface (no token required)|View sample JSON [here](./open_model_open_dataset_hf.backend.json)
-|LORA Fine-Tune Blueprint|Closed Access Model Open Access Dataset Download from Huggingface (Valid Auth Token Is Required!!)|View sample JSON [here](./closed_model_open_dataset_hf.backend.json)
-|LORA Fine-Tune Blueprint|Bucket Model Open Access Dataset Download from Huggingface (no token required)|View sample JSON [here](./bucket_model_open_dataset_hf.backend.json)
-|LORA Fine-Tune Blueprint|Get Model from Bucket in Another Region / Tenancy using Pre-Authenticated_Requests (PAR) Open Access Dataset Download from Huggingface (no token required)|View sample JSON [here](./bucket_par_open_dataset.backend.json)
-|LORA Fine-Tune Blueprint|Bucket Model Bucket Checkpoint Open Access Dataset Download from Huggingface (no token required)|View sample JSON [here](./bucket_checkpoint_bucket_model_open_dataset.backend.json)
+|LLM Inference using NVIDIA shapes and vLLM|Deployment with default Llama-3.1-8B model using PAR|View sample JSON here [here](sample_blueprints/vllm-inference/vllm_inference_sample_blueprint.json)
+|MLCommons Llama-2 Quantized 70B LORA Fine-Tuning on A100|Default deployment with model and dataset ingested using PAR|View sample JSON here [here](sample_blueprints/lora-benchmarking/mlcommons_lora_finetune_nvidia_sample_recipe.json)
+|LORA Fine-Tune Blueprint|Open Access Model Open Access Dataset Download from Huggingface (no token required)|View sample JSON [here](sample_blueprints/lora-fine-tuning/open_model_open_dataset_hf.backend.json)
+|LORA Fine-Tune Blueprint|Closed Access Model Open Access Dataset Download from Huggingface (Valid Auth Token Is Required!!)|View sample JSON [here](sample_blueprints/lora-fine-tuning/closed_model_open_dataset_hf.backend.json)
+|LORA Fine-Tune Blueprint|Bucket Model Open Access Dataset Download from Huggingface (no token required)|View sample JSON [here](sample_blueprints/lora-fine-tuning/bucket_par_open_dataset.backend.json)
+|LORA Fine-Tune Blueprint|Get Model from Bucket in Another Region / Tenancy using Pre-Authenticated_Requests (PAR) Open Access Dataset Download from Huggingface (no token required)|View sample JSON [here](sample_blueprints/lora-fine-tuning/bucket_model_open_dataset.backend.json)
+|LORA Fine-Tune Blueprint|Bucket Model Bucket Checkpoint Open Access Dataset Download from Huggingface (no token required)|View sample JSON [here](sample_blueprints/lora-fine-tuning/bucket_par_open_dataset.backend.json)
 
 ## Undeploy a Blueprint
 

@@ -59,7 +59,7 @@ By leveraging both schemas, you guarantee that your main blueprint configuration
 
 ## Publishing Custom Blueprints: Step-by-Step Guide
 
-Follow these steps to create, validate, and publish your custom blueprint. This process ensures that all relevant details align with the **Blueprint JSON Schema** and that your pre-filled samples align with the **Pre-Filled Sample JSON Schema**. Please use the [api documentation](../api_documentation/README.md) for understanding of each parameter in the pre-filled sample payload.
+Follow these steps to create, validate, and publish your custom blueprint. This process ensures that all relevant details align with the **Blueprint JSON Schema** and that your pre-filled samples align with the **Pre-Filled Sample JSON Schema**. Please use the [api documentation](../../docs/api_documentation.md) for understanding of each parameter in the pre-filled sample payload.
 
 1. **Upload Your Container Image to a Registry**
 

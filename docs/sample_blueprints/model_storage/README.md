@@ -48,4 +48,4 @@ Notes:
 
 ## Option 2: File Storage Service (FSS) - Full doc coming soon!
 
-[FSS Details](../../fss/README.md)
+[FSS Details](../fss/README.md)

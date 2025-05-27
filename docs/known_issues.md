@@ -4,7 +4,7 @@ Place to record issues that arise and there corresponding workarounds.
 
 ## 500 Errors When Connecting to API
 
-1. Check your permissions and verify that they match exactly as shown here: [IAM Policies](../iam_policies)
+1. Check your permissions and verify that they match exactly as shown here: [IAM Policies](../docs/iam_policies.md)
 2. Did you choose `*.nip.io` as your domain name when setting up OCI AI Blueprints? If so, this is an untrusted domain and will be blocked when behind VPN. Either choose to deploy OCI AI Blueprints via custom domain or access your `*.nip.io` OCI AI Blueprints domain outside of VPN
 
 ## Shape BM.GPU4.8 Cannot Schedule Blueprints

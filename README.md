@@ -11,28 +11,28 @@ OCI AI Blueprints is a streamlined, no-code solution for deploying and managing 
 **Getting Started**
 
 - [Install AI Blueprints](./GETTING_STARTED_README.md)
-- [Access AI Blueprints Portal and API](./docs/api_documentation/accessing_oci_ai_blueprints/README.md)
+- [Access AI Blueprints Portal and API](docs/usage_guide.md)
 
 **About OCI AI Blueprints**
 
-- [What is OCI AI Blueprints?](./docs/about/README.md#what-is-oci-ai-blueprints)
-- [Why use OCI AI Blueprints?](./docs/about/README.md#why-use-oci-ai-blueprints)
-- [Features](./docs/about/README.md#features)
+- [What is OCI AI Blueprints?](docs/about.md)
+- [Why use OCI AI Blueprints?](docs/about.md)
+- [Features](docs/about.md)
 - [List of Blueprints](#blueprints)
-- [FAQ](./docs/about/README.md#frequently-asked-questions-faq)
+- [FAQ](docs/about.md)
 - [Support & Contact](https://github.com/oracle-quickstart/oci-ai-blueprints/blob/vkammari/doc_improvements/docs/about/README.md#frequently-asked-questions-faq)
 
 **API Reference**
 
-- [API Reference Documentation](docs/api_documentation/README.md)
+- [API Reference Documentation](docs/api_documentation.md)
 
 **Additional Resources**
 
 - [Publish Custom Blueprints](./docs/custom_blueprints)
-- [Installing Updates](./docs/installing_new_updates)
-- [IAM Policies](./docs/iam_policies/README.md)
-- [Repository Contents](./docs/about/README.md#repository-contents)
-- [Known Issues](docs/known_issues/README.md)
+- [Installing Updates](docs/installing_new_updates.md)
+- [IAM Policies](docs/iam_policies.md)
+- [Repository Contents](docs/about.md)
+- [Known Issues](docs/known_issues.md)
 
 ## Getting Started
 

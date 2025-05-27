@@ -80,7 +80,7 @@ The `recipe_container_env` has been left in so you can see that the nodes are co
 
 ## Install AI Blueprints onto existing cluster
 
-[Stop after step 3 of this document](../../INSTALLING_ONTO_EXISTING_CLUSTER_README.md) to install AI Blueprints onto an existing cluster with RDMA enabled node pools.
+[Stop after step 3 of this document](../../../INSTALLING_ONTO_EXISTING_CLUSTER_README.md) to install AI Blueprints onto an existing cluster with RDMA enabled node pools.
 
 For nodes which were recently deployed by the oci-hpc-oke stack, or if you finished installing AI blueprints onto your cluster with an existing RDMA enabled node pool, follow these steps after the the AI Blueprints stack has finished installing:
 
