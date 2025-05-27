@@ -55,6 +55,12 @@
           "recipe_max_pods_per_node": {
             "type": "integer"
           },
+          "recipe_availability_domain": {
+            "type": "string"
+          },
+          "recipe_public_ssh_key": {
+            "type": "string"
+          },
           "recipe_node_pool_size": {
             "type": "integer"
           },
@@ -68,6 +74,9 @@
             "type": "integer"
           },
           "recipe_node_selector_arch": {
+            "type": "string"
+          },
+          "recipe_node_image_ocid": {
             "type": "string"
           },
           "recipe_flex_shape_ocpu_count": {
@@ -240,6 +249,9 @@
             "type": "integer"
           },
           "recipe_container_memory_size": {
+            "type": "integer"
+          },
+          "recipe_container_cpu_count": {
             "type": "integer"
           },
           "input_object_storage": {

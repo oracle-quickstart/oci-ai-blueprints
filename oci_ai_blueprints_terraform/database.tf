@@ -10,15 +10,15 @@
 resource "oci_database_autonomous_database" "autonomous_database" {
   admin_password           = random_string.autonomous_database_admin_password.result
   compartment_id           = var.compartment_ocid
-  cpu_core_count           = var.autonomous_database_cpu_core_count
+  compute_count            = var.autonomous_database_ecpu_count
+  compute_model            = "ECPU" # OCPU is deprecated and there are not other options here.
   data_storage_size_in_tbs = var.autonomous_database_data_storage_size_in_tbs
   data_safe_status         = var.autonomous_database_data_safe_status
   db_version               = var.autonomous_database_db_version
   db_name                  = "${local.db.app_name_for_db}${local.oke.deploy_id}"
   display_name             = "${local.app_name} Db (${local.oke.deploy_id})"
-  license_model            = var.autonomous_database_license_model
   is_auto_scaling_enabled  = var.autonomous_database_is_auto_scaling_enabled
-  is_free_tier             = var.autonomous_database_is_free_tier
+  is_dedicated             = var.autonomous_database_is_dedicated
 
   count = 1
   freeform_tags = local.corrino_tags

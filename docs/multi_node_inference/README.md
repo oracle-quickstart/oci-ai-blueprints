@@ -32,7 +32,7 @@ Use multi-node inference whenever you are trying to use a very large model that 
 
 ## RDMA + Multinode Inference
 
-Want to use RDMA with multinode inference? [See here for details](../using_rdma_enabled_node_pools)
+Want to use RDMA with multinode inference? [See here for details](../using_rdma_enabled_node_pools/README.md)
 
 ## How to use it?
 
@@ -72,7 +72,7 @@ The following parameters are required:
 
 - `multinode_num_nodes_to_use_from_shared_pool` -> the total number of nodes (as an integer) you want to use to serve this model. This number must be less than the size of the shared node pool, and will only use schedulable nodes in the pool.
 
-- [OPTIONAL] `"multinode_rdma_enabled_in_shared_pool": "true"` -> If you have deployed an HPC cluster with RDMA enabled for node pools - [see here for details](../deploy_ai_blueprints_onto_hpc_cluster) - enable RDMA communication between nodes (currently only supported for BM.GPU.H100.8). This will fail validation if RDMA is not supported for shape type, or node is missing appropriate labels described in linked doc.
+- [OPTIONAL] `"multinode_rdma_enabled_in_shared_pool": true` -> If you have provisioned RDMA enabled shared node pools in your cluster - enable RDMA communication between nodes. This will fail validation if RDMA is not supported for shape type, or node is missing appropriate labels described in [linked doc](../using_rdma_enabled_node_pools/README.md).
 
 - [OPTIONAL] `recipe_readiness_probe_params` -> Readiness probe to ensure that service is ready to serve requests. Parameter details found [here](../startup_liveness_readiness_probes/README.md).
 

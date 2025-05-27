@@ -96,4 +96,6 @@ Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to read virtual-netw
 Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to inspect compartments in compartment {compartment_name}
 
 Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage cluster-node-pools in compartment {compartment_name}
+
+Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to {CLUSTER_JOIN} in compartment {compartment_name}
 ```
