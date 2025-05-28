@@ -29,7 +29,7 @@ The specific policy required for RDMA-enabled shared node pools is:
 Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to {CLUSTER_JOIN} in compartment {compartment_name}
 ```
 
-The fine-grained policy list for blueprints can be found [here](../iam_policies/README.md).
+The fine-grained policy list for blueprints can be found [here](../../iam_policies.md).
 
 ## Import a custom image
 
