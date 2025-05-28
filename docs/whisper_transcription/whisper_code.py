@@ -23,6 +23,8 @@ from datetime import datetime, timedelta
 from collections import Counter
 from faster_whisper import WhisperModel
 from pydub.utils import make_chunks
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from difflib import get_close_matches
 import threading
 thread_local = threading.local()
 
@@ -48,6 +50,16 @@ def detect_gpu_and_optimize():
     return "unknown_gpu", "base", 60
 
 def load_whisper_model_faster(model_name, gpu_id=0):
+    """
+    Loads a WhisperModel from faster-whisper for a specified GPU.
+
+    Args:
+        model_name (str): Name of the Whisper model to load.
+        gpu_id (int): The GPU index to load the model on.
+
+    Returns:
+        WhisperModel: An instance of the loaded WhisperModel ready for transcription.
+    """
     logging.info(f"[load_whisper_model_faster] Loading WhisperModel '{model_name}' on GPU {gpu_id}")
     return WhisperModel(
         model_name,
@@ -56,11 +68,18 @@ def load_whisper_model_faster(model_name, gpu_id=0):
         compute_type="float16",
         cpu_threads=8
     )
+
+
 # Converts input audio/video file to 16kHz, mono WAV format (Whisper compatible)
 def convert_to_wav(input_path):
     """
-    Converts any input audio or video to 16kHz mono 16-bit PCM WAV using ffmpeg.
-    This is more robust than AudioSegment and supports a wider range of formats including video.
+    Converts any audio/video file into 16kHz, mono-channel WAV format using ffmpeg.
+
+    Args:
+        input_path (str): Path to the input file.
+
+    Returns:
+        str: Path to the converted WAV file or None on failure.
     """
     output_path = tempfile.mktemp(suffix=".wav")
     try:
@@ -80,8 +99,20 @@ def convert_to_wav(input_path):
         raise
     return output_path
 
+
 def assign_speakers_to_segments_from_global(chunk_path, segments, diarized_segments):
-    from difflib import get_close_matches
+    """
+    Assign speakers using previously diarized segments.
+
+    Args:
+        chunk_path (str): Path to current chunk.
+        segments (list): List of Whisper segments.
+        diarized_segments (list): List of diarized (start, end, speaker) triples.
+
+    Returns:
+        list[str]: Speaker label per segment.
+    """
+
     assigned_speakers = []
     for seg in segments:
         midpoint = (seg['start'] + seg['end']) / 2
@@ -98,14 +129,19 @@ def assign_speakers_to_segments_from_global(chunk_path, segments, diarized_segme
     logging.info(f"Speaker assignment breakdown: {Counter(assigned_speakers)}")
     return assigned_speakers
 
-# Applies noise reduction using noisereduce (conservative settings)
 
+# Applies noise reduction using noisereduce (conservative settings)
 def denoise_audio(input_file, output_file, prop_decrease=0.7):
     """
-    Strong two-step denoising:
-    1. Use Demucs to extract vocals.
-    2. Denoise vocals with librosa + noisereduce.
-    Logs status using logging module.
+    Applies denoising using Demucs and noise reduction techniques.
+
+    Args:
+        input_file (str): Path to the input noisy audio.
+        output_file (str): Output path for the denoised audio.
+        prop_decrease (float): Aggressiveness of denoising.
+
+    Returns:
+        None
     """
     temp_dir = tempfile.mkdtemp()
     try:
@@ -125,7 +161,7 @@ def denoise_audio(input_file, output_file, prop_decrease=0.7):
         logging.info(f"Denoised file saved to: {output_file}")
     except Exception as e:
         logging.error(f"Denoising failed on {input_file}: {e}. Falling back to original.")
-        shutil.copy(input_file, output_file)  # ✅ FALLBACK
+        shutil.copy(input_file, output_file)  # FALLBACK
     finally:
         shutil.rmtree(temp_dir, ignore_errors=True)
 
@@ -134,7 +170,13 @@ def denoise_audio(input_file, output_file, prop_decrease=0.7):
 # Calculates duration (in seconds) of the audio file using wave or pydub
 def get_audio_duration(path):
     """
-    Returns audio duration in seconds using wave or pydub.
+    Calculates duration of a WAV or general audio file.
+
+    Args:
+        path (str): File path to audio.
+
+    Returns:
+        float: Duration in seconds.
     """
     try:
         if path.endswith('.wav'):
@@ -151,13 +193,33 @@ def get_audio_duration(path):
         logging.warning(f"Failed to get duration of {path}: {e}")
         return 0
  
+
 def fallback_fixed_chunks(audio, chunk_length_ms=30000):
     """
-    Force-split audio into equal-sized chunks if silence-based fails or yields too long segments.
+    Splits audio into fixed-length chunks (30s default).
+
+    Args:
+        audio (AudioSegment): Loaded audio object.
+        chunk_length_ms (int): Length in milliseconds.
+
+    Returns:
+        list[AudioSegment]: List of chunks.
     """
     return make_chunks(audio, chunk_length_ms)
 
 def smart_chunk_audio(input_path, min_silence_len=1000, silence_thresh=-40, chunk_padding=1000):
+    """
+    Splits audio based on silence; falls back to fixed chunks.
+
+    Args:
+        input_path (str): Path to audio file.
+        min_silence_len (int): Minimum silence to consider for split.
+        silence_thresh (int): Silence threshold in dB.
+        chunk_padding (int): Padding around detected speech chunks.
+
+    Returns:
+        list[str]: List of chunked audio paths.
+    """
     audio = AudioSegment.from_file(input_path)
     os.makedirs(CHUNK_FOLDER, exist_ok=True)
     logging.info(f"Smart chunking using silence detection on: {input_path}")
@@ -174,11 +236,18 @@ def smart_chunk_audio(input_path, min_silence_len=1000, silence_thresh=-40, chun
     return chunk_paths
 
 # Converts and transcribes an audio file using Whisper model
-
 def transcribe_file(model, audio_path):
     """
-    Converts and transcribes a file using faster-whisper with language detection.
-    Returns: (text, language, segments)
+    Transcribes a WAV file using a Whisper model.
+
+    Args:
+        model (WhisperModel): Loaded Whisper model.
+        audio_path (str): Path to WAV file.
+        beam_size (int): Beam size for decoding.
+        language (str): Optional forced language.
+
+    Returns:
+        tuple[list[dict], str]: List of segments and detected language.
     """
     try:
         wav_path = convert_to_wav(audio_path)
@@ -206,8 +275,16 @@ def transcribe_file(model, audio_path):
 
 
 # Loads the summarization model (default: Mistral) from HuggingFace
-
 def load_mistral_model(model_id, hf_token):
+    """
+    Loads a HuggingFace LLM model and tokenizer.
+
+    Args:
+        model_name (str): Name of model.
+
+    Returns:
+        tuple: (model, tokenizer)
+    """
     if os.path.isdir(model_id):
         logging.info(f"Loading summarizer model from local path: {model_id}")
         tokenizer = AutoTokenizer.from_pretrained(model_id, use_auth_token=hf_token)
@@ -231,6 +308,18 @@ def load_mistral_model(model_id, hf_token):
 
 # Splits long transcript into smaller LLM-compatible chunks based on token count
 def split_into_chunks(text, tokenizer, max_tokens=3000):
+    """
+    Splits long text into overlapping token-aware chunks.
+
+    Args:
+        text (str): Input string.
+        tokenizer: HuggingFace tokenizer.
+        max_tokens (int): Max tokens per chunk.
+        stride (int): Overlap for continuity.
+
+    Returns:
+        list[str]: List of text chunks.
+    """
     words = text.split()
     chunks = []
     current = []
@@ -247,20 +336,45 @@ def split_into_chunks(text, tokenizer, max_tokens=3000):
 # Summarizes a chunk of transcript using the loaded summarizer model
 def summarize_with_mistral(model, tokenizer, text):
     """
-    Summarizes a transcript chunk using Mistral or selected model.
+    Summarizes text using an LLM like Mistral.
+
+    Args:
+        model: HuggingFace model.
+        tokenizer: Corresponding tokenizer.
+        text (str): Text to summarize.
+
+    Returns:
+        str: Summary string.
     """
     prompt = f"<s>[INST] Summarize the following meeting transcript into a concise list of key points, decisions, and action items:\n\n{text} [/INST]"
     inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=4096).to(model.device)
     with torch.no_grad():
         output = model.generate(**inputs, max_new_tokens=512)
-    return tokenizer.decode(output[0], skip_special_tokens=True)
+    
+    result = tokenizer.decode(output[0], skip_special_tokens=True)
+
+    # Strip echoed prompt (everything before [/INST])
+    if "[/INST]" in result:
+        result = result.split("[/INST]", 1)[-1].strip()
+
+    return result
+
 
 # Main pipeline for one file: validate → denoise → chunk → transcribe → summarize → save outputs
-
 def assign_speakers_to_segments(full_audio_path, segments, hf_token, max_speakers=None):
     """
-    Assign speakers using PyAnnote diarization and match them to Whisper segments based on midpoint overlap.
+    Performs diarization and aligns speakers with transcript.
+
+    Args:
+        full_audio_path (str): Path to audio.
+        segments (list): List of Whisper segments.
+        hf_token (str): HuggingFace token.
+        max_speakers (int): Optional speaker limit.
+
+    Returns:
+        list[str]: Speaker label per segment.
     """
+
     logging.info(f"Running speaker diarization on: {full_audio_path}")
     try:
         pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization-3.1", use_auth_token=hf_token)
@@ -311,9 +425,23 @@ def assign_speakers_to_segments(full_audio_path, segments, hf_token, max_speaker
     return speaker_map
 
 def transcribe_and_summarize(path, model_name="base", output_dir="outputs", summarized_model_id="mistralai/Mistral-7B-Instruct-v0.1", ground_truth_path=None, denoise=False, prop_decrease=0.7, summary=True, speaker=False, hf_token=None, session_timestamp=None, max_speakers=None, streaming=False, api_callback=None, model_instance=None):
-    import torch
-    from concurrent.futures import ThreadPoolExecutor, as_completed
+    """
+    End-to-end pipeline: denoise, chunk, transcribe, diarize, summarize, and save.
 
+    Args:
+        path (str): Path to input audio file.
+        model_name (str): Whisper model name.
+        output_dir (str): Directory to save outputs.
+        denoise (bool): Whether to apply denoising.
+        summary (bool): Whether to generate summaries.
+        speaker (bool): Whether to run speaker diarization.
+        streaming (bool): Whether to stream results.
+        hf_token (str): HuggingFace token.
+        max_speakers (int): Max speakers for diarization.
+
+    Returns:
+        None
+    """
     os.makedirs(output_dir, exist_ok=True)
 
     if not isinstance(session_timestamp, str) or not re.match(r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$", session_timestamp):
@@ -377,6 +505,16 @@ def transcribe_and_summarize(path, model_name="base", output_dir="outputs", summ
     failed_chunks = []
 
     def clean_audio_with_ffmpeg(input_path, cleaned_path):
+        """
+        Cleans audio using ffmpeg (mono, 16-bit PCM, 16kHz).
+
+        Args:
+            input_path (str): Path to input audio.
+            cleaned_path (str): Output path for cleaned audio.
+
+        Returns:
+            None
+        """
         try:
             cmd = [
                 "ffmpeg", "-y", "-i", input_path,
@@ -392,6 +530,18 @@ def transcribe_and_summarize(path, model_name="base", output_dir="outputs", summ
     
     
     def transcribe_on_gpu(gpu_id, chunk_path, global_diarized_segments, model_name):
+        """
+        Transcribes a single chunk using a specified GPU, optionally performing speaker diarization.
+
+        Args:
+            gpu_id (int): GPU index to use for transcription.
+            chunk_path (str): Path to audio chunk file.
+            global_diarized_segments (list): List of diarized segments (start, end, label).
+            model_name (str): Name of Whisper model to load.
+
+        Returns:
+            dict: Dictionary containing transcription, chunk path, and speaker labels.
+        """
         try:
             torch.cuda.set_device(gpu_id)
 
@@ -645,7 +795,21 @@ local_session_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 # Handles single file or directory input, validates each audio, and runs full pipeline
 def process_audio_batch(input_path, model_name, output_dir, summarized_model_id, ground_truth_path=None, denoise=False, prop_decrease=0.7, summary=True, speaker=False, hf_token=None, max_speakers=None, streaming=False, api_callback=None):
     """
-    Validates and runs pipeline on folder or single audio file.
+    Processes a file or a folder of audio through the full pipeline.
+
+    Args:
+        input_path (str): File or directory path.
+        model (str): Whisper model name.
+        output_dir (str): Where to write output.
+        summary (bool): Enable summarization.
+        speaker (bool): Enable speaker diarization.
+        denoise (bool): Enable denoising.
+        streaming (bool): Enable chunk-wise streaming.
+        hf_token (str): HuggingFace token.
+        max_speakers (int): Maximum number of speakers.
+
+    Returns:
+        None
     """
     session_timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
