@@ -55,12 +55,14 @@ variable "oci_tag_values" {
 ## https://kubernetes.github.io/ingress-nginx/
 ## https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx
 resource "helm_release" "ingress_nginx" {
-  name       = "ingress-nginx"
-  repository = local.helm_repository.ingress_nginx
-  chart      = "ingress-nginx"
-  version    = local.helm_repository.ingress_nginx_version
-  namespace  = kubernetes_namespace.cluster_tools.0.id
-  wait       = true
+  name          = "ingress-nginx"
+  repository    = local.helm_repository.ingress_nginx
+  chart         = "ingress-nginx"
+  version       = local.helm_repository.ingress_nginx_version
+  namespace     = kubernetes_namespace.cluster_tools.0.id
+  # Need to wait for webhooks so we don't hit timing issues.
+  wait          = true
+  wait_for_jobs = true
 
   set {
     name  = "controller.metrics.enabled"

@@ -1,3 +1,13 @@
+resource "null_resource" "webhook_charts_ready" {
+  provisioner "local-exec" {
+    command = "echo 'all helm dependency webhooks completed.'"
+  }
+  depends_on = [ 
+    helm_release.kueue,
+    helm_release.keda
+   ]
+}
+
 resource "kubernetes_ingress_v1" "corrino_cp_ingress" {
   wait_for_load_balancer = true
   metadata {
@@ -30,7 +40,7 @@ resource "kubernetes_ingress_v1" "corrino_cp_ingress" {
       }
     }
   }
-  depends_on = [module.oke-quickstart.helm_release_ingress_nginx]
+  depends_on = [null_resource.webhook_charts_ready]
 }
 
 resource "kubernetes_ingress_v1" "oci_ai_blueprints_portal_ingress" {
@@ -65,7 +75,7 @@ resource "kubernetes_ingress_v1" "oci_ai_blueprints_portal_ingress" {
       }
     }
   }
-  depends_on = [module.oke-quickstart.helm_release_ingress_nginx]
+  depends_on = [null_resource.webhook_charts_ready]
 }
 
 resource "kubernetes_ingress_v1" "grafana_ingress" {
@@ -101,7 +111,7 @@ resource "kubernetes_ingress_v1" "grafana_ingress" {
       }
     }
   }
-  depends_on = [module.oke-quickstart.helm_release_ingress_nginx]
+  depends_on = [null_resource.webhook_charts_ready]
 }
 
 resource "kubernetes_ingress_v1" "prometheus_ingress" {
@@ -137,7 +147,7 @@ resource "kubernetes_ingress_v1" "prometheus_ingress" {
       }
     }
   }
-  depends_on = [module.oke-quickstart.helm_release_ingress_nginx]
+  depends_on = [null_resource.webhook_charts_ready]
 }
 
 resource "kubernetes_ingress_v1" "mlflow_ingress" {
@@ -173,5 +183,5 @@ resource "kubernetes_ingress_v1" "mlflow_ingress" {
       }
     }
   }
-  depends_on = [module.oke-quickstart.helm_release_ingress_nginx]
+  depends_on = [null_resource.webhook_charts_ready]
 }

@@ -245,8 +245,9 @@ variable "oadb_wallet_secret_name" {
   default = "oadb-wallet"
 }
 
-variable "autonomous_database_cpu_core_count" {
-  default = 1
+# 4 ECPUs == 1 OCPU
+variable "autonomous_database_ecpu_count" {
+  default = 4
 }
 
 variable "autonomous_database_data_storage_size_in_tbs" {
@@ -279,7 +280,7 @@ variable "autonomous_database_is_auto_scaling_enabled" {
   default = false
 }
 
-variable "autonomous_database_is_free_tier" {
+variable "autonomous_database_is_dedicated" {
   default = false
 }
 variable "autonomous_database_visibility" {

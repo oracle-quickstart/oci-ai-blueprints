@@ -85,10 +85,13 @@ resource "helm_release" "keda" {
   chart            = "keda"
   namespace        = "keda"
   create_namespace = true
-  wait             = false
+  # Need to wait for webhooks so we don't hit timing issues.
+  wait             = true
+  wait_for_jobs    = true
   version          = "2.17.0"
 
   count = var.bring_your_own_keda ? 0 : 1
+  depends_on = [module.oke-quickstart.helm_release_ingress_nginx]
 }
 
 resource "helm_release" "lws" {
@@ -109,10 +112,12 @@ resource "helm_release" "kueue" {
   chart            = "kueue"
   namespace        = "kueue-system"
   create_namespace = true
-  wait             = false
+  # Need to wait for webhooks so we don't hit timing issues.
+  wait             = true
+  wait_for_jobs    = true
   version          = "0.11.4"
 
   count      = var.bring_your_own_kueue ? 0 : 1
-  depends_on = [kubernetes_job.corrino_migration_job, kubernetes_job.wallet_extractor_job]
+  depends_on = [module.oke-quickstart.helm_release_ingress_nginx]
 }
 

@@ -1,0 +1,10 @@
+{ 
+  "deployment_name": "H100_rdma_pool",
+  "recipe_mode": "shared_node_pool", 
+  "shared_node_pool_size": 2, 
+  "shared_node_pool_shape": "BM.GPU.H100.8", 
+  "shared_node_pool_boot_volume_size_in_gbs": 1000,
+  "recipe_availability_domain": "TrcQ:EU-FRANKFURT-1-AD-3",
+  "recipe_node_image_ocid": "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaakhpy5kt3p6gjmeqbasnndemp6aetlnbkm57hohrkgksuh4476llq",
+  "multinode_rdma_enabled_in_shared_pool": true
+}
