@@ -38,9 +38,9 @@ Want to use RDMA with multinode inference? [See here for details](../using_rdma_
 
 We are using [vLLM](https://docs.vllm.ai/en/latest/serving/distributed_serving.html) and [Ray](https://github.com/ray-project/ray) using the [LeaderWorkerSet (LWS)](https://github.com/kubernetes-sigs/lws) to manage state between multiple nodes.
 
-In order to use multi-node inference in an OCI Blueprint, first deploy a shared node pool with blueprints using [this recipe](../sample_blueprints/shared_node_pool_A10_VM.json).
+In order to use multi-node inference in an OCI Blueprint, first deploy a shared node pool with blueprints using [this recipe](../shared_node_pools/shared_node_pool_A10_VM.json).
 
-Then, use the following blueprint to deploy serving software: [LINK](../sample_blueprints/multinode_inference_VM_A10.json)
+Then, use the following blueprint to deploy serving software: [LINK](multinode_inference_VM_A10.json)
 
 The blueprint creates a LeaderWorkerSet which is made up of one head node and worker nodes. The head node is identical to other worker nodes (in terms of ability to run workloads on it), except that it also runs singleton processes responsible for cluster management.
 
@@ -92,7 +92,7 @@ Follow these 6 simple steps to deploy your multi-node inference using OCI AI Blu
 
 1. **Deploy your shared node pool**
    - Deploy a shared node pool containing at least 2 nodes for inference. Note: Existing shared node pools can be used!
-     - as a template, follow [this BM.A10](../sample_blueprints/shared_node_pool_A10_BM.json) or [this VM.A10](../sample_blueprints/shared_node_pool_A10_VM.json).
+     - as a template, follow [this BM.A10](../shared_node_pools/shared_node_pool_A10_BM.json) or [this VM.A10](../shared_node_pools/shared_node_pool_A10_VM.json).
 2. **Create Your Deployment Blueprint**
    - Create a JSON configuration (blueprint) that defines your RayCluster. Key parameters include:
      - `"recipe_mode": "service"`
@@ -100,7 +100,7 @@ Follow these 6 simple steps to deploy your multi-node inference using OCI AI Blu
      - `input_object_storage` (and its required parameters)
      - `recipe_nvidia_gpu_count` (GPUs per node)
      - `multinode_num_nodes_to_use_from_shared_pool` (number of nodes to use from pool per replica)
-   - Refer to the [sample blueprint for parameter value examples](../sample_blueprints/multinode_inference_VM_A10.json)
+   - Refer to the [sample blueprint for parameter value examples](multinode_inference_VM_A10.json)
    - Refer to the [Required Blueprint Parameters](#Required_Blueprint_Parameters) section for full parameter details.
 3. **Deploy the Blueprint via OCI AI Blueprints**
    - Deploy the blueprint json via the `deployment` POST API
