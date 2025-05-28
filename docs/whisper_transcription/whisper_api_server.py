@@ -9,6 +9,7 @@ from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.responses import StreamingResponse, JSONResponse, FileResponse
 from whisper_code import transcribe_and_summarize, load_whisper_model_faster
 import logging
+import time
 
 app = FastAPI()
 
@@ -59,9 +60,10 @@ async def transcribe_audio_api(
     if streaming:
         def generator():
             q = Queue()
+            q.put(f"data: {json.dumps({'meta': 'logfile_name', 'logfile': log_file})}\n\n")
+
 
             def api_callback(result):
-                # Log like CLI mode
                 if result.get("chunk_id", "").startswith("chunk_"):
                     logging.info(f"\n====== Streaming {result['chunk_id']} ======\n{result.get('text', '').strip()}\n")
                 elif result.get("chunk_id") == "summary":
@@ -69,7 +71,7 @@ async def transcribe_audio_api(
                     logging.info(result.get("summary", "").strip())
                     result["logfile"] = log_file
 
-                q.put(json.dumps(result) + "\n")
+                q.put(f"data: {json.dumps(result)}\n\n")
 
             def run_pipeline():
                 try:
@@ -104,7 +106,7 @@ async def transcribe_audio_api(
                     break
                 yield chunk
 
-        return StreamingResponse(generator(), media_type="application/json")
+        return StreamingResponse(generator(), media_type="text/event-stream")
 
     else:
         try:
@@ -152,9 +154,20 @@ async def transcribe_audio_api(
                 status_code=500
             )
 
-@app.get("/log/{filename}")
-def get_log_file(filename: str):
+@app.get("/stream_log/{filename}")
+def stream_log(filename: str):
     log_path = os.path.join(".", filename)
     if not os.path.exists(log_path):
         return JSONResponse(content={"error": "Log file not found."}, status_code=404)
-    return FileResponse(log_path, media_type="text/plain")
+
+    def stream_lines():
+        with open(log_path, "r") as f:
+            f.seek(0, 2)  # Move to end of file
+            while True:
+                line = f.readline()
+                if line:
+                    yield f"data: {line.strip()}\n\n"
+                else:
+                    time.sleep(0.2)  # Poll every 200ms
+
+    return StreamingResponse(stream_lines(), media_type="text/event-stream")
