@@ -1,23 +1,3 @@
-
-def assign_speakers_to_segments_from_global(chunk_path, segments, diarized_segments):
-    from difflib import get_close_matches
-    assigned_speakers = []
-    for seg in segments:
-        midpoint = (seg['start'] + seg['end']) / 2
-        match = None
-        for track, _, label in diarized_segments:
-            normalized_label = str(label).strip().upper()  # Normalize case and spacing
-            if track.start <= midpoint <= track.end:
-                match = normalized_label
-                break
-
-        if not match:
-            match = "Speaker_0"
-        assigned_speakers.append(match)
-    logging.info(f"Speaker assignment breakdown: {Counter(assigned_speakers)}")
-    return assigned_speakers
-
-
 from datetime import datetime
 import re
 import os
@@ -100,6 +80,23 @@ def convert_to_wav(input_path):
         raise
     return output_path
 
+def assign_speakers_to_segments_from_global(chunk_path, segments, diarized_segments):
+    from difflib import get_close_matches
+    assigned_speakers = []
+    for seg in segments:
+        midpoint = (seg['start'] + seg['end']) / 2
+        match = None
+        for track, _, label in diarized_segments:
+            normalized_label = str(label).strip().upper()  # Normalize case and spacing
+            if track.start <= midpoint <= track.end:
+                match = normalized_label
+                break
+
+        if not match:
+            match = "Speaker_0"
+        assigned_speakers.append(match)
+    logging.info(f"Speaker assignment breakdown: {Counter(assigned_speakers)}")
+    return assigned_speakers
 
 # Applies noise reduction using noisereduce (conservative settings)
 
@@ -266,7 +263,7 @@ def assign_speakers_to_segments(full_audio_path, segments, hf_token, max_speaker
     """
     logging.info(f"Running speaker diarization on: {full_audio_path}")
     try:
-        pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization", use_auth_token=hf_token)
+        pipeline = Pipeline.from_pretrained("pyannote/speaker-diarization-3.1", use_auth_token=hf_token)
         if torch.cuda.is_available():
             pipeline.to(torch.device("cuda"))
         # Run diarization once per full audio (global instead of per chunk)
