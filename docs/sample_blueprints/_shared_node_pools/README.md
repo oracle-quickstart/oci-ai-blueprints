@@ -1,5 +1,27 @@
 # Shared Node Pools
 
+#### Create persistent node pools for efficient blueprint deployment without infrastructure recycling
+
+Shared node pools enable you to launch infrastructure independent of individual blueprints, allowing multiple blueprints to deploy and undeploy on the same underlying infrastructure without the overhead of spinning up new node pools for each deployment. This approach eliminates the time-consuming process of infrastructure provisioning and teardown, particularly beneficial for bare metal shapes that require longer recycle times.
+
+When you deploy a standard blueprint, OCI AI Blueprints creates a separate node pool for each blueprint and destroys it upon undeployment. Shared node pools solve this inefficiency by providing persistent infrastructure that can host multiple blueprints simultaneously or sequentially. This is especially valuable when you want to deploy multiple blueprints on the same hardware (e.g., two blueprints each using 2 GPUs on a 4-GPU shape) or need rapid deployment cycles.
+
+The system supports both selector-based and non-selector deployment strategies. With selectors, you can use naming conventions to ensure specific blueprints land on designated shared node pools, providing precise control over resource allocation. Without selectors, blueprints will deploy to any available shared node pool matching the required shape.
+
+Shared node pools are compatible with any blueprint and support all OCI compute shapes, with special considerations for bare metal configurations that require boot volume size specifications.
+
+## Pre-Filled Samples
+
+| Feature Showcase                                                                                  | Title                           | Description                                                                                                                                                             | Blueprint File                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Create persistent bare metal A10 node pool for high-performance workloads with dedicated hardware | Shared Node Pool for BM.GPU.A10 | Creates a shared node pool using BM.GPU.A10.4 bare metal instances, providing persistent GPU infrastructure for multiple blueprints without recycle overhead.           | [shared_node_pool_A10_BM.json](shared_node_pool_A10_BM.json)                                         |
+| Create cost-effective VM-based A10 node pool for flexible blueprint deployment                    | Shared Node Pool for VM.GPU.A10 | Creates a shared node pool using VM.GPU.A10.2 virtual machine instances, offering flexible and cost-effective GPU infrastructure for development and testing workloads. | [shared_node_pool_A10_VM.json](shared_node_pool_A10_VM.json)                                         |
+| Deploy vLLM inference service on existing shared node pool infrastructure for rapid deployment    | vLLM Inference on Shared Pool   | Demonstrates deploying a vLLM inference service on a pre-existing shared node pool, showcasing rapid deployment without infrastructure provisioning delays.             | [vllm_inference_sample_shared_pool_blueprint.json](vllm_inference_sample_shared_pool_blueprint.json) |
+
+---
+
+# In-Depth Feature Overview
+
 ## What are they
 
 When you deploy a blueprint via OCI AI Blueprints, the underlying infrastructure is spun up (separate node pool for each blueprint within the OCI AI Blueprints cluster) and the application layer is deployed on top of that infrastructure. Once you are done with blueprint and undeploy it, the application layer and the infrastructure gets spun down (the node pool is deleted). This creates an issue when you want to quickly deploy and undeploy blueprints onto infrastructure that requires a long recycle time (such as bare metal shapes) or you want to deploy multiple blueprints onto the same underlying infrastructure (ex: blueprint A uses 2 GPUs and blueprint B uses 2 GPUs on a shape with 4 GPUs).
