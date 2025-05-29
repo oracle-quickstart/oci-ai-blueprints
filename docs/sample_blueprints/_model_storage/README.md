@@ -1,5 +1,24 @@
 # Model Storage
 
+#### Download and store models from HuggingFace to OCI Object Storage for efficient blueprint deployment
+
+Model storage is a critical component for AI/ML workloads, providing efficient access to large language models and other AI assets. OCI AI Blueprints supports storing models in OCI Object Storage, which offers faster loading times and better resource management compared to downloading models directly from HuggingFace during container startup.
+
+This blueprint provides automated workflows to download models from HuggingFace (both open and gated models) and store them in OCI Object Storage buckets. Once stored, these models can be efficiently accessed by inference blueprints through pre-authenticated requests (PARs) or direct bucket access, significantly reducing deployment times and improving reliability.
+
+The system supports both open-source models that require no authentication and closed/gated models that require HuggingFace tokens for access. Models are downloaded using optimized parallel workers and stored with appropriate volume sizing to accommodate large model files.
+
+## Pre-Filled Samples
+
+| Feature Showcase                                                                    | Title                                               | Description                                                                                                                                                           | Blueprint File                                                                                     |
+| ----------------------------------------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Download gated HuggingFace models requiring authentication tokens to Object Storage | Download Closed HuggingFace Model to Object Storage | Downloads gated/closed HuggingFace models that require authentication tokens and stores them in OCI Object Storage for efficient access by inference blueprints.      | [download_closed_hf_model_to_object_storage.json](download_closed_hf_model_to_object_storage.json) |
+| Download open-source HuggingFace models without authentication to Object Storage    | Download Open HuggingFace Model to Object Storage   | Downloads open-source HuggingFace models without requiring authentication and stores them in OCI Object Storage with optimized parallel downloading for large models. | [download_open_hf_model_to_object_storage.json](download_open_hf_model_to_object_storage.json)     |
+
+---
+
+# In-Depth Feature Overview
+
 You have two options to store your model so that a blueprint has access to it:
 
 ## Option 1: Object Storage
