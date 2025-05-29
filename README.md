@@ -52,7 +52,7 @@ After you install OCI AI Blueprints to an OKE cluster in your tenancy, you can d
 
 | Blueprint                                                                                     | Description                                                                                                                              |
 | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| [**LLM & VLM Inference with vLLM**](./docs/sample_blueprints/vllm-inference)                  | Deploy Llama 2/3/3.1 7B/8B models using NVIDIA GPU shapes and the vLLM inference engine with auto-scaling.                               |
+| [**LLM & VLM Inference with vLLM**](docs/sample_blueprints/llm_inference_with_vllm/README.md)                  | Deploy Llama 2/3/3.1 7B/8B models using NVIDIA GPU shapes and the vLLM inference engine with auto-scaling.                               |
 | [**Fine-Tuning Benchmarking**](./docs/sample_blueprints/lora-benchmarking)                    | Run MLCommons quantized Llama-2 70B LoRA finetuning on A100 for performance benchmarking.                                                |
 | [**LoRA Fine-Tuning**](./docs/sample_blueprints/lora-fine-tuning)                             | LoRA fine-tuning of custom or HuggingFace models using any dataset. Includes flexible hyperparameter tuning.                             |
 | [**Health Check**](./docs/sample_blueprints/gpu-health-check)                                 | Comprehensive evaluation of GPU performance to ensure optimal hardware readiness before initiating any intensive computational workload. |

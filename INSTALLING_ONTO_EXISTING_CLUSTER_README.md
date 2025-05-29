@@ -111,7 +111,7 @@ If you have existing node pools in your original OKE cluster that you'd like Blu
 5. If you added a node from [Step 4](./INSTALLING_ONTO_EXISTING_CLUSTER_README.md#step-4-add-existing-nodes-to-cluster-optional), use the following shared node pool [blueprint](./docs/sample_blueprints/shared_node_pools/vllm_inference_sample_shared_pool_blueprint.json).
    - Depending on the node shape, you will need to change:
      `"recipe_node_shape": "BM.GPU.A10.4"` to match your shape.
-6. If you did not add a node, or just want to deploy a fresh node, use the following [blueprint](docs/sample_blueprints/vllm-inference/vllm_inference_sample_blueprint.json).
+6. If you did not add a node, or just want to deploy a fresh node, use the following [blueprint](docs/sample_blueprints/llm_inference_with_vllm/vllm-open-hf-model.json).
 7. Paste the blueprint you selected into context box on the deployment page and click "POST"
 8. To monitor the deployment, go back to "Api Root" and click "deployment_logs".
    - If you are deploying without a shared node pool, it can take 10-30 minutes to bring up a node, depending on shape and whether it is bare-metal or virtual.
