@@ -1,10 +1,6 @@
 # Copyright (c) 2021 Oracle and/or its affiliates. All rights reserved.
 # Licensed under the Universal Permissive License v 1.0 as shown at http://oss.oracle.com/licenses/upl.
 # 
-variable "oci_ai_blueprints_link_variable" {
-  type    = string
-  default = file("${path.module}/OCI_AI_BLUEPRINTS_LINK")
-}
 
 # OKE Variables
 ## OKE Cluster Details
@@ -94,8 +90,9 @@ variable "show_advanced" {
 
 # App Name Locals
 locals {
-  app_name            = random_string.app_name_autogen.result
-  app_name_normalized = random_string.app_name_autogen.result
+  app_name               = random_string.app_name_autogen.result
+  app_name_normalized    = random_string.app_name_autogen.result
+  oci_ai_blueprints_link = file("${path.module}/OCI_AI_BLUEPRINTS_LINK")
 }
 
 # Dictionary Locals

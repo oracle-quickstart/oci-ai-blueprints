@@ -15,11 +15,11 @@ output "oke_cluster_id" {
 }
 
 output "oci_ai_blueprints_link_for_button" {
-  value = var.oci_ai_blueprints_link_variable
+  value = local.oci_ai_blueprints_link
 }
 
 output "oci_ai_blueprints_link_for_section" {
-  value = var.oci_ai_blueprints_link_variable
+  value = local.oci_ai_blueprints_link
 }
 
 output "vcn_name" {
