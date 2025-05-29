@@ -45,7 +45,3 @@ Notes:
 - The application running inside the container will access the model from the /models directory (again, using the example from above)
 - `include` field inside the `input_object_storage` object inside your payload (shown above) is used to specify which folder inside the bucket to download to the ephemeral volume (that the container has access to via the mount_location directory
 - The entire bucket will be dumped into the ephermal volume / container mount directory if include is not provided to specify the folder inside the folder to download
-
-## Option 2: File Storage Service (FSS) - Full doc coming soon!
-
-[FSS Details](../fss/README.md)
