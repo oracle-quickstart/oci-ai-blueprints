@@ -1,5 +1,26 @@
 # Multi-Node Inference
 
+#### Scale large language model inference across multiple GPU nodes using tensor and pipeline parallelism
+
+Multi-node inference enables deploying very large language models that cannot fit within the GPU memory of a single node by distributing the workload across multiple computing nodes. This approach combines tensor parallelism (splitting operations across GPUs within a node) and pipeline parallelism (distributing sequential stages across nodes) to efficiently utilize available hardware resources.
+
+This blueprint is essential when serving models like Llama-3.3-70B-Instruct that require approximately 150GB of GPU memory, exceeding the capacity of single-node configurations. The system uses vLLM and Ray with LeaderWorkerSet (LWS) to manage distributed state across nodes, creating a cluster with one head node and multiple worker nodes.
+
+The multi-node approach significantly reduces processing time and improves throughput for both real-time and batch predictions. It requires careful planning to determine the appropriate node shapes and GPU requirements based on model size, precision, and available compute shapes. The system supports shared node pools and optional RDMA connectivity for enhanced performance.
+
+Key benefits include the ability to serve models that exceed single-node memory limits, improved inference throughput through parallel processing, and efficient resource utilization across distributed GPU infrastructure.
+
+## Pre-Filled Samples
+
+| Feature Showcase                                                                                                   | Title                                      | Description                                                                                                                                                                                   | Blueprint File                                                     |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Deploy large language models across multiple A10 VM nodes using distributed tensor and pipeline parallelism        | Multi-Node Inference on VM.GPU.A10 Cluster | Deploys large language model inference across multiple VM.GPU.A10 nodes using vLLM and Ray, enabling models that exceed single-node GPU memory capacity through distributed parallelism.      | [multinode_inference_VM_A10.json](multinode_inference_VM_A10.json) |
+| Deploy large language models across multiple A10 bare metal nodes for maximum performance and resource utilization | Multi-Node Inference on BM.GPU.A10 Cluster | Deploys large language model inference across multiple BM.GPU.A10 bare metal nodes using vLLM and Ray, providing maximum performance for models requiring distributed GPU memory and compute. | [multinode_inference_BM_A10.json](multinode_inference_BM_A10.json) |
+
+---
+
+# In-Depth Feature Overview
+
 [Jump to Quickstart](#Quickstart_Guide:_Multi-Node_Inference)
 
 ## What is it?
@@ -13,7 +34,7 @@ Inference serving is about deploying these trained models as APIs or services. T
 **Multi-Node Inference:**  
 Multi-node inference scales up this process by distributing the workload across several computing nodes, each typically equipped with one or more GPUs. This is particularly useful for handling large models that require substantial computational power. It combines two key parallelization techniques:
 
-- **Tensor Parallelism:** Within a single node, the model’s complex numerical operations (e.g., matrix multiplications) are divided among multiple GPUs. Think of it as breaking a large calculation into smaller pieces that can be processed simultaneously by different GPUs.
+- **Tensor Parallelism:** Within a single node, the model's complex numerical operations (e.g., matrix multiplications) are divided among multiple GPUs. Think of it as breaking a large calculation into smaller pieces that can be processed simultaneously by different GPUs.
 - **Pipeline Parallelism:** The inference process is divided into sequential stages, with each node responsible for one stage. This is similar to an assembly line, where each node completes a specific part of the overall task before passing it along.
 
 Together, these methods ensure that multi-node inference efficiently utilizes available hardware resources, reducing processing time and improving throughput for both real-time and batch predictions.
@@ -105,7 +126,7 @@ Follow these 6 simple steps to deploy your multi-node inference using OCI AI Blu
 3. **Deploy the Blueprint via OCI AI Blueprints**
    - Deploy the blueprint json via the `deployment` POST API
 4. **Monitor Your Deployment**
-   - Check deployment status using OCI AI Blueprint’s logs via the `deployment_logs` API endpoint
+   - Check deployment status using OCI AI Blueprint's logs via the `deployment_logs` API endpoint
 5. **Verify Cluster Endpoints**
 
    - Once deployed, locate your service endpoints:
