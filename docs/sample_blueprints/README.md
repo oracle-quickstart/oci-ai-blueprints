@@ -2,14 +2,27 @@
 
 ## Overview
 
-This page is currently in progress. We are filling out the recipe names and descriptions incrementally, however, you can find all the sample recipe JSON in the files in this folder.
+This page provides an overview of all available sample blueprint categories. Each category contains multiple pre-configured recipes that demonstrate specific features and use cases for OCI AI Blueprints.
 
 ## How to use
 
-You may use any recipe json as the payload in the `/deployment` endpoint. You are free to change any parameter as you would like, however, the parameters chosen have been tested and validated. Any changes you make to these sample blueprints, we can not guarantee it's efficiency or correctness.
+You may use any recipe JSON from these categories as the payload in the `/deployment` endpoint. You are free to change any parameter as you would like, however, the parameters chosen have been tested and validated. Any changes you make to these sample blueprints, we cannot guarantee their efficiency or correctness.
 
-## Sample Blueprint Information
+## Sample Blueprint Categories
 
-| Blueprint Name | Type      | File Name                                          | Description                                                          |
-| -------------- | --------- | -------------------------------------------------- | -------------------------------------------------------------------- |
-| Autoscaling    | Inference | [docs/sample_blueprints/auto_scaling/autoscaling_blueprint.json](auto_scaling/autoscaling_blueprint.json) | vLLM inference with autoscaling and Meta Lllama 3 70B instruct model |
+| Feature Category                                                 | Type           | Documentation                                        | Description                                                                               |
+| ---------------------------------------------------------------- | -------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| [Autoscaling](auto_scaling/)                                     | Inference      | [Guide](auto_scaling/README.md)                      | Scale inference workloads based on traffic load with automatic pod and node scaling       |
+| [CPU Inference](cpu-inference/)                                  | Inference      | [Guide](cpu-inference/README.md)                     | Deploy CPU-based inference with Ollama for cost-effective and GPU-free model serving      |
+| [Existing Cluster Installation](exisiting_cluster_installation/) | Infrastructure | [Guide](exisiting_cluster_installation/README.md)    | Deploy OCI AI Blueprints on your existing OKE cluster without creating new infrastructure |
+| [GPU Health Check](gpu-health-check/)                            | Diagnostics    | [Guide](gpu-health-check/README.md)                  | Comprehensive GPU health validation and diagnostics for production readiness              |
+| [vLLM Inference](llm_inference_with_vllm/)                       | Inference      | [Guide](llm_inference_with_vllm/README.md)           | Deploy large language models using vLLM for high-performance inference                    |
+| [LoRA Benchmarking](lora-benchmarking/)                          | Training       | [Guide](lora-benchmarking/README.md)                 | Benchmark fine-tuning performance using MLCommons methodology                             |
+| [LoRA Fine-Tuning](lora-fine-tuning/)                            | Training       | [Guide](lora-fine-tuning/README.md)                  | Efficiently fine-tune large language models using Low-Rank Adaptation                     |
+| [Multi-Instance GPU](mig_multi_instance_gpu/)                    | Infrastructure | [Guide](mig_multi_instance_gpu/README.md)            | Partition H100 GPUs into multiple isolated instances for efficient resource sharing       |
+| [Model Storage](model_storage/)                                  | Storage        | [Guide](model_storage/README.md)                     | Download and store models from HuggingFace to OCI Object Storage                          |
+| [Multi-Node Inference](multi-node-inference/)                    | Inference      | [Guide](multi-node-inference/README.md)              | Scale large language model inference across multiple GPU nodes                            |
+| [Shared Node Pools](shared_node_pools/)                          | Infrastructure | [Guide](shared_node_pools/README.md)                 | Create persistent node pools for efficient blueprint deployment                           |
+| [Teams](teams/)                                                  | Management     | [Guide](teams/README.md)                             | Enforce resource quotas and fair sharing between teams using Kueue                        |
+| [RDMA Node Pools](using_rdma_enabled_node_pools/)                | Infrastructure | [Guide](using_rdma_enabled_node_pools/README.md)     | Enable high-performance inter-node communication using Remote Direct Memory Access        |
+| [Startup & Health Probes](startup_liveness_readiness_probes/)    | Configuration  | [Guide](startup_liveness_readiness_probes/README.md) | Configure application health monitoring and startup validation                            |
