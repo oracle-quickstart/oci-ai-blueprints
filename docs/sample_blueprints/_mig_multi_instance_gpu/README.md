@@ -1,5 +1,28 @@
 # Multi-Instance GPU (MIG)
 
+#### Partition H100 GPUs into multiple isolated instances for efficient resource sharing and concurrent workloads
+
+Multi-Instance GPU (MIG) is a feature of NVIDIA GPUs that allows a single physical GPU to be partitioned into multiple isolated instances, each acting as an independent GPU with dedicated compute, memory, and cache resources. This enables multiple users or workloads to run concurrently on a single GPU without interfering with each other and without virtualization overhead.
+
+MIG is particularly useful when running multiple smaller models that do not require an entire GPU, such as hosting multiple smaller LLMs (Llama-7B, Mistral-7B, or Gemma-2B) on an A100 or H100 GPU. It ensures resource allocation is optimized, preventing one model from monopolizing the entire GPU while maintaining high throughput. This approach is incredibly well-suited for autoscaling scenarios because many more pods can be scheduled onto a single node depending on the MIG configuration.
+
+Currently, OCI AI Blueprints supports MIG for H100 GPUs (BM.GPU.H100.8 shape) with various slice configurations ranging from 7 mini GPUs with 10GB each to full 80GB instances. The system supports creating MIG-enabled shared node pools, deploying inference workloads to specific MIG slices, and updating MIG configurations on existing nodes.
+
+## Pre-Filled Samples
+
+| Feature Showcase                                                                              | Title                                                | Description                                                                                                                                                          | Blueprint File                                                                                     |
+| --------------------------------------------------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Create H100 shared node pool with MIG configuration for efficient GPU resource partitioning   | MIG-Enabled H100 Shared Node Pool                    | Deploys a shared node pool with H100 GPUs configured for Multi-Instance GPU (MIG) partitioning, enabling multiple isolated workloads per physical GPU.               | [mig_enabled_shared_node_pool.json](mig_enabled_shared_node_pool.json)                             |
+| Deploy multiple inference replicas on MIG slices for high-throughput serving with autoscaling | MIG Inference with Multiple Replicas and Autoscaling | Deploys multiple inference replicas on MIG GPU slices with autoscaling capabilities, optimizing resource utilization across partitioned H100 GPUs.                   | [mig_inference_multiple_replicas.json](mig_inference_multiple_replicas.json)                       |
+| Deploy single inference instance on 20GB MIG slice for dedicated model serving                | MIG Inference Single Replica (20GB Slice)            | Deploys a single inference instance on a 20GB MIG slice, providing dedicated GPU resources for model serving with pod autoscaling support.                           | [mig_inference_single_replica.json](mig_inference_single_replica.json)                             |
+| Deploy single inference instance on 10GB MIG slice for memory-efficient model serving         | MIG Inference Single Replica (10GB Slice)            | Deploys a single inference instance on a 10GB MIG slice, optimized for smaller models requiring less GPU memory while maintaining performance.                       | [mig_inference_single_replica_10gb.json](mig_inference_single_replica_10gb.json)                   |
+| Update MIG configuration on specific node by private IP for targeted resource management      | Update MIG Configuration by Node Name                | Updates the MIG configuration on a specific node identified by its private IP address, allowing targeted resource reconfiguration without affecting the entire pool. | [mig_update_node_with_node_name.json](mig_update_node_with_node_name.json)                         |
+| Update MIG configuration across entire node pool for cluster-wide resource optimization       | Update MIG Configuration by Node Pool Name           | Updates the MIG configuration across an entire node pool, enabling cluster-wide resource reconfiguration for optimized GPU partitioning.                             | [mig_update_shared_pool_with_node_pool_name.json](mig_update_shared_pool_with_node_pool_name.json) |
+
+---
+
+# In-Depth Feature Overview
+
 [Jump to Quickstart](#quickstart)
 
 ## What is it?
