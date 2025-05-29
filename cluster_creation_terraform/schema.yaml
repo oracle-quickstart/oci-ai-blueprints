@@ -130,9 +130,6 @@ variables:
   user_ocid:
     visible: false
 
-  oci_ai_blueprints_link_variable:
-    visible: false
-
 
 outputs:
 
