@@ -1,0 +1,35 @@
+{
+  "recipe_id": "cpu_inference",
+  "recipe_mode": "service",
+  "deployment_name": "cpu Inference mistral BME4",
+  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:cpu_inference_service_v0.2",
+  "recipe_node_shape": "BM.Standard.E4.128",
+  "input_object_storage": [
+    {
+      "par": "https://objectstorage.us-ashburn-1.oraclecloud.com/p/0LYMMBRGg_OEm_hzp9BG8BlQx7Ccpy3gY-gRzjQQFZRU6peG0pXyHTRHUGZLp82E/n/iduyx1qnmway/b/ollama-models/o/",
+      "mount_location": "/models",
+      "volume_size_in_gbs": 20
+    }
+  ],
+  "recipe_container_env": [
+    {
+      "key": "MODEL_NAME",
+      "value": "mistral"
+    },
+    {
+      "key": "PROMPT",
+      "value": "What is the capital of France?"
+    }
+  ],
+  "recipe_replica_count": 1,
+  "recipe_container_port": "11434",
+  "recipe_node_pool_size": 1,
+  "recipe_node_boot_volume_size_in_gbs": 200,
+  "recipe_container_command_args": [
+    "--input_directory",
+    "/models",
+    "--model_name",
+    "mistral"
+  ],
+  "recipe_ephemeral_storage_size": 100
+}
