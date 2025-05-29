@@ -1,5 +1,7 @@
 # LLM Inference with vLLM
 
+#### Deploy open-source LLMs to GPUs for inference with vLLM.
+
 This blueprint simplifies the deployment of LLMs using an open-source inference engine called vLLM. You can deploy a custom model or select from a variety of open-source models on Hugging Face.
 
 The blueprint deploys the model from an object storage bucket to a GPU node in an OKE cluster in your tenancy. Once deployed, you receive a ready-to-use API endpoint to start generating responses from the model. For mission-critical workloads, you can also configure auto-scaling driven by application metrics like inference latency. To summarize, this blueprint streamlines inference deployment, making it easy to scale and integrate into your applications without deep, technical expertise.
