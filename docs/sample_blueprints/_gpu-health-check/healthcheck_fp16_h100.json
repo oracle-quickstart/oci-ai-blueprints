@@ -1,0 +1,28 @@
+{
+  "recipe_id": "healthcheck",
+  "recipe_mode": "job",
+  "deployment_name": "healthcheck_fp16_h100",
+  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:healthcheck_v0.3",
+  "recipe_node_shape": "BM.GPU.H100.8",
+  "output_object_storage": [
+    {
+      "bucket_name": "healthcheck2",
+      "mount_location": "/healthcheck_results",
+      "volume_size_in_gbs": 20
+    }
+  ],
+  "recipe_container_command_args": [
+    "--dtype",
+    "float16",
+    "--output_dir",
+    "/healthcheck_results",
+    "--expected_gpus",
+    "A10:0,A100:0,H100:8"
+  ],
+  "recipe_replica_count": 1,
+  "recipe_nvidia_gpu_count": 8,
+  "recipe_node_pool_size": 1,
+  "recipe_node_boot_volume_size_in_gbs": 200,
+  "recipe_ephemeral_storage_size": 100,
+  "recipe_shared_memory_volume_size_limit_in_mb": 1000
+}
