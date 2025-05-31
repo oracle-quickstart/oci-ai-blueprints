@@ -34,6 +34,9 @@ More info on dynamic groups can be found here: https://docs.oracle.com/en-us/iaa
 ```
 Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to inspect all-resources in tenancy
 Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage all-resources in compartment {comparment_name}
+Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to {CLUSTER_JOIN} in compartment {compartment_name}
+Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage volumes in TENANCY where request.principal.type = 'cluster'
+Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage volume-attachments in TENANCY where request.principal.type = 'cluster'
 ```
 
 **Option #2: Fine-Grain Access:**
@@ -98,4 +101,8 @@ Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to inspect compartme
 Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage cluster-node-pools in compartment {compartment_name}
 
 Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to {CLUSTER_JOIN} in compartment {compartment_name}
+
+Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage volumes in TENANCY where request.principal.type = 'cluster'
+
+Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage volume-attachments in TENANCY where request.principal.type = 'cluster'
 ```
