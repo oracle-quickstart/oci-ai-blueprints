@@ -35,6 +35,9 @@
           "recipe_id": {
             "type": "string"
           },
+          "recipe_compartment_ocid": {
+            "type": "string"
+          },
           "deployment_name": {
             "type": "string"
           },
