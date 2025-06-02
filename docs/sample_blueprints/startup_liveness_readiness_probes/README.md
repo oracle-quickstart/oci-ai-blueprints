@@ -1,5 +1,21 @@
 # Startup, Liveness, and Readiness Probes
 
+#### Configure application health monitoring and startup validation for reliable service deployment
+
+Startup, Liveness, and Readiness Probes are essential Kubernetes tools that ensure your applications are truly ready to serve traffic and remain healthy throughout their lifecycle. These probes are particularly critical for LLM inference services that require time to load model weights before becoming ready to serve requests.
+
+This blueprint demonstrates how to configure these probes with any OCI AI Blueprint deployment to improve service reliability and prevent traffic routing to unhealthy containers. The probes can be applied to any blueprint type - inference, training, or custom workloads - providing consistent health monitoring across your AI infrastructure.
+
+## Pre-Filled Samples
+
+| Feature Showcase                            | Title                               | Description                                                                               | Blueprint File                                     |
+| ------------------------------------------- | ----------------------------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| Health monitoring for autoscaling inference | vLLM Autoscaling with Health Probes | Demonstrates startup and liveness probes applied to an autoscaling vLLM inference service | [autoscale_with_fss.json](autoscale_with_fss.json) |
+
+---
+
+# In-Depth Feature Overview
+
 [Startup, Liveness, and Readiness Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) are tools you can add to a kubernetes deployment which tell Kubernetes that the node is actually ready. These are most highly relevant in a [Kubernetes Service](https://kubernetes.io/docs/concepts/services-networking/service/) where you use a group of pods to serve responses over HTTP.
 
 In the case of LLM inference, a service to serve the LLM can come online but it is not ready to start serving requests immediately because it first has to load the model weights. In this case, kubernetes will see that the service is ready because the container has started, but if you send a request to it while the model is loading it will error because it is not actually ready to serve. Hence, we add probes.
@@ -12,14 +28,13 @@ In the case of vLLM for example, vLLM exposes a `/health` endpoint that can be q
 
 ## Startup Probe
 
-Given the above, a startup probe is a way to ensure Kubernetes will not route traffic to a container until the startup probe returns success. 
+Given the above, a startup probe is a way to ensure Kubernetes will not route traffic to a container until the startup probe returns success.
 
 A key criteria of a startup probe is that it will run until it succeeds and then not run anymore. Success criteria is defined in the configuration. If the success criteria is never met, the pod will fail, so set parameters which closely match your deployment characteristics with some buffer room. Startup probes are more common in containers with long or complex deployments.
 
 ## Liveness Probe
 
 A liveness probe is very similar to a startup probe, except that it runs continuously in the background to make sure the service is still alive. This is often run much less frequently as a "pulse". If this fails `failure_threshold` times, it will kill the container and restart it. Appropriate for long running services to ensure they are still healthy and serving requests.
-
 
 ## Parameter Description
 
