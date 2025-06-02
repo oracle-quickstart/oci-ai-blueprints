@@ -6,7 +6,7 @@ This page provides an overview of all available sample blueprint categories. Eac
 
 ## How to use
 
-You may use any recipe JSON from these categories as the payload in the `/deployment` endpoint. You are free to change any parameter as you would like, however, the parameters chosen have been tested and validated. Any changes you make to these sample blueprints, we cannot guarantee their efficiency or correctness.
+You may use any blueprint JSON from these categories as the payload in the `/deployment` endpoint. You are free to change any parameter as you would like, however, the parameters chosen have been tested and validated. Any changes you make to these sample blueprints, we cannot guarantee their efficiency or correctness.
 
 ## Sample Blueprint Categories
 
