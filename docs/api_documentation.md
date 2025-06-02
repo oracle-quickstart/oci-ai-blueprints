@@ -92,7 +92,7 @@ This recipe deploys the vLLM container image. Follow the vLLM docs to pass the c
 There are 3 blueprints that we are providing out of the box. Following are example recipe.json snippets that you can use to deploy the blueprints quickly for a test run.
 |Blueprint|Scenario|Sample JSON|
 |----|----|----
-|LLM Inference using NVIDIA shapes and vLLM|Deployment with default Llama-3.1-8B model using PAR|View sample JSON here [here](sample_blueprints/vllm-inference/vllm_inference_sample_blueprint.json)
+|LLM Inference using NVIDIA shapes and vLLM|Deployment with default Llama-3.1-8B model using PAR|View sample JSON here [here](sample_blueprints/llm_inference_with_vllm/vllm-open-hf-model.json)
 |MLCommons Llama-2 Quantized 70B LORA Fine-Tuning on A100|Default deployment with model and dataset ingested using PAR|View sample JSON here [here](sample_blueprints/lora-benchmarking/mlcommons_lora_finetune_nvidia_sample_recipe.json)
 |LORA Fine-Tune Blueprint|Open Access Model Open Access Dataset Download from Huggingface (no token required)|View sample JSON [here](sample_blueprints/lora-fine-tuning/open_model_open_dataset_hf.backend.json)
 |LORA Fine-Tune Blueprint|Closed Access Model Open Access Dataset Download from Huggingface (Valid Auth Token Is Required!!)|View sample JSON [here](sample_blueprints/lora-fine-tuning/closed_model_open_dataset_hf.backend.json)

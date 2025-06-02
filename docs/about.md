@@ -32,12 +32,11 @@
 
 ## Features
 
-| Feature                        | Description                                                                                                                             | Instructions                                                  |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| Feature                        | Description                                                                                                                             | Instructions                                               |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
 | **Customize Blueprints**       | Tailor existing OCI AI Blueprints to suit your exact AI workload needs—everything from hyperparameters to node counts and hardware.     | [Read More](custom_blueprints/README.md)                   |
-| **Updating OCI AI Blueprints** | Keep your OCI AI Blueprints environment current with the latest control plane and portal updates.                                       | [Read More](../INSTALLING_ONTO_EXISTING_CLUSTER_README.md)              |
+| **Updating OCI AI Blueprints** | Keep your OCI AI Blueprints environment current with the latest control plane and portal updates.                                       | [Read More](../INSTALLING_ONTO_EXISTING_CLUSTER_README.md) |
 | **Shared Node Pool**           | Use longer-lived resources (e.g., bare metal nodes) across multiple blueprints or to persist resources after a blueprint is undeployed. | [Read More](sample_blueprints/shared_node_pools/README.md) |
-| **File Storage Service**       | Store and supply model weights using OCI File Storage Service for blueprint deployments.                                                | [Read More](sample_blueprints/fss/README.md)                                 |
 | **Auto-Scaling**               | Automatically adjust resource usage based on infrastructure or application-level metrics to optimize performance and costs.             | [Read More](sample_blueprints/auto_scaling/README.md)      |
 
 ---
