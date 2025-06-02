@@ -1,4 +1,4 @@
-# CPU Inference Blueprint
+# CPU Inference
 
 #### Deploy CPU-based inference with Ollama for cost-effective and GPU-free model serving
 
