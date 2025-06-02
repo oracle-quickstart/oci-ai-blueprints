@@ -15,8 +15,8 @@ This guide helps you install and use **OCI AI Blueprints** for the first time. Y
 
 ## Step 1: Set Up Policies in Your Tenancy
 
-1. If you are **not** a tenancy administrator, ask your admin to set up the required policies in the **root compartment**. These policies are listed [here](docs/iam_policies/README.md).
-2. If you **are** a tenancy administrator, Resource Manager will typically deploy the minimal required policies automatically, but you can reference the same [IAM policies doc](docs/iam_policies/README.md) for advanced or custom configurations if needed.
+1. If you are **not** a tenancy administrator, ask your admin to set up the required policies in the **root compartment**. These policies are listed [here](docs/iam_policies.md).
+2. If you **are** a tenancy administrator, Resource Manager will typically deploy the minimal required policies automatically, but you can reference the same [IAM policies doc](docs/iam_policies.md) for advanced or custom configurations if needed.
 
 ---
 
@@ -70,7 +70,7 @@ Now that your cluster is ready, follow these steps to install OCI AI Blueprints 
 
 ## Step 5: Access the AI Blueprints API
 
-1. Follow the instruction to access the AI Blueprints API via web and/or CURL/Postman: [Ways to Access OCI AI Blueprints](./docs/api_documentation/accessing_oci_ai_blueprints/README.md#ways-to-access-oci-ai-blueprints)
+1. Follow the instruction to access the AI Blueprints API via web and/or CURL/Postman: [Ways to Access OCI AI Blueprints](docs/usage_guide.md)
 
 ---
 
@@ -95,5 +95,5 @@ Following this order ensures you do not have leftover services or dependencies i
 
 ## Need Help?
 
-- Check out [Known Issues & Solutions](docs/known_issues/README.md) for troubleshooting common problems.
+- Check out [Known Issues & Solutions](docs/known_issues.md) for troubleshooting common problems.
 - For questions or additional support, contact [vishnu.kammari@oracle.com](mailto:vishnu.kammari@oracle.com) or [grant.neuman@oracle.com](mailto:grant.neuman@oracle.com).
