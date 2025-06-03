@@ -19,7 +19,8 @@ model_lock = Lock()
 
 @app.post("/transcribe")
 async def transcribe_audio_api(
-    audio_file: UploadFile = File(...),
+    audio_file: UploadFile = File(None),
+    audio_url: str = Form(None),
     model: str = Form("base"),
     summarized_model: str = Form("mistralai/Mistral-7B-Instruct-v0.1"),
     denoise: bool = Form(False),
@@ -30,10 +31,9 @@ async def transcribe_audio_api(
     max_speakers: int = Form(None),
     streaming: bool = Form(False)
 ):
-    
-    # ✅ Setup dynamic logging per request
+    # Setup dynamic logging per request
     from datetime import datetime
-    basename = os.path.splitext(os.path.basename(audio_file.filename))[0]
+    basename = "remote_audio" if not audio_file else os.path.splitext(os.path.basename(audio_file.filename))[0]
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
     log_file = f"transcription_log_{basename}_{timestamp}.log"
 
@@ -42,16 +42,35 @@ async def transcribe_audio_api(
         format="%(asctime)s - %(levelname)s - %(message)s",
         filename=log_file,
         filemode="w",
-        force=True  # ensures logging resets each request
+        force=True
     )
 
-    temp_audio_path = tempfile.mktemp(suffix=f"_{audio_file.filename}")
-    with open(temp_audio_path, "wb") as f:
-        f.write(await audio_file.read())
+    # Load audio either from upload or URL
+    if audio_file:
+        temp_audio_path = tempfile.mktemp(suffix=f"_{audio_file.filename}")
+        with open(temp_audio_path, "wb") as f:
+            f.write(await audio_file.read())
+    elif audio_url:
+        import requests
+        temp_audio_path = tempfile.mktemp(suffix=".m4a")
+        try:
+            with requests.get(audio_url, stream=True) as r:
+                r.raise_for_status()
+                with open(temp_audio_path, 'wb') as f:
+                    for chunk in r.iter_content(chunk_size=1024*1024):
+                        f.write(chunk)
+
+            if r.status_code != 200:
+                raise Exception(f"Failed to download audio file: HTTP {r.status_code}")
+        except Exception as e:
+            from fastapi import HTTPException
+            raise HTTPException(status_code=400, detail=str(e))
+    else:
+        from fastapi import HTTPException
+        raise HTTPException(status_code=400, detail="Must provide either audio_file or audio_url")
 
     output_dir = tempfile.mkdtemp()
 
-    # Ensure model is loaded once
     if model not in model_cache:
         model_cache[model] = load_whisper_model_faster(model)
 
@@ -62,7 +81,6 @@ async def transcribe_audio_api(
             q = Queue()
             q.put(f"data: {json.dumps({'meta': 'logfile_name', 'logfile': log_file})}\n\n")
 
-
             def api_callback(result):
                 if result.get("chunk_id", "").startswith("chunk_"):
                     logging.info(f"\n====== Streaming {result['chunk_id']} ======\n{result.get('text', '').strip()}\n")
@@ -70,7 +88,6 @@ async def transcribe_audio_api(
                     logging.info("\n====== Final Summary ======\n")
                     logging.info(result.get("summary", "").strip())
                     result["logfile"] = log_file
-
                 q.put(f"data: {json.dumps(result)}\n\n")
 
             def run_pipeline():
@@ -99,7 +116,6 @@ async def transcribe_audio_api(
                     q.put(None)
 
             threading.Thread(target=run_pipeline).start()
-
             while True:
                 chunk = q.get()
                 if chunk is None:
@@ -142,10 +158,8 @@ async def transcribe_audio_api(
             )
             if not json_files:
                 raise FileNotFoundError("No output JSON file found.")
-
             with open(json_files[0]) as f:
                 return JSONResponse(content=json.load(f))
-            
         except Exception as e:
             import traceback
             traceback.print_exc()
@@ -162,12 +176,12 @@ def stream_log(filename: str):
 
     def stream_lines():
         with open(log_path, "r") as f:
-            f.seek(0, 2)  # Move to end of file
+            f.seek(0, 2)
             while True:
                 line = f.readline()
                 if line:
                     yield f"data: {line.strip()}\n\n"
                 else:
-                    time.sleep(0.2)  # Poll every 200ms
+                    time.sleep(0.2)
 
     return StreamingResponse(stream_lines(), media_type="text/event-stream")
