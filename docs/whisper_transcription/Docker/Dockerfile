@@ -35,4 +35,4 @@ COPY whisper_api_server.py whisper_api_server.py
 EXPOSE 8000
 
 # Run API
-CMD ["uvicorn", "whisper_api_server:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "whisper_api_server:app", "--host", "0.0.0.0", "--port", "8000", "--limit-max-requests", "500000000"]
