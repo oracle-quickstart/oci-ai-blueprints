@@ -53,7 +53,7 @@ module "cluster-tools" {
 # Kubernetes Cluster Tools
 ## IngressController/LoadBalancer
 variable "ingress_nginx_enabled" {
-  default     = false
+  default     = true
   description = "Enable Ingress Nginx for Kubernetes Services (This option provision a Load Balancer)"
 }
 variable "ingress_load_balancer_shape" {

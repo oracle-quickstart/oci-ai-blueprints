@@ -41,6 +41,7 @@ resource "kubernetes_ingress_v1" "corrino_cp_ingress" {
     }
   }
   depends_on = [null_resource.webhook_charts_ready]
+  count = var.ingress_nginx_enabled ? 1 : 0
 }
 
 resource "kubernetes_ingress_v1" "oci_ai_blueprints_portal_ingress" {
@@ -76,6 +77,7 @@ resource "kubernetes_ingress_v1" "oci_ai_blueprints_portal_ingress" {
     }
   }
   depends_on = [null_resource.webhook_charts_ready]
+  count = var.ingress_nginx_enabled ? 1 : 0
 }
 
 resource "kubernetes_ingress_v1" "grafana_ingress" {
@@ -112,6 +114,7 @@ resource "kubernetes_ingress_v1" "grafana_ingress" {
     }
   }
   depends_on = [null_resource.webhook_charts_ready]
+  count = var.ingress_nginx_enabled ? 1 : 0
 }
 
 resource "kubernetes_ingress_v1" "prometheus_ingress" {
@@ -148,6 +151,7 @@ resource "kubernetes_ingress_v1" "prometheus_ingress" {
     }
   }
   depends_on = [null_resource.webhook_charts_ready]
+  count = var.ingress_nginx_enabled ? 1 : 0
 }
 
 resource "kubernetes_ingress_v1" "mlflow_ingress" {
@@ -184,4 +188,5 @@ resource "kubernetes_ingress_v1" "mlflow_ingress" {
     }
   }
   depends_on = [null_resource.webhook_charts_ready]
+  count = var.ingress_nginx_enabled ? 1 : 0
 }
