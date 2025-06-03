@@ -3,6 +3,10 @@
 This project provides a high-performance pipeline for **audio/video transcription**, **speaker diarization**, and **summarization** using [Faster-Whisper](https://github.com/guillaumekln/faster-whisper), Hugging Face LLMs (e.g. Mistral), and [pyannote.audio](https://github.com/pyannote/pyannote-audio). It exposes a **FastAPI-based REST API** and supports CLI usage as well.
 
 ---
+## System Architecture
+
+The overall architecture consists of several key stages. First, audio is converted using ffmpeg and optionally denoised using a hybrid method combining Demucs (for structured background removal) and either noisereduce or DeepFilterNet (for static noise). Next, silence-aware chunking is applied using pydub to segment speech cleanly without breaking mid-sentence. The Whisper model then transcribes each chunk, optionally followed by speaker diarization using pyannote-audio. Finally, if summarization is enabled, an instruction-tuned LLM such as Mistral-7B generates concise and structured summaries. Outputs are written to .txt ,log and .json files, optionally embedded with speaker turns and summaries.
+![image](https://github.com/user-attachments/assets/6a8b55f0-9de5-46e9-9ef0-80e904f61a7d)
 
 ## Features
 
@@ -98,6 +102,65 @@ curl -X POST http://<YOUR_IP>:8000/transcribe \
   -F "hf_token=hf_xxx" \
   -F "max_speakers=2"
 ```
+
+### Start docker 
+
+```bash
+docker run --gpus all -p 8000:8000 whisper_api
+```
+
+### Example Docker Call
+
+```bash
+curl -X POST http://<YOUR_IP>:8000/transcribe \
+  -F "audio_file=@test.wav" \
+  -F "model=medium" \
+  -F "summary=true" \
+  -F "speaker=true" \
+  -F "denoise=false" \
+  -F "streaming=true" \
+  -F "hf_token=hf_xxx" \
+  -F "max_speakers=2"
+```
+
+### Start Blueprint Deployment
+in the deploymen part of Blueprint, add a recipe suchas the following
+```bash
+{
+  "recipe_id": "whisper  transcription",
+  "recipe_mode": "service",
+  "deployment_name": "whisper-transcription-a10",
+  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:whisper_transcription_v2",
+  "recipe_node_shape": "VM.GPU.A10.2",
+  "recipe_replica_count": 1,
+  "recipe_container_port": "8000",
+ "recipe_nvidia_gpu_count": 2,
+  "recipe_node_pool_size": 1,
+  "recipe_node_boot_volume_size_in_gbs": 200,
+  "recipe_ephemeral_storage_size": 100,
+  "recipe_shared_memory_volume_size_limit_in_mb": 200
+}
+
+```
+
+### Example Blueprint
+
+```bash
+curl -L -X POST http://<YOUR_IP>:8000/transcribe \
+  -F "audio_file=@test.wav" \
+  -F "model=medium" \
+  -F "summary=true" \
+  -F "speaker=true" \
+  -F "denoise=false" \
+  -F "streaming=true" \
+  -F "hf_token=hf_xxx" \
+  -F "max_speakers=2"
+```
+In case you want to see the streaming, you need to :
+```bash
+curl -N http://<YOUR_IP>:8000/stream_log/<YOUR_Log_Name>1.log
+```
+once running the curl command you can see the log name printed
 
 ---
 
