@@ -2,23 +2,49 @@
 
 ## Overview
 
-OCI AI Blueprints team will release new versions of it's control-plane and frontend images once new features have been developed and thoroughly tested. In order to use the latest version of OCI AI Blueprints in your environment, apply the following steps.
+The OCI AI Blueprints team regularly publishes **full-stack release packages** (control plane, frontend, blueprints, Terraform).  
+To upgrade your existing deployment, replace your stack’s source zip with the **latest package** from GitHub Releases and re-apply the stack in **OCI Resource Manager**.
 
-### Steps:
+---
 
-1.  In OCI Console > Resource Manager > Stacks
-2.  Choose the stack that was used to deploy OCI AI Blueprints originally
-3.  Make sure you have chosen the correct stack by clicking on "Variables" in the lower left corner underneath the "Resources" section. Verify the variables correspond to the OCI AI Blueprints instance you are wanting to update.
-4.  Verify that the API URL matches underneath the "Application Information" tab.
-5.  After successful verification that this is the correct stack, click "Apply" (in the button group near the top of the page containing Edit / Plan / Destroy / More Actions buttons)
-6.  A new Job in the stack will be created. Wait for this Job to finish
-7.  Once the Job is finished and no errors occurred, the Job will show State = "Succeeded"
-8.  At this point, your OCI AI Blueprints environment has been successfully updated and contains all the latest features
+## Upgrade Steps
 
-### Technical Background
+1. **Download and unzip the latest release package**
 
-Since the OCI AI Blueprints stack uses the "latest" image tag for all applications, when applying the stack again - Resource Manager pulls the latest image and applies it to your OKE cluster. No restart is needed since the deployments are restarted during the "Apply" phase.
+   - Go to **GitHub → Releases** for OCI AI Blueprints  
+     <https://github.com/oracle-quickstart/oci-ai-blueprints/releases>
+   - Download the file that ends with `_app.zip` (for example `vX.Y.Z_app.zip`) and unzip it.
 
-### Error Handling
+2. Open **OCI Console → Resource Manager → Stacks**.
 
-If errors occurs during the update process, please reach out to Vishnu Kammari at [vishnu.kammari@oracle.com](mailto:vishnu.kammari@oracle.com) or Grant Neuman at [grant.neuman@oracle.com](mailto:grant.neuman@oracle.com).
+3. Select the stack you originally used to deploy **OCI AI Blueprints**.
+
+4. Click **Edit → Edit Stack**.
+
+5. **Upload** the unzipped package (the `.zip` downloaded in Step 1).
+
+   > _Tip: the file name should match the release you just downloaded._
+
+6. Click **Next → Next → Confirm** to save the new source.
+
+7. Press **Apply** (top-right). A new job starts automatically.
+
+8. Wait until the job’s **State** is **Succeeded** — your entire stack is now updated.
+
+---
+
+## Technical Background
+
+Updating the stack zip prompts **Resource Manager** to pull the newest Terraform code and container images.  
+During _Apply_, OKE deployments roll automatically, so no manual pod restarts are needed.
+
+---
+
+## Error Handling
+
+If a job fails or you see errors in the console, please contact:
+
+- Vishnu Kammari — <vishnu.kammari@oracle.com>
+- Grant Neuman — <grant.neuman@oracle.com>
+
+Include the full set of logs when reaching out for fastest assistance.
