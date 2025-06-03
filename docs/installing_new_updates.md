@@ -47,4 +47,4 @@ If a job fails or you see errors in the console, please contact:
 - Vishnu Kammari — <vishnu.kammari@oracle.com>
 - Grant Neuman — <grant.neuman@oracle.com>
 
-Include the stack name and the failed job ID to help us troubleshoot quickly.
+Include the full set of logs when reaching out for fastest assistance.
