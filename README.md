@@ -4,7 +4,7 @@
 
 OCI AI Blueprints is a streamlined, no-code solution for deploying and managing Generative AI workloads on Kubernetes Engine (OKE). By providing opinionated hardware recommendations, pre-packaged software stacks, and out-of-the-box observability tooling, OCI AI Blueprints helps you get your AI applications running quickly and efficiently—without wrestling with the complexities of infrastructure decisions, software compatibility, and MLOps best practices.
 
-[![Install OCI AI Blueprints](https://raw.githubusercontent.com/oracle-quickstart/oci-ai-blueprints/9d1d61b3b79e61dabe19d1672c3e54704b294a93/docs/images/install.svg)](./GETTING_STARTED_README.md)
+[![Install OCI AI Blueprints](https://raw.githubusercontent.com/oracle-quickstart/oci-ai-blueprints/refs/heads/main/docs/images/install.svg)](./GETTING_STARTED_README.md)
 
 ## Table of Contents
 
@@ -38,7 +38,7 @@ OCI AI Blueprints is a streamlined, no-code solution for deploying and managing 
 
 Install OCI AI Blueprints by clicking on the button below:
 
-[![Install OCI AI Blueprints](https://raw.githubusercontent.com/oracle-quickstart/oci-ai-blueprints/9d1d61b3b79e61dabe19d1672c3e54704b294a93/docs/images/install.svg)](./GETTING_STARTED_README.md)
+[![Install OCI AI Blueprints](https://raw.githubusercontent.com/oracle-quickstart/oci-ai-blueprints/refs/heads/main/docs/images/install.svg)](./GETTING_STARTED_README.md)
 
 ## Blueprints
 
@@ -52,7 +52,7 @@ After you install OCI AI Blueprints to an OKE cluster in your tenancy, you can d
 
 | Blueprint                                                                                     | Description                                                                                                                              |
 | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| [**LLM & VLM Inference with vLLM**](docs/sample_blueprints/llm_inference_with_vllm/README.md)                  | Deploy Llama 2/3/3.1 7B/8B models using NVIDIA GPU shapes and the vLLM inference engine with auto-scaling.                               |
+| [**LLM & VLM Inference with vLLM**](docs/sample_blueprints/llm_inference_with_vllm/README.md) | Deploy Llama 2/3/3.1 7B/8B models using NVIDIA GPU shapes and the vLLM inference engine with auto-scaling.                               |
 | [**Fine-Tuning Benchmarking**](./docs/sample_blueprints/lora-benchmarking)                    | Run MLCommons quantized Llama-2 70B LoRA finetuning on A100 for performance benchmarking.                                                |
 | [**LoRA Fine-Tuning**](./docs/sample_blueprints/lora-fine-tuning)                             | LoRA fine-tuning of custom or HuggingFace models using any dataset. Includes flexible hyperparameter tuning.                             |
 | [**Health Check**](./docs/sample_blueprints/gpu-health-check)                                 | Comprehensive evaluation of GPU performance to ensure optimal hardware readiness before initiating any intensive computational workload. |
