@@ -148,6 +148,10 @@ https://whisper-transcription-a10-6666.130-162-199-33.nip.io/transcribe
 | `denoise`       | `bool`    | (Optional) Apply basic denoising to improve quality in noisy recordings.                                                                                  |
 | `streaming`     | `bool`    | (Optional) Enable real-time log streaming for transcription chunks and progress updates.                                                                  |
 | `hf_token`      | `string`  | Hugging Face token, required for loading models like Mistral or enabling speaker diarization.                                                             |
+| `--prop-decrease`     | `Float`  | Controls noise suppression. Default = 0.7                                                           |
+| `summarized-model`      | `path`  | Hugging Face or local LLM path for summarization. Default: Mistral-7B.                                                             |
+| `ground-truth`      | `path`  | Path to ground truth `.txt` file for WER evaluation.                                                           |
+
 
 ---
 
