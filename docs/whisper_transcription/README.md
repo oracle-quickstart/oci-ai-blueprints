@@ -103,25 +103,6 @@ curl -X POST http://<YOUR_IP>:8000/transcribe \
   -F "max_speakers=2"
 ```
 
-### Start docker 
-
-```bash
-docker run --gpus all -p 8000:8000 whisper_api
-```
-
-### Example Docker Call
-
-```bash
-curl -X POST http://<YOUR_IP>:8000/transcribe \
-  -F "audio_file=@test.wav" \
-  -F "model=medium" \
-  -F "summary=true" \
-  -F "speaker=true" \
-  -F "denoise=false" \
-  -F "streaming=true" \
-  -F "hf_token=hf_xxx" \
-  -F "max_speakers=2"
-```
 
 ### Start Blueprint Deployment
 in the deploymen part of Blueprint, add a recipe suchas the following
@@ -130,7 +111,7 @@ in the deploymen part of Blueprint, add a recipe suchas the following
   "recipe_id": "whisper  transcription",
   "recipe_mode": "service",
   "deployment_name": "whisper-transcription-a10",
-  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:whisper_transcription_v2",
+  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:whisper_transcription_v6",
   "recipe_node_shape": "VM.GPU.A10.2",
   "recipe_replica_count": 1,
   "recipe_container_port": "8000",
@@ -142,25 +123,80 @@ in the deploymen part of Blueprint, add a recipe suchas the following
 }
 
 ```
+#### Endpoint
 
-### Example Blueprint
+```
+POST https://<YOUR_DEPLOYMENT>.nip.io/transcribe
+```
+
+**Example:**
+```
+https://whisper-transcription-a10-6666.130-162-199-33.nip.io/transcribe
+```
+
+---
+
+#### Parameters
+
+| Parameter       | Type      | Description                                                                                                                                               |
+|----------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `audio_url`     | `string`  | URL to a Pre-Authenticated Request (PAR) of the audio file stored in OCI Object Storage.                                                                  |
+| `model`         | `string`  | Whisper model name to use (`base`, `medium`, `turbo`, etc.).                                                                                              |
+| `summary`       | `bool`    | Whether to generate a summary at the end. If `true` and no custom model path is provided, `mistralai/Mistral-7B-Instruct-v0.1` will be loaded from Hugging Face. Requires `hf_token`. |
+| `speaker`       | `bool`    | Whether to enable speaker diarization. Requires `hf_token`. If `false`, all segments will be labeled as "Speaker 1".                                      |
+| `max_speakers`  | `int`     | (Optional) Helps improve diarization accuracy by specifying the expected number of speakers.                                                              |
+| `denoise`       | `bool`    | (Optional) Apply basic denoising to improve quality in noisy recordings.                                                                                  |
+| `streaming`     | `bool`    | (Optional) Enable real-time log streaming for transcription chunks and progress updates.                                                                  |
+| `hf_token`      | `string`  | Hugging Face token, required for loading models like Mistral or enabling speaker diarization.                                                             |
+
+---
+
+#### Example `curl` Command
 
 ```bash
-curl -L -X POST http://<YOUR_IP>:8000/transcribe \
-  -F "audio_file=@test.wav" \
-  -F "model=medium" \
+curl -k -N -L -X POST https://<YOUR_DEPLOYMENT>.nip.io/transcribe \
+  -F "audio_url=<YOUR_PAR_URL>" \
+  -F "model=turbo" \
   -F "summary=true" \
   -F "speaker=true" \
-  -F "denoise=false" \
   -F "streaming=true" \
-  -F "hf_token=hf_xxx" \
+  -F "denoise=false" \
+  -F "hf_token=hf_xxxxxxxxxxxxxxx" \
   -F "max_speakers=2"
 ```
-In case you want to see the streaming, you need to :
-```bash
-curl -N http://<YOUR_IP>:8000/stream_log/<YOUR_Log_Name>1.log
+
+---
+
+#### Real-Time Log Streaming
+
+If `streaming=true`, the API will return:
+
+```json
+{
+  "meta": "logfile_name",
+  "logfile": "transcription_log_remote_audio_<timestamp>.log"
+}
 ```
-once running the curl command you can see the log name printed
+
+To stream logs in real-time (in another terminal):
+
+```bash
+curl -N https://<YOUR_DEPLOYMENT>.nip.io/stream_log/transcription_log_remote_audio_<timestamp>.log
+```
+
+**Example:**
+
+```bash
+curl -N https://whisper-transcription-a10-6666.130-162-199-33.nip.io/stream_log/transcription_log_remote_audio_20250604_020250.log
+```
+
+This shows chunk-wise transcription output live, followed by the summary at the end.
+
+---
+
+#### Non-Streaming Mode
+
+If `streaming=false`, the API will return the entire transcription (and summary if requested) in a single JSON response when processing is complete.
 
 ---
 
