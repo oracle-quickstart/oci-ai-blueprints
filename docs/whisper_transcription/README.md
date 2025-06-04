@@ -111,7 +111,7 @@ in the deploymen part of Blueprint, add a recipe suchas the following
   "recipe_id": "whisper  transcription",
   "recipe_mode": "service",
   "deployment_name": "whisper-transcription-a10",
-  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:whisper_transcription_v6",
+  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:whisper_transcription_v7",
   "recipe_node_shape": "VM.GPU.A10.2",
   "recipe_replica_count": 1,
   "recipe_container_port": "8000",
