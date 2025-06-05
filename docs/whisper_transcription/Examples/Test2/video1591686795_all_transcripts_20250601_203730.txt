@@ -1,0 +1,200 @@
+[2025-06-01 20:36:11] Speaker 1: hello everyone thank you for joining to this session this session we will talk about health
+[2025-06-01 20:36:11] Speaker 1: recipe that we provided in seeds group Ammar, Soumya and me etc. we are working on this.
+[2025-06-01 20:36:11] Speaker 1: a resume and with that we can start to talk about that so the main idea of the health check
+[2025-06-01 20:36:11] Speaker 1: recipe is to make the customer confidence that they have enough resources to run heavy workloads
+[2025-06-01 20:36:11] Speaker 1: what i mean by that is that most of the customers when they want to run the llm's training find
+[2025-06-01 20:36:29] Speaker 1: you
+[2025-06-01 20:36:11] Speaker 1: tuning or any other things they need which assumed to be a heavy workload they need to have a lot of
+[2025-06-01 20:36:11] Speaker 1: gpus and we want to make sure that these gpus work well so they can run this recipe before starting
+[2025-06-01 20:36:11] Speaker 1: this task and to just make sure that you know everything is working very well i'll go ahead
+[2025-06-01 20:36:11] Speaker 1: share my screen and yeah i will start with the result of this recipe i can say that this you know
+[2025-06-01 20:36:11] Speaker 1: recipe the health check recipe will provide you two different formats one is the pdf which i'm showing
+[2025-06-01 20:36:11] Speaker 1: to you and the other one is json one i will also go through that as well but here you can see uh what
+[2025-06-01 20:36:11] Speaker 1: test we are evaluating for the gpus uh we are doing bunch of uh testing like the background
+[2025-06-01 20:36:11] Speaker 1: compare computation compute throughput memory bandwidth error detection tensor core utilization
+[2025-06-01 20:36:17] Speaker 1: sustain workload
+[2025-06-01 20:36:11] Speaker 1: mixed precision, power, temperature and utilization. So these are the main tests that we are
+[2025-06-01 20:36:11] Speaker 1: evaluating you can see that in this format once you know you run the health
+[2025-06-01 20:36:15] Speaker 1: show
+[2025-06-01 20:36:11] Speaker 1: recipe you will get the result you know everything is in a table the duration of each
+[2025-06-01 20:36:11] Speaker 1: test, whether it has failed or not.
+[2025-06-01 20:36:18] Speaker 1: For example, here for compute throughput,
+[2025-06-01 20:36:11] Speaker 1: has failed and i will show you uh in detail that how it works and for those customers who you know
+[2025-06-01 20:36:19] Speaker 1: maybe
+[2025-06-01 20:36:11] Speaker 1: don't know what are these numbers you know they can go to the end of that we
+[2025-06-01 20:36:17] Speaker 1: have also provided a graph
+[2025-06-01 20:36:11] Speaker 1: I'm waiting for that. We have also provided a graph. In this graph, we have provided, you know,
+[2025-06-01 20:36:11] Speaker 1: So first what we did was that we did an extensive research from NVIDIA website articles to see what are the...
+[2025-06-01 20:36:11] Speaker 1: uh you know ideal uh range for for example temperature the compute throughput memory bandwidth
+[2025-06-01 20:36:17] Speaker 1: and this type of
+[2025-06-01 20:36:11] Speaker 1: things. What is the upper threshold? What is the lower threshold? We added a 10% to each of
+[2025-06-01 20:36:11] Speaker 1: this once and uh we got the average of that these average are shown here as a baseline for example
+[2025-06-01 20:36:18] Speaker 1: 3000 is
+[2025-06-01 20:36:11] Speaker 1: shown here as a baseline and the measured one is the for example uh the yellow one it shows that uh
+[2025-06-01 20:36:19] Speaker 1: you know
+[2025-06-01 20:36:11] Speaker 1: So once we are using the test compute throughput, the measure was around 651.92, which is around 630.
+[2025-06-01 20:36:11] Speaker 1: uh 30 which was the baseline so the main purpose of this graph is to make the customer sure that
+[2025-06-01 20:36:11] Speaker 1: numbers that they are getting are in the same kind of range of you know what the
+[2025-06-01 20:36:18] Speaker 1: number should be
+[2025-06-01 20:36:11] Speaker 1: With that, I can also go to the JSON file.
+[2025-06-01 20:36:11] Speaker 1: which we have here. I will just open one of them.
+[2025-06-01 20:36:11] Speaker 1: So the way that they know the JSON file.
+[2025-06-01 20:36:11] Speaker 1: is working is that you know basically the same numbers are both in the PDF and the JSON file.
+[2025-06-01 20:36:11] Speaker 1: The good thing about JSON file here is that, you know, for example, for compute throughput,
+[2025-06-01 20:36:11] Speaker 1: it has failed if it go on each gpu one by one um based on the tensor and you know duration
+[2025-06-01 20:36:11] Speaker 1: flops bandwidth and it will uh make the comparison with the baseline and if uh for all of them it's not
+[2025-06-01 20:36:11] Speaker 1: in the range that you know we specify it will give us the fail. Similarly for the memory band
+[2025-06-01 20:36:11] Speaker 1: it you know it has some for each gpu it will say that you know what does what are the information
+[2025-06-01 20:36:11] Speaker 1: at the end it will give whether it is ideal or not so this is the way that uh you know the
+[2025-06-01 20:36:11] Speaker 1: JSON file is working. With that, I can go inside the code and I can talk a little bit more about
+[2025-06-01 20:36:11] Speaker 1: the code what we have provided for the customer so we are we have enabled the customer to choose
+[2025-06-01 20:36:11] Speaker 1: what type, what D-type, you know, they can choose.
+[2025-06-01 20:36:14] Speaker 1: They can go with FV32, FV16, which is the most common one.
+[2025-06-01 20:36:11] Speaker 1: uh fp8 uh we have also enabled them that whether they want to just choose one um uh you know one of
+[2025-06-01 20:36:11] Speaker 1: these uh uh functions or you know all of them the default is on all of them also they can choose
+[2025-06-01 20:36:11] Speaker 1: to do the direction so we have provided a couple of uh you know uh parser uh so that you know
+[2025-06-01 20:36:11] Speaker 1: can choose uh uh you know uh to play with them uh code one important thing is the tensor shape
+[2025-06-01 20:36:11] Speaker 1: example for a10 the tensor shape is 8192 this is the default that we have provided for all of the
+[2025-06-01 20:36:20] Speaker 1: a10
+[2025-06-01 20:36:11] Speaker 1: a hundred and h hundred um with this i will give you some information that we can we also measure
+[2025-06-01 20:36:20] Speaker 1: the highest
+[2025-06-01 20:36:11] Speaker 1: uh tensor for example for 800 we can also use 65k for that that will take a long time so that was
+[2025-06-01 20:36:11] Speaker 1: reason why we wanted to go to go with something which take less time so for example
+[2025-06-01 20:36:11] Speaker 1: the H100 with 8192 it will take around 110 seconds. A100 it will take around 492 or similar like that.
+[2025-06-01 20:36:11] Speaker 1: and for 810 it will take around 649 seconds and with that we can start to talk about the functions
+[2025-06-01 20:36:22] Speaker 1: I'm not
+[2025-06-01 20:36:11] Speaker 1: going about the function again the first thing is the power the temperature and utilization
+[2025-06-01 20:36:11] Speaker 1: So we found out what is the range of that and if the temperature, the power...
+[2025-06-01 20:36:11] Speaker 1: visualization is in in that range you know we'll say that it has passed if not uh you know we'll say
+[2025-06-01 20:36:11] Speaker 1: that you know uh it has uh you know fade um these are some of the information about the gpus uh what
+[2025-06-01 20:36:11] Speaker 1: shape is that and this type of things till we get to the background computation and compute on gpu
+[2025-06-01 20:36:11] Speaker 1: background computation is that it's a function that it will compute uh you know a simple math mall
+[2025-06-01 20:36:11] Speaker 1: back end so that you know we can measure the for temperature for uh you know for uh utilization
+[2025-06-01 20:36:11] Speaker 1: for the power one thing that i want to mention here is that matmon why we are using in most of these
+[2025-06-01 20:36:11] Speaker 1: we are using MathMol. Why we are using MathMol here? MathMol is a good simulation of fine-tuning
+[2025-06-01 20:36:11] Speaker 1: training llms and these type of things and it's very common for that so that's the reason why we
+[2025-06-01 20:36:11] Speaker 1: I really focus on MatMod as one of the functions that we have used here a lot.
+[2025-06-01 20:36:11] Speaker 1: i can uh the next function is about compute and gpu or compute throughput as i mentioned
+[2025-06-01 20:36:11] Speaker 1: previously and this will measure the performance of the GPU cores under stress.
+[2025-06-01 20:36:22] Speaker 1: Mainly it will
+[2025-06-01 20:36:11] Speaker 1: say that how the gpus can handle the computation and again you can see here that you know this is
+[2025-06-01 20:36:21] Speaker 1: also
+[2025-06-01 20:36:11] Speaker 1: again based on matmul function the next one is the memory bandwidth the memory bandwidth is mainly
+[2025-06-01 20:36:11] Speaker 1: um how the gpu can handle the heavy memory uh you know bound it means that you know how we can move
+[2025-06-01 20:36:11] Speaker 1: the volume of data between the global memory and the compute you need. So here we are using
+[2025-06-01 20:36:11] Speaker 1: uh addition b equal to a plus a
+[2025-06-01 20:36:17] Speaker 1: uh and yeah the next one is about error detection on gpus so uh here
+[2025-06-01 20:36:11] Speaker 1: this is mainly based on the accuracy it means that one time we are using CPU for
+[2025-06-01 20:36:19] Speaker 1: you know
+[2025-06-01 20:36:11] Speaker 1: matmol one time we are using gpus for matmol and you know we compare these numbers and we have some
+[2025-06-01 20:36:11] Speaker 1: threshold for that as you can see here and if that's it's uh not significant we can say that
+[2025-06-01 20:36:11] Speaker 1: the error detection is fine. Next thing is the tensor core utilization. This is the core
+[2025-06-01 20:36:11] Speaker 1: engagement and and it emphasizes on the low precision like the fp8 or fp16 um this is a mainly
+[2025-06-01 20:36:11] Speaker 1: hardware not on the software. After the Tensor Core utilization we did sustained workload and this
+[2025-06-01 20:36:11] Speaker 1: test the long-term compute and stability. So for example here as an example we put 60 seconds.
+[2025-06-01 20:36:11] Speaker 1: and we are running matmod for 60 seconds and we will see that how the gpus are working based on that
+[2025-06-01 20:36:11] Speaker 1: and the last one is mixed precision testing and this will validate both the performance and the
+[2025-06-01 20:36:11] Speaker 1: correctness of the GPUs again when we are using matmult here.
+[2025-06-01 20:36:19] Speaker 1: So with that, you know, we got to the
+[2025-06-01 20:36:11] Speaker 1: end of this part. I will give you an example of how this has worked previously.
+[2025-06-01 20:36:11] Speaker 1: So we had an H100 and you can see the result of the H100 here
+[2025-06-01 20:36:11] Speaker 1: And, um...
+[2025-06-01 20:36:11] Speaker 1: We saw that the H100 is not performing very well.
+[2025-06-01 20:36:15] Speaker 1: I went and saw
+[2025-06-01 20:36:11] Speaker 1: specifically for gpu 4 and you can see that you know in the power the gpu 4 is uh going up very
+[2025-06-01 20:36:11] Speaker 1: you know fast compared to other ones but you know after that the rest of that went sharply up but this
+[2025-06-01 20:36:11] Speaker 1: one didn't go up uh so maybe that was the reason why the h100 was not performing very well then i
+[2025-06-01 20:36:18] Speaker 1: also
+[2025-06-01 20:36:11] Speaker 1: saw the um the temperature you can see that for gpu for the temperature again is sharply going up like
+[2025-06-01 20:36:19] Speaker 1: 80.
+[2025-06-01 20:36:11] Speaker 1: which is above the range that you know we specified and then you know it stays there so
+[2025-06-01 20:36:11] Speaker 1: maybe that was the reason why you know it wasn't able to uh you know do power good and the rest of
+[2025-06-01 20:36:11] Speaker 1: that you know you can see that you know it's not even close to 86 so we found out that you know the
+[2025-06-01 20:36:16] Speaker 1: gpu 4
+[2025-06-01 20:36:11] Speaker 1: is not working very well but one thing that you know here i want to emphasize is that this is inside
+[2025-06-01 20:36:11] Speaker 1: a node so what does it mean it means that you know for example in the h100 and knows we have eight gpu
+[2025-06-01 20:36:11] Speaker 1: so it will give us the result for the hgpus but we have also extended this uh code for
+[2025-06-01 20:36:11] Speaker 1: multi-node and by that so this was this code was given to us by another team from John Shelley's
+[2025-06-01 20:36:11] Speaker 1: theme and it's mainly doing some more tests about nodes between the nodes specifically it
+[2025-06-01 20:36:11] Speaker 1: It will evaluate the RDMA, the different type of errors like error correctness code.
+[2025-06-01 20:36:17] Speaker 1: It will also...
+[2025-06-01 20:36:11] Speaker 1: evaluate the PCIe link and this type of things.
+[2025-06-01 20:36:17] Speaker 1: The way that our structure is working right now...
+[2025-06-01 20:36:11] Speaker 1: is that first of all we run if you have a multi node we run this one
+[2025-06-01 20:36:11] Speaker 1: uh let me show you the result or the log maybe that would help
+[2025-06-01 20:36:11] Speaker 1: First of all, we'll run that one. For example here I used two nodes and you can see
+[2025-06-01 20:36:11] Speaker 1: that you know it will go and run all of these ones one by one and it will get to this end.
+[2025-06-01 20:36:11] Speaker 1: Once this is done, it will go inside each node.
+[2025-06-01 20:36:15] Speaker 1: For example, here we have the GPU 471.
+[2025-06-01 20:36:11] Speaker 1: here everything will be saved as a json file and this multi-node result will be saved as a json
+[2025-06-01 20:36:11] Speaker 1: file and you can see that you know it's here
+[2025-06-01 20:36:11] Speaker 1: Again, for the other one, I think it was another GPU, which was probably the 509.
+[2025-06-01 20:36:11] Speaker 1: and it will again all of the json file will uh you know save all of these results then it will go
+[2025-06-01 20:36:11] Speaker 1: inside the gpu 471 and inside that gpu it will run the health check that you know and we just we were
+[2025-06-01 20:36:11] Speaker 1: just talking about.
+[2025-06-01 20:36:11] Speaker 1: it will go it will do that for gpu 471 again it will do that for the other gpu gpu 507 which have
+[2025-06-01 20:36:11] Speaker 1: which we have here, then it will give us the result and the testing result.
+[2025-06-01 20:36:11] Speaker 1: so you will have um you know a pdf and a json file and a log for each of the gpu 431 and 507 here
+[2025-06-01 20:36:11] Speaker 1: These PDFs will be saved based on the timing and calendar.
+[2025-06-01 20:36:11] Speaker 1: uh with that uh this was the main idea about the health check and you know how we are running that
+[2025-06-01 20:36:11] Speaker 1: And I really appreciate your time.
+[2025-06-01 20:36:14] Speaker 1: And I would be happy if you can, you know, reach out.
+[2025-06-01 20:36:11] Speaker 1: any question about this. Thank you so much.
+
+====== Summary ======
+
+Key Points:
+
+* The meeting discussed a health check recipe for running heavy workloads on GPUs.
+* The recipe aims to provide customers with the confidence that they have enough resources to run workloads.
+* The recipe includes tests for compute throughput, memory bandwidth, error detection, tensor core utilization, sustain workload, mixed precision, power, temperature, and utilization.
+* The results of the tests are provided in a table format, with the duration of each test and whether it has failed or not.
+* A graph is also provided to make customers sure that the numbers they are getting are in the same kind of range as what the number should be.
+* The JSON file is used to compare the results of the tests with the baseline and to identify which tests have failed.
+* The customer can choose the type, D-type, and direction for the functions they want to use.
+* The tensor shape is an important factor in determining the performance of the functions.
+* The meeting discussed the power, temperature, and utilization of the GPUs and their ranges.
+
+Action Items:
+
+* Share the screen and provide the result of the health check recipe.
+* Provide the PDF and JSON formats of the test results.
+* Explain the tests in detail for those customers who may not understand the numbers.
+* Provide a graph to make customers sure that the numbers they are getting are in the same kind of range as what the number should be.
+* Explain the JSON file and how it works.
+* Discuss the power, temperature, and utilization of the GPUs and their ranges.
+
+---
+
+Key points:
+
+* Background computation is a function that measures temperature, utilization, power, memory bandwidth, error detection, tensor core utilization, sustained workload, and mixed precision testing on GPUs.
+* MathMol is a good simulation of fine-tuning training LLMs and other types of things and is commonly used for this purpose.
+* The next function is about compute and GPU throughput, which measures the performance of GPU cores under stress.
+* Memory bandwidth is mainly about how the GPU can handle heavy memory-bound tasks.
+* Error detection is based on accuracy and compares the performance of CPU and GPU for the same task.
+* Tensor core utilization emphasizes low precision like fp8 or fp16 and is a hardware-based measure.
+* Sustained workload tests the long-term compute and stability of GPUs.
+* Mixed precision testing validates both the performance and correctness of GPUs when using matmult.
+
+Action items:
+
+* None specified in the transcript.
+
+---
+
+Key points:
+
+* PDFs will be saved based on timing and calendar.
+* This was the main idea about the health check.
+* Speaker 1 appreciated the time spent in the meeting.
+* Speaker 1 was happy if any questions about the health check could be reached out.
+
+Decisions:
+
+* None mentioned in the transcript.
+
+Action items:
+
+* Save PDFs based on timing and calendar.
+* None mentioned in the transcript.

@@ -1,0 +1,1550 @@
+2025-06-01 20:36:11,212 - INFO - Total audio files to process: 1
+2025-06-01 20:36:11,212 - INFO - Validating: /home/ubuntu/whisper/docker3/dd_press/video1591686795.mp4
+2025-06-01 20:36:12,609 - INFO - Duration of /home/ubuntu/whisper/docker3/dd_press/video1591686795.mp4: 982.08s
+2025-06-01 20:36:12,609 - INFO - Processing: /home/ubuntu/whisper/docker3/dd_press/video1591686795.mp4
+2025-06-01 20:36:13,670 - INFO - Running global speaker diarization...
+2025-06-01 20:36:13,670 - INFO - Running speaker diarization on: /tmp/tmp1587zm1s.wav
+2025-06-01 20:36:14,048 - DEBUG - Registered checkpoint save hook for _speechbrain_save
+2025-06-01 20:36:14,048 - DEBUG - Registered checkpoint load hook for _speechbrain_load
+2025-06-01 20:36:14,048 - DEBUG - Registered checkpoint save hook for save
+2025-06-01 20:36:14,048 - DEBUG - Registered checkpoint load hook for load
+2025-06-01 20:36:14,191 - INFO - Applied quirks (see `speechbrain.utils.quirks`): [disable_jit_profiling, allow_tf32]
+2025-06-01 20:36:14,191 - INFO - Excluded quirks specified by the `SB_DISABLE_QUIRKS` environment (comma-separated list): []
+2025-06-01 20:36:14,192 - DEBUG - Registered checkpoint save hook for _save
+2025-06-01 20:36:14,192 - DEBUG - Registered checkpoint load hook for _recover
+2025-06-01 20:36:34,535 - INFO - Diarization returned 172 segments. Dumped to output_test3/diarization_debug.json.
+2025-06-01 20:36:34,535 - INFO - Diarized segment: 5.35s - 6.16s -> SPEAKER_00
+2025-06-01 20:36:34,535 - INFO - Diarized segment: 6.93s - 13.01s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 13.94s - 14.93s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 15.02s - 23.40s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 24.43s - 29.48s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 31.18s - 34.64s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 34.93s - 42.56s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 43.30s - 53.81s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 54.15s - 59.46s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 59.97s - 62.25s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 62.45s - 69.51s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 71.67s - 73.56s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 76.51s - 80.98s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 81.72s - 87.09s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 87.58s - 95.02s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 95.63s - 97.15s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 97.79s - 103.22s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 104.12s - 117.53s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 118.21s - 123.71s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 125.04s - 126.27s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 126.51s - 133.97s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 134.31s - 136.55s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 136.65s - 152.92s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 153.37s - 162.69s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 163.33s - 164.01s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 166.20s - 170.30s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 168.81s - 169.29s -> SPEAKER_01
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 171.06s - 174.03s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 174.59s - 180.02s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 180.24s - 199.36s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 199.73s - 209.62s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 210.26s - 212.98s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 213.23s - 220.00s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 220.30s - 233.06s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 233.48s - 240.11s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 240.48s - 246.63s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 248.35s - 250.98s -> SPEAKER_00
+2025-06-01 20:36:34,536 - INFO - Diarized segment: 251.05s - 252.57s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 254.42s - 255.35s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 256.45s - 259.10s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 262.42s - 263.74s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 264.12s - 265.93s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 272.14s - 280.46s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 280.61s - 281.32s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 281.83s - 282.33s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 282.87s - 285.24s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 285.66s - 289.79s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 289.96s - 296.12s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 296.42s - 303.06s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 303.09s - 305.65s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 305.97s - 309.60s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 310.75s - 319.98s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 320.28s - 328.86s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 329.68s - 333.16s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 334.02s - 337.31s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 338.04s - 340.52s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 341.51s - 354.39s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 355.35s - 361.76s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 362.34s - 364.08s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 364.40s - 371.16s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 371.55s - 381.03s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 381.17s - 389.93s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 390.42s - 395.73s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 397.29s - 413.55s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 413.79s - 416.12s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 416.42s - 418.08s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 418.28s - 423.44s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 423.80s - 429.13s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 429.52s - 430.38s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 431.17s - 434.21s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 434.70s - 435.51s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 437.03s - 447.20s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 447.44s - 448.91s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 449.53s - 455.01s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 455.45s - 458.66s -> SPEAKER_00
+2025-06-01 20:36:34,537 - INFO - Diarized segment: 459.06s - 466.10s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 466.93s - 467.70s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 468.30s - 479.97s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 480.33s - 483.43s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 483.85s - 484.46s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 484.48s - 486.54s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 486.81s - 494.47s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 495.06s - 496.46s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 497.51s - 504.64s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 505.10s - 511.50s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 511.78s - 513.59s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 514.31s - 518.70s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 519.63s - 526.94s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 527.04s - 536.27s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 537.06s - 541.43s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 541.82s - 544.74s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 545.13s - 546.19s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 547.12s - 552.92s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 554.54s - 555.56s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 555.78s - 557.75s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 558.59s - 561.28s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 561.46s - 562.19s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 562.83s - 566.36s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 566.59s - 572.19s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 572.52s - 575.70s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 576.14s - 582.59s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 584.90s - 586.57s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 587.50s - 610.25s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 610.55s - 614.38s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 615.23s - 616.93s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 617.01s - 620.69s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 620.96s - 630.62s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 631.27s - 632.13s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 633.11s - 636.10s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 639.32s - 651.86s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 652.27s - 659.64s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 660.69s - 665.09s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 665.55s - 676.31s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 677.75s - 681.39s -> SPEAKER_00
+2025-06-01 20:36:34,538 - INFO - Diarized segment: 681.70s - 682.32s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 682.46s - 687.97s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 699.38s - 705.52s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 707.85s - 709.41s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 711.31s - 719.67s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 720.15s - 725.12s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 725.54s - 727.58s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 728.02s - 733.45s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 734.26s - 734.77s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 735.22s - 741.74s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 742.21s - 753.11s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 753.63s - 762.66s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 763.30s - 767.98s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 768.67s - 772.62s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 774.56s - 777.33s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 777.73s - 780.06s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 780.60s - 792.46s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 792.75s - 796.24s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 796.56s - 797.70s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 799.65s - 807.26s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 808.01s - 813.36s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 813.86s - 825.39s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 816.07s - 816.24s -> SPEAKER_01
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 825.84s - 829.91s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 831.07s - 835.63s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 835.90s - 836.56s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 836.90s - 839.29s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 841.38s - 845.86s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 848.07s - 852.71s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 852.98s - 856.12s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 856.18s - 857.28s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 857.84s - 861.38s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 862.07s - 863.63s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 863.96s - 867.95s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 868.32s - 871.22s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 871.91s - 875.74s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 876.16s - 880.26s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 884.10s - 887.03s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 887.50s - 890.68s -> SPEAKER_00
+2025-06-01 20:36:34,539 - INFO - Diarized segment: 891.03s - 891.71s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 892.28s - 892.84s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 893.58s - 895.06s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 895.50s - 901.81s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 902.27s - 913.07s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 915.53s - 925.91s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 926.27s - 926.87s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 927.35s - 928.02s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 929.15s - 930.54s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 931.41s - 932.81s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 933.35s - 934.60s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 934.82s - 939.56s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 939.87s - 941.27s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 941.45s - 943.02s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 943.23s - 946.41s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 946.97s - 954.08s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 956.89s - 963.32s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 964.17s - 968.82s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - Diarized segment: 969.42s - 976.91s -> SPEAKER_00
+2025-06-01 20:36:34,540 - INFO - [DIAR] 0: 5.35s - 6.16s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 1: 6.93s - 13.01s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 2: 13.94s - 14.93s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 3: 15.02s - 23.40s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 4: 24.43s - 29.48s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 5: 31.18s - 34.64s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 6: 34.93s - 42.56s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 7: 43.30s - 53.81s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 8: 54.15s - 59.46s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 9: 59.97s - 62.25s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 10: 62.45s - 69.51s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 11: 71.67s - 73.56s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 12: 76.51s - 80.98s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 13: 81.72s - 87.09s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 14: 87.58s - 95.02s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 15: 95.63s - 97.15s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 16: 97.79s - 103.22s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 17: 104.12s - 117.53s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 18: 118.21s - 123.71s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 19: 125.04s - 126.27s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 20: 126.51s - 133.97s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 21: 134.31s - 136.55s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 22: 136.65s - 152.92s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 23: 153.37s - 162.69s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 24: 163.33s - 164.01s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 25: 166.20s - 170.30s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 26: 168.81s - 169.29s --> SPEAKER_01
+2025-06-01 20:36:34,541 - INFO - [DIAR] 27: 171.06s - 174.03s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 28: 174.59s - 180.02s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 29: 180.24s - 199.36s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 30: 199.73s - 209.62s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 31: 210.26s - 212.98s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 32: 213.23s - 220.00s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 33: 220.30s - 233.06s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 34: 233.48s - 240.11s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 35: 240.48s - 246.63s --> SPEAKER_00
+2025-06-01 20:36:34,541 - INFO - [DIAR] 36: 248.35s - 250.98s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 37: 251.05s - 252.57s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 38: 254.42s - 255.35s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 39: 256.45s - 259.10s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 40: 262.42s - 263.74s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 41: 264.12s - 265.93s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 42: 272.14s - 280.46s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 43: 280.61s - 281.32s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 44: 281.83s - 282.33s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 45: 282.87s - 285.24s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 46: 285.66s - 289.79s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 47: 289.96s - 296.12s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 48: 296.42s - 303.06s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 49: 303.09s - 305.65s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 50: 305.97s - 309.60s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 51: 310.75s - 319.98s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 52: 320.28s - 328.86s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 53: 329.68s - 333.16s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 54: 334.02s - 337.31s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 55: 338.04s - 340.52s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 56: 341.51s - 354.39s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 57: 355.35s - 361.76s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 58: 362.34s - 364.08s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 59: 364.40s - 371.16s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 60: 371.55s - 381.03s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 61: 381.17s - 389.93s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 62: 390.42s - 395.73s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 63: 397.29s - 413.55s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 64: 413.79s - 416.12s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 65: 416.42s - 418.08s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 66: 418.28s - 423.44s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 67: 423.80s - 429.13s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 68: 429.52s - 430.38s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 69: 431.17s - 434.21s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 70: 434.70s - 435.51s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 71: 437.03s - 447.20s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 72: 447.44s - 448.91s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 73: 449.53s - 455.01s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 74: 455.45s - 458.66s --> SPEAKER_00
+2025-06-01 20:36:34,542 - INFO - [DIAR] 75: 459.06s - 466.10s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 76: 466.93s - 467.70s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 77: 468.30s - 479.97s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 78: 480.33s - 483.43s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 79: 483.85s - 484.46s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 80: 484.48s - 486.54s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 81: 486.81s - 494.47s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 82: 495.06s - 496.46s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 83: 497.51s - 504.64s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 84: 505.10s - 511.50s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 85: 511.78s - 513.59s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 86: 514.31s - 518.70s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 87: 519.63s - 526.94s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 88: 527.04s - 536.27s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 89: 537.06s - 541.43s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 90: 541.82s - 544.74s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 91: 545.13s - 546.19s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 92: 547.12s - 552.92s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 93: 554.54s - 555.56s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 94: 555.78s - 557.75s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 95: 558.59s - 561.28s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 96: 561.46s - 562.19s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 97: 562.83s - 566.36s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 98: 566.59s - 572.19s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 99: 572.52s - 575.70s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 100: 576.14s - 582.59s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 101: 584.90s - 586.57s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 102: 587.50s - 610.25s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 103: 610.55s - 614.38s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 104: 615.23s - 616.93s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 105: 617.01s - 620.69s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 106: 620.96s - 630.62s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 107: 631.27s - 632.13s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 108: 633.11s - 636.10s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 109: 639.32s - 651.86s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 110: 652.27s - 659.64s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 111: 660.69s - 665.09s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 112: 665.55s - 676.31s --> SPEAKER_00
+2025-06-01 20:36:34,543 - INFO - [DIAR] 113: 677.75s - 681.39s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 114: 681.70s - 682.32s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 115: 682.46s - 687.97s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 116: 699.38s - 705.52s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 117: 707.85s - 709.41s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 118: 711.31s - 719.67s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 119: 720.15s - 725.12s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 120: 725.54s - 727.58s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 121: 728.02s - 733.45s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 122: 734.26s - 734.77s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 123: 735.22s - 741.74s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 124: 742.21s - 753.11s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 125: 753.63s - 762.66s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 126: 763.30s - 767.98s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 127: 768.67s - 772.62s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 128: 774.56s - 777.33s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 129: 777.73s - 780.06s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 130: 780.60s - 792.46s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 131: 792.75s - 796.24s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 132: 796.56s - 797.70s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 133: 799.65s - 807.26s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 134: 808.01s - 813.36s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 135: 813.86s - 825.39s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 136: 816.07s - 816.24s --> SPEAKER_01
+2025-06-01 20:36:34,544 - INFO - [DIAR] 137: 825.84s - 829.91s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 138: 831.07s - 835.63s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 139: 835.90s - 836.56s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 140: 836.90s - 839.29s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 141: 841.38s - 845.86s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 142: 848.07s - 852.71s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 143: 852.98s - 856.12s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 144: 856.18s - 857.28s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 145: 857.84s - 861.38s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 146: 862.07s - 863.63s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 147: 863.96s - 867.95s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 148: 868.32s - 871.22s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 149: 871.91s - 875.74s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 150: 876.16s - 880.26s --> SPEAKER_00
+2025-06-01 20:36:34,544 - INFO - [DIAR] 151: 884.10s - 887.03s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 152: 887.50s - 890.68s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 153: 891.03s - 891.71s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 154: 892.28s - 892.84s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 155: 893.58s - 895.06s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 156: 895.50s - 901.81s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 157: 902.27s - 913.07s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 158: 915.53s - 925.91s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 159: 926.27s - 926.87s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 160: 927.35s - 928.02s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 161: 929.15s - 930.54s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 162: 931.41s - 932.81s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 163: 933.35s - 934.60s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 164: 934.82s - 939.56s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 165: 939.87s - 941.27s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 166: 941.45s - 943.02s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 167: 943.23s - 946.41s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 168: 946.97s - 954.08s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 169: 956.89s - 963.32s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 170: 964.17s - 968.82s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - [DIAR] 171: 969.42s - 976.91s --> SPEAKER_00
+2025-06-01 20:36:34,545 - INFO - Global diarization complete. 172 segments.
+2025-06-01 20:36:36,542 - INFO - Running smart chunking...
+2025-06-01 20:36:36,770 - INFO - Processing audio with duration 16:22.080
+2025-06-01 20:36:53,075 - INFO - Exported chunk: output_test6/chunks/chunk_000.wav (4.72s → 11.94s)
+2025-06-01 20:36:53,075 - INFO - Exported chunk: output_test6/chunks/chunk_001.wav (11.94s → 22.20s)
+2025-06-01 20:36:53,076 - INFO - Exported chunk: output_test6/chunks/chunk_002.wav (22.20s → 33.80s)
+2025-06-01 20:36:53,076 - INFO - Exported chunk: output_test6/chunks/chunk_003.wav (33.80s → 42.48s)
+2025-06-01 20:36:53,076 - INFO - Exported chunk: output_test6/chunks/chunk_004.wav (43.16s → 48.74s)
+2025-06-01 20:36:53,077 - INFO - Exported chunk: output_test6/chunks/chunk_005.wav (48.74s → 55.12s)
+2025-06-01 20:36:53,077 - INFO - Exported chunk: output_test6/chunks/chunk_006.wav (55.12s → 64.12s)
+2025-06-01 20:36:53,077 - INFO - Exported chunk: output_test6/chunks/chunk_007.wav (64.12s → 72.48s)
+2025-06-01 20:36:53,078 - INFO - Exported chunk: output_test6/chunks/chunk_008.wav (72.48s → 84.28s)
+2025-06-01 20:36:53,078 - INFO - Exported chunk: output_test6/chunks/chunk_009.wav (84.28s → 92.92s)
+2025-06-01 20:36:53,078 - INFO - Exported chunk: output_test6/chunks/chunk_010.wav (92.92s → 100.36s)
+2025-06-01 20:36:53,079 - INFO - Exported chunk: output_test6/chunks/chunk_011.wav (100.36s → 109.00s)
+2025-06-01 20:36:53,079 - INFO - Exported chunk: output_test6/chunks/chunk_012.wav (109.00s → 116.26s)
+2025-06-01 20:36:53,079 - INFO - Exported chunk: output_test6/chunks/chunk_013.wav (116.26s → 123.62s)
+2025-06-01 20:36:53,080 - INFO - Exported chunk: output_test6/chunks/chunk_014.wav (125.08s → 130.06s)
+2025-06-01 20:36:53,080 - INFO - Exported chunk: output_test6/chunks/chunk_015.wav (130.06s → 136.34s)
+2025-06-01 20:36:53,080 - INFO - Exported chunk: output_test6/chunks/chunk_016.wav (136.34s → 145.72s)
+2025-06-01 20:36:53,081 - INFO - Exported chunk: output_test6/chunks/chunk_017.wav (145.72s → 154.78s)
+2025-06-01 20:36:53,081 - INFO - Exported chunk: output_test6/chunks/chunk_018.wav (154.78s → 162.66s)
+2025-06-01 20:36:53,081 - INFO - Exported chunk: output_test6/chunks/chunk_019.wav (165.72s → 173.78s)
+2025-06-01 20:36:53,082 - INFO - Exported chunk: output_test6/chunks/chunk_020.wav (173.78s → 184.66s)
+2025-06-01 20:36:53,082 - INFO - Exported chunk: output_test6/chunks/chunk_021.wav (184.66s → 192.10s)
+2025-06-01 20:36:53,082 - INFO - Exported chunk: output_test6/chunks/chunk_022.wav (192.10s → 198.50s)
+2025-06-01 20:36:53,082 - INFO - Exported chunk: output_test6/chunks/chunk_023.wav (198.50s → 207.68s)
+2025-06-01 20:36:53,083 - INFO - Exported chunk: output_test6/chunks/chunk_024.wav (207.68s → 216.72s)
+2025-06-01 20:36:53,083 - INFO - Exported chunk: output_test6/chunks/chunk_025.wav (216.72s → 226.24s)
+2025-06-01 20:36:53,083 - INFO - Exported chunk: output_test6/chunks/chunk_026.wav (226.24s → 238.26s)
+2025-06-01 20:36:53,084 - INFO - Exported chunk: output_test6/chunks/chunk_027.wav (238.26s → 246.56s)
+2025-06-01 20:36:53,084 - INFO - Exported chunk: output_test6/chunks/chunk_028.wav (246.56s → 258.92s)
+2025-06-01 20:36:53,084 - INFO - Exported chunk: output_test6/chunks/chunk_029.wav (262.06s → 265.82s)
+2025-06-01 20:36:53,085 - INFO - Exported chunk: output_test6/chunks/chunk_030.wav (271.90s → 275.36s)
+2025-06-01 20:36:53,085 - INFO - Exported chunk: output_test6/chunks/chunk_031.wav (275.36s → 285.10s)
+2025-06-01 20:36:53,085 - INFO - Exported chunk: output_test6/chunks/chunk_032.wav (285.10s → 289.34s)
+2025-06-01 20:36:53,085 - INFO - Exported chunk: output_test6/chunks/chunk_033.wav (289.92s → 298.38s)
+2025-06-01 20:36:53,086 - INFO - Exported chunk: output_test6/chunks/chunk_034.wav (298.38s → 305.28s)
+2025-06-01 20:36:53,086 - INFO - Exported chunk: output_test6/chunks/chunk_035.wav (305.90s → 312.96s)
+2025-06-01 20:36:53,086 - INFO - Exported chunk: output_test6/chunks/chunk_036.wav (312.96s → 319.10s)
+2025-06-01 20:36:53,087 - INFO - Exported chunk: output_test6/chunks/chunk_037.wav (319.10s → 327.34s)
+2025-06-01 20:36:53,087 - INFO - Exported chunk: output_test6/chunks/chunk_038.wav (327.34s → 336.60s)
+2025-06-01 20:36:53,087 - INFO - Exported chunk: output_test6/chunks/chunk_039.wav (336.60s → 345.20s)
+2025-06-01 20:36:53,087 - INFO - Exported chunk: output_test6/chunks/chunk_040.wav (345.20s → 353.06s)
+2025-06-01 20:36:53,088 - INFO - Exported chunk: output_test6/chunks/chunk_041.wav (353.06s → 363.30s)
+2025-06-01 20:36:53,088 - INFO - Exported chunk: output_test6/chunks/chunk_042.wav (363.30s → 369.46s)
+2025-06-01 20:36:53,088 - INFO - Exported chunk: output_test6/chunks/chunk_043.wav (369.46s → 376.04s)
+2025-06-01 20:36:53,089 - INFO - Exported chunk: output_test6/chunks/chunk_044.wav (376.04s → 384.02s)
+2025-06-01 20:36:53,089 - INFO - Exported chunk: output_test6/chunks/chunk_045.wav (384.02s → 393.68s)
+2025-06-01 20:36:53,089 - INFO - Exported chunk: output_test6/chunks/chunk_046.wav (393.68s → 403.92s)
+2025-06-01 20:36:53,089 - INFO - Exported chunk: output_test6/chunks/chunk_047.wav (403.92s → 411.66s)
+2025-06-01 20:36:53,090 - INFO - Exported chunk: output_test6/chunks/chunk_048.wav (411.66s → 417.16s)
+2025-06-01 20:36:53,090 - INFO - Exported chunk: output_test6/chunks/chunk_049.wav (417.16s → 429.02s)
+2025-06-01 20:36:53,090 - INFO - Exported chunk: output_test6/chunks/chunk_050.wav (429.02s → 440.98s)
+2025-06-01 20:36:53,091 - INFO - Exported chunk: output_test6/chunks/chunk_051.wav (440.98s → 448.32s)
+2025-06-01 20:36:53,091 - INFO - Exported chunk: output_test6/chunks/chunk_052.wav (449.10s → 456.10s)
+2025-06-01 20:36:53,091 - INFO - Exported chunk: output_test6/chunks/chunk_053.wav (456.10s → 463.00s)
+2025-06-01 20:36:53,092 - INFO - Exported chunk: output_test6/chunks/chunk_054.wav (463.00s → 471.92s)
+2025-06-01 20:36:53,092 - INFO - Exported chunk: output_test6/chunks/chunk_055.wav (471.92s → 478.44s)
+2025-06-01 20:36:53,092 - INFO - Exported chunk: output_test6/chunks/chunk_056.wav (478.44s → 487.30s)
+2025-06-01 20:36:53,092 - INFO - Exported chunk: output_test6/chunks/chunk_057.wav (487.30s → 493.92s)
+2025-06-01 20:36:53,093 - INFO - Exported chunk: output_test6/chunks/chunk_058.wav (493.92s → 501.32s)
+2025-06-01 20:36:53,093 - INFO - Exported chunk: output_test6/chunks/chunk_059.wav (501.32s → 508.32s)
+2025-06-01 20:36:53,093 - INFO - Exported chunk: output_test6/chunks/chunk_060.wav (508.32s → 513.54s)
+2025-06-01 20:36:53,093 - INFO - Exported chunk: output_test6/chunks/chunk_061.wav (514.08s → 518.74s)
+2025-06-01 20:36:53,094 - INFO - Exported chunk: output_test6/chunks/chunk_062.wav (519.48s → 526.74s)
+2025-06-01 20:36:53,094 - INFO - Exported chunk: output_test6/chunks/chunk_063.wav (526.74s → 539.02s)
+2025-06-01 20:36:53,094 - INFO - Exported chunk: output_test6/chunks/chunk_064.wav (539.02s → 549.68s)
+2025-06-01 20:36:53,095 - INFO - Exported chunk: output_test6/chunks/chunk_065.wav (549.68s → 561.94s)
+2025-06-01 20:36:53,095 - INFO - Exported chunk: output_test6/chunks/chunk_066.wav (562.72s → 570.06s)
+2025-06-01 20:36:53,095 - INFO - Exported chunk: output_test6/chunks/chunk_067.wav (570.06s → 578.68s)
+2025-06-01 20:36:53,096 - INFO - Exported chunk: output_test6/chunks/chunk_068.wav (578.68s → 591.64s)
+2025-06-01 20:36:53,096 - INFO - Exported chunk: output_test6/chunks/chunk_069.wav (591.64s → 601.02s)
+2025-06-01 20:36:53,096 - INFO - Exported chunk: output_test6/chunks/chunk_070.wav (601.02s → 606.24s)
+2025-06-01 20:36:53,097 - INFO - Exported chunk: output_test6/chunks/chunk_071.wav (606.24s → 612.78s)
+2025-06-01 20:36:53,097 - INFO - Exported chunk: output_test6/chunks/chunk_072.wav (612.78s → 621.98s)
+2025-06-01 20:36:53,097 - INFO - Exported chunk: output_test6/chunks/chunk_073.wav (621.98s → 634.42s)
+2025-06-01 20:36:53,098 - INFO - Exported chunk: output_test6/chunks/chunk_074.wav (634.42s → 645.00s)
+2025-06-01 20:36:53,098 - INFO - Exported chunk: output_test6/chunks/chunk_075.wav (645.00s → 654.00s)
+2025-06-01 20:36:53,098 - INFO - Exported chunk: output_test6/chunks/chunk_076.wav (654.00s → 659.54s)
+2025-06-01 20:36:53,099 - INFO - Exported chunk: output_test6/chunks/chunk_077.wav (659.54s → 669.38s)
+2025-06-01 20:36:53,099 - INFO - Exported chunk: output_test6/chunks/chunk_078.wav (669.38s → 681.28s)
+2025-06-01 20:36:53,099 - INFO - Exported chunk: output_test6/chunks/chunk_079.wav (681.28s → 687.72s)
+2025-06-01 20:36:53,099 - INFO - Exported chunk: output_test6/chunks/chunk_080.wav (699.16s → 705.22s)
+2025-06-01 20:36:53,100 - INFO - Exported chunk: output_test6/chunks/chunk_081.wav (707.78s → 709.30s)
+2025-06-01 20:36:53,100 - INFO - Exported chunk: output_test6/chunks/chunk_082.wav (711.02s → 717.66s)
+2025-06-01 20:36:53,100 - INFO - Exported chunk: output_test6/chunks/chunk_083.wav (717.66s → 725.00s)
+2025-06-01 20:36:53,100 - INFO - Exported chunk: output_test6/chunks/chunk_084.wav (725.00s → 732.50s)
+2025-06-01 20:36:53,101 - INFO - Exported chunk: output_test6/chunks/chunk_085.wav (732.50s → 740.30s)
+2025-06-01 20:36:53,101 - INFO - Exported chunk: output_test6/chunks/chunk_086.wav (741.06s → 749.64s)
+2025-06-01 20:36:53,101 - INFO - Exported chunk: output_test6/chunks/chunk_087.wav (750.18s → 756.74s)
+2025-06-01 20:36:53,102 - INFO - Exported chunk: output_test6/chunks/chunk_088.wav (756.74s → 764.30s)
+2025-06-01 20:36:53,102 - INFO - Exported chunk: output_test6/chunks/chunk_089.wav (764.30s → 770.72s)
+2025-06-01 20:36:53,102 - INFO - Exported chunk: output_test6/chunks/chunk_090.wav (770.72s → 779.52s)
+2025-06-01 20:36:53,102 - INFO - Exported chunk: output_test6/chunks/chunk_091.wav (779.52s → 785.76s)
+2025-06-01 20:36:53,103 - INFO - Exported chunk: output_test6/chunks/chunk_092.wav (786.48s → 794.72s)
+2025-06-01 20:36:53,103 - INFO - Exported chunk: output_test6/chunks/chunk_093.wav (794.72s → 806.90s)
+2025-06-01 20:36:53,103 - INFO - Exported chunk: output_test6/chunks/chunk_094.wav (806.90s → 817.46s)
+2025-06-01 20:36:53,104 - INFO - Exported chunk: output_test6/chunks/chunk_095.wav (817.46s → 824.44s)
+2025-06-01 20:36:53,104 - INFO - Exported chunk: output_test6/chunks/chunk_096.wav (824.44s → 833.88s)
+2025-06-01 20:36:53,104 - INFO - Exported chunk: output_test6/chunks/chunk_097.wav (833.88s → 839.26s)
+2025-06-01 20:36:53,104 - INFO - Exported chunk: output_test6/chunks/chunk_098.wav (841.24s → 845.84s)
+2025-06-01 20:36:53,105 - INFO - Exported chunk: output_test6/chunks/chunk_099.wav (847.74s → 852.44s)
+2025-06-01 20:36:53,105 - INFO - Exported chunk: output_test6/chunks/chunk_100.wav (852.44s → 861.16s)
+2025-06-01 20:36:53,105 - INFO - Exported chunk: output_test6/chunks/chunk_101.wav (861.96s → 870.92s)
+2025-06-01 20:36:53,106 - INFO - Exported chunk: output_test6/chunks/chunk_102.wav (871.90s → 878.44s)
+2025-06-01 20:36:53,106 - INFO - Exported chunk: output_test6/chunks/chunk_103.wav (878.44s → 880.16s)
+2025-06-01 20:36:53,106 - INFO - Exported chunk: output_test6/chunks/chunk_104.wav (883.56s → 894.82s)
+2025-06-01 20:36:53,106 - INFO - Exported chunk: output_test6/chunks/chunk_105.wav (895.44s → 903.72s)
+2025-06-01 20:36:53,107 - INFO - Exported chunk: output_test6/chunks/chunk_106.wav (903.72s → 911.82s)
+2025-06-01 20:36:53,107 - INFO - Exported chunk: output_test6/chunks/chunk_107.wav (911.82s → 912.80s)
+2025-06-01 20:36:53,107 - INFO - Exported chunk: output_test6/chunks/chunk_108.wav (915.08s → 924.46s)
+2025-06-01 20:36:53,107 - INFO - Exported chunk: output_test6/chunks/chunk_109.wav (924.46s → 932.64s)
+2025-06-01 20:36:53,108 - INFO - Exported chunk: output_test6/chunks/chunk_110.wav (933.26s → 946.22s)
+2025-06-01 20:36:53,108 - INFO - Exported chunk: output_test6/chunks/chunk_111.wav (946.94s → 953.88s)
+2025-06-01 20:36:53,108 - INFO - Exported chunk: output_test6/chunks/chunk_112.wav (956.38s → 963.22s)
+2025-06-01 20:36:53,109 - INFO - Exported chunk: output_test6/chunks/chunk_113.wav (964.32s → 974.04s)
+2025-06-01 20:36:53,109 - INFO - Exported chunk: output_test6/chunks/chunk_114.wav (974.04s → 976.76s)
+2025-06-01 20:36:53,109 - INFO - Total chunks: 115
+2025-06-01 20:36:54,452 - INFO - WhisperModel 'turbo' loaded on GPU 1 for thread 126640547956288
+2025-06-01 20:36:54,452 - INFO - WhisperModel 'turbo' loaded on GPU 0 for thread 126640558442048
+2025-06-01 20:36:54,452 - INFO - Processing audio with duration 10.260 seconds
+2025-06-01 20:36:54,453 - INFO - Processing audio with duration 7.220 seconds
+2025-06-01 20:36:54,638 - INFO - Processing audio with duration 00:10.260
+2025-06-01 20:36:54,750 - INFO - Processing audio with duration 00:07.220
+2025-06-01 20:36:54,890 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:54,963 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:55,051 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:36:55,051 - INFO - Got result for chunk: output_test6/chunks/chunk_000.wav
+2025-06-01 20:36:55,051 - INFO - 
+====== Streaming Chunk 001 ======
+[2025-06-01 20:36:11] Speaker 1: hello everyone thank you for joining to this session this session we will talk about health
+
+2025-06-01 20:36:55,052 - INFO - Processing audio with duration 11.600 seconds
+2025-06-01 20:36:55,223 - INFO - Processing audio with duration 00:11.600
+2025-06-01 20:36:55,224 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:36:55,224 - INFO - Got result for chunk: output_test6/chunks/chunk_001.wav
+2025-06-01 20:36:55,224 - INFO - Processing audio with duration 8.680 seconds
+2025-06-01 20:36:55,225 - INFO - 
+====== Streaming Chunk 002 ======
+[2025-06-01 20:36:11] Speaker 1: recipe that we provided in seeds group Ammar, Soumya and me etc. we are working on this.
+
+2025-06-01 20:36:55,424 - INFO - Processing audio with duration 00:08.680
+2025-06-01 20:36:55,426 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:55,554 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:55,588 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:36:55,589 - INFO - Got result for chunk: output_test6/chunks/chunk_002.wav
+2025-06-01 20:36:55,589 - INFO - 
+====== Streaming Chunk 003 ======
+[2025-06-01 20:36:11] Speaker 1: a resume and with that we can start to talk about that so the main idea of the health check
+
+2025-06-01 20:36:55,589 - INFO - Processing audio with duration 5.580 seconds
+2025-06-01 20:36:55,764 - INFO - Processing audio with duration 00:05.580
+2025-06-01 20:36:55,798 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:36:55,799 - INFO - Got result for chunk: output_test6/chunks/chunk_003.wav
+2025-06-01 20:36:55,799 - INFO - 
+====== Streaming Chunk 004 ======
+[2025-06-01 20:36:11] Speaker 1: recipe is to make the customer confidence that they have enough resources to run heavy workloads
+
+2025-06-01 20:36:55,799 - INFO - Processing audio with duration 6.380 seconds
+2025-06-01 20:36:55,970 - INFO - Processing audio with duration 00:06.380
+2025-06-01 20:36:55,972 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:56,102 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:56,144 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:36:56,145 - INFO - Got result for chunk: output_test6/chunks/chunk_004.wav
+2025-06-01 20:36:56,145 - INFO - 
+====== Streaming Chunk 005 ======
+[2025-06-01 20:36:11] Speaker 1: what i mean by that is that most of the customers when they want to run the llm's training find
+[2025-06-01 20:36:29] Speaker 1: you
+
+2025-06-01 20:36:56,145 - INFO - Processing audio with duration 9.000 seconds
+2025-06-01 20:36:56,317 - INFO - Processing audio with duration 00:09.000
+2025-06-01 20:36:56,572 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:36:56,573 - INFO - Got result for chunk: output_test6/chunks/chunk_005.wav
+2025-06-01 20:36:56,573 - INFO - 
+====== Streaming Chunk 006 ======
+[2025-06-01 20:36:11] Speaker 1: tuning or any other things they need which assumed to be a heavy workload they need to have a lot of
+
+2025-06-01 20:36:56,573 - INFO - Processing audio with duration 8.360 seconds
+2025-06-01 20:36:56,745 - INFO - Processing audio with duration 00:08.360
+2025-06-01 20:36:56,747 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:56,875 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:56,912 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:36:56,912 - INFO - Got result for chunk: output_test6/chunks/chunk_006.wav
+2025-06-01 20:36:56,912 - INFO - 
+====== Streaming Chunk 007 ======
+[2025-06-01 20:36:11] Speaker 1: gpus and we want to make sure that these gpus work well so they can run this recipe before starting
+
+2025-06-01 20:36:56,913 - INFO - Processing audio with duration 11.800 seconds
+2025-06-01 20:36:57,097 - INFO - Processing audio with duration 00:11.800
+2025-06-01 20:36:57,138 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:36:57,138 - INFO - Got result for chunk: output_test6/chunks/chunk_007.wav
+2025-06-01 20:36:57,138 - INFO - 
+====== Streaming Chunk 008 ======
+[2025-06-01 20:36:11] Speaker 1: this task and to just make sure that you know everything is working very well i'll go ahead
+
+2025-06-01 20:36:57,139 - INFO - Processing audio with duration 8.640 seconds
+2025-06-01 20:36:57,332 - INFO - Processing audio with duration 00:08.640
+2025-06-01 20:36:57,334 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:57,462 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:57,498 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:36:57,498 - INFO - Got result for chunk: output_test6/chunks/chunk_008.wav
+2025-06-01 20:36:57,498 - INFO - 
+====== Streaming Chunk 009 ======
+[2025-06-01 20:36:11] Speaker 1: share my screen and yeah i will start with the result of this recipe i can say that this you know
+
+2025-06-01 20:36:57,498 - INFO - Processing audio with duration 7.440 seconds
+2025-06-01 20:36:57,670 - INFO - Processing audio with duration 00:07.440
+2025-06-01 20:36:57,709 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:36:57,710 - INFO - Got result for chunk: output_test6/chunks/chunk_009.wav
+2025-06-01 20:36:57,710 - INFO - 
+====== Streaming Chunk 010 ======
+[2025-06-01 20:36:11] Speaker 1: recipe the health check recipe will provide you two different formats one is the pdf which i'm showing
+
+2025-06-01 20:36:57,710 - INFO - Processing audio with duration 8.640 seconds
+2025-06-01 20:36:57,885 - INFO - Processing audio with duration 00:08.640
+2025-06-01 20:36:57,887 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:58,015 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:58,056 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:36:58,056 - INFO - Got result for chunk: output_test6/chunks/chunk_010.wav
+2025-06-01 20:36:58,056 - INFO - 
+====== Streaming Chunk 011 ======
+[2025-06-01 20:36:11] Speaker 1: to you and the other one is json one i will also go through that as well but here you can see uh what
+
+2025-06-01 20:36:58,057 - INFO - Processing audio with duration 7.260 seconds
+2025-06-01 20:36:58,232 - INFO - Processing audio with duration 00:07.260
+2025-06-01 20:36:58,270 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:36:58,270 - INFO - Got result for chunk: output_test6/chunks/chunk_011.wav
+2025-06-01 20:36:58,270 - INFO - 
+====== Streaming Chunk 012 ======
+[2025-06-01 20:36:11] Speaker 1: test we are evaluating for the gpus uh we are doing bunch of uh testing like the background
+
+2025-06-01 20:36:58,270 - INFO - Processing audio with duration 7.360 seconds
+2025-06-01 20:36:58,446 - INFO - Processing audio with duration 00:07.360
+2025-06-01 20:36:58,448 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:58,577 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:58,614 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:36:58,615 - INFO - Got result for chunk: output_test6/chunks/chunk_012.wav
+2025-06-01 20:36:58,615 - INFO - 
+====== Streaming Chunk 013 ======
+[2025-06-01 20:36:11] Speaker 1: compare computation compute throughput memory bandwidth error detection tensor core utilization
+[2025-06-01 20:36:17] Speaker 1: sustain workload
+
+2025-06-01 20:36:58,615 - INFO - Processing audio with duration 4.980 seconds
+2025-06-01 20:36:58,788 - INFO - Processing audio with duration 00:04.980
+2025-06-01 20:36:59,005 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:36:59,005 - INFO - Got result for chunk: output_test6/chunks/chunk_013.wav
+2025-06-01 20:36:59,005 - INFO - 
+====== Streaming Chunk 014 ======
+[2025-06-01 20:36:11] Speaker 1: mixed precision, power, temperature and utilization. So these are the main tests that we are
+
+2025-06-01 20:36:59,006 - INFO - Processing audio with duration 6.280 seconds
+2025-06-01 20:36:59,176 - INFO - Processing audio with duration 00:06.280
+2025-06-01 20:36:59,178 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:59,306 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:59,338 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:36:59,339 - INFO - Got result for chunk: output_test6/chunks/chunk_014.wav
+2025-06-01 20:36:59,339 - INFO - 
+====== Streaming Chunk 015 ======
+[2025-06-01 20:36:11] Speaker 1: evaluating you can see that in this format once you know you run the health
+[2025-06-01 20:36:15] Speaker 1: show
+
+2025-06-01 20:36:59,339 - INFO - Processing audio with duration 9.380 seconds
+2025-06-01 20:36:59,510 - INFO - Processing audio with duration 00:09.380
+2025-06-01 20:36:59,544 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:36:59,545 - INFO - Got result for chunk: output_test6/chunks/chunk_015.wav
+2025-06-01 20:36:59,545 - INFO - 
+====== Streaming Chunk 016 ======
+[2025-06-01 20:36:11] Speaker 1: recipe you will get the result you know everything is in a table the duration of each
+
+2025-06-01 20:36:59,545 - INFO - Processing audio with duration 9.060 seconds
+2025-06-01 20:36:59,721 - INFO - Processing audio with duration 00:09.060
+2025-06-01 20:36:59,724 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:59,853 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:36:59,886 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:36:59,887 - INFO - Got result for chunk: output_test6/chunks/chunk_016.wav
+2025-06-01 20:36:59,887 - INFO - 
+====== Streaming Chunk 017 ======
+[2025-06-01 20:36:11] Speaker 1: test, whether it has failed or not.
+[2025-06-01 20:36:18] Speaker 1: For example, here for compute throughput,
+
+2025-06-01 20:36:59,887 - INFO - Processing audio with duration 7.880 seconds
+2025-06-01 20:37:00,058 - INFO - Processing audio with duration 00:07.880
+2025-06-01 20:37:00,106 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:00,107 - INFO - Got result for chunk: output_test6/chunks/chunk_017.wav
+2025-06-01 20:37:00,107 - INFO - 
+====== Streaming Chunk 018 ======
+[2025-06-01 20:36:11] Speaker 1: has failed and i will show you uh in detail that how it works and for those customers who you know
+[2025-06-01 20:36:19] Speaker 1: maybe
+
+2025-06-01 20:37:00,107 - INFO - Processing audio with duration 8.060 seconds
+2025-06-01 20:37:00,278 - INFO - Processing audio with duration 00:08.060
+2025-06-01 20:37:00,281 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:00,409 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:00,451 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:00,451 - INFO - Got result for chunk: output_test6/chunks/chunk_018.wav
+2025-06-01 20:37:00,451 - INFO - 
+====== Streaming Chunk 019 ======
+[2025-06-01 20:36:11] Speaker 1: don't know what are these numbers you know they can go to the end of that we
+[2025-06-01 20:36:17] Speaker 1: have also provided a graph
+
+2025-06-01 20:37:00,451 - INFO - Processing audio with duration 10.880 seconds
+2025-06-01 20:37:00,622 - INFO - Processing audio with duration 00:10.880
+2025-06-01 20:37:00,666 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:00,667 - INFO - Got result for chunk: output_test6/chunks/chunk_019.wav
+2025-06-01 20:37:00,667 - INFO - 
+====== Streaming Chunk 020 ======
+[2025-06-01 20:36:11] Speaker 1: I'm waiting for that. We have also provided a graph. In this graph, we have provided, you know,
+
+2025-06-01 20:37:00,668 - INFO - Processing audio with duration 7.440 seconds
+2025-06-01 20:37:00,854 - INFO - Processing audio with duration 00:07.440
+2025-06-01 20:37:00,856 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:00,985 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:01,025 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:01,025 - INFO - Got result for chunk: output_test6/chunks/chunk_020.wav
+2025-06-01 20:37:01,025 - INFO - 
+====== Streaming Chunk 021 ======
+[2025-06-01 20:36:11] Speaker 1: So first what we did was that we did an extensive research from NVIDIA website articles to see what are the...
+
+2025-06-01 20:37:01,025 - INFO - Processing audio with duration 6.400 seconds
+2025-06-01 20:37:01,194 - INFO - Processing audio with duration 00:06.400
+2025-06-01 20:37:01,447 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:01,448 - INFO - Got result for chunk: output_test6/chunks/chunk_021.wav
+2025-06-01 20:37:01,448 - INFO - 
+====== Streaming Chunk 022 ======
+[2025-06-01 20:36:11] Speaker 1: uh you know ideal uh range for for example temperature the compute throughput memory bandwidth
+[2025-06-01 20:36:17] Speaker 1: and this type of
+
+2025-06-01 20:37:01,448 - INFO - Processing audio with duration 9.180 seconds
+2025-06-01 20:37:01,618 - INFO - Processing audio with duration 00:09.180
+2025-06-01 20:37:01,620 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:01,748 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:01,784 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:01,784 - INFO - Got result for chunk: output_test6/chunks/chunk_022.wav
+2025-06-01 20:37:01,785 - INFO - 
+====== Streaming Chunk 023 ======
+[2025-06-01 20:36:11] Speaker 1: things. What is the upper threshold? What is the lower threshold? We added a 10% to each of
+
+2025-06-01 20:37:01,785 - INFO - Processing audio with duration 9.040 seconds
+2025-06-01 20:37:01,956 - INFO - Processing audio with duration 00:09.040
+2025-06-01 20:37:02,005 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:02,005 - INFO - Got result for chunk: output_test6/chunks/chunk_023.wav
+2025-06-01 20:37:02,006 - INFO - 
+====== Streaming Chunk 024 ======
+[2025-06-01 20:36:11] Speaker 1: this once and uh we got the average of that these average are shown here as a baseline for example
+[2025-06-01 20:36:18] Speaker 1: 3000 is
+
+2025-06-01 20:37:02,006 - INFO - Processing audio with duration 9.520 seconds
+2025-06-01 20:37:02,191 - INFO - Processing audio with duration 00:09.520
+2025-06-01 20:37:02,194 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:02,322 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:02,364 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:02,365 - INFO - Got result for chunk: output_test6/chunks/chunk_024.wav
+2025-06-01 20:37:02,365 - INFO - 
+====== Streaming Chunk 025 ======
+[2025-06-01 20:36:11] Speaker 1: shown here as a baseline and the measured one is the for example uh the yellow one it shows that uh
+[2025-06-01 20:36:19] Speaker 1: you know
+
+2025-06-01 20:37:02,365 - INFO - Processing audio with duration 12.020 seconds
+2025-06-01 20:37:02,539 - INFO - Processing audio with duration 00:12.020
+2025-06-01 20:37:02,585 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:02,585 - INFO - Got result for chunk: output_test6/chunks/chunk_025.wav
+2025-06-01 20:37:02,585 - INFO - 
+====== Streaming Chunk 026 ======
+[2025-06-01 20:36:11] Speaker 1: So once we are using the test compute throughput, the measure was around 651.92, which is around 630.
+
+2025-06-01 20:37:02,586 - INFO - Processing audio with duration 8.300 seconds
+2025-06-01 20:37:02,775 - INFO - Processing audio with duration 00:08.300
+2025-06-01 20:37:02,777 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:02,905 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:02,939 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:02,940 - INFO - Got result for chunk: output_test6/chunks/chunk_026.wav
+2025-06-01 20:37:02,940 - INFO - 
+====== Streaming Chunk 027 ======
+[2025-06-01 20:36:11] Speaker 1: uh 30 which was the baseline so the main purpose of this graph is to make the customer sure that
+
+2025-06-01 20:37:02,940 - INFO - Processing audio with duration 12.360 seconds
+2025-06-01 20:37:03,119 - INFO - Processing audio with duration 00:12.360
+2025-06-01 20:37:03,164 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:03,165 - INFO - Got result for chunk: output_test6/chunks/chunk_027.wav
+2025-06-01 20:37:03,165 - INFO - Processing audio with duration 3.760 seconds
+2025-06-01 20:37:03,165 - INFO - 
+====== Streaming Chunk 028 ======
+[2025-06-01 20:36:11] Speaker 1: numbers that they are getting are in the same kind of range of you know what the
+[2025-06-01 20:36:18] Speaker 1: number should be
+
+2025-06-01 20:37:03,357 - INFO - Processing audio with duration 00:03.760
+2025-06-01 20:37:03,360 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:03,848 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:03,870 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:03,870 - INFO - Got result for chunk: output_test6/chunks/chunk_028.wav
+2025-06-01 20:37:03,871 - INFO - 
+====== Streaming Chunk 029 ======
+[2025-06-01 20:36:11] Speaker 1: With that, I can also go to the JSON file.
+
+2025-06-01 20:37:03,871 - INFO - Processing audio with duration 3.460 seconds
+2025-06-01 20:37:04,039 - INFO - Processing audio with duration 00:03.460
+2025-06-01 20:37:04,065 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:04,066 - INFO - Got result for chunk: output_test6/chunks/chunk_029.wav
+2025-06-01 20:37:04,066 - INFO - 
+====== Streaming Chunk 030 ======
+[2025-06-01 20:36:11] Speaker 1: which we have here. I will just open one of them.
+
+2025-06-01 20:37:04,066 - INFO - Processing audio with duration 9.740 seconds
+2025-06-01 20:37:04,245 - INFO - Processing audio with duration 00:09.740
+2025-06-01 20:37:04,248 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:04,376 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:04,397 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:04,397 - INFO - Got result for chunk: output_test6/chunks/chunk_030.wav
+2025-06-01 20:37:04,397 - INFO - 
+====== Streaming Chunk 031 ======
+[2025-06-01 20:36:11] Speaker 1: So the way that they know the JSON file.
+
+2025-06-01 20:37:04,397 - INFO - Processing audio with duration 4.240 seconds
+2025-06-01 20:37:04,566 - INFO - Processing audio with duration 00:04.240
+2025-06-01 20:37:04,601 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:04,602 - INFO - Got result for chunk: output_test6/chunks/chunk_031.wav
+2025-06-01 20:37:04,602 - INFO - 
+====== Streaming Chunk 032 ======
+[2025-06-01 20:36:11] Speaker 1: is working is that you know basically the same numbers are both in the PDF and the JSON file.
+
+2025-06-01 20:37:04,602 - INFO - Processing audio with duration 8.460 seconds
+2025-06-01 20:37:04,777 - INFO - Processing audio with duration 00:08.460
+2025-06-01 20:37:04,780 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:04,907 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:04,941 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:04,941 - INFO - Got result for chunk: output_test6/chunks/chunk_032.wav
+2025-06-01 20:37:04,941 - INFO - 
+====== Streaming Chunk 033 ======
+[2025-06-01 20:36:11] Speaker 1: The good thing about JSON file here is that, you know, for example, for compute throughput,
+
+2025-06-01 20:37:04,941 - INFO - Processing audio with duration 6.900 seconds
+2025-06-01 20:37:05,112 - INFO - Processing audio with duration 00:06.900
+2025-06-01 20:37:05,155 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:05,155 - INFO - Got result for chunk: output_test6/chunks/chunk_033.wav
+2025-06-01 20:37:05,155 - INFO - Processing audio with duration 7.060 seconds
+2025-06-01 20:37:05,155 - INFO - 
+====== Streaming Chunk 034 ======
+[2025-06-01 20:36:11] Speaker 1: it has failed if it go on each gpu one by one um based on the tensor and you know duration
+
+2025-06-01 20:37:05,326 - INFO - Processing audio with duration 00:07.060
+2025-06-01 20:37:05,329 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:05,456 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:05,495 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:05,495 - INFO - Got result for chunk: output_test6/chunks/chunk_034.wav
+2025-06-01 20:37:05,495 - INFO - 
+====== Streaming Chunk 035 ======
+[2025-06-01 20:36:11] Speaker 1: flops bandwidth and it will uh make the comparison with the baseline and if uh for all of them it's not
+
+2025-06-01 20:37:05,495 - INFO - Processing audio with duration 6.140 seconds
+2025-06-01 20:37:05,669 - INFO - Processing audio with duration 00:06.140
+2025-06-01 20:37:05,709 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:05,709 - INFO - Got result for chunk: output_test6/chunks/chunk_035.wav
+2025-06-01 20:37:05,709 - INFO - 
+====== Streaming Chunk 036 ======
+[2025-06-01 20:36:11] Speaker 1: in the range that you know we specify it will give us the fail. Similarly for the memory band
+
+2025-06-01 20:37:05,709 - INFO - Processing audio with duration 8.240 seconds
+2025-06-01 20:37:05,881 - INFO - Processing audio with duration 00:08.240
+2025-06-01 20:37:05,883 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:06,324 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:06,359 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:06,360 - INFO - Got result for chunk: output_test6/chunks/chunk_036.wav
+2025-06-01 20:37:06,360 - INFO - 
+====== Streaming Chunk 037 ======
+[2025-06-01 20:36:11] Speaker 1: it you know it has some for each gpu it will say that you know what does what are the information
+
+2025-06-01 20:37:06,360 - INFO - Processing audio with duration 9.260 seconds
+2025-06-01 20:37:06,531 - INFO - Processing audio with duration 00:09.260
+2025-06-01 20:37:06,572 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:06,573 - INFO - Got result for chunk: output_test6/chunks/chunk_037.wav
+2025-06-01 20:37:06,573 - INFO - 
+====== Streaming Chunk 038 ======
+[2025-06-01 20:36:11] Speaker 1: at the end it will give whether it is ideal or not so this is the way that uh you know the
+
+2025-06-01 20:37:06,573 - INFO - Processing audio with duration 8.600 seconds
+2025-06-01 20:37:06,745 - INFO - Processing audio with duration 00:08.600
+2025-06-01 20:37:06,747 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:06,875 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:06,914 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:06,914 - INFO - Got result for chunk: output_test6/chunks/chunk_038.wav
+2025-06-01 20:37:06,914 - INFO - 
+====== Streaming Chunk 039 ======
+[2025-06-01 20:36:11] Speaker 1: JSON file is working. With that, I can go inside the code and I can talk a little bit more about
+
+2025-06-01 20:37:06,915 - INFO - Processing audio with duration 7.860 seconds
+2025-06-01 20:37:07,088 - INFO - Processing audio with duration 00:07.860
+2025-06-01 20:37:07,126 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:07,126 - INFO - Got result for chunk: output_test6/chunks/chunk_039.wav
+2025-06-01 20:37:07,127 - INFO - 
+====== Streaming Chunk 040 ======
+[2025-06-01 20:36:11] Speaker 1: the code what we have provided for the customer so we are we have enabled the customer to choose
+
+2025-06-01 20:37:07,127 - INFO - Processing audio with duration 10.240 seconds
+2025-06-01 20:37:07,300 - INFO - Processing audio with duration 00:10.240
+2025-06-01 20:37:07,302 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:07,431 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:07,489 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:07,489 - INFO - Got result for chunk: output_test6/chunks/chunk_040.wav
+2025-06-01 20:37:07,489 - INFO - 
+====== Streaming Chunk 041 ======
+[2025-06-01 20:36:11] Speaker 1: what type, what D-type, you know, they can choose.
+[2025-06-01 20:36:14] Speaker 1: They can go with FV32, FV16, which is the most common one.
+
+2025-06-01 20:37:07,489 - INFO - Processing audio with duration 6.160 seconds
+2025-06-01 20:37:07,661 - INFO - Processing audio with duration 00:06.160
+2025-06-01 20:37:07,706 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:07,706 - INFO - Got result for chunk: output_test6/chunks/chunk_041.wav
+2025-06-01 20:37:07,707 - INFO - 
+====== Streaming Chunk 042 ======
+[2025-06-01 20:36:11] Speaker 1: uh fp8 uh we have also enabled them that whether they want to just choose one um uh you know one of
+
+2025-06-01 20:37:07,707 - INFO - Processing audio with duration 6.580 seconds
+2025-06-01 20:37:07,897 - INFO - Processing audio with duration 00:06.580
+2025-06-01 20:37:07,900 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:08,027 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:08,062 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:08,062 - INFO - Got result for chunk: output_test6/chunks/chunk_042.wav
+2025-06-01 20:37:08,063 - INFO - 
+====== Streaming Chunk 043 ======
+[2025-06-01 20:36:11] Speaker 1: these uh uh functions or you know all of them the default is on all of them also they can choose
+
+2025-06-01 20:37:08,063 - INFO - Processing audio with duration 7.980 seconds
+2025-06-01 20:37:08,234 - INFO - Processing audio with duration 00:07.980
+2025-06-01 20:37:08,276 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:08,276 - INFO - Got result for chunk: output_test6/chunks/chunk_043.wav
+2025-06-01 20:37:08,276 - INFO - 
+====== Streaming Chunk 044 ======
+[2025-06-01 20:36:11] Speaker 1: to do the direction so we have provided a couple of uh you know uh parser uh so that you know
+
+2025-06-01 20:37:08,277 - INFO - Processing audio with duration 9.660 seconds
+2025-06-01 20:37:08,453 - INFO - Processing audio with duration 00:09.660
+2025-06-01 20:37:08,455 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:08,875 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:08,910 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:08,910 - INFO - Got result for chunk: output_test6/chunks/chunk_044.wav
+2025-06-01 20:37:08,910 - INFO - 
+====== Streaming Chunk 045 ======
+[2025-06-01 20:36:11] Speaker 1: can choose uh uh you know uh to play with them uh code one important thing is the tensor shape
+
+2025-06-01 20:37:08,910 - INFO - Processing audio with duration 10.240 seconds
+2025-06-01 20:37:09,082 - INFO - Processing audio with duration 00:10.240
+2025-06-01 20:37:09,135 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:09,135 - INFO - Got result for chunk: output_test6/chunks/chunk_045.wav
+2025-06-01 20:37:09,135 - INFO - Processing audio with duration 7.740 seconds
+2025-06-01 20:37:09,135 - INFO - 
+====== Streaming Chunk 046 ======
+[2025-06-01 20:36:11] Speaker 1: example for a10 the tensor shape is 8192 this is the default that we have provided for all of the
+[2025-06-01 20:36:20] Speaker 1: a10
+
+2025-06-01 20:37:09,322 - INFO - Processing audio with duration 00:07.740
+2025-06-01 20:37:09,324 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:09,453 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:09,494 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:09,494 - INFO - Got result for chunk: output_test6/chunks/chunk_046.wav
+2025-06-01 20:37:09,494 - INFO - 
+====== Streaming Chunk 047 ======
+[2025-06-01 20:36:11] Speaker 1: a hundred and h hundred um with this i will give you some information that we can we also measure
+[2025-06-01 20:36:20] Speaker 1: the highest
+
+2025-06-01 20:37:09,495 - INFO - Processing audio with duration 5.500 seconds
+2025-06-01 20:37:09,664 - INFO - Processing audio with duration 00:05.500
+2025-06-01 20:37:09,708 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:09,708 - INFO - Got result for chunk: output_test6/chunks/chunk_047.wav
+2025-06-01 20:37:09,708 - INFO - 
+====== Streaming Chunk 048 ======
+[2025-06-01 20:36:11] Speaker 1: uh tensor for example for 800 we can also use 65k for that that will take a long time so that was
+
+2025-06-01 20:37:09,708 - INFO - Processing audio with duration 11.860 seconds
+2025-06-01 20:37:09,876 - INFO - Processing audio with duration 00:11.860
+2025-06-01 20:37:09,878 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:10,007 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:10,036 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:10,036 - INFO - Got result for chunk: output_test6/chunks/chunk_048.wav
+2025-06-01 20:37:10,037 - INFO - 
+====== Streaming Chunk 049 ======
+[2025-06-01 20:36:11] Speaker 1: reason why we wanted to go to go with something which take less time so for example
+
+2025-06-01 20:37:10,037 - INFO - Processing audio with duration 11.960 seconds
+2025-06-01 20:37:10,208 - INFO - Processing audio with duration 00:11.960
+2025-06-01 20:37:10,256 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:10,257 - INFO - Got result for chunk: output_test6/chunks/chunk_049.wav
+2025-06-01 20:37:10,257 - INFO - Processing audio with duration 7.340 seconds
+2025-06-01 20:37:10,257 - INFO - 
+====== Streaming Chunk 050 ======
+[2025-06-01 20:36:11] Speaker 1: the H100 with 8192 it will take around 110 seconds. A100 it will take around 492 or similar like that.
+
+2025-06-01 20:37:10,444 - INFO - Processing audio with duration 00:07.340
+2025-06-01 20:37:10,446 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:10,575 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:10,620 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:10,620 - INFO - Got result for chunk: output_test6/chunks/chunk_050.wav
+2025-06-01 20:37:10,621 - INFO - 
+====== Streaming Chunk 051 ======
+[2025-06-01 20:36:11] Speaker 1: and for 810 it will take around 649 seconds and with that we can start to talk about the functions
+[2025-06-01 20:36:22] Speaker 1: I'm not
+
+2025-06-01 20:37:10,621 - INFO - Processing audio with duration 7.000 seconds
+2025-06-01 20:37:10,793 - INFO - Processing audio with duration 00:07.000
+2025-06-01 20:37:10,832 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:10,832 - INFO - Got result for chunk: output_test6/chunks/chunk_051.wav
+2025-06-01 20:37:10,832 - INFO - 
+====== Streaming Chunk 052 ======
+[2025-06-01 20:36:11] Speaker 1: going about the function again the first thing is the power the temperature and utilization
+
+2025-06-01 20:37:10,833 - INFO - Processing audio with duration 6.900 seconds
+2025-06-01 20:37:11,004 - INFO - Processing audio with duration 00:06.900
+2025-06-01 20:37:11,226 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:11,339 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:11,384 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:11,384 - INFO - Got result for chunk: output_test6/chunks/chunk_052.wav
+2025-06-01 20:37:11,384 - INFO - Processing audio with duration 8.920 seconds
+2025-06-01 20:37:11,384 - INFO - 
+====== Streaming Chunk 053 ======
+[2025-06-01 20:36:11] Speaker 1: So we found out what is the range of that and if the temperature, the power...
+
+2025-06-01 20:37:11,553 - INFO - Processing audio with duration 00:08.920
+2025-06-01 20:37:11,593 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:11,593 - INFO - Got result for chunk: output_test6/chunks/chunk_053.wav
+2025-06-01 20:37:11,593 - INFO - 
+====== Streaming Chunk 054 ======
+[2025-06-01 20:36:11] Speaker 1: visualization is in in that range you know we'll say that it has passed if not uh you know we'll say
+
+2025-06-01 20:37:11,594 - INFO - Processing audio with duration 6.520 seconds
+2025-06-01 20:37:11,766 - INFO - Processing audio with duration 00:06.520
+2025-06-01 20:37:11,769 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:11,896 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:11,934 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:11,934 - INFO - Got result for chunk: output_test6/chunks/chunk_054.wav
+2025-06-01 20:37:11,934 - INFO - 
+====== Streaming Chunk 055 ======
+[2025-06-01 20:36:11] Speaker 1: that you know uh it has uh you know fade um these are some of the information about the gpus uh what
+
+2025-06-01 20:37:11,935 - INFO - Processing audio with duration 8.860 seconds
+2025-06-01 20:37:12,105 - INFO - Processing audio with duration 00:08.860
+2025-06-01 20:37:12,140 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:12,141 - INFO - Got result for chunk: output_test6/chunks/chunk_055.wav
+2025-06-01 20:37:12,141 - INFO - 
+====== Streaming Chunk 056 ======
+[2025-06-01 20:36:11] Speaker 1: shape is that and this type of things till we get to the background computation and compute on gpu
+
+2025-06-01 20:37:12,141 - INFO - Processing audio with duration 6.620 seconds
+2025-06-01 20:37:12,314 - INFO - Processing audio with duration 00:06.620
+2025-06-01 20:37:12,317 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:12,445 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:12,477 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:12,477 - INFO - Got result for chunk: output_test6/chunks/chunk_056.wav
+2025-06-01 20:37:12,478 - INFO - 
+====== Streaming Chunk 057 ======
+[2025-06-01 20:36:11] Speaker 1: background computation is that it's a function that it will compute uh you know a simple math mall
+
+2025-06-01 20:37:12,478 - INFO - Processing audio with duration 7.400 seconds
+2025-06-01 20:37:12,646 - INFO - Processing audio with duration 00:07.400
+2025-06-01 20:37:12,681 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:12,681 - INFO - Got result for chunk: output_test6/chunks/chunk_057.wav
+2025-06-01 20:37:12,681 - INFO - 
+====== Streaming Chunk 058 ======
+[2025-06-01 20:36:11] Speaker 1: back end so that you know we can measure the for temperature for uh you know for uh utilization
+
+2025-06-01 20:37:12,681 - INFO - Processing audio with duration 7.000 seconds
+2025-06-01 20:37:12,854 - INFO - Processing audio with duration 00:07.000
+2025-06-01 20:37:12,856 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:12,984 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:13,021 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:13,022 - INFO - Got result for chunk: output_test6/chunks/chunk_058.wav
+2025-06-01 20:37:13,022 - INFO - 
+====== Streaming Chunk 059 ======
+[2025-06-01 20:36:11] Speaker 1: for the power one thing that i want to mention here is that matmon why we are using in most of these
+
+2025-06-01 20:37:13,022 - INFO - Processing audio with duration 5.220 seconds
+2025-06-01 20:37:13,190 - INFO - Processing audio with duration 00:05.220
+2025-06-01 20:37:13,237 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:13,237 - INFO - Got result for chunk: output_test6/chunks/chunk_059.wav
+2025-06-01 20:37:13,238 - INFO - 
+====== Streaming Chunk 060 ======
+[2025-06-01 20:36:11] Speaker 1: we are using MathMol. Why we are using MathMol here? MathMol is a good simulation of fine-tuning
+
+2025-06-01 20:37:13,238 - INFO - Processing audio with duration 4.660 seconds
+2025-06-01 20:37:13,409 - INFO - Processing audio with duration 00:04.660
+2025-06-01 20:37:13,662 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:13,778 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:13,823 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:13,824 - INFO - Got result for chunk: output_test6/chunks/chunk_060.wav
+2025-06-01 20:37:13,824 - INFO - 
+====== Streaming Chunk 061 ======
+[2025-06-01 20:36:11] Speaker 1: training llms and these type of things and it's very common for that so that's the reason why we
+
+2025-06-01 20:37:13,824 - INFO - Processing audio with duration 7.260 seconds
+2025-06-01 20:37:13,993 - INFO - Processing audio with duration 00:07.260
+2025-06-01 20:37:14,029 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:14,029 - INFO - Got result for chunk: output_test6/chunks/chunk_061.wav
+2025-06-01 20:37:14,029 - INFO - 
+====== Streaming Chunk 062 ======
+[2025-06-01 20:36:11] Speaker 1: I really focus on MatMod as one of the functions that we have used here a lot.
+
+2025-06-01 20:37:14,029 - INFO - Processing audio with duration 12.280 seconds
+2025-06-01 20:37:14,206 - INFO - Processing audio with duration 00:12.280
+2025-06-01 20:37:14,208 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:14,336 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:14,367 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:14,367 - INFO - Got result for chunk: output_test6/chunks/chunk_062.wav
+2025-06-01 20:37:14,367 - INFO - 
+====== Streaming Chunk 063 ======
+[2025-06-01 20:36:11] Speaker 1: i can uh the next function is about compute and gpu or compute throughput as i mentioned
+
+2025-06-01 20:37:14,367 - INFO - Processing audio with duration 10.660 seconds
+2025-06-01 20:37:14,537 - INFO - Processing audio with duration 00:10.660
+2025-06-01 20:37:14,579 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:14,579 - INFO - Got result for chunk: output_test6/chunks/chunk_063.wav
+2025-06-01 20:37:14,579 - INFO - 
+====== Streaming Chunk 064 ======
+[2025-06-01 20:36:11] Speaker 1: previously and this will measure the performance of the GPU cores under stress.
+[2025-06-01 20:36:22] Speaker 1: Mainly it will
+
+2025-06-01 20:37:14,579 - INFO - Processing audio with duration 12.260 seconds
+2025-06-01 20:37:14,768 - INFO - Processing audio with duration 00:12.260
+2025-06-01 20:37:14,771 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:14,898 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:14,939 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:14,939 - INFO - Got result for chunk: output_test6/chunks/chunk_064.wav
+2025-06-01 20:37:14,940 - INFO - 
+====== Streaming Chunk 065 ======
+[2025-06-01 20:36:11] Speaker 1: say that how the gpus can handle the computation and again you can see here that you know this is
+[2025-06-01 20:36:21] Speaker 1: also
+
+2025-06-01 20:37:14,940 - INFO - Processing audio with duration 7.340 seconds
+2025-06-01 20:37:15,110 - INFO - Processing audio with duration 00:07.340
+2025-06-01 20:37:15,144 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:15,144 - INFO - Got result for chunk: output_test6/chunks/chunk_065.wav
+2025-06-01 20:37:15,144 - INFO - 
+====== Streaming Chunk 066 ======
+[2025-06-01 20:36:11] Speaker 1: again based on matmul function the next one is the memory bandwidth the memory bandwidth is mainly
+
+2025-06-01 20:37:15,145 - INFO - Processing audio with duration 8.620 seconds
+2025-06-01 20:37:15,323 - INFO - Processing audio with duration 00:08.620
+2025-06-01 20:37:15,325 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:15,453 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:15,491 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:15,491 - INFO - Got result for chunk: output_test6/chunks/chunk_066.wav
+2025-06-01 20:37:15,491 - INFO - 
+====== Streaming Chunk 067 ======
+[2025-06-01 20:36:11] Speaker 1: um how the gpu can handle the heavy memory uh you know bound it means that you know how we can move
+
+2025-06-01 20:37:15,492 - INFO - Processing audio with duration 12.960 seconds
+2025-06-01 20:37:15,668 - INFO - Processing audio with duration 00:12.960
+2025-06-01 20:37:15,706 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:15,707 - INFO - Got result for chunk: output_test6/chunks/chunk_067.wav
+2025-06-01 20:37:15,707 - INFO - 
+====== Streaming Chunk 068 ======
+[2025-06-01 20:36:11] Speaker 1: the volume of data between the global memory and the compute you need. So here we are using
+
+2025-06-01 20:37:15,708 - INFO - Processing audio with duration 9.380 seconds
+2025-06-01 20:37:15,938 - INFO - Processing audio with duration 00:09.380
+2025-06-01 20:37:16,128 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:16,242 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:16,297 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:16,298 - INFO - Got result for chunk: output_test6/chunks/chunk_068.wav
+2025-06-01 20:37:16,298 - INFO - 
+====== Streaming Chunk 069 ======
+[2025-06-01 20:36:11] Speaker 1: uh addition b equal to a plus a
+[2025-06-01 20:36:17] Speaker 1: uh and yeah the next one is about error detection on gpus so uh here
+
+2025-06-01 20:37:16,298 - INFO - Processing audio with duration 5.220 seconds
+2025-06-01 20:37:16,468 - INFO - Processing audio with duration 00:05.220
+2025-06-01 20:37:16,507 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:16,507 - INFO - Got result for chunk: output_test6/chunks/chunk_069.wav
+2025-06-01 20:37:16,507 - INFO - 
+====== Streaming Chunk 070 ======
+[2025-06-01 20:36:11] Speaker 1: this is mainly based on the accuracy it means that one time we are using CPU for
+[2025-06-01 20:36:19] Speaker 1: you know
+
+2025-06-01 20:37:16,507 - INFO - Processing audio with duration 6.540 seconds
+2025-06-01 20:37:16,678 - INFO - Processing audio with duration 00:06.540
+2025-06-01 20:37:16,680 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:16,807 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:16,848 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:16,848 - INFO - Got result for chunk: output_test6/chunks/chunk_070.wav
+2025-06-01 20:37:16,848 - INFO - 
+====== Streaming Chunk 071 ======
+[2025-06-01 20:36:11] Speaker 1: matmol one time we are using gpus for matmol and you know we compare these numbers and we have some
+
+2025-06-01 20:37:16,848 - INFO - Processing audio with duration 9.200 seconds
+2025-06-01 20:37:17,018 - INFO - Processing audio with duration 00:09.200
+2025-06-01 20:37:17,055 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:17,055 - INFO - Got result for chunk: output_test6/chunks/chunk_071.wav
+2025-06-01 20:37:17,056 - INFO - 
+====== Streaming Chunk 072 ======
+[2025-06-01 20:36:11] Speaker 1: threshold for that as you can see here and if that's it's uh not significant we can say that
+
+2025-06-01 20:37:17,056 - INFO - Processing audio with duration 12.440 seconds
+2025-06-01 20:37:17,228 - INFO - Processing audio with duration 00:12.440
+2025-06-01 20:37:17,231 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:17,358 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:17,389 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:17,389 - INFO - Got result for chunk: output_test6/chunks/chunk_072.wav
+2025-06-01 20:37:17,389 - INFO - 
+====== Streaming Chunk 073 ======
+[2025-06-01 20:36:11] Speaker 1: the error detection is fine. Next thing is the tensor core utilization. This is the core
+
+2025-06-01 20:37:17,389 - INFO - Processing audio with duration 10.580 seconds
+2025-06-01 20:37:17,560 - INFO - Processing audio with duration 00:10.580
+2025-06-01 20:37:17,603 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:17,604 - INFO - Got result for chunk: output_test6/chunks/chunk_073.wav
+2025-06-01 20:37:17,604 - INFO - Processing audio with duration 9.000 seconds
+2025-06-01 20:37:17,604 - INFO - 
+====== Streaming Chunk 074 ======
+[2025-06-01 20:36:11] Speaker 1: engagement and and it emphasizes on the low precision like the fp8 or fp16 um this is a mainly
+
+2025-06-01 20:37:17,795 - INFO - Processing audio with duration 00:09.000
+2025-06-01 20:37:17,798 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:17,925 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:17,955 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:17,955 - INFO - Got result for chunk: output_test6/chunks/chunk_074.wav
+2025-06-01 20:37:17,956 - INFO - 
+====== Streaming Chunk 075 ======
+[2025-06-01 20:36:11] Speaker 1: hardware not on the software. After the Tensor Core utilization we did sustained workload and this
+
+2025-06-01 20:37:17,956 - INFO - Processing audio with duration 5.540 seconds
+2025-06-01 20:37:18,125 - INFO - Processing audio with duration 00:05.540
+2025-06-01 20:37:18,166 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:18,166 - INFO - Got result for chunk: output_test6/chunks/chunk_075.wav
+2025-06-01 20:37:18,166 - INFO - 
+====== Streaming Chunk 076 ======
+[2025-06-01 20:36:11] Speaker 1: test the long-term compute and stability. So for example here as an example we put 60 seconds.
+
+2025-06-01 20:37:18,166 - INFO - Processing audio with duration 9.840 seconds
+2025-06-01 20:37:18,340 - INFO - Processing audio with duration 00:09.840
+2025-06-01 20:37:18,586 - INFO - Detected language 'en' with probability 0.99
+2025-06-01 20:37:18,700 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:18,749 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:18,750 - INFO - Got result for chunk: output_test6/chunks/chunk_076.wav
+2025-06-01 20:37:18,750 - INFO - 
+====== Streaming Chunk 077 ======
+[2025-06-01 20:36:11] Speaker 1: and we are running matmod for 60 seconds and we will see that how the gpus are working based on that
+
+2025-06-01 20:37:18,750 - INFO - Processing audio with duration 11.900 seconds
+2025-06-01 20:37:18,924 - INFO - Processing audio with duration 00:11.900
+2025-06-01 20:37:18,958 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:18,959 - INFO - Got result for chunk: output_test6/chunks/chunk_077.wav
+2025-06-01 20:37:18,959 - INFO - Processing audio with duration 6.440 seconds
+2025-06-01 20:37:18,959 - INFO - 
+====== Streaming Chunk 078 ======
+[2025-06-01 20:36:11] Speaker 1: and the last one is mixed precision testing and this will validate both the performance and the
+
+2025-06-01 20:37:19,152 - INFO - Processing audio with duration 00:06.440
+2025-06-01 20:37:19,155 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:19,282 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:19,330 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:19,330 - INFO - Got result for chunk: output_test6/chunks/chunk_078.wav
+2025-06-01 20:37:19,330 - INFO - 
+====== Streaming Chunk 079 ======
+[2025-06-01 20:36:11] Speaker 1: correctness of the GPUs again when we are using matmult here.
+[2025-06-01 20:36:19] Speaker 1: So with that, you know, we got to the
+
+2025-06-01 20:37:19,330 - INFO - Processing audio with duration 6.060 seconds
+2025-06-01 20:37:19,504 - INFO - Processing audio with duration 00:06.060
+2025-06-01 20:37:19,537 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:19,537 - INFO - Got result for chunk: output_test6/chunks/chunk_079.wav
+2025-06-01 20:37:19,537 - INFO - 
+====== Streaming Chunk 080 ======
+[2025-06-01 20:36:11] Speaker 1: end of this part. I will give you an example of how this has worked previously.
+
+2025-06-01 20:37:19,538 - INFO - Processing audio with duration 1.520 seconds
+2025-06-01 20:37:19,703 - INFO - Processing audio with duration 00:01.520
+2025-06-01 20:37:19,705 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:19,832 - INFO - Detected language 'en' with probability 0.99
+2025-06-01 20:37:19,862 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:19,862 - INFO - Got result for chunk: output_test6/chunks/chunk_080.wav
+2025-06-01 20:37:19,862 - INFO - 
+====== Streaming Chunk 081 ======
+[2025-06-01 20:36:11] Speaker 1: So we had an H100 and you can see the result of the H100 here
+
+2025-06-01 20:37:19,862 - INFO - Processing audio with duration 6.640 seconds
+2025-06-01 20:37:20,032 - INFO - Processing audio with duration 00:06.640
+2025-06-01 20:37:20,049 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:20,050 - INFO - Got result for chunk: output_test6/chunks/chunk_081.wav
+2025-06-01 20:37:20,050 - INFO - 
+====== Streaming Chunk 082 ======
+[2025-06-01 20:36:11] Speaker 1: And, um...
+
+2025-06-01 20:37:20,050 - INFO - Processing audio with duration 7.340 seconds
+2025-06-01 20:37:20,217 - INFO - Processing audio with duration 00:07.340
+2025-06-01 20:37:20,220 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:20,346 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:20,379 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:20,379 - INFO - Got result for chunk: output_test6/chunks/chunk_082.wav
+2025-06-01 20:37:20,380 - INFO - 
+====== Streaming Chunk 083 ======
+[2025-06-01 20:36:11] Speaker 1: We saw that the H100 is not performing very well.
+[2025-06-01 20:36:15] Speaker 1: I went and saw
+
+2025-06-01 20:37:20,380 - INFO - Processing audio with duration 7.500 seconds
+2025-06-01 20:37:20,550 - INFO - Processing audio with duration 00:07.500
+2025-06-01 20:37:20,595 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:20,596 - INFO - Got result for chunk: output_test6/chunks/chunk_083.wav
+2025-06-01 20:37:20,596 - INFO - 
+====== Streaming Chunk 084 ======
+[2025-06-01 20:36:11] Speaker 1: specifically for gpu 4 and you can see that you know in the power the gpu 4 is uh going up very
+
+2025-06-01 20:37:20,596 - INFO - Processing audio with duration 7.800 seconds
+2025-06-01 20:37:20,769 - INFO - Processing audio with duration 00:07.800
+2025-06-01 20:37:21,024 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:21,139 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:21,185 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:21,185 - INFO - Got result for chunk: output_test6/chunks/chunk_084.wav
+2025-06-01 20:37:21,185 - INFO - 
+====== Streaming Chunk 085 ======
+[2025-06-01 20:36:11] Speaker 1: you know fast compared to other ones but you know after that the rest of that went sharply up but this
+
+2025-06-01 20:37:21,185 - INFO - Processing audio with duration 8.580 seconds
+2025-06-01 20:37:21,357 - INFO - Processing audio with duration 00:08.580
+2025-06-01 20:37:21,408 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:21,409 - INFO - Got result for chunk: output_test6/chunks/chunk_085.wav
+2025-06-01 20:37:21,409 - INFO - 
+====== Streaming Chunk 086 ======
+[2025-06-01 20:36:11] Speaker 1: one didn't go up uh so maybe that was the reason why the h100 was not performing very well then i
+[2025-06-01 20:36:18] Speaker 1: also
+
+2025-06-01 20:37:21,409 - INFO - Processing audio with duration 6.560 seconds
+2025-06-01 20:37:21,580 - INFO - Processing audio with duration 00:06.560
+2025-06-01 20:37:21,582 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:21,709 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:21,752 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:21,752 - INFO - Got result for chunk: output_test6/chunks/chunk_086.wav
+2025-06-01 20:37:21,752 - INFO - 
+====== Streaming Chunk 087 ======
+[2025-06-01 20:36:11] Speaker 1: saw the um the temperature you can see that for gpu for the temperature again is sharply going up like
+[2025-06-01 20:36:19] Speaker 1: 80.
+
+2025-06-01 20:37:21,752 - INFO - Processing audio with duration 7.560 seconds
+2025-06-01 20:37:21,922 - INFO - Processing audio with duration 00:07.560
+2025-06-01 20:37:21,958 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:21,959 - INFO - Got result for chunk: output_test6/chunks/chunk_087.wav
+2025-06-01 20:37:21,959 - INFO - 
+====== Streaming Chunk 088 ======
+[2025-06-01 20:36:11] Speaker 1: which is above the range that you know we specified and then you know it stays there so
+
+2025-06-01 20:37:21,959 - INFO - Processing audio with duration 6.420 seconds
+2025-06-01 20:37:22,127 - INFO - Processing audio with duration 00:06.420
+2025-06-01 20:37:22,130 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:22,256 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:22,294 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:22,294 - INFO - Got result for chunk: output_test6/chunks/chunk_088.wav
+2025-06-01 20:37:22,295 - INFO - 
+====== Streaming Chunk 089 ======
+[2025-06-01 20:36:11] Speaker 1: maybe that was the reason why you know it wasn't able to uh you know do power good and the rest of
+
+2025-06-01 20:37:22,295 - INFO - Processing audio with duration 8.800 seconds
+2025-06-01 20:37:22,466 - INFO - Processing audio with duration 00:08.800
+2025-06-01 20:37:22,521 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:22,521 - INFO - Got result for chunk: output_test6/chunks/chunk_089.wav
+2025-06-01 20:37:22,522 - INFO - 
+====== Streaming Chunk 090 ======
+[2025-06-01 20:36:11] Speaker 1: that you know you can see that you know it's not even close to 86 so we found out that you know the
+[2025-06-01 20:36:16] Speaker 1: gpu 4
+
+2025-06-01 20:37:22,522 - INFO - Processing audio with duration 6.240 seconds
+2025-06-01 20:37:22,690 - INFO - Processing audio with duration 00:06.240
+2025-06-01 20:37:22,693 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:22,820 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:22,855 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:22,855 - INFO - Got result for chunk: output_test6/chunks/chunk_090.wav
+2025-06-01 20:37:22,855 - INFO - 
+====== Streaming Chunk 091 ======
+[2025-06-01 20:36:11] Speaker 1: is not working very well but one thing that you know here i want to emphasize is that this is inside
+
+2025-06-01 20:37:22,855 - INFO - Processing audio with duration 8.240 seconds
+2025-06-01 20:37:23,027 - INFO - Processing audio with duration 00:08.240
+2025-06-01 20:37:23,076 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:23,077 - INFO - Got result for chunk: output_test6/chunks/chunk_091.wav
+2025-06-01 20:37:23,077 - INFO - 
+====== Streaming Chunk 092 ======
+[2025-06-01 20:36:11] Speaker 1: a node so what does it mean it means that you know for example in the h100 and knows we have eight gpu
+
+2025-06-01 20:37:23,077 - INFO - Processing audio with duration 12.180 seconds
+2025-06-01 20:37:23,252 - INFO - Processing audio with duration 00:12.180
+2025-06-01 20:37:23,487 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:23,602 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:23,648 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:23,648 - INFO - Got result for chunk: output_test6/chunks/chunk_092.wav
+2025-06-01 20:37:23,648 - INFO - 
+====== Streaming Chunk 093 ======
+[2025-06-01 20:36:11] Speaker 1: so it will give us the result for the hgpus but we have also extended this uh code for
+
+2025-06-01 20:37:23,648 - INFO - Processing audio with duration 10.560 seconds
+2025-06-01 20:37:23,825 - INFO - Processing audio with duration 00:10.560
+2025-06-01 20:37:23,868 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:23,869 - INFO - Got result for chunk: output_test6/chunks/chunk_093.wav
+2025-06-01 20:37:23,869 - INFO - Processing audio with duration 6.980 seconds
+2025-06-01 20:37:23,869 - INFO - 
+====== Streaming Chunk 094 ======
+[2025-06-01 20:36:11] Speaker 1: multi-node and by that so this was this code was given to us by another team from John Shelley's
+
+2025-06-01 20:37:24,060 - INFO - Processing audio with duration 00:06.980
+2025-06-01 20:37:24,063 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:24,190 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:24,218 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:24,218 - INFO - Got result for chunk: output_test6/chunks/chunk_094.wav
+2025-06-01 20:37:24,219 - INFO - 
+====== Streaming Chunk 095 ======
+[2025-06-01 20:36:11] Speaker 1: theme and it's mainly doing some more tests about nodes between the nodes specifically it
+
+2025-06-01 20:37:24,219 - INFO - Processing audio with duration 9.440 seconds
+2025-06-01 20:37:24,391 - INFO - Processing audio with duration 00:09.440
+2025-06-01 20:37:24,439 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:24,439 - INFO - Got result for chunk: output_test6/chunks/chunk_095.wav
+2025-06-01 20:37:24,439 - INFO - 
+====== Streaming Chunk 096 ======
+[2025-06-01 20:36:11] Speaker 1: It will evaluate the RDMA, the different type of errors like error correctness code.
+[2025-06-01 20:36:17] Speaker 1: It will also...
+
+2025-06-01 20:37:24,440 - INFO - Processing audio with duration 5.380 seconds
+2025-06-01 20:37:24,609 - INFO - Processing audio with duration 00:05.380
+2025-06-01 20:37:24,611 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:24,738 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:24,778 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:24,779 - INFO - Got result for chunk: output_test6/chunks/chunk_096.wav
+2025-06-01 20:37:24,779 - INFO - 
+====== Streaming Chunk 097 ======
+[2025-06-01 20:36:11] Speaker 1: evaluate the PCIe link and this type of things.
+[2025-06-01 20:36:17] Speaker 1: The way that our structure is working right now...
+
+2025-06-01 20:37:24,779 - INFO - Processing audio with duration 4.600 seconds
+2025-06-01 20:37:24,954 - INFO - Processing audio with duration 00:04.600
+2025-06-01 20:37:24,985 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:24,985 - INFO - Got result for chunk: output_test6/chunks/chunk_097.wav
+2025-06-01 20:37:24,986 - INFO - 
+====== Streaming Chunk 098 ======
+[2025-06-01 20:36:11] Speaker 1: is that first of all we run if you have a multi node we run this one
+
+2025-06-01 20:37:24,986 - INFO - Processing audio with duration 4.700 seconds
+2025-06-01 20:37:25,158 - INFO - Processing audio with duration 00:04.700
+2025-06-01 20:37:25,161 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:25,287 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:25,313 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:25,313 - INFO - Got result for chunk: output_test6/chunks/chunk_098.wav
+2025-06-01 20:37:25,313 - INFO - 
+====== Streaming Chunk 099 ======
+[2025-06-01 20:36:11] Speaker 1: uh let me show you the result or the log maybe that would help
+
+2025-06-01 20:37:25,314 - INFO - Processing audio with duration 8.720 seconds
+2025-06-01 20:37:25,486 - INFO - Processing audio with duration 00:08.720
+2025-06-01 20:37:25,527 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:25,527 - INFO - Got result for chunk: output_test6/chunks/chunk_099.wav
+2025-06-01 20:37:25,527 - INFO - Processing audio with duration 8.960 seconds
+2025-06-01 20:37:25,527 - INFO - 
+====== Streaming Chunk 100 ======
+[2025-06-01 20:36:11] Speaker 1: First of all, we'll run that one. For example here I used two nodes and you can see
+
+2025-06-01 20:37:25,697 - INFO - Processing audio with duration 00:08.960
+2025-06-01 20:37:25,945 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:26,061 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:26,108 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:26,109 - INFO - Got result for chunk: output_test6/chunks/chunk_100.wav
+2025-06-01 20:37:26,109 - INFO - 
+====== Streaming Chunk 101 ======
+[2025-06-01 20:36:11] Speaker 1: that you know it will go and run all of these ones one by one and it will get to this end.
+
+2025-06-01 20:37:26,109 - INFO - Processing audio with duration 6.540 seconds
+2025-06-01 20:37:26,282 - INFO - Processing audio with duration 00:06.540
+2025-06-01 20:37:26,332 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:26,332 - INFO - Got result for chunk: output_test6/chunks/chunk_101.wav
+2025-06-01 20:37:26,332 - INFO - Processing audio with duration 1.720 seconds
+2025-06-01 20:37:26,332 - INFO - 
+====== Streaming Chunk 102 ======
+[2025-06-01 20:36:11] Speaker 1: Once this is done, it will go inside each node.
+[2025-06-01 20:36:15] Speaker 1: For example, here we have the GPU 471.
+
+2025-06-01 20:37:26,493 - INFO - Processing audio with duration 00:01.720
+2025-06-01 20:37:26,496 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:26,622 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:26,661 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:26,661 - INFO - Got result for chunk: output_test6/chunks/chunk_102.wav
+2025-06-01 20:37:26,661 - INFO - 
+====== Streaming Chunk 103 ======
+[2025-06-01 20:36:11] Speaker 1: here everything will be saved as a json file and this multi-node result will be saved as a json
+
+2025-06-01 20:37:26,661 - INFO - Processing audio with duration 11.260 seconds
+2025-06-01 20:37:26,835 - INFO - Processing audio with duration 00:11.260
+2025-06-01 20:37:26,860 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:26,861 - INFO - Got result for chunk: output_test6/chunks/chunk_103.wav
+2025-06-01 20:37:26,861 - INFO - 
+====== Streaming Chunk 104 ======
+[2025-06-01 20:36:11] Speaker 1: file and you can see that you know it's here
+
+2025-06-01 20:37:26,864 - INFO - Processing audio with duration 8.280 seconds
+2025-06-01 20:37:27,062 - INFO - Processing audio with duration 00:08.280
+2025-06-01 20:37:27,064 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:27,191 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:27,227 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:27,227 - INFO - Got result for chunk: output_test6/chunks/chunk_104.wav
+2025-06-01 20:37:27,227 - INFO - 
+====== Streaming Chunk 105 ======
+[2025-06-01 20:36:11] Speaker 1: Again, for the other one, I think it was another GPU, which was probably the 509.
+
+2025-06-01 20:37:27,228 - INFO - Processing audio with duration 8.100 seconds
+2025-06-01 20:37:27,399 - INFO - Processing audio with duration 00:08.100
+2025-06-01 20:37:27,442 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:27,442 - INFO - Got result for chunk: output_test6/chunks/chunk_105.wav
+2025-06-01 20:37:27,442 - INFO - Processing audio with duration 0.980 seconds
+2025-06-01 20:37:27,442 - INFO - 
+====== Streaming Chunk 106 ======
+[2025-06-01 20:36:11] Speaker 1: and it will again all of the json file will uh you know save all of these results then it will go
+
+2025-06-01 20:37:27,600 - INFO - Processing audio with duration 00:00.980
+2025-06-01 20:37:27,603 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:27,729 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:27,771 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:27,771 - INFO - Got result for chunk: output_test6/chunks/chunk_106.wav
+2025-06-01 20:37:27,771 - INFO - 
+====== Streaming Chunk 107 ======
+[2025-06-01 20:36:11] Speaker 1: inside the gpu 471 and inside that gpu it will run the health check that you know and we just we were
+
+2025-06-01 20:37:27,771 - INFO - Processing audio with duration 9.380 seconds
+2025-06-01 20:37:27,945 - INFO - Processing audio with duration 00:09.380
+2025-06-01 20:37:27,961 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:27,961 - INFO - Got result for chunk: output_test6/chunks/chunk_107.wav
+2025-06-01 20:37:27,962 - INFO - 
+====== Streaming Chunk 108 ======
+[2025-06-01 20:36:11] Speaker 1: just talking about.
+
+2025-06-01 20:37:27,962 - INFO - Processing audio with duration 8.180 seconds
+2025-06-01 20:37:28,133 - INFO - Processing audio with duration 00:08.180
+2025-06-01 20:37:28,406 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:28,520 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:28,577 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:28,577 - INFO - Got result for chunk: output_test6/chunks/chunk_108.wav
+2025-06-01 20:37:28,578 - INFO - 
+====== Streaming Chunk 109 ======
+[2025-06-01 20:36:11] Speaker 1: it will go it will do that for gpu 471 again it will do that for the other gpu gpu 507 which have
+
+2025-06-01 20:37:28,578 - INFO - Processing audio with duration 12.960 seconds
+2025-06-01 20:37:28,750 - INFO - Processing audio with duration 00:12.960
+2025-06-01 20:37:28,798 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:28,799 - INFO - Got result for chunk: output_test6/chunks/chunk_109.wav
+2025-06-01 20:37:28,799 - INFO - 
+====== Streaming Chunk 110 ======
+[2025-06-01 20:36:11] Speaker 1: which we have here, then it will give us the result and the testing result.
+
+2025-06-01 20:37:28,800 - INFO - Processing audio with duration 6.940 seconds
+2025-06-01 20:37:28,991 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:28,992 - INFO - Processing audio with duration 00:06.940
+2025-06-01 20:37:29,119 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:29,167 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:29,167 - INFO - Got result for chunk: output_test6/chunks/chunk_110.wav
+2025-06-01 20:37:29,167 - INFO - 
+====== Streaming Chunk 111 ======
+[2025-06-01 20:36:11] Speaker 1: so you will have um you know a pdf and a json file and a log for each of the gpu 431 and 507 here
+
+2025-06-01 20:37:29,167 - INFO - Processing audio with duration 6.840 seconds
+2025-06-01 20:37:29,341 - INFO - Processing audio with duration 00:06.840
+2025-06-01 20:37:29,370 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:29,371 - INFO - Got result for chunk: output_test6/chunks/chunk_111.wav
+2025-06-01 20:37:29,371 - INFO - 
+====== Streaming Chunk 112 ======
+[2025-06-01 20:36:11] Speaker 1: These PDFs will be saved based on the timing and calendar.
+
+2025-06-01 20:37:29,371 - INFO - Processing audio with duration 9.720 seconds
+2025-06-01 20:37:29,539 - INFO - Processing audio with duration 00:09.720
+2025-06-01 20:37:29,541 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:29,667 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:29,703 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:29,703 - INFO - Got result for chunk: output_test6/chunks/chunk_112.wav
+2025-06-01 20:37:29,703 - INFO - 
+====== Streaming Chunk 113 ======
+[2025-06-01 20:36:11] Speaker 1: uh with that uh this was the main idea about the health check and you know how we are running that
+
+2025-06-01 20:37:29,703 - INFO - Processing audio with duration 2.720 seconds
+2025-06-01 20:37:29,878 - INFO - Processing audio with duration 00:02.720
+2025-06-01 20:37:29,921 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:37:29,921 - INFO - Got result for chunk: output_test6/chunks/chunk_113.wav
+2025-06-01 20:37:29,921 - INFO - 
+====== Streaming Chunk 114 ======
+[2025-06-01 20:36:11] Speaker 1: And I really appreciate your time.
+[2025-06-01 20:36:14] Speaker 1: And I would be happy if you can, you know, reach out.
+
+2025-06-01 20:37:30,005 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:37:30,153 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:37:30,153 - INFO - Got result for chunk: output_test6/chunks/chunk_114.wav
+2025-06-01 20:37:30,153 - INFO - 
+====== Streaming Chunk 115 ======
+[2025-06-01 20:36:11] Speaker 1: any question about this. Thank you so much.
+
+2025-06-01 20:37:30,224 - INFO - Transcript saved to: output_test6/video1591686795_all_transcripts_20250601_203730.txt
+2025-06-01 20:37:30,224 - INFO - CUDA available before summarization: True
+2025-06-01 20:37:30,224 - INFO - Loading summarizer model from HuggingFace: mistralai/Mistral-7B-Instruct-v0.1
+2025-06-01 20:37:39,942 - INFO - Summarizing chunk 1/3
+2025-06-01 20:37:56,777 - INFO - Summarizing chunk 2/3
+2025-06-01 20:38:07,633 - INFO - Summarizing chunk 3/3
+2025-06-01 20:38:11,573 - INFO -  Summary successfully appended to transcript TXT.
+2025-06-01 20:38:11,575 - INFO - Final JSON saved to: output_test6/video1591686795_all_transcripts_20250601_203730.json
