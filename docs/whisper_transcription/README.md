@@ -19,90 +19,7 @@ The overall architecture consists of several key stages. First, audio is convert
 
 ---
 
-## Installation
-
-### 1. Create virtual environment
-```bash
-python3 -m venv whisper_env
-source whisper_env/bin/activate
-```
-
-### 2. Install PyTorch (with CUDA 12.1 for H100/A100)
-```bash
-pip install torch==2.2.2+cu121 torchaudio==2.2.2+cu121 -f https://download.pytorch.org/whl/torch_stable.html
-```
-
-### 3. Install requirements
-```bash
-pip install -r requirements.txt
-```
-
-> Make sure to have `ffmpeg` installed on your system:
-```bash
-sudo apt install ffmpeg
-```
-
----
-
 ## Usage
-
-### CLI Transcription & Summarization
-
-```bash
-python faster_code_week1_v28.py \
-  --input /path/to/audio_or_folder \
-  --model medium \
-  --output-dir output/ \
-  --summarized-model mistralai/Mistral-7B-Instruct-v0.1 \
-  --summary \
-  --speaker \
-  --denoise \
-  --prop-decrease 0.7 \
-  --hf-token YOUR_HUGGINGFACE_TOKEN \
-  --streaming \
-  --max-speakers 2 \
-  --ground-truth ground_truth.txt
-```
-
-**Optional flags:**
-
-| Argument            | Description                                                                 |
-|---------------------|-----------------------------------------------------------------------------|
-| `--input`           | **Required.** Path to input file or directory of audio/video.               |
-| `--model`           | Whisper model to use (`base`, `small`, `medium`, `large`, `turbo`). Auto-detects if not specified. |
-| `--output-dir`      | Directory to store output files. Defaults to a timestamped folder.          |
-| `--summarized-model`| Hugging Face or local LLM for summarization. Default: `Mistral-7B`.         |
-| `--denoise`         | Enable two-stage denoising (Demucs + noisereduce).                          |
-| `--prop-decrease`   | Float [0.0–1.0]. Controls noise suppression. Default = 0.7                  |
-| `--summary`         | Enable summarization after transcription.                                   |
-| `--speaker`         | Enable speaker diarization using PyAnnote.                                  |
-| `--streaming`       | Stream results in real-time chunk-by-chunk.                                 |
-| `--hf-token`        | Hugging Face token for gated model access.                                  |
-| `--max-speakers`    | Limit the number of identified speakers. Optional.                          |
-| `--ground-truth`    | Path to ground truth `.txt` for WER evaluation. Optional.                   |
-
----
-
-### Start API Server
-
-```bash
-uvicorn whisper_api_server:app --host 0.0.0.0 --port 8000
-```
-
-### Example API Call
-
-```bash
-curl -X POST http://<YOUR_IP>:8000/transcribe \
-  -F "audio_file=@test.wav" \
-  -F "model=medium" \
-  -F "summary=true" \
-  -F "speaker=true" \
-  -F "denoise=false" \
-  -F "streaming=true" \
-  -F "hf_token=hf_xxx" \
-  -F "max_speakers=2"
-```
-
 
 ### Start Blueprint Deployment
 in the deploymen part of Blueprint, add a recipe suchas the following
@@ -142,15 +59,15 @@ https://whisper-transcription-a10-6666.130-162-199-33.nip.io/transcribe
 |----------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `audio_url`     | `string`  | URL to a Pre-Authenticated Request (PAR) of the audio file stored in OCI Object Storage.                                                                  |
 | `model`         | `string`  | Whisper model name to use (`base`, `medium`, `turbo`, etc.).                                                                                              |
-| `summary`       | `bool`    | Whether to generate a summary at the end. If `true` and no custom model path is provided, `mistralai/Mistral-7B-Instruct-v0.1` will be loaded from Hugging Face. Requires `hf_token`. |
-| `speaker`       | `bool`    | Whether to enable speaker diarization. Requires `hf_token`. If `false`, all segments will be labeled as "Speaker 1".                                      |
+| `summary`       | `bool`    | (Optional)Whether to generate a summary at the end. If `true` and no custom model path is provided, `mistralai/Mistral-7B-Instruct-v0.1` will be loaded from Hugging Face. Requires `hf_token`. |
+| `speaker`       | `bool`    | (Optional)Whether to enable speaker diarization. Requires `hf_token`. If `false`, all segments will be labeled as "Speaker 1".                                      |
 | `max_speakers`  | `int`     | (Optional) Helps improve diarization accuracy by specifying the expected number of speakers.                                                              |
 | `denoise`       | `bool`    | (Optional) Apply basic denoising to improve quality in noisy recordings.                                                                                  |
 | `streaming`     | `bool`    | (Optional) Enable real-time log streaming for transcription chunks and progress updates.                                                                  |
-| `hf_token`      | `string`  | Hugging Face token, required for loading models like Mistral or enabling speaker diarization.                                                             |
-| `prop-decrease`     | `Float`  | Controls noise suppression. Default = 0.7                                                           |
-| `summarized-model`      | `path`  | Hugging Face or local LLM path for summarization. Default: Mistral-7B.                                                             |
-| `ground-truth`      | `path`  | Path to ground truth `.txt` file for WER evaluation.                                                           |
+| `hf_token`      | `string`  |  (Optional)Hugging Face token, required for loading models like Mistral or enabling speaker diarization.                                                             |
+| `prop-decrease`     | `Float`  | (Optional) Controls level of noise suppression. Range: 0.0–1.0. Default: 0.7.                                                         |
+| `summarized-model`      | `path`  | (Optional) Path or HF ID of LLM used for summarization. Default: mistralai/Mistral-7B-Instruct-v0.1.                                                           |
+| `ground-truth`      | `path`  | (Optional) Path to .txt file with expected transcription for WER (Word Error Rate) evaluation.                                                           |
 
 
 ---
@@ -168,7 +85,19 @@ curl -k -N -L -X POST https://<YOUR_DEPLOYMENT>.nip.io/transcribe \
   -F "hf_token=hf_xxxxxxxxxxxxxxx" \
   -F "max_speakers=2"
 ```
+**Example:**
 
+```bash
+curl -k -N -L -X POST https://whisper-transcription-a10-6666.130-162-199-33.nip.io/transcribe\
+  -F "audio_url=https://objectstorage.ap-melbourne-1.oraclecloud.com/p/Kn-d3p3vHBqYGck5hcG24p1BrE63d7MN4jqpQzmYWchBIPZA5bymsVPWwJl-VbPq/n/iduyx1qnmway/b/whisper-transcription/o/test.wav" \
+  -F "model=turbo" \
+  -F "summary=true" \
+  -F "speaker=true" \
+  -F "streaming=true" \
+  -F "denoise=false" \
+  -F "hf_token=hf_xxxxxxxxxxxxxxx" \
+  -F "max_speakers=2"
+```
 ---
 
 #### Real-Time Log Streaming
