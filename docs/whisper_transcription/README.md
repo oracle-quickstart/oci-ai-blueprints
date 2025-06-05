@@ -1,79 +1,72 @@
-# Whisper Transcription + Summarization + Diarization API
+# Whisper Transcription API
 
-This project provides a high-performance pipeline for **audio/video transcription**, **speaker diarization**, and **summarization** using [Faster-Whisper](https://github.com/guillaumekln/faster-whisper), Hugging Face LLMs (e.g. Mistral), and [pyannote.audio](https://github.com/pyannote/pyannote-audio). It exposes a **FastAPI-based REST API** and supports CLI usage as well.
+### Transcription + Summarization + Diarization Pipeline (FastAPI-powered)
 
----
-## System Architecture
-
-The overall architecture consists of several key stages. First, audio is converted using ffmpeg and optionally denoised using a hybrid method combining Demucs (for structured background removal) and either noisereduce or DeepFilterNet (for static noise). Next, silence-aware chunking is applied using pydub to segment speech cleanly without breaking mid-sentence. The Whisper model then transcribes each chunk, optionally followed by speaker diarization using pyannote-audio. Finally, if summarization is enabled, an instruction-tuned LLM such as Mistral-7B generates concise and structured summaries. Outputs are written to .txt ,log and .json files, optionally embedded with speaker turns and summaries.
-![image](https://github.com/user-attachments/assets/6a8b55f0-9de5-46e9-9ef0-80e904f61a7d)
-
-## Features
-
-- Transcribes audio using **Faster-Whisper** (multi-GPU support)
-- Summarizes long transcripts using **Mistral-7B** as a default
-- Performs speaker diarization via **PyAnnote**
-- Optional denoising using **Demucs + Noisereduce**
-- Supports real-time **streaming API responses**
-- Works on common formats: `.flac`, `.wav`, `.mp3`, `.m4a`, `.aac`, `.ogg`, `.webm`, `.opus` `.mp4`, `.mp3`, `.mov`, `.mkv`, `.avi`, etc. 
+This blueprint provides a complete solution for running **audio/video transcription**, **speaker diarization**, and **summarization** via a RESTful API. It integrates [Faster-Whisper](https://github.com/guillaumekln/faster-whisper) for efficient transcription, [pyannote.audio](https://github.com/pyannote/pyannote-audio) for diarization, and Hugging Face instruction-tuned LLMs (e.g., Mistral-7B) for summarization. It supports multi-GPU acceleration, real-time streaming logs, and JSON/text output formats.
 
 ---
 
-## Usage
+## Key Features
 
-### Start Blueprint Deployment
-in the deploymen part of Blueprint, add a recipe suchas the following
-```bash
+| Capability              | Description                                                                                   |
+|------------------------|-----------------------------------------------------------------------------------------------|
+| Transcription          | Fast, multi-GPU inference with Faster-Whisper                                                  |
+| Summarization          | Uses Mistral-7B (or other HF models) to create summaries of long transcripts                  |
+| Speaker Diarization    | Global speaker labeling via pyannote.audio                                                     |
+| Denoising              | Hybrid removal of background noise using Demucs and noisereduce                               |
+| Real-Time Streaming    | Logs stream live via HTTP if enabled                                                           |
+| Format Compatibility   | Supports `.mp3`, `.wav`, `.flac`, `.aac`, `.m4a`, `.mp4`, `.webm`, `.mov`, `.mkv`, `.avi`, etc. |
+
+---
+
+## Deployment on OCI Blueprint
+
+### Sample Recipe (Service Mode)
+```json
 {
-  "recipe_id": "whisper  transcription",
+  "recipe_id": "whisper_transcription",
   "recipe_mode": "service",
   "deployment_name": "whisper-transcription-a10",
   "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:whisper_transcription_v8",
   "recipe_node_shape": "VM.GPU.A10.2",
   "recipe_replica_count": 1,
   "recipe_container_port": "8000",
- "recipe_nvidia_gpu_count": 2,
+  "recipe_nvidia_gpu_count": 2,
   "recipe_node_pool_size": 1,
   "recipe_node_boot_volume_size_in_gbs": 200,
   "recipe_ephemeral_storage_size": 100,
   "recipe_shared_memory_volume_size_limit_in_mb": 200
 }
-
 ```
-#### Endpoint
 
+### Endpoint
 ```
 POST https://<YOUR_DEPLOYMENT>.nip.io/transcribe
 ```
-
-**Example:**
-```
-https://whisper-transcription-a10-6666.130-162-199-33.nip.io/transcribe
-```
+**Example:**  
+`https://whisper-transcription-a10-6666.130-162-199-33.nip.io/transcribe`
 
 ---
 
-#### Parameters
+## API Parameters
 
-| Parameter       | Type      | Description                                                                                                                                               |
-|----------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `audio_url`     | `string`  | URL to a Pre-Authenticated Request (PAR) of the audio file stored in OCI Object Storage.                                                                  |
-| `model`         | `string`  | Whisper model name to use (`base`, `medium`, `turbo`, etc.).                                                                                              |
-| `summary`       | `bool`    | (Optional)Whether to generate a summary at the end. If `true` and no custom model path is provided, `mistralai/Mistral-7B-Instruct-v0.1` will be loaded from Hugging Face. Requires `hf_token`. |
-| `speaker`       | `bool`    | (Optional)Whether to enable speaker diarization. Requires `hf_token`. If `false`, all segments will be labeled as "Speaker 1".                                      |
-| `max_speakers`  | `int`     | (Optional) Helps improve diarization accuracy by specifying the expected number of speakers.                                                              |
-| `denoise`       | `bool`    | (Optional) Apply basic denoising to improve quality in noisy recordings.                                                                                  |
-| `streaming`     | `bool`    | (Optional) Enable real-time log streaming for transcription chunks and progress updates.                                                                  |
-| `hf_token`      | `string`  |  (Optional)Hugging Face token, required for loading models like Mistral or enabling speaker diarization.                                                             |
-| `prop-decrease`     | `Float`  | (Optional) Controls level of noise suppression. Range: 0.0–1.0. Default: 0.7.                                                         |
-| `summarized-model`      | `path`  | (Optional) Path or HF ID of LLM used for summarization. Default: mistralai/Mistral-7B-Instruct-v0.1.                                                           |
-| `ground-truth`      | `path`  | (Optional) Path to .txt file with expected transcription for WER (Word Error Rate) evaluation.                                                           |
-
+| Name              | Type      | Description                                                                                                           |
+|-------------------|-----------|-----------------------------------------------------------------------------------------------------------------------|
+| `audio_url`       | string    | URL to audio file in OCI Object Storage (requires PAR)                                                               |
+| `model`           | string    | Whisper model to use: `base`, `medium`, `large`, `turbo`, etc.                                                      |
+| `summary`         | bool      | Whether to generate a summary (default: false). Requires `hf_token` if model path not provided                      |
+| `speaker`         | bool      | Whether to run diarization (default: false). Requires `hf_token`                                                    |
+| `max_speakers`    | int       | (Optional) Maximum number of speakers expected for diarization                                                       |
+| `denoise`         | bool      | Whether to apply noise reduction                                                                                     |
+| `streaming`       | bool      | Enables real-time logs via /stream_log endpoint                                                                      |
+| `hf_token`        | string    | Hugging Face access token (required for diarization or HF-hosted summarizers)                                       |
+| `prop_decrease`   | float     | (Optional) Controls level of noise suppression. Range: 0.0–1.0 (default: 0.7)                                        |
+| `summarized_model`| string    | (Optional) Path or HF model ID for summarizer. Default: `mistralai/Mistral-7B-Instruct-v0.1`                         |
+| `ground_truth`    | string    | (Optional) Path to reference transcript file to compute WER                                                          |
 
 ---
 
-#### Example `curl` Command
-
+## Example cURL Command
 ```bash
 curl -k -N -L -X POST https://<YOUR_DEPLOYMENT>.nip.io/transcribe \
   -F "audio_url=<YOUR_PAR_URL>" \
@@ -82,97 +75,64 @@ curl -k -N -L -X POST https://<YOUR_DEPLOYMENT>.nip.io/transcribe \
   -F "speaker=true" \
   -F "streaming=true" \
   -F "denoise=false" \
-  -F "hf_token=hf_xxxxxxxxxxxxxxx" \
+  -F "hf_token=hf_xxxxxxx" \
   -F "max_speakers=2"
 ```
-**Example:**
 
-```bash
-curl -k -N -L -X POST https://whisper-transcription-a10-6666.130-162-199-33.nip.io/transcribe\
-  -F "audio_url=https://objectstorage.ap-melbourne-1.oraclecloud.com/p/Kn-d3p3vHBqYGck5hcG24p1BrE63d7MN4jqpQzmYWchBIPZA5bymsVPWwJl-VbPq/n/iduyx1qnmway/b/whisper-transcription/o/test.wav" \
-  -F "model=turbo" \
-  -F "summary=true" \
-  -F "speaker=true" \
-  -F "streaming=true" \
-  -F "denoise=false" \
-  -F "hf_token=hf_xxxxxxxxxxxxxxx" \
-  -F "max_speakers=2"
-```
 ---
 
-#### Real-Time Log Streaming
+## Output Files
 
-If `streaming=true`, the API will return:
+Each processed audio generates the following:
 
+- `*.txt` – Human-readable transcript with speaker turns and timestamps
+- `*.json` – Full structured metadata: transcript, summary, diarization
+- `*.log` – Detailed processing log (useful for debugging or auditing)
+
+---
+
+## Streaming Logs
+
+If `streaming=true`, the response will contain a log filename:
 ```json
 {
   "meta": "logfile_name",
   "logfile": "transcription_log_remote_audio_<timestamp>.log"
 }
 ```
-
-To stream logs in real-time (in another terminal):
-
+To stream logs in real-time:
 ```bash
-curl -N https://<YOUR_DEPLOYMENT>.nip.io/stream_log/transcription_log_remote_audio_<timestamp>.log
+curl -N https://<YOUR_DEPLOYMENT>.nip.io/stream_log/<log_filename>
 ```
 
-**Example:**
-
-```bash
-curl -N https://whisper-transcription-a10-6666.130-162-199-33.nip.io/stream_log/transcription_log_remote_audio_20250604_020250.log
-```
-
-This shows chunk-wise transcription output live, followed by the summary at the end.
-
 ---
 
-#### Non-Streaming Mode
+## Hugging Face Access
 
-If `streaming=false`, the API will return the entire transcription (and summary if requested) in a single JSON response when processing is complete.
+To enable diarization, accept model terms at:  
+https://huggingface.co/pyannote/segmentation
 
----
-
-## Outputs
-
-For each input file, the pipeline generates:
-
-- `*.txt` — Transcript with speaker labels and timestamps
-- `*.json` — Transcript + speaker segments + summary
-- `transcription_log_*.log` — Full debug log for reproducibility
-
----
-
-## Hugging Face Token
-
-To enable **speaker diarization**, accept the model terms at:
-[https://huggingface.co/pyannote/segmentation](https://huggingface.co/pyannote/segmentation)
-
-Then generate a token at:
-[https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)
+Generate token at:  
+https://huggingface.co/settings/tokens
 
 ---
 
 ## Dependencies
 
-Key Python packages:
-
-- `faster-whisper`
-- `transformers`
-- `pyannote.audio`
-- `librosa`, `pydub`, `noisereduce`
-- `ffmpeg-python`, `demucs`
-- `fastapi`, `uvicorn`, `jiwer`
-
----
-
-## Notes
-
-- The API uses a **cached Whisper model per variant** for faster performance.
-- **Diarization is performed globally** over the entire audio, not per chunk.
-- **Denoising uses Demucs to isolate vocals**, which may be GPU-intensive.
+| Package             | Purpose                          |
+|---------------------|----------------------------------|
+| `faster-whisper`    | Core transcription engine        |
+| `transformers`      | Summarization via Hugging Face   |
+| `pyannote.audio`    | Speaker diarization              |
+| `pydub`, `librosa`  | Audio chunking and processing    |
+| `demucs`            | Vocal separation / denoising     |
+| `fastapi`, `uvicorn`| REST API server                  |
+| `jiwer`             | WER evaluation                   |
 
 ---
 
+## Final Notes
 
-
+- Whisper model is GPU-cached per thread for performance.
+- Diarization runs globally, not chunk-by-chunk.
+- Denoising is optional but improves quality on noisy files.
