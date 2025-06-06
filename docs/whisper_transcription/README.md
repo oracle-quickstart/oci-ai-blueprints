@@ -128,7 +128,7 @@ https://huggingface.co/settings/tokens
 ## Final Notes
 
 - Whisper model is GPU-cached per thread for performance.
-- For more information about this project please review the docs/[Whisper_Architecture.pdf](Whisper_Architecture.pdf)
-- Please check out the [examples](exampels) folder for more tests.
+- For more information about this project please review the [docs](docs)
+- Please check out the [examples](examples) folder for more tests.
 - Diarization runs globally, not chunk-by-chunk.
 - Denoising is optional but improves quality on noisy files.
