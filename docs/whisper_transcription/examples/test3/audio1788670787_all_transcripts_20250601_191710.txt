@@ -1,0 +1,749 @@
+[2025-06-01 19:13:25] Speaker 5: All right. Thank you all. Morning, afternoon. So my name is Amar Gowda. I am one of the
+[2025-06-01 19:13:30] Speaker 5: products.
+[2025-06-01 19:13:25] Speaker 5: managers leading the OCI Lens initiative. So right now it's kind of what we call incubation.
+[2025-06-01 19:13:25] Speaker 5: phases so we are not yet to be a mvp or closer to it so we're kind of getting early feedback
+[2025-06-01 19:13:25] Speaker 5: and this is like think of this as a kind of private preview in a way right so a little earlier on
+[2025-06-01 19:13:25] Speaker 5: on the journey.
+[2025-06-01 19:13:26] Speaker 5: But this is something we started looking into,
+[2025-06-01 19:13:31] Speaker 5: which we, I think we spoke with.
+[2025-06-01 19:13:25] Speaker 5: you, Cecil, you and the rest of the team on what does it take to operate at scale?
+[2025-06-01 19:13:25] Speaker 5: what are the things that we could improve on, especially the monitoring, the health check.
+[2025-06-01 19:13:25] Speaker 5: side of the things, which has, you know, you gave a set of requirements and that led us.
+[2025-06-01 19:13:25] Speaker 5: to building something to help customers like you.
+[2025-06-01 19:13:30] Speaker 5: Okay, so I have a team here.
+[2025-06-01 19:13:32] Speaker 5: Joletta is...
+[2025-06-01 19:13:25] Speaker 5: another software engineers somia on the call is our data scientist selection ml engineer
+[2025-06-01 19:13:30] Speaker 5: uh
+[2025-06-01 19:13:25] Speaker 5: also have uh hithika who's our golang developer she's ex uh akis team so that's where if you all can
+[2025-06-01 19:13:25] Speaker 5: connect a little bit too.
+[2025-06-01 19:13:27] Speaker 5: All right. Today, I'm going to keep it more focused on the demo.
+[2025-06-01 19:13:25] Speaker 5: and what this tool is all about.
+[2025-06-01 19:13:27] Speaker 5: And then we'll, you know, answer questions
+[2025-06-01 19:13:29] Speaker 5: and kind of talk through.
+[2025-06-01 19:13:25] Speaker 5: But most importantly, we want to hear if the current version has a set of features you're
+[2025-06-01 19:13:25] Speaker 5: looking for? Is it missing? Is it you want to see something more? Because we are kind of very
+[2025-06-01 19:13:25] Speaker 5: rapidly on a weekly sprint uh releasing the features to this and we are really happy to incorporate
+[2025-06-01 19:13:25] Speaker 5: anything and work on how you can onboard to this by the way
+[2025-06-01 19:13:31] Speaker 5: uh so four areas where we are focused on
+[2025-06-01 19:13:25] Speaker 5: this solution is continuous GPU and cluster level monitoring of both NVIDIA GPUs and AMD GPUs.
+[2025-06-01 19:13:25] Speaker 5: together, right? So this is how we want to kind of platform
+[2025-06-01 19:13:29] Speaker 5: agnostic solution that works for all GPUs.
+[2025-06-01 19:13:25] Speaker 5: and has all the latest metrics available for you to digest and look at.
+[2025-06-01 19:13:32] Speaker 5: The next thing which we've highlighted...
+[2025-06-01 19:13:25] Speaker 5: focused on is the health checks piece to this right are my nodes healthy are they performing to
+[2025-06-01 19:13:30] Speaker 5: what they
+[2025-06-01 19:13:25] Speaker 5: should be uh active health checks active monitoring is is is a huge investment that we did uh and i'll
+[2025-06-01 19:13:32] Speaker 5: go over some
+[2025-06-01 19:13:25] Speaker 5: details about what all health checks that we have enabled including the RDMA cluster level.
+[2025-06-01 19:13:25] Speaker 5: checks that we call MPI tests as part of the solution fully baked into.
+[2025-06-01 19:13:30] Speaker 5: We kept it to cloud native.
+[2025-06-01 19:13:25] Speaker 5: because I heard it very clear that it has to be Grafana, Prometheus, Native, or Otel, anything open source.
+[2025-06-01 19:13:25] Speaker 5: Cloud Native Alliance so that it's easy to be move between clouds or on-prem and use
+[2025-06-01 19:13:29] Speaker 5: the same existing.
+[2025-06-01 19:13:25] Speaker 5: tools you always used for for monitoring another area that we've paid attention and we built is the
+[2025-06-01 19:13:25] Speaker 5: team level tracking. A lot of these large size clusters are usually used by multiple teams and
+[2025-06-01 19:13:25] Speaker 5: everybody wants to know the health of their own subset of systems or how their experiment is
+[2025-06-01 19:13:30] Speaker 5: performing.
+[2025-06-01 19:13:25] Speaker 5: if they have an unhealthy node, all of those combinations.
+[2025-06-01 19:13:29] Speaker 5: And another important thing is about
+[2025-06-01 19:13:25] Speaker 5: cost tracking right people want to see how much computer resources they've used uh whatever the
+[2025-06-01 19:13:25] Speaker 5: the power the total gpu power they have used for running this experiment right those were a few
+[2025-06-01 19:13:29] Speaker 5: things that
+[2025-06-01 19:13:25] Speaker 5: that we also focused to build on this.
+[2025-06-01 19:13:29] Speaker 5: The current set of features that we have
+[2025-06-01 19:13:32] Speaker 5: and what we have built right now
+[2025-06-01 19:13:25] Speaker 5: now is first thing tenancy level monitoring you no longer have region barriers right so we any
+[2025-06-01 19:13:25] Speaker 5: data, any region, OCI region you may be in, everything is monitorable as a single instance
+[2025-06-01 19:13:31] Speaker 5: for us.
+[2025-06-01 19:13:25] Speaker 5: So I'm going to show you a demo.
+[2025-06-01 19:13:27] Speaker 5: We allow you to monitor either single, bare metal, virtual machine
+[2025-06-01 19:13:25] Speaker 5: instances or a full oke cluster or an hpc cluster that if you may be using slurm or a native uh
+[2025-06-01 19:13:25] Speaker 5: called cluster network, compute cluster setup in OCI.
+[2025-06-01 19:13:29] Speaker 5: The third part of the feature that we worked on
+[2025-06-01 19:13:25] Speaker 5: and all of this we're going to see a demo quickly but i'm going to just spend maybe five more minutes
+[2025-06-01 19:13:25] Speaker 5: and then go to the demo.
+[2025-06-01 19:13:26] Speaker 5: Is it team level tracking?
+[2025-06-01 19:13:27] Speaker 5: You can create team level tracking.
+[2025-06-01 19:13:25] Speaker 5: handpicking whichever nodes are part of this experiment.
+[2025-06-01 19:13:29] Speaker 5: We are also working towards...
+[2025-06-01 19:13:25] Speaker 5: automatically fetching the nodes that are running experiment based on Kubernetes
+[2025-06-01 19:13:29] Speaker 5: how the job system.
+[2025-06-01 19:13:25] Speaker 5: scheduled. So that's another area we're working on automatically, dynamically pulling the nodes that
+[2025-06-01 19:13:25] Speaker 5: part of that experiment rather than you allocating what compute nodes go to.
+[2025-06-01 19:13:31] Speaker 5: This I've already said.
+[2025-06-01 19:13:25] Speaker 5: already have both of them running and i'm going to show you that uh the difference between what we do
+[2025-06-01 19:13:25] Speaker 5: with performance monitoring and health check is we go very close to the layers that an ML engineer would
+[2025-06-01 19:13:25] Speaker 5: operate under, which is PyTorch for us, PyTorch and JAX primarily, right? So we picked up PyTorch base.
+[2025-06-01 19:13:25] Speaker 5: matmal and linear regression based performance testing to achieve how many flops did we achieve
+[2025-06-01 19:13:25] Speaker 5: on this compute node how much is each gpu performing and is it is it within the threshold of
+[2025-06-01 19:13:25] Speaker 5: the specification from NVIDIA or AMD what we have traditionally seen. So we have a baseline.
+[2025-06-01 19:13:25] Speaker 5: that we score the performance to because it's the standard set of precision based testing either FBA.
+[2025-06-01 19:13:25] Speaker 5: FP16, FP32, it automatically does all of this. And most of this code, by the way, for the health
+[2025-06-01 19:13:25] Speaker 5: will all be open source so you can see you can change the things if you like or add to it
+[2025-06-01 19:13:25] Speaker 5: right and please feel free to contribute to it too.
+[2025-06-01 19:13:28] Speaker 5: This you've seen it.
+[2025-06-01 19:13:30] Speaker 5: The approach we have taken.
+[2025-06-01 19:13:25] Speaker 5: here is instead of asking you to poke holes in your existing cluster or networks, we basically push the
+[2025-06-01 19:13:25] Speaker 5: metrics and we push the health check data to the Prometheus and our central control plane.
+[2025-06-01 19:13:25] Speaker 5: It could be looked at as, oh, I need to open this port, that port, no exception.
+[2025-06-01 19:13:25] Speaker 5: if you're in a vc and in a production environment where everything is locked down egress is usually
+[2025-06-01 19:13:25] Speaker 5: easier and you can always sniff the egress but these are all running within your own tenancy so
+[2025-06-01 19:13:25] Speaker 5: So the origination of all of the metrics to where it's being sent is all within your network.
+[2025-06-01 19:13:25] Speaker 5: nothing is going into the public. All right. So I'm going to go over this.
+[2025-06-01 19:13:25] Speaker 5: but there are plenty of metrics, just a lot.
+[2025-06-01 19:13:28] Speaker 5: And it's kind of an eye candy chart on Grafana's to look.
+[2025-06-01 19:13:25] Speaker 5: at but i think you get the point right you have full nvidia dcgm exporter all metrics
+[2025-06-01 19:13:25] Speaker 5: You have all AMD SMI metrics.
+[2025-06-01 19:13:27] Speaker 5: You have all of the RDMA metrics that is particularly on our ROC.
+[2025-06-01 19:13:25] Speaker 5: implementation that we sniffed the melanocs drivers for to capture that front end next
+[2025-06-01 19:13:25] Speaker 5: node health is included, health check, full check is included,
+[2025-06-01 19:13:29] Speaker 5: and the traditional disk IO usage.
+[2025-06-01 19:13:25] Speaker 5: all of those that you usually get with Prometheus already included.
+[2025-06-01 19:13:28] Speaker 5: So all of these is bundled as one.
+[2025-06-01 19:13:25] Speaker 5: unpacking.
+[2025-06-01 19:13:25] Speaker 5: On the health checks piece, these are all the tests we do today and we'll continue to add more or adjust.
+[2025-06-01 19:13:25] Speaker 5: based on how performance we see we do extensive benchmarking to see where the threshold should
+[2025-06-01 19:13:25] Speaker 5: be or the baseline should be and then we either go up and down based on how we are seeing.
+[2025-06-01 19:13:25] Speaker 5: example the what should be the ideal mfu on a 140 gb against b200 or mi300x right and then we we lower it
+[2025-06-01 19:13:25] Speaker 5: if needed right so but we work with our vendors to also see if this we already doing the right way or not
+[2025-06-01 19:13:25] Speaker 5: So here are all the checks we run.
+[2025-06-01 19:13:27] Speaker 5: And all of these, once they complete, you will see a...
+[2025-06-01 19:13:25] Speaker 5: metrics flowing through Grafana and you'll also see this.
+[2025-06-01 19:13:25] Speaker 5: Very simple. This is how the architecture is. I'm not going to spend too much time here either.
+[2025-06-01 19:13:25] Speaker 5: because we are evolving how this is going to go right now the way we will release it is this will
+[2025-06-01 19:13:25] Speaker 5: deploy as a we're not a kubernetes operator yet but you have to basically deploy a dedicated
+[2025-06-01 19:13:25] Speaker 5: OKE cluster with just CPU nodes, which installs Prometheus Grafana open source and our control.
+[2025-06-01 19:13:25] Speaker 5: plane api as well as portal right those are all the components that come as part of this
+[2025-06-01 19:13:25] Speaker 5: And this is that footprint.
+[2025-06-01 19:13:27] Speaker 5: We run a local Postgres for Profana storage.
+[2025-06-01 19:13:30] Speaker 5: We also use Postgres for...
+[2025-06-01 19:13:25] Speaker 5: kind of operating these things.
+[2025-06-01 19:13:27] Speaker 5: This is our kind of MVP minus one approach, right?
+[2025-06-01 19:13:32] Speaker 5: And once this...
+[2025-06-01 19:13:25] Speaker 5: becomes a service this will start looking differently any questions so far
+[2025-06-01 19:13:25] Speaker 1: I have a few questions.
+[2025-06-01 19:13:26] Speaker 1: Do you prefer we wait till the end?
+[2025-06-01 19:13:25] Speaker 5: Yeah, let's take it, Zizal.
+[2025-06-01 19:13:26] Speaker 5: Or if you want to see the demo and then ask those questions, it's up to you.
+[2025-06-01 19:13:25] Speaker 1: I guess let's do the demo and then we can come back to questions.
+[2025-06-01 19:13:28] Speaker 1: Maybe that will answer some of it.
+[2025-06-01 19:13:25] Speaker 1: questions perfect yep all right so the the way we we know you can install this is we you will
+[2025-06-01 19:13:25] Speaker 5: have a GitHub repo where it could go and say deploy this and it sets up a Kubernetes cluster.
+[2025-06-01 19:13:25] Speaker 5: Kubernetes cluster setup and all of the Grafana Prometeas,
+[2025-06-01 19:13:29] Speaker 5: everything is installed.
+[2025-06-01 19:13:25] Speaker 5: in your primary OSID or your tenancy region,
+[2025-06-01 19:13:29] Speaker 5: you will get access to a portal like this.
+[2025-06-01 19:13:25] Speaker 5: right we call it corino lens but it is basically the lens so once you are here
+[2025-06-01 19:13:25] Speaker 5: right it will go it has the ability to do a multi-region query in a single api
+[2025-06-01 19:13:25] Speaker 5: So everything is API first, you have portal and there is a REST API endpoint you can interact.
+[2025-06-01 19:13:25] Speaker 5: all of that is deployed in your tenancy so you can lock it down if you like to
+[2025-06-01 19:13:25] Speaker 5: Right now we run on a public domain just for a demo, but everything in here.
+[2025-06-01 19:13:30] Speaker 5: So if you see here.
+[2025-06-01 19:13:25] Speaker 5: This is done. If I refresh this page, it's going to come back with
+[2025-06-01 19:13:25] Speaker 5: It's doing all the regions that you have subscribed in your OSIT or Oracle tenancy.
+[2025-06-01 19:13:25] Speaker 5: Then it comes back and tells you, here are all the instances that I can monitor.
+[2025-06-01 19:13:28] Speaker 5: These are basically...
+[2025-06-01 19:13:25] Speaker 5: just GPU instances that are running okay if you have new instances running you can also add
+[2025-06-01 19:13:25] Speaker 5: what we call kind of plug-in.
+[2025-06-01 19:13:27] Speaker 5: So it's a plug-in model.
+[2025-06-01 19:13:28] Speaker 5: You already say, okay, start monitoring.
+[2025-06-01 19:13:25] Speaker 5: these to OCI lengths. And so if you look at here, I have Frankfurt and Ashburn machines showing.
+[2025-06-01 19:13:25] Speaker 5: up and it allows me to combine all of this and say they're all part of the same team or same
+[2025-06-01 19:13:25] Speaker 5: experiment or same way i want to monitor and i can create what's called monitoring right
+[2025-06-01 19:13:25] Speaker 5: So before I go there, right, how can you start monitoring this?
+[2025-06-01 19:13:29] Speaker 5: If you have an existing instance...
+[2025-06-01 19:13:25] Speaker 5: running or a new instance being provisioned you have to just include this script for now right
+[2025-06-01 19:13:25] Speaker 5: we will we will change the way it is we're going to make it a native oci plugin
+[2025-06-01 19:13:25] Speaker 5: once we upstream all of this to our plugin framework.
+[2025-06-01 19:13:27] Speaker 5: But for now, it's basically a tarz file.
+[2025-06-01 19:13:25] Speaker 5: and it's a Golang-based code primarily.
+[2025-06-01 19:13:28] Speaker 5: The health checks are all Python-based.
+[2025-06-01 19:13:25] Speaker 5: And this is basically end of the day, just all these metrics are composed and pushed.
+[2025-06-01 19:13:25] Speaker 5: through Prometheus Push gateway,
+[2025-06-01 19:13:27] Speaker 5: which is getting scraped by Push.
+[2025-06-01 19:13:28] Speaker 5: So architecture.
+[2025-06-01 19:13:25] Speaker 5: this is nothing very different or rocket science here right so it's very simple
+[2025-06-01 19:13:25] Speaker 5: straightforward, but what it runs and how it runs is what the value we are adding.
+[2025-06-01 19:13:25] Speaker 5: This is like a cloud in its script as well.
+[2025-06-01 19:13:27] Speaker 5: You can add it as part of a new provisioning.
+[2025-06-01 19:13:25] Speaker 5: instance automatically every new instance that comes up has monitoring enabled and everything is
+[2025-06-01 19:13:25] Speaker 5: running at the host level as a system service it's not operating at the kubernetes layers or at the
+[2025-06-01 19:13:25] Speaker 5: the Slurm application layers.
+[2025-06-01 19:13:27] Speaker 5: It's running directly on the bare metal host.
+[2025-06-01 19:13:30] Speaker 5: And we felt that was.
+[2025-06-01 19:13:25] Speaker 5: the ideal way and the right place for us to remove specific implementations to Kubernetes.
+[2025-06-01 19:13:25] Speaker 5: or Slurm or others.
+[2025-06-01 19:13:28] Speaker 5: So we can also scan Kubernetes clusters you have running
+[2025-06-01 19:13:31] Speaker 5: or you have RDMA.
+[2025-06-01 19:13:25] Speaker 5: cluster networks or what we call compute clusters and allow you to also monitor that.
+[2025-06-01 19:13:25] Speaker 5: And when you check the whole Kubernetes cluster, all the GPU nodes under it are automatically
+[2025-06-01 19:13:30] Speaker 5: scanned.
+[2025-06-01 19:13:25] Speaker 5: and add it to the monitoring for us.
+[2025-06-01 19:13:27] Speaker 5: That's the experience.
+[2025-06-01 19:13:30] Speaker 5: Okay.
+[2025-06-01 19:13:30] Speaker 5: So I'll quickly show you how...
+[2025-06-01 19:13:25] Speaker 5: you know this this is basically a bare minimum um portal uh access we have everything is api
+[2025-06-01 19:13:25] Speaker 5: first so you get exactly what you're doing here you could you could do that uh through
+[2025-06-01 19:13:25] Speaker 5: REST API endpoints. So once this loads up, because it's doing like a close to 10 region query,
+[2025-06-01 19:13:25] Speaker 5: takes roughly six seconds but six to ten seconds we will we'll make it better with some cash
+[2025-06-01 19:13:25] Speaker 5: So, yeah, no, we have close to 30, 30 plus machines, right, Joleta?
+[2025-06-01 19:13:33] Speaker 5: I think it's performing.
+[2025-06-01 19:13:25] Speaker 5: okay but you know joletta is working hard to see how she can do parallel um parallelization
+[2025-06-01 19:13:25] Speaker 5: of some of these runs and get back.
+[2025-06-01 19:13:27] Speaker 5: But we got them better.
+[2025-06-01 19:13:29] Speaker 5: We started from 30 seconds.
+[2025-06-01 19:13:25] Speaker 5: by now at six seconds, but we'll keep pushing.
+[2025-06-01 19:13:29] Speaker 5: All right. So it allows me to create a...
+[2025-06-01 19:13:25] Speaker 5: monitoring ring, it's like just an arbitrary way for you to
+[2025-06-01 19:13:28] Speaker 5: combine these resources and say
+[2025-06-01 19:13:25] Speaker 5: I want a dedicated dashboard for this,
+[2025-06-01 19:13:27] Speaker 5: these set of machines, right?
+[2025-06-01 19:13:29] Speaker 5: That's what you.
+[2025-06-01 19:13:25] Speaker 5: allows you to create a ring and if you go to monitoring rings here and you have OK,
+[2025-06-01 19:13:30] Speaker 5: this is.
+[2025-06-01 19:13:25] Speaker 5: for ML training, this is for the team, this is for cost center, whatever, however you
+[2025-06-01 19:13:25] Speaker 5: want to use this for kind of bundling all the things. Right? And the thing about
+[2025-06-01 19:13:25] Speaker 5: this is you can always come back and add more instances or remove the instances if they go
+[2025-06-01 19:13:25] Speaker 5: offline or you have to turn back in whatever right so so every every ring you create monitor
+[2025-06-01 19:13:25] Speaker 5: ring you create comes with a dedicated Grafana board which includes all the hosts that are
+[2025-06-01 19:13:25] Speaker 5: part of this and I'm going to click you through the Grafana.
+[2025-06-01 19:13:31] Speaker 5: So what you see here at the first part of
+[2025-06-01 19:13:25] Speaker 5: this is the health summary of all the compute nodes that are part of this, right? So we added more nodes.
+[2025-06-01 19:13:25] Speaker 5: which you're in this part just to show you demo, right?
+[2025-06-01 19:13:27] Speaker 5: So if you see the first board here is this is the.
+[2025-06-01 19:13:25] Speaker 5: actual health check of all the performance related checks that we did on the host when you activate
+[2025-06-01 19:13:25] Speaker 5: the plugin we will also allow you to run these on demand so if you look at the categories here
+[2025-06-01 19:13:25] Speaker 5: compute throughput, temperature check, all these check, check, check,
+[2025-06-01 19:13:28] Speaker 5: model MFU based stuff.
+[2025-06-01 19:13:25] Speaker 5: All of those are readily available for you and we will very soon have a link that will exactly take
+[2025-06-01 19:13:25] Speaker 5: you to a JSON that is very much deeper on all the tests. This is basically the JSON that the health check.
+[2025-06-01 19:13:25] Speaker 5: script create like what's the bandwidth achieved the tflops achieved for each of the node which
+[2025-06-01 19:13:25] Speaker 5: GPU ran this for example right this is the GPU ID of an H100 we ran this is actually the JSON document
+[2025-06-01 19:13:25] Speaker 5: you'll have access to this as well as the logs piece uh but in a grafana it looks
+[2025-06-01 19:13:25] Speaker 5: Now, it's an easier way for you to digest all of this.
+[2025-06-01 19:13:27] Speaker 5: Let me put it up.
+[2025-06-01 19:13:25] Speaker 5: end of the day it's the same data but everything is a very detailed data that you may
+[2025-06-01 19:13:25] Speaker 5: be looking for um than just a summary like this okay both are available okay so we will add more
+[2025-06-01 19:13:25] Speaker 5: filters when it allows you to you know go by region and check the gpu types if you have mi300x
+[2025-06-01 19:13:25] Speaker 5: So Osaka does not have, maybe I think other machines in Chicago have MI300X.
+[2025-06-01 19:13:25] Speaker 5: see here yes you can see my 300x instance um so yeah these are all of both uh my 300x
+[2025-06-01 19:13:25] Speaker 5: as well as GPU from NVidia are fully monitored.
+[2025-06-01 19:13:29] Speaker 5: And we have health checks running for both.
+[2025-06-01 19:13:25] Speaker 5: Okay, so all of this is the data that you may be interested in.
+[2025-06-01 19:13:25] Speaker 5: that allows you to kind of baseline and benchmark all of this. Okay. So all of these metrics are
+[2025-06-01 19:13:25] Speaker 5: natively available in Prometheus and if I have to show you so we push with OCI
+[2025-06-01 19:13:25] Speaker 5: lens labels to this and this will allow you to extend it any further you like.
+[2025-06-01 19:13:25] Speaker 5: custom boards if you like, or you want to merge left join, right join some datasets here to get to more.
+[2025-06-01 19:13:25] Speaker 5: details everything is fully available that's just native krafanov right this is the lcl lens
+[2025-06-01 19:13:25] Speaker 5: health check stuff too. There is quite a bit of
+[2025-06-01 19:13:31] Speaker 5: health. Yeah, this is the health summary.
+[2025-06-01 19:13:25] Speaker 5: So all of these metrics, the only thing that we are adding,
+[2025-06-01 19:13:27] Speaker 5: this comes out as OCI lens.
+[2025-06-01 19:13:25] Speaker 5: anything that comes directly from the vendor,
+[2025-06-01 19:13:26] Speaker 5: like AMD or NVIDIA come as is, right?
+[2025-06-01 19:13:29] Speaker 5: DCGM append it.
+[2025-06-01 19:13:25] Speaker 5: So one additional thing we also did is if you know, let me go back here.
+[2025-06-01 19:13:25] Speaker 5: So this is the overall health board.
+[2025-06-01 19:13:28] Speaker 5: And there's another board that we bring is this is.
+[2025-06-01 19:13:25] Speaker 5: per host data right this is the actual gpu rdma metrics uh you know you know node health and all
+[2025-06-01 19:13:25] Speaker 5: that. Additional things that we are trying to add is if you come here and look at this table.
+[2025-06-01 19:13:25] Speaker 5: We will improve the UI a little bit,
+[2025-06-01 19:13:27] Speaker 5: but there is something called host metadata survey.
+[2025-06-01 19:13:25] Speaker 5: It's basically a local service endpoint that we hit
+[2025-06-01 19:13:28] Speaker 5: and we fetch the serial number because if the-
+[2025-06-01 19:13:25] Speaker 5: host is underperforming and you have to turn back it in for repair.
+[2025-06-01 19:13:29] Speaker 5: You know, some data that we have.
+[2025-06-01 19:13:25] Speaker 5: going to publish here is going to be super helpful.
+[2025-06-01 19:13:27] Speaker 5: And we are looking at how to put an agent.
+[2025-06-01 19:13:25] Speaker 5: AI on top of this, right? Let's
+[2025-06-01 19:13:26] Speaker 5: shortcut that, right? So we
+[2025-06-01 19:13:28] Speaker 5: will instead of throwing more
+[2025-06-01 19:13:25] Speaker 5: more boards, we will kind of curate an experience where if you see a underperforming node or a bad,
+[2025-06-01 19:13:25] Speaker 5: node. We may automate some of that to see if we could automatically raise a ticket or turn the
+[2025-06-01 19:13:25] Speaker 5: machine in or invoke folks in the support team to help you guys out.
+[2025-06-01 19:13:30] Speaker 5: So that's the.
+[2025-06-01 19:13:25] Speaker 5: future roadmap. So yeah, everything here, we're going to add more stuff like what's the
+[2025-06-01 19:13:25] Speaker 5: the huda driver you're running what's the kernel versions you're running um what's the OS
+[2025-06-01 19:13:25] Speaker 5: attached to, what's the Rockham driver version you're running, all of those data will be fully
+[2025-06-01 19:13:25] Speaker 5: available everything related to metadata will be published here and you can continue to
+[2025-06-01 19:13:25] Speaker 5: use that instead of you SSHing into the machine,
+[2025-06-01 19:13:28] Speaker 5: running some commands and all of that.
+[2025-06-01 19:13:25] Speaker 5: So, readily available.
+[2025-06-01 19:13:27] Speaker 5: Everything else you see here is something you may have been using already.
+[2025-06-01 19:13:25] Speaker 5: which is power, usage, temperature, utilization,
+[2025-06-01 19:13:28] Speaker 5: all that stuff.
+[2025-06-01 19:13:30] Speaker 5: Okay.
+[2025-06-01 19:13:31] Speaker 5: So in an actual, this-
+[2025-06-01 19:13:25] Speaker 5: this is this is what it is right so at least our first iteration of um can we get a monitor
+[2025-06-01 19:13:25] Speaker 5: going which is native and health checks going which is what lci published health checks and
+[2025-06-01 19:13:25] Speaker 5: just always vendor specified. So I'm gonna stop here and see if you folks have questions.
+[2025-06-01 19:13:25] Speaker 5: and also talk about some feedback if you have for us.
+[2025-06-01 19:13:32] Speaker 1: Thanks for the demo.
+[2025-06-01 19:13:33] Speaker 1: I have a few...
+[2025-06-01 19:13:25] Speaker 1: questions um so i think you mentioned in the first slide one of the things being like um you know
+[2025-06-01 19:13:25] Speaker 1: Kubernetes native, cloud native,
+[2025-06-01 19:13:26] Speaker 1: which was one of the things we discussed previously
+[2025-06-01 19:13:28] Speaker 1: as being one of the...
+[2025-06-01 19:13:25] Speaker 1: key things really important for us um what other levels of integrations with oke are you planning
+[2025-06-01 19:13:25] Speaker 1: at all, if any.
+[2025-06-01 19:13:26] Speaker 1: Things that top of mind would be super helpful
+[2025-06-01 19:13:28] Speaker 1: for us would be being able to
+[2025-06-01 19:13:25] Speaker 1: surface some of these unhealthy node conditions to OKE or to the actual Kubernetes object.
+[2025-06-01 19:13:25] Speaker 1: so that we can use that in our tooling.
+[2025-06-01 19:13:27] Speaker 1: And then, you know, when we're launching, submitting jobs.
+[2025-06-01 19:13:25] Speaker 1: being able to detect that a node is unhealthy.
+[2025-06-01 19:13:28] Speaker 1: The other thing I think is like the monitoring.
+[2025-06-01 19:13:25] Speaker 1: the rings that you mentioned, I don't think that would be super helpful for us because we're not
+[2025-06-01 19:13:25] Speaker 1: assigning nodes to people or teams.
+[2025-06-01 19:13:28] Speaker 1: Instead, we're extremely dynamic.
+[2025-06-01 19:13:31] Speaker 1: So we have...
+[2025-06-01 19:13:25] Speaker 1: you know, super cluster of thousands of GPUs.
+[2025-06-01 19:13:27] Speaker 1: And those nodes get used.
+[2025-06-01 19:13:30] Speaker 1: We use Q, which is a native.
+[2025-06-01 19:13:25] Speaker 1: Kubernetes project to schedule workloads.
+[2025-06-01 19:13:30] Speaker 1: So at any given time, we want to know, like, this
+[2025-06-01 19:13:25] Speaker 1: job is running with, you know, 128 GPUs, are any of the nodes unhealthy in this job? And so that job
+[2025-06-01 19:13:25] Speaker 1: might be using a different set of nodes than another job would be for the same team the next
+[2025-06-01 19:13:25] Speaker 1: day. So something like that would be helpful. Okay, wonderful. I think for the answer for the first
+[2025-06-01 19:13:25] Speaker 5: one is uh we are working with okay team i think okay team also has added some features lately where
+[2025-06-01 19:13:25] Speaker 5: they can detect an unhealthy gpu node and start tagging them as unallocatable uh for some some
+[2025-06-01 19:13:25] Speaker 5: the checks that they ran.
+[2025-06-01 19:13:27] Speaker 5: So we are actually working with them
+[2025-06-01 19:13:29] Speaker 5: to see if anything...
+[2025-06-01 19:13:25] Speaker 5: we find in our health check uh that uh that says that you know this node one of the gpus in the
+[2025-06-01 19:13:25] Speaker 5: node is continuous to underperform and communicate back on unschedulable.
+[2025-06-01 19:13:25] Speaker 5: we will have that integration point in the future for sure.
+[2025-06-01 19:13:29] Speaker 5: Right. So, and the metrics from.
+[2025-06-01 19:13:25] Speaker 5: OKE directly. So if there are part level, position volume level and lower
+[2025-06-01 19:13:25] Speaker 5: of good healthy prometheus metrics that come we can directly pipe all of those into this lens with
+[2025-06-01 19:13:25] Speaker 5: added set of things from our side to kind of consolidate and give you that one view that means
+[2025-06-01 19:13:25] Speaker 5: be needed. So that definitely is the plan, but we are looking into, okay, now a customer has to run.
+[2025-06-01 19:13:25] Speaker 5: a Prometheus instance in a Kubernetes cluster and that complication is what we're trying to do.
+[2025-06-01 19:13:25] Speaker 5: tackle the next feature set.
+[2025-06-01 19:13:29] Speaker 1: Okay, makes sense.
+[2025-06-01 19:13:30] Speaker 1: Yeah, just to reemphasize.
+[2025-06-01 19:13:25] Speaker 1: this is like probably the most important thing for us like really being able to
+[2025-06-01 19:13:25] Speaker 1: because we want to be able to do this automatically, right?
+[2025-06-01 19:13:28] Speaker 1: If a GPU breaks overnight, we don't want...
+[2025-06-01 19:13:25] Speaker 1: someone to have to, you know, go do something, go look at a Grafana dashboard we want.
+[2025-06-01 19:13:25] Speaker 1: our jobs to automatically react to these things.
+[2025-06-01 19:13:28] Speaker 5: Yeah. So I think that that brings another second.
+[2025-06-01 19:13:25] Speaker 5: question or even feedback you had for us is like the static way of creating monitoring ranks is
+[2025-06-01 19:13:25] Speaker 5: not ideal we fully hear you uh i think because of the dynamic if you're using q where you know
+[2025-06-01 19:13:25] Speaker 5: you get it booted out based on what team and priority and cohort and all of those stuff are.
+[2025-06-01 19:13:25] Speaker 5: We will integrate with OKE and the way we will look at is where the job is running or where
+[2025-06-01 19:13:25] Speaker 5: the deployment is running at a point of time and try to dynamically what we call add more tags to
+[2025-06-01 19:13:25] Speaker 5: metadata that's coming in to exactly relate to what experiment who ran it when when did it
+[2025-06-01 19:13:25] Speaker 5: complete timestamp it and try to pull those in.
+[2025-06-01 19:13:28] Speaker 5: So it's a thing that we are working.
+[2025-06-01 19:13:25] Speaker 5: towards, but we started with more non-Kubernetes-based experience, and then we would quick switch.
+[2025-06-01 19:13:25] Speaker 5: move into the dynamic workload where we pull in the nodes and even the GPUs, right?
+[2025-06-01 19:13:30] Speaker 5: Not full nodes.
+[2025-06-01 19:13:25] Speaker 5: be running every experiment so we will try to say four out of that no GPUs were running for this
+[2025-06-01 19:13:25] Speaker 5: experiment and that's what is aggregated into that board.
+[2025-06-01 19:13:28] Speaker 5: We will, that's a good point.
+[2025-06-01 19:13:25] Speaker 5: feedback and I think we will try to prioritize that.
+[2025-06-01 19:13:27] Speaker 5: Yeah, I think you're not very far from.
+[2025-06-01 19:13:25] Speaker 1: that honestly even without having to do like tagging of instances and trying to keep track of
+[2025-06-01 19:13:25] Speaker 1: what's running what. I think you could do some queries in your dashboard that just...
+[2025-06-01 19:13:25] Speaker 1: shows like your health metrics and then also use Kubernetes metrics and see like for
+[2025-06-01 19:13:25] Speaker 1: any given job or deployment, like you said, show all the nodes of that job and show if
+[2025-06-01 19:13:25] Speaker 1: of them are unhealthy so i think it's just a matter of like tying everything together
+[2025-06-01 19:13:25] Speaker 5: Yeah, I fully agree. Actually, we started like that, by the way, and I think Joleta and...
+[2025-06-01 19:13:25] Speaker 5: and most of my team knows that we started with a full Kubernetes-based experience, but we were nudged.
+[2025-06-01 19:13:25] Speaker 5: on like well i think there are a lot of people who want a full monitoring and this is where we
+[2025-06-01 19:13:25] Speaker 5: I think we have the both. We like to just pull it in like you said.
+[2025-06-01 19:13:25] Speaker 5: and start relating where, where, what is running
+[2025-06-01 19:13:28] Speaker 5: and start kind of creating that.
+[2025-06-01 19:13:25] Speaker 5: key value pair mapping here.
+[2025-06-01 19:13:25] Speaker 1: That's another question I'll have and then I'll pass it to like other.
+[2025-06-01 19:13:25] Speaker 1: Luis, Ace, if you have any questions, is you mentioned health checks. Can you talk?
+[2025-06-01 19:13:25] Speaker 1: a bit more about um how those would run like are you running anything that requires the workload
+[2025-06-01 19:13:25] Speaker 1: to be idle and if so is it or the gpu note to be idle and if so is it going to be doing
+[2025-06-01 19:13:25] Speaker 1: something like when nodes go idle to check the gpus or are these like running passively in the background
+[2025-06-01 19:13:25] Speaker 5: So I'll ask Soumya to chime in as well on she's an ML engineer worked on the script.
+[2025-06-01 19:13:25] Speaker 5: So we run this, we expect the GPUs to be idle and no workloads to be running.
+[2025-06-01 19:13:25] Speaker 5: this is where the PyTorch is loading into the tensor so it's loading into the accelerator.
+[2025-06-01 19:13:25] Speaker 5: running all these checks and coming back.
+[2025-06-01 19:13:27] Speaker 5: So we expect no workloads to be running when this.
+[2025-06-01 19:13:25] Speaker 5: this is running. We run it when you say you need to run it.
+[2025-06-01 19:13:28] Speaker 5: Right now we have not automated it.
+[2025-06-01 19:13:25] Speaker 5: And this is where we need feedback.
+[2025-06-01 19:13:26] Speaker 5: Like, do you want to run at midnight, 12 o'clock every day?
+[2025-06-01 19:13:25] Speaker 5: right you need that kind of no definitely not
+[2025-06-01 19:13:25] Speaker 1: Yeah, if I'm an ML engineer, I'm like, okay, I know when my pipeline is at a pause where I say call.
+[2025-06-01 19:13:25] Speaker 5: of my gpus are flushed out and idle i want to run the health checks for everything and make sure
+[2025-06-01 19:13:25] Speaker 5: of that is good before we go to the next phase, right? Is that an experience you would look for?
+[2025-06-01 19:13:25] Speaker 5: What we are thinking is we will give you a on-demand way for you to invoke health checkscripts.
+[2025-06-01 19:13:25] Speaker 5: through a REST API.
+[2025-06-01 19:13:26] Speaker 5: You have to just say
+[2025-06-01 19:13:28] Speaker 5: when you want to run it
+[2025-06-01 19:13:30] Speaker 5: and you on-demand run it.
+[2025-06-01 19:13:25] Speaker 5: Because we don't know when your GPUs are idle, then they're not.
+[2025-06-01 19:13:25] Speaker 1: Interesting. I was thinking like you might be able to figure that out like from a program.
+[2025-06-01 19:13:25] Speaker 1: programmatic standpoint, you might be able to get that data and whenever they are idle.
+[2025-06-01 19:13:25] Speaker 1: kick off like a workload that runs the Huff check.
+[2025-06-01 19:13:30] Speaker 1: So the intuition behind creating
+[2025-06-01 19:13:25] Speaker 3: this health check recipe is imagine a machine learning engineer or like you have a team that's
+[2025-06-01 19:13:25] Speaker 3: going to do a multi-node training or like multi-node fine tuning, right?
+[2025-06-01 19:13:29] Speaker 3: Before you go into doing...
+[2025-06-01 19:13:25] Speaker 3: a large-scale training operation or like any kind of like workload that's going to take too much
+[2025-06-01 19:13:25] Speaker 3: demand of the GPU itself.
+[2025-06-01 19:13:27] Speaker 3: You'd want to run this health check before that to understand that
+[2025-06-01 19:13:25] Speaker 3: health of your infrastructure right for example the way this health check is designed is it's based
+[2025-06-01 19:13:25] Speaker 3: on just 10 0 matrix multiplication right so depending upon the matrix size you probably be
+[2025-06-01 19:13:25] Speaker 3: loading like 818 like imagine like a matrix size of like 8192 by 818
+[2025-06-01 19:13:25] Speaker 3: too right you're going to be loading all these matrix into the gpu memory and we are going to
+[2025-06-01 19:13:25] Speaker 3: pressurize and see how much your machine is able to take the computation throughput or like throat
+[2025-06-01 19:13:25] Speaker 3: the power and things like that. So ideally you would want to do it when your machine is idle and to
+[2025-06-01 19:13:25] Speaker 3: address your point yeah we could actually schedule and understand when the jobs are not running
+[2025-06-01 19:13:25] Speaker 3: and we could just run the health check at that point.
+[2025-06-01 19:13:27] Speaker 3: And we can detect when the machines are...
+[2025-06-01 19:13:25] Speaker 3: Yeah, I think it'd be interesting to have the option to schedule it on demand, like as a...
+[2025-06-01 19:13:25] Speaker 1: we hook like to the jobs like you said um but i don't i need to think more about this
+[2025-06-01 19:13:25] Speaker 1: But I think, you know, my intuition is why not both, you know, like having a periodic check.
+[2025-06-01 19:13:25] Speaker 1: that best effort runs when the node is sitting there doing nothing.
+[2025-06-01 19:13:29] Speaker 1: So that if a node does go unhealthy,
+[2025-06-01 19:13:25] Speaker 1: we can find out about it early and not wait for a job to get scheduled there to find out.
+[2025-06-01 19:13:25] Speaker 5: Yeah, no, we'll take it as a good feedback.
+[2025-06-01 19:13:28] Speaker 5: We have still, because we have to think.
+[2025-06-01 19:13:25] Speaker 5: through a little bit on scheduling because it takes roughly five minutes for this head check
+[2025-06-01 19:13:25] Speaker 5: to finish and in mix of this if your queue ends up scheduling another job uh they'll they'll
+[2025-06-01 19:13:25] Speaker 5: it can't find an ideal GPU. So they go on pending. So we have to just think through this.
+[2025-06-01 19:13:25] Speaker 5: Yeah, no, this would definitely, yes, this would definitely have to be an...
+[2025-06-01 19:13:25] Speaker 1: interruptible workload so that our workloads can always schedule the priority.
+[2025-06-01 19:13:25] Speaker 5: Exactly right you cannot boot this workload because this is running at the system
+[2025-06-01 19:13:25] Speaker 5: level, right? And Kubernetes layers are at a much higher layer too.
+[2025-06-01 19:13:25] Speaker 5: and we need to think of this a little bit but i think this is really good feedback um thank you
+[2025-06-01 19:13:25] Speaker 1: Yeah, no, thank you.
+[2025-06-01 19:13:26] Speaker 1: Louise Ace, you have anything?
+[2025-06-01 19:13:25] Speaker 4: Mostly just echoing your thoughts. I mean, when we talk about node lifecycle,
+[2025-06-01 19:13:25] Speaker 4: It's very much like an ongoing thing.
+[2025-06-01 19:13:26] Speaker 4: It's not sort of a one off thing.
+[2025-06-01 19:13:27] Speaker 4: So just, yeah.
+[2025-06-01 19:13:25] Speaker 4: like having both elements and thinking about how nodes like proceed through.
+[2025-06-01 19:13:25] Speaker 4: I don't want to say this process exactly, but like, I don't know, mostly just echoing Cecile's
+[2025-06-01 19:13:25] Speaker 4: thoughts. Okay. Yeah. Thank you. So what, what we are trying to also avoid is before you shut this
+[2025-06-01 19:13:25] Speaker 5: machine and turn it back into OCI to repair. We want to see what is the issue, right?
+[2025-06-01 19:13:25] Speaker 5: deeper into what where is the concern is it a single gpu always coming back with a lower
+[2025-06-01 19:13:25] Speaker 5: performance compared to the rest seven of them in the same node or is it consistent uh no
+[2025-06-01 19:13:25] Speaker 5: RDMA nick flapping issues, errors that show up.
+[2025-06-01 19:13:28] Speaker 5: And this is a start.
+[2025-06-01 19:13:30] Speaker 5: And where we want to go.
+[2025-06-01 19:13:25] Speaker 5: is if we start seeing a pattern of things which are very consistent with a lot of other customers
+[2025-06-01 19:13:25] Speaker 5: and a lot of type of GPUs,
+[2025-06-01 19:13:26] Speaker 5: we will come back with recommendations
+[2025-06-01 19:13:28] Speaker 5: through an agentic AI type of app.
+[2025-06-01 19:13:25] Speaker 5: flow where probably just a reboot may fix the things or it could be specific to a driver.
+[2025-06-01 19:13:25] Speaker 5: the GPU driver you have, which has seen this incompatibility with the Mellanox drivers we have.
+[2025-06-01 19:13:25] Speaker 5: example. So we are trying to learn from using the data as well as all the issues customers.
+[2025-06-01 19:13:25] Speaker 5: give us to start recommending, right?
+[2025-06-01 19:13:27] Speaker 5: So this is just a start for us to start collecting,
+[2025-06-01 19:13:29] Speaker 5: but next approach for us is
+[2025-06-01 19:13:25] Speaker 5: remove the noise and tell if there is really a issue with the host or if this is a transient issue.
+[2025-06-01 19:13:25] Speaker 5: or not an issue with something related to an experiment that has been set up.
+[2025-06-01 19:13:25] Speaker 5: workload is being scheduled on this or the topology that it's been deployed with.
+[2025-06-01 19:13:29] Speaker 5: Any of those questions?
+[2025-06-01 19:13:25] Speaker 5: Right, so that's where we want to get to.
+[2025-06-01 19:13:25] Speaker 5: Awesome. So here's the log as well.
+[2025-06-01 19:13:28] Speaker 5: This is this we'll build up more and more.
+[2025-06-01 19:13:25] Speaker 5: stuff and it's all accessible either through portal or an api where you don't have to assess
+[2025-06-01 19:13:25] Speaker 5: an instance. Because the scripts are going to be standardized that what you see against
+[2025-06-01 19:13:25] Speaker 5: what OCI support sees everything will be consistent and maybe in the future once we have support team
+[2025-06-01 19:13:25] Speaker 5: running full diagnosis they know where to narrow down the issue to like exact GPU or the NICs or
+[2025-06-01 19:13:25] Speaker 5: anything instead of running this full you know six hours uh diagnosis on the host right
+[2025-06-01 19:13:25] Speaker 5: So we're just trying to narrow down that time it takes to fix these machines too.
+[2025-06-01 19:13:30] Speaker 5: So that will help.
+[2025-06-01 19:13:25] Speaker 1: When you say consistent, is the idea that you give us a set of scripts and we run these?
+[2025-06-01 19:13:25] Speaker 1: or they see the results of our health checks.
+[2025-06-01 19:13:25] Speaker 1: So right now with the way it is integrated, the OCI support does not see the results, but you could just take...
+[2025-06-01 19:13:25] Speaker 5: these results copy paste in your support ticket if you need to OCI support will have access
+[2025-06-01 19:13:25] Speaker 5: the same health check tools and scripts that you are running.
+[2025-06-01 19:13:29] Speaker 5: So it's a consistent tool.
+[2025-06-01 19:13:25] Speaker 5: that you both are running,
+[2025-06-01 19:13:26] Speaker 5: where what you have seen as the results,
+[2025-06-01 19:13:29] Speaker 5: for example, the score,
+[2025-06-01 19:13:25] Speaker 5: So here's the flops, for example.
+[2025-06-01 19:13:28] Speaker 5: This is the duration, right?
+[2025-06-01 19:13:30] Speaker 5: What you are seeing...
+[2025-06-01 19:13:25] Speaker 5: when OCI support is trying to run this on their own.
+[2025-06-01 19:13:28] Speaker 5: There is a lot of consistency.
+[2025-06-01 19:13:25] Speaker 5: Right. And if you see this GPU consistently coming back with like, okay, it takes 31 seconds.
+[2025-06-01 19:13:25] Speaker 5: It's easy to narrow down saying that GQ7 is something.
+[2025-06-01 19:13:25] Speaker 5: that we need to request.
+[2025-06-01 19:13:25] Speaker 1: I see. Yeah, I think it would be even better if we can get to a stage where they...
+[2025-06-01 19:13:25] Speaker 1: like have access to historical results and they can just see things that are
+[2025-06-01 19:13:28] Speaker 1: ZeeBrand.
+[2025-06-01 19:13:25] Speaker 1: Yeah.
+[2025-06-01 19:13:25] Speaker 1: instead of having to reproduce and copy pasting things.
+[2025-06-01 19:13:25] Speaker 1: i fully agree i think that's our goal but we are not a oci service yet
+[2025-06-01 19:13:25] Speaker 5: right and uh because it's all running the customer's tenancy uh there's obviously
+[2025-06-01 19:13:25] Speaker 5: little bit of things about what we can collect, what we cannot. And we had to go through those.
+[2025-06-01 19:13:25] Speaker 5: product approval phases.
+[2025-06-01 19:13:28] Speaker 5: And then we will probably
+[2025-06-01 19:13:29] Speaker 5: support and have access to this.
+[2025-06-01 19:13:25] Speaker 1: Okay, makes sense. One other question for Prometheus. You mentioned at some point in the
+[2025-06-01 19:13:25] Speaker 1: this slide something about setting up a CPU cluster or gate cluster to run Prometheus.
+[2025-06-01 19:13:25] Speaker 1: can we reuse our existing primukes instead?
+[2025-06-01 19:13:25] Speaker 5: Yes, yes, absolutely. You can use your existing. You need to just enable push gateway and add.
+[2025-06-01 19:13:25] Speaker 5: push gateway configurations because that's how all of the scripts push their results and metrics.
+[2025-06-01 19:13:25] Speaker 5: Okay, can you give a bit more detail about how this works?
+[2025-06-01 19:13:25] Speaker 1: scripts push metrics or how does that work
+[2025-06-01 19:13:25] Speaker 5: Yeah, Hrithika, can you elaborate on this?
+[2025-06-01 19:13:25] Speaker 2: Hello? Can you hear me?
+[2025-06-01 19:13:25] Speaker 5: Is VTK wrong?
+[2025-06-01 19:13:25] Speaker 5: Yeah.
+[2025-06-01 19:13:25] Speaker 2: All right. Could you give that question once again?
+[2025-06-01 19:13:25] Speaker 1: It was just having a bit more detail about how the metrics get emitted.
+[2025-06-01 19:13:25] Speaker 1: Because I understand there are scripts and then I'm just trying to figure out like how we could.
+[2025-06-01 19:13:25] Speaker 1: scrape our own metrics.
+[2025-06-01 19:13:25] Speaker 1: Oh yeah, so we basically build the node exporter, DCGM, AMD exporter, all of that depending on the GPU.
+[2025-06-01 19:13:25] Speaker 2: it is and bring those up and there are also some metrics which are OCI specific which are
+[2025-06-01 19:13:25] Speaker 2: return in a Go plugin and that plugin
+[2025-06-01 19:13:29] Speaker 2: fits metrics to the push gateway at a regular interval.
+[2025-06-01 19:13:25] Speaker 5: Yeah, all of the scripts here are...
+[2025-06-01 19:13:27] Speaker 5: Does that make sense?
+[2025-06-01 19:13:25] Speaker 5: push gateway if you see it here and
+[2025-06-01 19:13:25] Speaker 5: And these are scraped by Prometheus
+[2025-06-01 19:13:27] Speaker 5: based on Prometheus script config.
+[2025-06-01 19:13:29] Speaker 5: And-
+[2025-06-01 19:13:25] Speaker 5: Push gateway is part of a service that is default in Prometheus server install.
+[2025-06-01 19:13:30] Speaker 5: And it's the same.
+[2025-06-01 19:13:25] Speaker 5: mechanism.
+[2025-06-01 19:13:27] Speaker 5: Gotcha.
+[2025-06-01 19:13:28] Speaker 1: Okay.
+[2025-06-01 19:13:28] Speaker 1: I'll look into this a bit more.
+[2025-06-01 19:13:29] Speaker 1: I haven't used push gateway before.
+[2025-06-01 19:13:25] Speaker 1: So that's probably where my gap comes from.
+[2025-06-01 19:13:27] Speaker 1: Okay.
+[2025-06-01 19:13:27] Speaker 5: Yeah, I think it's part of the setup.
+[2025-06-01 19:13:25] Speaker 5: And if you go, if you run Prometheus through operator,
+[2025-06-01 19:13:28] Speaker 5: Push Gateway is usually installed as a service.
+[2025-06-01 19:13:25] Speaker 5: It should have its own service endpoint,
+[2025-06-01 19:13:28] Speaker 5: and you have to just enable a few things.
+[2025-06-01 19:13:25] Speaker 5: and you're good to go. Yeah. So, this is for instead of you going and reaching out.
+[2025-06-01 19:13:25] Speaker 5: going and reaching out and pulling the metrics out which is where you need firewall exception
+[2025-06-01 19:13:25] Speaker 5: and opening the ports and all of that.
+[2025-06-01 19:13:27] Speaker 5: Here, any metrics you are generating, including DCGM,
+[2025-06-01 19:13:25] Speaker 5: all of those are pool metrics, right?
+[2025-06-01 19:13:27] Speaker 5: We push it directly to the push page.
+[2025-06-01 19:13:25] Speaker 5: and your Prometheus is scraping push gateway basically.
+[2025-06-01 19:13:29] Speaker 5: It's like an intermediate data store.
+[2025-06-01 19:13:25] Speaker 5: All right. Any further questions? And we are also eager if you have any feedback.
+[2025-06-01 19:13:25] Speaker 5: can think about we are thinking in next roughly two weeks you can you can have access to all of
+[2025-06-01 19:13:25] Speaker 5: the health check scripts.
+[2025-06-01 19:13:27] Speaker 5: We'll get access to your repo
+[2025-06-01 19:13:29] Speaker 5: once you share your GitHub IDs.
+[2025-06-01 19:13:25] Speaker 5: can poke around and really we are here to listen and and build something that that makes uh
+[2025-06-01 19:13:25] Speaker 5: life easy right so we are here to listen and you know continue to iterate as fast as we
+[2025-06-01 19:13:25] Speaker 5: can to give you what you're looking for.
+[2025-06-01 19:13:27] Speaker 5: So.
+[2025-06-01 19:13:28] Speaker 1: Thanks, Samar.
+[2025-06-01 19:13:29] Speaker 1: I think overall this is, you know.
+[2025-06-01 19:13:25] Speaker 1: something that we've been asking for. So really, really happy it's, it's getting there.
+[2025-06-01 19:13:25] Speaker 1: and you all are focusing your efforts there.
+[2025-06-01 19:13:26] Speaker 1: It's definitely heading the right direction.
+[2025-06-01 19:13:25] Speaker 1: I think looking at what we have today that we built ourselves a best over the past year,
+[2025-06-01 19:13:29] Speaker 1: it's definitely...
+[2025-06-01 19:13:25] Speaker 1: not there yet. I think what we have right now is a bit more advanced just because we've built
+[2025-06-01 19:13:25] Speaker 1: our own set of scripts and like we've iterated on them and we have all that automation.
+[2025-06-01 19:13:25] Speaker 1: and integration with Kubernetes already.
+[2025-06-01 19:13:27] Speaker 1: But I like where this is going and yeah, excited too.
+[2025-06-01 19:13:25] Speaker 1: work with you all too.
+[2025-06-01 19:13:26] Speaker 1: It's great.
+[2025-06-01 19:13:27] Speaker 5: Okay.
+[2025-06-01 19:13:28] Speaker 5: Yeah.
+[2025-06-01 19:13:28] Speaker 5: We'll try to,
+[2025-06-01 19:13:30] Speaker 5: right now,
+[2025-06-01 19:13:31] Speaker 5: we are not overly
+[2025-06-01 19:13:25] Speaker 5: Kubernetes heavy features and if we will probably in the next iteration or a milestone
+[2025-06-01 19:13:25] Speaker 5: add all of those capabilities to bring Kubernetes metrics and that experience together.
+[2025-06-01 19:13:25] Speaker 5: And hopefully, Sisal, I'll post that.
+[2025-06-01 19:13:27] Speaker 5: You would be open to trying it out and giving us the feedback.
+[2025-06-01 19:13:25] Speaker 5: and iterating like that.
+[2025-06-01 19:13:29] Speaker 1: Sounds good.
+[2025-06-01 19:13:32] Speaker 5: Thanks for making the time to give us a demo.
+[2025-06-01 19:13:25] Speaker 1: Appreciate it.
+[2025-06-01 19:13:25] Speaker 5: Thanks for spending your time with us as well.
+[2025-06-01 19:13:28] Speaker 5: So anyone else, any questions?
+[2025-06-01 19:13:25] Speaker 1: Thank you.
+[2025-06-01 19:13:25] Speaker 1: Thank you.
+[2025-06-01 19:13:25] Speaker 1: Thank you.
+[2025-06-01 19:13:25] Speaker 1: Thank you.
+
+====== Summary ======
+
+Key Points:
+
+* The OCI Lens initiative is currently in the incubation phase and is not yet an MVP or closer to it.
+* The team is focused on continuous GPU and cluster-level monitoring of both NVIDIA and AMD GPUs.
+* The solution includes active health checks and active monitoring, which is a huge investment.
+* The team has built team-level tracking, which allows multiple teams to monitor their own subset of systems.
+* The solution also includes cost tracking, which allows users to see how much computer resources they have used.
+
+Action Items:
+
+* The team will show a demo of the OCI Lens initiative, which allows users to monitor either single, bare metal, virtual machine instances, or a full OKE cluster or an HPC cluster.
+* The team is working towards automatically fetching the nodes that are running an experiment based on Kubernetes scheduling.
+* The team will demonstrate the difference between performance monitoring and health checks, which goes very close to the layers that an ML engineer would operate under.
+
+---
+
+Key points:
+
+* PyTorch and JAX are being considered for performance testing.
+* The approach is to push metrics and health check data to Prometheus and the central control plane.
+* The origination of all metrics is within the network.
+* There are plenty of metrics, including NVIDIA DCGM exporter, AMD SMI metrics, and RDMA metrics.
+* Health checks include traditional disk IO usage and are adjusted based on performance seen.
+* The architecture is evolving and will be deployed as a dedicated OKE cluster with CPU nodes.
+* The footprint includes Prometheus, Grafana, open source, and control plane API.
+* The demo will be shown, and questions can be asked after.
+
+Decisions:
+
+* PyTorch and JAX will be considered for performance testing.
+* The approach is to push metrics and health check data to Prometheus and the central control plane.
+
+Action items:
+
+* None specified in the transcript.
+
+---
+
+Key Points:
+
+* The meeting discussed a plug-in model for monitoring OCI lengths.
+* To start monitoring, an existing instance or a new instance being provisioned must include a script.
+* The architecture is simple and straightforward, with the monitoring running directly on the bare metal host.
+* The monitoring can be scanned for Kubernetes clusters, RDMA cluster networks, or compute clusters.
+* The experience is that when you check a Kubernetes cluster, all GPU nodes under it are automatically scanned and added to the monitoring.
+* The meeting showed a portal for accessing the monitoring through REST API endpoints.
+* The monitoring allows for the creation of a monitoring ring, which can be used to bundle all the things.
+* Every monitoring ring comes with a dedicated Grafana board.
+* The health summary of all compute nodes that are part of the monitoring was demonstrated.
+* The health checks include performance-related checks that are done on the host when the plugin is activated.
+* The health checks can be run on demand, and a link will soon be provided to a JSON that is deeper on all the tests.
+
+Decisions:
+
+* The monitoring will be started by including a script in an existing instance or a new instance being provisioned.
+* The monitoring will run directly on the bare metal host.
+* The monitoring can be scanned for Kubernetes clusters, RDMA cluster networks, or compute clusters.
+* The monitoring allows for the creation of a monitoring ring, which can be used to bundle all the things.
+
+Action Items:
+
+* Provide a link to a JSON that is deeper on all the tests.
+
+---
+
+Summary of Meeting:
+
+* The speaker presented a tool that provides detailed data on GPU usage, health, and performance.
+* The tool is natively available in Prometheus and can be extended with custom labels.
+* The speaker added that they are working on improving the UI and automating some tasks to help users identify and resolve issues more efficiently.
+* The speaker mentioned that they are planning to add more data related to metadata, such as host metadata survey, to provide a more comprehensive view of the system.
+* The speaker also mentioned that they are planning to add more boards to the tool to provide more information about the system.
+* The speaker mentioned that they are planning to add more features to the tool, such as automating some tasks and improving the UI.
+* The speaker mentioned that they are planning to add more data related to metadata, such as host metadata survey, to provide a more comprehensive view of the system.
+* The speaker mentioned that they are planning to add more boards to the tool to provide more information about the system.
+* The speaker mentioned that they are planning to add more features to the tool, such as automating some tasks and improving the UI.
+* The speaker mentioned that they are planning to add more data related to metadata, such as host metadata survey, to provide a more comprehensive view of the system.
+* The speaker mentioned that they are planning to add more boards to the tool to provide more information about the system.
+* The speaker mentioned that they are planning to add more features to the tool, such as automating some tasks and improving the UI.
+* The speaker mentioned that they are planning to add more data related to metadata, such as host metadata survey, to provide a more comprehensive view of the system.
+* The speaker mentioned that they are planning to add more boards to the tool to provide more information about the system.
+* The speaker mentioned that they are planning to add more features to the tool, such as automating some tasks and improving the UI.
+* The speaker mentioned that they are planning to add more data related to metadata, such as host metadata survey, to provide a more comprehensive view of the system.
+* The speaker mentioned that they are planning to add more boards to the tool to provide more information about the system.
+* The speaker mentioned that they are planning to add more features to the tool, such as automating some tasks and improving the UI.
+* The speaker mentioned that they are planning to add more data
+
+---
+
+Key points:
+
+* The team is working on a solution to automatically detect and react to unhealthy GPUs in a Kubernetes cluster.
+* The solution will involve integrating with the Open Kubernetes Engine (OKE) and dynamically adding tags to metadata.
+* The team is also working on improving the static way of creating monitoring ranks.
+* The team is looking into using Prometheus to monitor the health of GPUs in a Kubernetes cluster.
+
+Decisions:
+
+* The team will integrate with OKE to dynamically add tags to metadata.
+* The team will prioritize the development of a solution to automatically detect and react to unhealthy GPUs.
+
+Action items:
+
+* The team will continue working on integrating with OKE and dynamically adding tags to metadata.
+* The team will prioritize the development of a solution to automatically detect and react to unhealthy GPUs.
+
+---
+
+Key Points:
+
+* The team is currently not automating the running of health checks on GPUs.
+* Feedback is needed on when to run health checks, such as at midnight every day or on demand.
+* The team is considering giving an on-demand way for ML engineers to invoke health check scripts through a REST API.
+* The team is also considering creating a health check recipe that can be run before large-scale training operations to understand the health of the infrastructure.
+* The team is considering scheduling health checks on demand, as well as having a periodic check that runs when the node is idle.
+* The team is aware of the need for an interruptible workload so that workloads can always schedule their priority.
+* The team is trying to learn from data and customer issues to start recommending specific fixes for GPU driver incompatibilities.
+
+Action Items:
+
+* Determine the best way to invoke health check scripts on demand.
+* Create a health check recipe that can be run before large-scale training operations.
+* Schedule health checks on demand as well as having a periodic check that runs when the node is idle.
+* Develop an agentic AI-type app to learn from data and customer issues to start recommending specific fixes for GPU driver incompatibilities.
+
+---
+
+Key points:
+
+* The team is working on a new approach to diagnose issues with hosts or experiments scheduled on them.
+* The goal is to narrow down the time it takes to fix these machines.
+* The team is working on building a consistent tool that both OCI support and customers can use to diagnose issues.
+* The team is also working on improving the historical results and access to them for customers.
+* The team is exploring the possibility of reusing existing primukes instead of setting up a CPU cluster or gate cluster to run Prometheus.
+* The team is working on building node exporter, DCGM, AMD exporter, and other metrics exporters depending on the GPU.
+* The team is also working on integrating OCI-specific metrics into Prometheus.
+* The team is using push gateway to collect metrics from scripts and scrape them by Prometheus.
+
+Decisions:
+
+* The team will work on building a consistent tool that both OCI support and customers can use to diagnose issues.
+* The team will explore the possibility of reusing existing primukes instead of setting up a CPU cluster or gate cluster to run Prometheus.
+
+Action items:
+
+* The team will work on building node exporter, DCGM, AMD exporter, and other metrics exporters depending on the GPU.
+* The team will integrate OCI-specific metrics into Prometheus.
+* The team will use push gateway to collect metrics from scripts and scrape them by Prometheus.
+
+---
+
+Key points:
+
+* Push Gateway is a service that should have its own service endpoint.
+* Any metrics generated, including DCGM, are pool metrics that are pushed directly to the Push Gateway.
+* Prometheus is used to scrape the Push Gateway, acting as an intermediate data store.
+* Access to health check scripts will be provided in roughly two weeks once GitHub IDs are shared.
+* The team is focused on building something that makes life easy for the user.
+* The Push Gateway is not currently Kubernetes heavy, but Kubernetes capabilities may be added in the next iteration or milestone.
+* Sisal is open to trying out and giving feedback on the Push Gateway.
+
+Decisions:
+
+* The Push Gateway should be installed as a service with its own service endpoint.
+* Any metrics generated should be pushed directly to the Push Gateway.
+* Prometheus should be used to scrape the Push Gateway.
+* Access to health check scripts will be provided in roughly two weeks.
+
+Action items:
+
+* Enable a few things for the Push Gateway.
+* Share GitHub IDs to access health check scripts.
+* Iterate on the Push Gateway to add Kubernetes capabilities.
+* Try out and give feedback on the Push Gateway.
