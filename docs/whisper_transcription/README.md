@@ -31,22 +31,7 @@ Below are pre-configured blueprints for deploying Whisper transcription using di
 ## Deployment on OCI Blueprint
 
 ### Sample Recipe (Service Mode)
-```json
-{
-  "recipe_id": "whisper_transcription",
-  "recipe_mode": "service",
-  "deployment_name": "whisper-transcription-a10",
-  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:whisper_transcription_v8",
-  "recipe_node_shape": "VM.GPU.A10.2",
-  "recipe_replica_count": 1,
-  "recipe_container_port": "8000",
-  "recipe_nvidia_gpu_count": 2,
-  "recipe_node_pool_size": 1,
-  "recipe_node_boot_volume_size_in_gbs": 200,
-  "recipe_ephemeral_storage_size": 100,
-  "recipe_shared_memory_volume_size_limit_in_mb": 200
-}
-```
+please look at this json file as an example [whisper-transcription-A10.json](whisper-transcription-A10.json)  
 
 ### Endpoint
 ```
@@ -144,6 +129,6 @@ https://huggingface.co/settings/tokens
 
 - Whisper model is GPU-cached per thread for performance.
 - For more information about this project please review the docs/[Whisper_Architecture.pdf](Whisper_Architecture.pdf)
-- Please check out the examples folder for more tests.
+- Please check out the [examples](exampels) folder for more tests.
 - Diarization runs globally, not chunk-by-chunk.
 - Denoising is optional but improves quality on noisy files.
