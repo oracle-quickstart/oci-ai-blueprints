@@ -5,6 +5,15 @@
 This blueprint provides a complete solution for running **audio/video transcription**, **speaker diarization**, and **summarization** via a RESTful API. It integrates [Faster-Whisper](https://github.com/guillaumekln/faster-whisper) for efficient transcription, [pyannote.audio](https://github.com/pyannote/pyannote-audio) for diarization, and Hugging Face instruction-tuned LLMs (e.g., Mistral-7B) for summarization. It supports multi-GPU acceleration, real-time streaming logs, and JSON/text output formats.
 
 ---
+## Pre-Filled Samples
+
+Below are pre-configured blueprints for deploying Whisper transcription using different GPU configurations on Oracle Cloud Infrastructure.
+
+| Feature Showcase Title                                               | Description                                                           | Blueprint File                    |
+|----------------------------------------------------------------------|-----------------------------------------------------------------------|-----------------------------------|
+| Deploy Whisper transcription on A10 GPU for real-time speech-to-text | Real-time audio transcription with Whisper on BM.GPU.A10.8          | [whisper-transcription-A10.json](whisper-transcription-A10.json)  |
+| Deploy Whisper transcription on A100 GPU for high-speed processing   | High-performance Whisper transcription using BM.GPU.A100.8          | [whisper-transcription-A100.json](whisper-transcription-A100.json) |
+| Deploy Whisper transcription on H100 GPU for next-gen AI workloads   | Ultra-fast Whisper transcription with Whisper on BM.GPU.H100.8      | [whisper-transcription-H100.json](whisper-transcription-H100.json) |
 
 ## Key Features
 
@@ -134,5 +143,7 @@ https://huggingface.co/settings/tokens
 ## Final Notes
 
 - Whisper model is GPU-cached per thread for performance.
+- For more information about this project please review the docs/[Whisper_Architecture.pdf](Whisper_Architecture.pdf)
+- Please check out the examples folder for more tests.
 - Diarization runs globally, not chunk-by-chunk.
 - Denoising is optional but improves quality on noisy files.
