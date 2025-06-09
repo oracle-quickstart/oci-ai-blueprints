@@ -37,5 +37,10 @@ resource "kubernetes_config_map" "corrino-configmap" {
     SHARED_NODE_POOL_DOCUMENTATION_URL             = local.app.shared_node_pool_documentation_url
     BLUEPRINT_DOCUMENTATION_URL                    = local.app.blueprint_documentation_url
     PROMETHEUS_NAMESPACE                           = local.third_party_namespaces.prometheus_namespace
+    POSTGRES_HOST                                  = local.postgres_db.host
+    POSTGRES_PORT                                  = local.postgres_db.port
+    POSTGRES_DB                                    = local.postgres_db.db_name
+    POSTGRES_USER                                  = local.postgres_db.user
+    POSTGRES_PASSWORD                              = local.postgres_db.password
   }
 }

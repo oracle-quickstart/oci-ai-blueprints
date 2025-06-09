@@ -1,8 +1,8 @@
 
 resource "kubernetes_deployment" "corrino_cp_background_deployment" {
   metadata {
-    name      = "corrino-cp-background"
-    labels    = {
+    name = "corrino-cp-background"
+    labels = {
       app = "corrino-cp-background"
     }
   }
@@ -21,11 +21,11 @@ resource "kubernetes_deployment" "corrino_cp_background_deployment" {
       }
       spec {
         container {
-          name  = "corrino-cp-background"
-          image = local.app.backend_image_uri
+          name              = "corrino-cp-background"
+          image             = local.app.backend_image_uri
           image_pull_policy = "Always"
-          command = ["/bin/sh", "-c"]
-          args    = ["python3 manage.py runserver"]
+          command           = ["/bin/sh", "-c"]
+          args              = ["python3 manage.py runserver"]
           dynamic "env" {
             for_each = local.env_universal
             content {
@@ -44,6 +44,19 @@ resource "kubernetes_deployment" "corrino_cp_background_deployment" {
 
           dynamic "env" {
             for_each = local.env_app_configmap
+            content {
+              name = env.value.name
+              value_from {
+                config_map_key_ref {
+                  name = env.value.config_map_name
+                  key  = env.value.config_map_key
+                }
+              }
+            }
+          }
+
+          dynamic "env" {
+            for_each = local.env_psql_configmap
             content {
               name = env.value.name
               value_from {

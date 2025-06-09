@@ -12,6 +12,7 @@ locals {
     backend_service_name_ingress = "corrino-cp-ingress"
     #    backend_image_uri_base                       = join(":", [local.ocir.base_uri, local.ocir.backend_image])
     backend_image_uri = format("${local.ocir.base_uri}:${local.ocir.backend_image}-${var.stack_version}")
+    #backend_image_uri = "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:oci-corrino-cp-latest"
     #frontend_image_uri                           = join(":", [local.ocir.base_uri, local.ocir.frontend_image])
     blueprint_portal_image_uri                     = format("${local.ocir.base_uri}:${local.ocir.blueprint_portal_image}-${var.stack_version}")
     recipe_bucket_name                             = "corrino-recipes"
@@ -23,6 +24,14 @@ locals {
     shared_node_pool_blueprints_object_storage_url = "https://objectstorage.us-ashburn-1.oraclecloud.com/p/Fg9xXHJ0jreGQlI7t0tjjbHQ4TTZrtMb8vEaaN1apQn1JrtPk-iXzxXFXhfTMv6F/n/iduyx1qnmway/b/blueprints/o/shared_node_pools.json"
     shared_node_pool_documentation_url             = "https://github.com/oracle-quickstart/oci-ai-blueprints/tree/main/docs/shared_node_pools"
     blueprint_documentation_url                    = "https://github.com/oracle-quickstart/oci-ai-blueprints/tree/main/docs/api_documentation"
+  }
+
+  postgres_db = {
+    host     = "129.80.150.194"
+    port     = "5432"
+    db_name  = "ps_db"
+    user     = "ps_user"
+    password = "CorrinoBackend!"
   }
 
   registration = {
@@ -380,6 +389,34 @@ locals {
       secret_name = var.oadb_admin_secret_name
       secret_key  = "oadb_admin_pw"
     }
+  ]
+
+  env_psql_configmap = [
+    {
+      name            = "POSTGRES_HOST"
+      config_map_name = "corrino-configmap"
+      config_map_key  = "POSTGRES_HOST"
+    },
+    {
+      name            = "POSTGRES_PORT"
+      config_map_name = "corrino-configmap"
+      config_map_key  = "POSTGRES_PORT"
+    },
+    {
+      name            = "POSTGRES_DB"
+      config_map_name = "corrino-configmap"
+      config_map_key  = "POSTGRES_DB"
+    },
+    {
+      name            = "POSTGRES_USER"
+      config_map_name = "corrino-configmap"
+      config_map_key  = "POSTGRES_USER"
+    },
+    {
+      name            = "POSTGRES_PASSWORD"
+      config_map_name = "corrino-configmap"
+      config_map_key  = "POSTGRES_PASSWORD"
+    },
   ]
 
 }

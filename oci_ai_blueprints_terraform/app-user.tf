@@ -1,6 +1,6 @@
 resource "kubernetes_job" "corrino_user_job" {
   metadata {
-    name      = "corrino-user-job"
+    name = "corrino-user-job"
   }
   spec {
     template {
@@ -8,11 +8,11 @@ resource "kubernetes_job" "corrino_user_job" {
       spec {
 
         container {
-          name    = "corrino-user-job"
-          image   = local.app.backend_image_uri
+          name              = "corrino-user-job"
+          image             = local.app.backend_image_uri
           image_pull_policy = "Always"
-          command = ["/bin/sh", "-c"]
-          args = ["python3 manage.py create_superuser_if_needed"]
+          command           = ["/bin/sh", "-c"]
+          args              = ["python3 manage.py create_superuser_if_needed"]
 
           dynamic "env" {
             for_each = local.env_universal
@@ -72,6 +72,21 @@ resource "kubernetes_job" "corrino_user_job" {
             }
           }
 
+          dynamic "env" {
+            for_each = local.env_psql_configmap
+            content {
+              name = env.value.name
+              value_from {
+                config_map_key_ref {
+                  name = env.value.config_map_name
+                  key  = env.value.config_map_key
+                }
+              }
+            }
+          }
+
+
+
           volume_mount {
             name       = "adb-wallet-volume"
             mount_path = "/app/wallet"
@@ -82,7 +97,7 @@ resource "kubernetes_job" "corrino_user_job" {
         volume {
           name = "adb-wallet-volume"
           secret {
-            secret_name  = "oadb-wallet"
+            secret_name = "oadb-wallet"
           }
         }
 
@@ -93,7 +108,7 @@ resource "kubernetes_job" "corrino_user_job" {
     ttl_seconds_after_finished = 120
   }
 
-  wait_for_completion        = true
+  wait_for_completion = true
   timeouts {
     create = "10m"
     update = "10m"

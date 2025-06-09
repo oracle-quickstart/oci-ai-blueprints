@@ -1,6 +1,6 @@
 resource "kubernetes_job" "corrino_migration_job" {
   metadata {
-    name      = "corrino-migration-job"
+    name = "corrino-migration-job"
   }
   spec {
     template {
@@ -8,11 +8,11 @@ resource "kubernetes_job" "corrino_migration_job" {
       spec {
 
         container {
-          name    = "corrino-migration-job"
-          image   = local.app.backend_image_uri
+          name              = "corrino-migration-job"
+          image             = local.app.backend_image_uri
           image_pull_policy = "Always"
-          command = ["/bin/sh", "-c"]
-          args    = [
+          command           = ["/bin/sh", "-c"]
+          args = [
             "pwd; ls -al; uname -a; whoami; python3 manage.py print_settings; python3 manage.py makemigrations; python3 manage.py migrate"
           ]
 
@@ -66,6 +66,19 @@ resource "kubernetes_job" "corrino_migration_job" {
             }
           }
 
+          dynamic "env" {
+            for_each = local.env_psql_configmap
+            content {
+              name = env.value.name
+              value_from {
+                config_map_key_ref {
+                  name = env.value.config_map_name
+                  key  = env.value.config_map_key
+                }
+              }
+            }
+          }
+
           volume_mount {
             name       = "adb-wallet-volume"
             mount_path = "/app/wallet"
@@ -76,7 +89,7 @@ resource "kubernetes_job" "corrino_migration_job" {
         volume {
           name = "adb-wallet-volume"
           secret {
-            secret_name  = "oadb-wallet"
+            secret_name = "oadb-wallet"
           }
         }
 
@@ -86,7 +99,7 @@ resource "kubernetes_job" "corrino_migration_job" {
     backoff_limit              = 0
     ttl_seconds_after_finished = 120
   }
-  wait_for_completion        = true
+  wait_for_completion = true
   timeouts {
     create = "10m"
     update = "10m"

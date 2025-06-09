@@ -2,8 +2,8 @@ resource "kubernetes_service" "corrino_cp_service" {
   metadata {
     name = "corrino-cp"
     annotations = {
-      "oci.oraclecloud.com/load-balancer-type"            = "lb"
-      "service.beta.kubernetes.io/oci-load-balancer-shape"= "flexible"
+      "oci.oraclecloud.com/load-balancer-type"             = "lb"
+      "service.beta.kubernetes.io/oci-load-balancer-shape" = "flexible"
     }
   }
   spec {
@@ -20,8 +20,8 @@ resource "kubernetes_service" "corrino_cp_service" {
 
 resource "kubernetes_deployment" "corrino_cp_deployment" {
   metadata {
-    name      = "corrino-cp"
-    labels    = {
+    name = "corrino-cp"
+    labels = {
       app = "corrino-cp"
     }
   }
@@ -45,8 +45,8 @@ resource "kubernetes_deployment" "corrino_cp_deployment" {
       }
       spec {
         container {
-          name  = "corrino-cp"
-          image = local.app.backend_image_uri
+          name              = "corrino-cp"
+          image             = local.app.backend_image_uri
           image_pull_policy = "Always"
 
           dynamic "env" {
@@ -67,6 +67,19 @@ resource "kubernetes_deployment" "corrino_cp_deployment" {
 
           dynamic "env" {
             for_each = local.env_app_configmap
+            content {
+              name = env.value.name
+              value_from {
+                config_map_key_ref {
+                  name = env.value.config_map_name
+                  key  = env.value.config_map_key
+                }
+              }
+            }
+          }
+
+          dynamic "env" {
+            for_each = local.env_psql_configmap
             content {
               name = env.value.name
               value_from {
