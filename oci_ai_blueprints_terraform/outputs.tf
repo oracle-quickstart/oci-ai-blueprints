@@ -166,6 +166,10 @@ output "autonomous_database_password" {
   value = random_string.autonomous_database_admin_password.result
 }
 
+output "postgres_db_password" {
+  value = random_string.postgres_db_password.result
+}
+
 output "app_name" {
   value = random_string.generated_workspace_name.result
 }

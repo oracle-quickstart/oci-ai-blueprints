@@ -32,6 +32,30 @@ resource "random_string" "autonomous_database_wallet_password" {
   override_special = "{}#^*<>[]%~"
 }
 
+resource "random_string" "postgres_db_password" {
+  length           = 16
+  special          = true
+  min_upper        = 3
+  min_lower        = 3
+  min_numeric      = 3
+  min_special      = 3
+  override_special = "{}#^*<>[]%~"
+}
+
+resource "random_string" "postgres_db_username" {
+  length           = 8
+  special          = false
+  min_upper        = 2
+  min_lower        = 2
+}
+
+resource "random_string" "postgres_db_name" {
+  length           = 4
+  special          = false
+  min_upper        = 2
+  min_lower        = 2
+}
+
 resource "random_string" "autonomous_database_admin_password" {
   length           = 16
   special          = true

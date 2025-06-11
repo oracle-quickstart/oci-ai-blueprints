@@ -11,8 +11,8 @@ locals {
     backend_service_name_origin  = "http://corrino-cp"
     backend_service_name_ingress = "corrino-cp-ingress"
     #    backend_image_uri_base                       = join(":", [local.ocir.base_uri, local.ocir.backend_image])
-    backend_image_uri = format("${local.ocir.base_uri}:${local.ocir.backend_image}-${var.stack_version}")
-    #backend_image_uri = "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:oci-corrino-cp-latest"
+    #backend_image_uri = format("${local.ocir.base_uri}:${local.ocir.backend_image}-${var.stack_version}")
+    backend_image_uri = "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:oci-corrino-cp-latest"
     #frontend_image_uri                           = join(":", [local.ocir.base_uri, local.ocir.frontend_image])
     blueprint_portal_image_uri                     = format("${local.ocir.base_uri}:${local.ocir.blueprint_portal_image}-${var.stack_version}")
     recipe_bucket_name                             = "corrino-recipes"
@@ -27,11 +27,11 @@ locals {
   }
 
   postgres_db = {
-    host     = "129.80.150.194"
+    host     = "postgres"
     port     = "5432"
-    db_name  = "ps_db"
-    user     = "ps_user"
-    password = "CorrinoBackend!"
+    db_name  = format("%s_db", random_string.postgres_db_name.result)
+    user     = format("%s_user", random_string.postgres_db_username.result)
+    password = random_string.postgres_db_password.result
   }
 
   registration = {
@@ -370,7 +370,7 @@ locals {
       name            = "RELEASE_VERSION"
       config_map_name = "corrino-configmap"
       config_map_key  = "RELEASE_VERSION"
-    }
+    },
   ]
 
   env_adb_access_secrets = [

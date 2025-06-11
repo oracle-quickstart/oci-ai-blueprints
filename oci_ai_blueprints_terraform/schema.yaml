@@ -1284,6 +1284,11 @@ outputs:
     title: "DB Admin Password"
     visible: false
 
+  postgres_db_password:
+    type: string
+    title: "Postgres DB Password"
+    visible: false
+
   grafana_admin_username:
     type: string
     title: "Grafana Username"
