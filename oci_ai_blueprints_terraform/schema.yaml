@@ -292,18 +292,18 @@ variableGroups:
 #      - create_oci_service_user
 #    visible: false
 
-  - title: "Autonomous Database"
-    variables:
-      - autonomous_database_ecpu_count
-      - autonomous_database_data_storage_size_in_tbs
-      - autonomous_database_data_safe_status
-      - autonomous_database_db_version
-      - autonomous_database_license_model
-      - autonomous_database_is_auto_scaling_enabled
-      - autonomous_database_is_dedicated
-      - autonomous_database_wallet_generate_type
-      - autonomous_database_visibility
-    visible: false
+  # - title: "Autonomous Database"
+  #   variables:
+  #     - autonomous_database_ecpu_count
+  #     - autonomous_database_data_storage_size_in_tbs
+  #     - autonomous_database_data_safe_status
+  #     - autonomous_database_db_version
+  #     - autonomous_database_license_model
+  #     - autonomous_database_is_auto_scaling_enabled
+  #     - autonomous_database_is_dedicated
+  #     - autonomous_database_wallet_generate_type
+  #     - autonomous_database_visibility
+  #   visible: false
 
 # ------------------------------------------------
 # ------------------------------------------------
@@ -475,21 +475,21 @@ variables:
     visible: false
 
 
-  # --------------------
-  # ADB
-  # --------------------
+  # # --------------------
+  # # ADB
+  # # --------------------
 
-  oadb_admin_secret_name:
-    visible: false
+  # oadb_admin_secret_name:
+  #   visible: false
 
-  oadb_admin_user_name:
-    visible: false
+  # oadb_admin_user_name:
+  #   visible: false
 
-  oadb_connection_secret_name:
-    visible: false
+  # oadb_connection_secret_name:
+  #   visible: false
 
-  oadb_wallet_secret_name:
-    visible: false
+  # oadb_wallet_secret_name:
+  #   visible: false
 
   # --------------------
   # Credentials
@@ -1279,10 +1279,10 @@ outputs:
     title: "Portal URL"
     visible: true
 
-  autonomous_database_password:
-    type: string
-    title: "DB Admin Password"
-    visible: false
+  # autonomous_database_password:
+  #   type: string
+  #   title: "DB Admin Password"
+  #   visible: false
 
   postgres_db_password:
     type: string

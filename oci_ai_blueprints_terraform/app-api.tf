@@ -91,39 +91,39 @@ resource "kubernetes_deployment" "corrino_cp_deployment" {
             }
           }
 
-          dynamic "env" {
-            for_each = local.env_adb_access
-            content {
-              name  = env.value.name
-              value = env.value.value
-            }
-          }
+          # dynamic "env" {
+          #   for_each = local.env_adb_access
+          #   content {
+          #     name  = env.value.name
+          #     value = env.value.value
+          #   }
+          # }
 
-          dynamic "env" {
-            for_each = local.env_adb_access_secrets
-            content {
-              name = env.value.name
-              value_from {
-                secret_key_ref {
-                  name = env.value.secret_name
-                  key  = env.value.secret_key
-                }
-              }
-            }
-          }
+          # dynamic "env" {
+          #   for_each = local.env_adb_access_secrets
+          #   content {
+          #     name = env.value.name
+          #     value_from {
+          #       secret_key_ref {
+          #         name = env.value.secret_name
+          #         key  = env.value.secret_key
+          #       }
+          #     }
+          #   }
+          # }
 
-          volume_mount {
-            name       = "adb-wallet-volume"
-            mount_path = "/app/wallet"
-            read_only  = true
-          }
+          # volume_mount {
+          #   name       = "adb-wallet-volume"
+          #   mount_path = "/app/wallet"
+          #   read_only  = true
+          # }
         }
-        volume {
-          name = "adb-wallet-volume"
-          secret {
-            secret_name = "oadb-wallet"
-          }
-        }
+        # volume {
+        #   name = "adb-wallet-volume"
+        #   secret {
+        #     secret_name = "oadb-wallet"
+        #   }
+        # }
       }
     }
   }
