@@ -170,6 +170,14 @@ output "postgres_db_password" {
   value = random_string.postgres_db_password.result
 }
 
+output "postgres_db_username" {
+  value = random_string.postgres_db_username.result
+}
+
+output "postgres_db_name" {
+  value = random_string.postgres_db_name.result
+}
+
 output "app_name" {
   value = random_string.generated_workspace_name.result
 }
