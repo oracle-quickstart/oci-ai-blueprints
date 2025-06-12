@@ -16,6 +16,5 @@ module "cert-manager" {
   chart_repository     = local.helm_repository.jetstack
   chart_version        = local.helm_repository.jetstack_version
   ingress_email_issuer = var.ingress_email_issuer
-
-  count = var.cert_manager_enabled ? 1 : 0
+  count = (var.cert_manager_enabled && var.ingress_nginx_enabled)? 1 : 0
 }
