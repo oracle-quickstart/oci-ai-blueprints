@@ -356,6 +356,11 @@ locals {
       name            = "PROMETHEUS_NAMESPACE"
       config_map_name = "corrino-configmap"
       config_map_key  = "PROMETHEUS_NAMESPACE"
+    },
+    {
+      name            = "RELEASE_VERSION"
+      config_map_name = "corrino-configmap"
+      config_map_key  = "RELEASE_VERSION"
     }
   ]
 

@@ -459,9 +459,10 @@ variables:
     title: "Stack Version"
     type: enum
     enum:
+      - "v1.0.2"
       - "v1.0.1"
       - "v1.0.0"
-    default: "v1.0.1"
+    default: "v1.0.2"
     required: true
     visible: true
 
