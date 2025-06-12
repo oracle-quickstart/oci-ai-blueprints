@@ -67,7 +67,7 @@ resource "kubernetes_deployment" "postgres" {
         # Init container to prepare data directory
         init_container {
           name  = "init-pgdata-dir"
-          image = "busybox:1.34"
+          image = "docker.io/library/busybox:1.34"
           
           command = [
             "sh",
@@ -84,7 +84,7 @@ resource "kubernetes_deployment" "postgres" {
         # PostgreSQL container
         container {
           name              = "postgres"
-          image             = "postgres:14"
+          image             = "docker.io/library/postgres:14"
           image_pull_policy = "IfNotPresent"
 
           env {
