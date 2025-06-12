@@ -55,7 +55,7 @@ Once the copy is done, we can now deploy the blueprint using the model, except c
   "recipe_id": "llm_inference_nvidia",
   "recipe_mode": "service",
   "deployment_name": "90bvisioninstruct",
-  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:vllmv0.6.6.pos1",
+  "recipe_image_uri": "iduyx1qnmway/corrino-devops-repository:vllmv0901",
   "recipe_node_shape": "BM.GPU.H100.8",
   "recipe_replica_count": 1,
   "recipe_container_port": "8000",
