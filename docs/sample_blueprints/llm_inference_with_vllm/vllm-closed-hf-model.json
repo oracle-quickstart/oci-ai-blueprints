@@ -2,7 +2,7 @@
   "recipe_id": "llm_inference_nvidia",
   "recipe_mode": "service",
   "deployment_name": "vllm-closed-hf-model",
-  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:vllmv0.6.2",
+  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:vllmv0901",
   "recipe_node_shape": "VM.GPU.A10.2",
   "recipe_container_env": [
     {
