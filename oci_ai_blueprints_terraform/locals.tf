@@ -12,6 +12,7 @@ locals {
     backend_service_name_ingress = "corrino-cp-ingress"
     #    backend_image_uri_base                       = join(":", [local.ocir.base_uri, local.ocir.backend_image])
     backend_image_uri = format("${local.ocir.base_uri}:${local.ocir.backend_image}-${var.stack_version}")
+    #backend_image_uri = "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:oci-corrino-cp-latest"
     #frontend_image_uri                           = join(":", [local.ocir.base_uri, local.ocir.frontend_image])
     blueprint_portal_image_uri                     = format("${local.ocir.base_uri}:${local.ocir.blueprint_portal_image}-${var.stack_version}")
     recipe_bucket_name                             = "corrino-recipes"
@@ -23,6 +24,14 @@ locals {
     shared_node_pool_blueprints_object_storage_url = "https://objectstorage.us-ashburn-1.oraclecloud.com/p/Fg9xXHJ0jreGQlI7t0tjjbHQ4TTZrtMb8vEaaN1apQn1JrtPk-iXzxXFXhfTMv6F/n/iduyx1qnmway/b/blueprints/o/shared_node_pools.json"
     shared_node_pool_documentation_url             = "https://github.com/oracle-quickstart/oci-ai-blueprints/tree/main/docs/shared_node_pools"
     blueprint_documentation_url                    = "https://github.com/oracle-quickstart/oci-ai-blueprints/tree/main/docs/api_documentation"
+  }
+
+  postgres_db = {
+    host     = "postgres"
+    port     = "5432"
+    db_name  = format("%s_db", random_string.postgres_db_name.result)
+    user     = format("%s_user", random_string.postgres_db_username.result)
+    password = random_string.postgres_db_password.result
   }
 
   registration = {
@@ -171,16 +180,16 @@ locals {
     }
   ]
 
-  env_adb_access = [
-    {
-      name  = "ADB_USER"
-      value = var.oadb_admin_user_name
-    },
-    {
-      name  = "TNS_ADMIN"
-      value = "/app/wallet"
-    }
-  ]
+  # env_adb_access = [
+  #   {
+  #     name  = "ADB_USER"
+  #     value = var.oadb_admin_user_name
+  #   },
+  #   {
+  #     name  = "TNS_ADMIN"
+  #     value = "/app/wallet"
+  #   }
+  # ]
 
   env_app_api = [
     {
@@ -361,25 +370,53 @@ locals {
       name            = "RELEASE_VERSION"
       config_map_name = "corrino-configmap"
       config_map_key  = "RELEASE_VERSION"
-    }
+    },
   ]
 
-  env_adb_access_secrets = [
+  # env_adb_access_secrets = [
+  #   {
+  #     name        = "ADB_NAME"
+  #     secret_name = var.oadb_connection_secret_name
+  #     secret_key  = "oadb_service"
+  #   },
+  #   {
+  #     name        = "ADB_WALLET_PASSWORD"
+  #     secret_name = var.oadb_connection_secret_name
+  #     secret_key  = "oadb_wallet_pw"
+  #   },
+  #   {
+  #     name        = "ADB_USER_PASSWORD"
+  #     secret_name = var.oadb_admin_secret_name
+  #     secret_key  = "oadb_admin_pw"
+  #   }
+  # ]
+
+  env_psql_configmap = [
     {
-      name        = "ADB_NAME"
-      secret_name = var.oadb_connection_secret_name
-      secret_key  = "oadb_service"
+      name            = "POSTGRES_HOST"
+      config_map_name = "corrino-configmap"
+      config_map_key  = "POSTGRES_HOST"
     },
     {
-      name        = "ADB_WALLET_PASSWORD"
-      secret_name = var.oadb_connection_secret_name
-      secret_key  = "oadb_wallet_pw"
+      name            = "POSTGRES_PORT"
+      config_map_name = "corrino-configmap"
+      config_map_key  = "POSTGRES_PORT"
     },
     {
-      name        = "ADB_USER_PASSWORD"
-      secret_name = var.oadb_admin_secret_name
-      secret_key  = "oadb_admin_pw"
-    }
+      name            = "POSTGRES_DB"
+      config_map_name = "corrino-configmap"
+      config_map_key  = "POSTGRES_DB"
+    },
+    {
+      name            = "POSTGRES_USER"
+      config_map_name = "corrino-configmap"
+      config_map_key  = "POSTGRES_USER"
+    },
+    {
+      name            = "POSTGRES_PASSWORD"
+      config_map_name = "corrino-configmap"
+      config_map_key  = "POSTGRES_PASSWORD"
+    },
   ]
 
 }

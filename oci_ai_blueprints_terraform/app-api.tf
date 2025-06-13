@@ -2,8 +2,8 @@ resource "kubernetes_service" "corrino_cp_service" {
   metadata {
     name = "corrino-cp"
     annotations = {
-      "oci.oraclecloud.com/load-balancer-type"            = "lb"
-      "service.beta.kubernetes.io/oci-load-balancer-shape"= "flexible"
+      "oci.oraclecloud.com/load-balancer-type"             = "lb"
+      "service.beta.kubernetes.io/oci-load-balancer-shape" = "flexible"
     }
   }
   spec {
@@ -20,8 +20,8 @@ resource "kubernetes_service" "corrino_cp_service" {
 
 resource "kubernetes_deployment" "corrino_cp_deployment" {
   metadata {
-    name      = "corrino-cp"
-    labels    = {
+    name = "corrino-cp"
+    labels = {
       app = "corrino-cp"
     }
   }
@@ -45,8 +45,8 @@ resource "kubernetes_deployment" "corrino_cp_deployment" {
       }
       spec {
         container {
-          name  = "corrino-cp"
-          image = local.app.backend_image_uri
+          name              = "corrino-cp"
+          image             = local.app.backend_image_uri
           image_pull_policy = "Always"
 
           dynamic "env" {
@@ -79,38 +79,51 @@ resource "kubernetes_deployment" "corrino_cp_deployment" {
           }
 
           dynamic "env" {
-            for_each = local.env_adb_access
-            content {
-              name  = env.value.name
-              value = env.value.value
-            }
-          }
-
-          dynamic "env" {
-            for_each = local.env_adb_access_secrets
+            for_each = local.env_psql_configmap
             content {
               name = env.value.name
               value_from {
-                secret_key_ref {
-                  name = env.value.secret_name
-                  key  = env.value.secret_key
+                config_map_key_ref {
+                  name = env.value.config_map_name
+                  key  = env.value.config_map_key
                 }
               }
             }
           }
 
-          volume_mount {
-            name       = "adb-wallet-volume"
-            mount_path = "/app/wallet"
-            read_only  = true
-          }
+          # dynamic "env" {
+          #   for_each = local.env_adb_access
+          #   content {
+          #     name  = env.value.name
+          #     value = env.value.value
+          #   }
+          # }
+
+          # dynamic "env" {
+          #   for_each = local.env_adb_access_secrets
+          #   content {
+          #     name = env.value.name
+          #     value_from {
+          #       secret_key_ref {
+          #         name = env.value.secret_name
+          #         key  = env.value.secret_key
+          #       }
+          #     }
+          #   }
+          # }
+
+          # volume_mount {
+          #   name       = "adb-wallet-volume"
+          #   mount_path = "/app/wallet"
+          #   read_only  = true
+          # }
         }
-        volume {
-          name = "adb-wallet-volume"
-          secret {
-            secret_name = "oadb-wallet"
-          }
-        }
+        # volume {
+        #   name = "adb-wallet-volume"
+        #   secret {
+        #     secret_name = "oadb-wallet"
+        #   }
+        # }
       }
     }
   }

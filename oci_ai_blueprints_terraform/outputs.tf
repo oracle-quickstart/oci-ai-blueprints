@@ -162,8 +162,20 @@ output "corrino_mlflow_url" {
   depends_on  = [module.oke-quickstart.helm_release_ingress_nginx]
 }
 
-output "autonomous_database_password" {
-  value = random_string.autonomous_database_admin_password.result
+# output "autonomous_database_password" {
+#   value = random_string.autonomous_database_admin_password.result
+# }
+
+output "postgres_db_password" {
+  value = random_string.postgres_db_password.result
+}
+
+output "postgres_db_username" {
+  value = random_string.postgres_db_username.result
+}
+
+output "postgres_db_name" {
+  value = random_string.postgres_db_name.result
 }
 
 output "app_name" {
