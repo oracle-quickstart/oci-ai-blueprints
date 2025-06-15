@@ -38,7 +38,7 @@ Llama Stack standardizes the core building blocks that simplify AI-application d
 
 See the upstream project for full details: (https://github.com/meta-llama/llama-stack)[https://github.com/meta-llama/llama-stack]
 
-## Notes
+## Installation Notes
 
 Make sure to have two object storage buckets created in the same compartment that OCI AI Blueprints is deployed into named `chromadb` and `llamastack`.
 
@@ -51,3 +51,44 @@ When deploying the llama-stack pre-filled sample, make sure that you update the 
 - Make sure to change the model to the one you used in your vllm instance, the environment variable is INFERENCE_MODEL. In the example, we are using `NousResearch/Meta-Llama-3.1-8B-Instruct`
 
 - Make sure to keep the ports as is, for example in your postgres deployment, make sure to leave the `recipe_container_port` set to `5432` and `recipe_host_port` to `5432` as llamastack is specifically looking for postgres to be on these ports. The same is for jaegar being on `4318` at the endpoint `/jaegar`. And lastly chromadb `recipe_container_port` needs to be set to `8000` and `recipe_host_port` to `8000`. Your llamastack deployment will fail if you do not use these ports.
+
+## Verify Installation
+
+To test your llama stack implementation please follow the steps below.
+
+1. Set an environment variable for OPENAI_API_KEY to a dummy value (`export OPENAI_API_KEY="dummy-key"`)
+
+2. Install uv command line interface tool via the steps [here](https://docs.astral.sh/uv/getting-started/installation/)
+
+3. Clone the following repo: [https://github.com/meta-llama/llama-stack-evals](https://github.com/meta-llama/llama-stack-evals)
+
+4. Go to your llama-stack deployment and grab the `Public Endpoint` (ex: `llamastack-app7.129-213-194-241.nip.io`)
+
+5. Run the following curl command to test the model list feature: `curl http://<llama_stack_deployment_endpoint>/v1/openai/v1/models`
+
+6. You can use llama-stack-evals repo (which you previously cloned) to run verifications / benchmark evaluations against this llama stack deployments’s OpenAI endpoint.
+
+```
+cd llama-stack-evals # make sure you are in the llama-stack-evals repo
+
+uvx llama-stack-evals run-tests --openai-compat-endpoint http://<llama_stack_deployment_endpoint>/v1/openai/v1 --model "<MODEL_YOU_USED_IN_VLLM_DEPLOYMENT>"
+
+# ex: uvx llama-stack-evals run-tests --openai-compat-endpoint http://llamastack-app7.129-213-194-241.nip.io/v1/openai/v1 --model "/models/NousResearch/Meta-Llama-3.1-8B-Instruct"
+```
+
+## How to Use It
+
+Llama Stack has many different use cases and are thoroughly detailed here, in the following tutorial: [https://llama-stack.readthedocs.io/en/latest/getting_started/detailed_tutorial.html](https://llama-stack.readthedocs.io/en/latest/getting_started/detailed_tutorial.html)
+
+## FAQs
+
+1. How can I configure the vLLM pre-filled sample (e.g. I want to deploy a different model with vLLM; a custom model)?
+
+- Any vLLM inference server and model that is compatible with vLLM will work with the Llama Stack implementation. Follow our [llm_inference_with_vllm blueprint](../llm_inference_with_vllm/README.md) for more details on setting up vLLM.
+
+2. Can I use a different inference engine than vLLM?
+
+- At this time, we have only tested vLLM as the inference engine for Llama Stack. vLLM is an OpenAI compatible server so in theory any inference engine that follows the same OpenAI API spec should work as well, but again this has not been tested by our team.
+
+3. How do I use the Llama Stack deployment after I deploy it?
+   Please refer to the [how to use it section](#how-to-use-it) above.
