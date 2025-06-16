@@ -48,7 +48,7 @@ When deploying the llama-stack pre-filled sample, make sure that you update the 
 
 - if you named your postgres_db deployment "fooBar", then `POSTGRES_HOST` environment variable would be `recipe-fooBar.default.svc.cluster.local` (The pattern is `http://recipe-<deployment_name>.default.svc.cluster.local`)
 
-- Make sure to change the model to the one you used in your vllm instance, the environment variable is INFERENCE_MODEL. In the example, we are using `NousResearch/Meta-Llama-3.1-8B-Instruct`
+-- Set `INFERENCE_MODEL` to the model name your vLLM server exposes. If you launched vLLM with `--served-model-name` (which is what is done in the vllm pre-filled sample here), use that value; otherwise, use the value passed to --model (vllm defaults to this value when `--served-model-name` is omitted). In this example, the value for `INFERENCE_MODEL` is `NousResearch/Meta-Llama-3.1-8B-Instruct`.
 
 - Make sure to keep the ports as is, for example in your postgres deployment, make sure to leave the `recipe_container_port` set to `5432` and `recipe_host_port` to `5432` as llamastack is specifically looking for postgres to be on these ports. The same is for jaegar being on `4318` at the endpoint `/jaegar`. And lastly chromadb `recipe_container_port` needs to be set to `8000` and `recipe_host_port` to `8000`. Your llamastack deployment will fail if you do not use these ports.
 
@@ -66,14 +66,14 @@ To test your llama stack implementation please follow the steps below.
 
 5. Run the following curl command to test the model list feature: `curl http://<llama_stack_deployment_endpoint>/v1/openai/v1/models`
 
-6. You can use llama-stack-evals repo (which you previously cloned) to run verifications / benchmark evaluations against this llama stack deployments’s OpenAI endpoint.
+6. You can use llama-stack-evals repo (which you previously cloned) to run verifications / benchmark evaluations against this llama stack deployments’s OpenAI endpoint. Note: If you are using the blueprint unmodified (aka using the NousResearch/Meta-Llama-3.1-8B-Instruct model, some of the tests will fail on purpose since this tests multi-modal inputs which this model does not support)
 
 ```
 cd llama-stack-evals # make sure you are in the llama-stack-evals repo
 
 uvx llama-stack-evals run-tests --openai-compat-endpoint http://<llama_stack_deployment_endpoint>/v1/openai/v1 --model "<MODEL_YOU_USED_IN_VLLM_DEPLOYMENT>"
 
-# ex: uvx llama-stack-evals run-tests --openai-compat-endpoint http://llamastack-app7.129-213-194-241.nip.io/v1/openai/v1 --model "/models/NousResearch/Meta-Llama-3.1-8B-Instruct"
+# ex: uvx llama-stack-evals run-tests --openai-compat-endpoint http://llamastack-app7.129-213-194-241.nip.io/v1/openai/v1 --model "NousResearch/Meta-Llama-3.1-8B-Instruct"
 ```
 
 ## How to Use It

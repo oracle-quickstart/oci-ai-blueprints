@@ -2,7 +2,7 @@
   "recipe_id": "llm_inference_nvidia",
   "recipe_mode": "service",
   "deployment_name": "vllm-llama-stack",
-  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:vllmv0.6.6.pos1",
+  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:vllmv0901",
   "recipe_node_shape": "VM.GPU.A10.2",
   "input_object_storage": [
     {
@@ -35,7 +35,9 @@
     "--model",
     "$(Model_Path)",
     "--tensor-parallel-size",
-    "$(tensor_parallel_size)"
+    "$(tensor_parallel_size)",
+    "--served-model-name",
+    "$(model_name)"
   ],
   "recipe_ephemeral_storage_size": 100,
   "recipe_shared_memory_volume_size_limit_in_mb": 200
