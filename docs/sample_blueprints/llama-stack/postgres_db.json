@@ -1,0 +1,29 @@
+{
+  "recipe_id": "postgres",
+  "deployment_name": "postgresllama",
+  "recipe_mode": "service",
+  "recipe_node_pool_size": 1,
+  "recipe_node_shape": "VM.Standard.E4.Flex",
+  "recipe_flex_shape_ocpu_count": 2,
+  "recipe_flex_shape_memory_size_in_gbs": 16,
+  "recipe_node_boot_volume_size_in_gbs": 200,
+  "recipe_ephemeral_storage_size": 100,
+  "recipe_image_uri": "docker.io/library/postgres:latest",
+  "recipe_container_port": "5432",
+  "recipe_host_port": "5432",
+  "recipe_container_env": [
+    {
+      "key": "POSTGRES_USER",
+      "value": "llamastack"
+    },
+    {
+      "key": "POSTGRES_PASSWORD",
+      "value": "llamastack"
+    },
+    {
+      "key": "POSTGRES_DB",
+      "value": "llamastack"
+    }
+  ],
+  "recipe_replica_count": 1
+}
