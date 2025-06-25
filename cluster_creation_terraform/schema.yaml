@@ -29,11 +29,20 @@ variableGroups:
     variables: 
     - show_advanced
     
+  - title: "Network Configuration"
+    variables:
+    - network_configuration_mode
+    - existing_vcn_id
+    - existing_endpoint_subnet_id
+    - existing_node_subnet_id
+    - existing_lb_subnet_id
+
   - title: "OKE Cluster Configuration"
     variables:
     - k8s_version
     - cluster_workers_visibility
-    - cluster_endpoint_visibility
+    - cluster_endpoint_visibility_new_vcn
+    - cluster_endpoint_visibility_existing_vcn
 
   - title: "OKE Worker Nodes"
     variables:
@@ -53,6 +62,67 @@ variables:
     title: "Show advanced options?"
     description: "Shows advanced options, allowing enable customer-managed encryption keys, select your ssh key, select/unselect cluster utilities, do not create policies, and other advanced options"
     visible: true
+
+  network_configuration_mode:
+    type: enum
+    enum:
+    - "create_new"
+    - "bring_your_own"
+    title: "Network Configuration"
+    description: "Choose whether to create a new VCN or use an existing one"
+    required: true
+    visible: true
+
+  existing_vcn_id:
+    type: oci:core:vcn:id
+    title: "Existing VCN"
+    description: "Select the existing VCN to use for the OKE cluster"
+    required: true
+    dependsOn:
+      compartmentId: compartment_ocid
+    visible:
+      eq:
+        - network_configuration_mode
+        - "bring_your_own"
+
+  existing_endpoint_subnet_id:
+    type: oci:core:subnet:id
+    title: "Existing Kubernetes API Endpoint Subnet"
+    description: "Select the existing subnet for the Kubernetes API endpoint"
+    required: true
+    dependsOn:
+      vcnId: existing_vcn_id
+      compartmentId: compartment_ocid
+    visible:
+      eq:
+        - network_configuration_mode
+        - "bring_your_own"
+
+  existing_node_subnet_id:
+    type: oci:core:subnet:id
+    title: "Existing Worker Node Subnet"
+    description: "Select the existing subnet for worker nodes"
+    required: true
+    dependsOn:
+      vcnId: existing_vcn_id
+      compartmentId: compartment_ocid
+    visible:
+      eq:
+        - network_configuration_mode
+        - "bring_your_own"
+
+  existing_lb_subnet_id:
+    type: oci:core:subnet:id
+    title: "Existing Load Balancer Subnet"
+    description: "Select the existing subnet for load balancers"
+    required: true
+    dependsOn:
+      vcnId: existing_vcn_id
+      compartmentId: compartment_ocid
+    visible:
+      eq:
+        - network_configuration_mode
+        - "bring_your_own"
 
   k8s_version:
     type: enum
@@ -76,21 +146,40 @@ variables:
     - "Private"
     - "Public"
     title: "Choose Worker Nodes visibility type"
+    description: "Note: When using an existing VCN, ensure your subnets are configured appropriately for the chosen visibility"
     required: true
     visible:
       and:
         - show_advanced
 
-  cluster_endpoint_visibility:
+  cluster_endpoint_visibility_new_vcn:
     type: enum
     enum:
-    # - "Private"
     - "Public"
-    title: "Choose Kubernetes API Endpoint visibility type"
+    title: "Kubernetes API Endpoint visibility (New VCN)"
+    description: "When creating a new VCN, only Public endpoints are supported for simplified setup"
     required: true
     visible:
       and:
         - show_advanced
+        - eq:
+          - network_configuration_mode
+          - "create_new"
+
+  cluster_endpoint_visibility_existing_vcn:
+    type: enum
+    enum:
+    - "Private"
+    - "Public"
+    title: "Kubernetes API Endpoint visibility (Existing VCN)"
+    description: "Choose endpoint visibility for your existing VCN. Ensure your subnets are configured appropriately for the chosen visibility"
+    required: true
+    visible:
+      and:
+        - show_advanced
+        - eq:
+          - network_configuration_mode
+          - "bring_your_own"
 
   num_pool_workers:
     type: integer
@@ -129,6 +218,8 @@ variables:
 
   user_ocid:
     visible: false
+
+
 
 
 outputs:

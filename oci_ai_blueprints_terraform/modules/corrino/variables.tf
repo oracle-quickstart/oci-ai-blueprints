@@ -63,6 +63,7 @@ variable "is_ipv6enabled" {
   default     = false
   description = "Whether IPv6 is enabled for the Virtual Cloud Network (VCN)."
 }
+
 variable "ipv6private_cidr_blocks" {
   default     = []
   description = "The list of one or more ULA or Private IPv6 CIDR blocks for the Virtual Cloud Network (VCN)."
@@ -164,6 +165,11 @@ variable "pods_network_visibility" {
     condition     = var.pods_network_visibility == "Private" || var.pods_network_visibility == "Public"
     error_message = "Sorry, but PODs Network visibility can only be Private or Public."
   }
+}
+variable "ingress_load_balancer_visibility" {
+  default     = "Public"
+  description = "The Load Balancer visibility - Private or Public"
+  type        = string
 }
 
 ################################################################################

@@ -35,6 +35,9 @@ module "oke-quickstart" {
   # VCN for OKE arguments
   vcn_cidr_blocks = "10.22.0.0/16"
 
+  # Cluster and Load Balancer Configuration
+  cluster_load_balancer_visibility = var.cluster_load_balancer_visibility
+
   ingress_nginx_enabled  = var.ingress_nginx_enabled
   cert_manager_enabled   = var.cert_manager_enabled
   # Inverse - we only want to install if the user is NOT brining their own.

@@ -5,7 +5,7 @@
 resource "oci_core_security_list" "oke_nodes_security_list" {
   compartment_id = local.oke_compartment_ocid
   display_name   = "oke-nodes-wkr-seclist-${local.app_name_normalized}-${random_string.deploy_id.result}"
-  vcn_id         = oci_core_virtual_network.oke_vcn[0].id
+  vcn_id         = local.vcn_id
 
   # Ingresses
   ingress_security_rules {
@@ -123,27 +123,27 @@ resource "oci_core_security_list" "oke_nodes_security_list" {
     }
   }
 
-  count = 1
+  count = local.create_network_resources ? 1 : 0
 }
 
 resource "oci_core_security_list" "oke_lb_security_list" {
   compartment_id = local.oke_compartment_ocid
   display_name   = "oke-lb-seclist-${local.app_name_normalized}-${random_string.deploy_id.result}"
-  vcn_id         = oci_core_virtual_network.oke_vcn[0].id
+  vcn_id         = local.vcn_id
 
-  count = 1
+  count = local.create_network_resources ? 1 : 0
 }
 
 resource "oci_core_security_list" "oke_endpoint_security_list" {
   compartment_id = local.oke_compartment_ocid
   display_name   = "oke-k8s-api-endpoint-seclist-${local.app_name_normalized}-${random_string.deploy_id.result}"
-  vcn_id         = oci_core_virtual_network.oke_vcn[0].id
+  vcn_id         = local.vcn_id
 
   # Ingresses
 
   ingress_security_rules {
     description = "External access to Kubernetes API endpoint"
-    source      = lookup(var.network_cidrs, (var.cluster_endpoint_visibility == "Private") ? "VCN-CIDR" : "ALL-CIDR")
+    source      = lookup(var.network_cidrs, (local.cluster_endpoint_visibility == "Private") ? "VCN-CIDR" : "ALL-CIDR")
     source_type = "CIDR_BLOCK"
     protocol    = local.tcp_protocol_number
     stateless   = false
@@ -224,13 +224,13 @@ resource "oci_core_security_list" "oke_endpoint_security_list" {
     }
   }
 
-  count = 1
+  count = local.create_network_resources ? 1 : 0
 }
 
 resource "oci_core_security_list" "apigw_fn_security_list" {
   compartment_id = local.oke_compartment_ocid
   display_name   = "apigw-fn-seclist-${local.app_name_normalized}-${random_string.deploy_id.result}"
-  vcn_id         = oci_core_virtual_network.oke_vcn[0].id
+  vcn_id         = local.vcn_id
 
   # Ingresses
 
@@ -257,7 +257,7 @@ resource "oci_core_security_list" "apigw_fn_security_list" {
     stateless        = false
   }
 
-  count = 1
+  count = local.create_network_resources ? 1 : 0
 }
 
 locals {

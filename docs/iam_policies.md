@@ -44,6 +44,8 @@ Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage volume-att
 ```
 Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to inspect all-resources in tenancy
 
+Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage compute-capacity-reports in tenancy
+
 Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage instance-family in compartment {compartment_name}
 
 Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to use subnets in compartment {compartment_name}
@@ -91,8 +93,6 @@ Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to read keys in comp
 Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to use compute-capacity-reservations in compartment {compartment_name}
 
 Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to read metrics in compartment {compartment_name}
-
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage autonomous-database-family in compartment {compartment_name}
 
 Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to read virtual-network-family in compartment {compartment_name}
 

@@ -114,7 +114,10 @@ resource "kubernetes_job" "corrino_user_job" {
     update = "10m"
   }
 
-  depends_on = [kubernetes_job.corrino_migration_job]
+  depends_on = [
+    kubernetes_job.corrino_migration_job,
+    data.kubernetes_service.kueue_webhook
+  ]
 
   #  count = var.mushop_mock_mode_all ? 0 : 1
 }

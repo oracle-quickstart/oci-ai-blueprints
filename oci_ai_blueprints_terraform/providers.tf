@@ -5,20 +5,22 @@
 provider "oci" {
   tenancy_ocid = var.tenancy_ocid
   region       = var.region
+  auth         = var.use_instance_principal ? "InstancePrincipal" : null
 
-  user_ocid        = var.user_ocid
-  fingerprint      = var.fingerprint
-  private_key_path = var.private_key_path
+  user_ocid        = var.use_instance_principal ? null : var.user_ocid
+  fingerprint      = var.use_instance_principal ? null : var.fingerprint
+  private_key_path = var.use_instance_principal ? null : var.private_key_path
 }
 
 provider "oci" {
   alias        = "home_region"
   tenancy_ocid = var.tenancy_ocid
   region       = local.home_region
+  auth         = var.use_instance_principal ? "InstancePrincipal" : null
 
-  user_ocid        = var.user_ocid
-  fingerprint      = var.fingerprint
-  private_key_path = var.private_key_path
+  user_ocid        = var.use_instance_principal ? null : var.user_ocid
+  fingerprint      = var.use_instance_principal ? null : var.fingerprint
+  private_key_path = var.use_instance_principal ? null : var.private_key_path
 }
 
 # INTERPOLATION EFFORT

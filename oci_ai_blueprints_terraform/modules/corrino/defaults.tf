@@ -50,15 +50,32 @@ locals {
   resolved_vcn_compartment_ocid = (var.create_new_compartment_for_oke ? local.oke_compartment_ocid : var.compartment_ocid)
   pre_vcn_cidr_blocks           = split(",", var.vcn_cidr_blocks)
   vcn_cidr_blocks               = contains(module.vcn.cidr_blocks, local.pre_vcn_cidr_blocks[0]) ? distinct(concat([local.pre_vcn_cidr_blocks[0]], module.vcn.cidr_blocks)) : module.vcn.cidr_blocks
+  
+  # Calculate VCN prefix length to determine available bits for subnetting
+  vcn_prefix_length = tonumber(split("/", local.vcn_cidr_blocks[0])[1])
+  # Maximum bits available for subnetting (IPv4 limit is /32)
+  max_available_bits = 32 - local.vcn_prefix_length
+  
+  # Flexible subnet bit calculations based on VCN size
+  # For /16 VCN: use original calculations
+  # For /24 VCN: use smaller subnet allocations
+  endpoint_newbits = local.max_available_bits >= 12 ? 12 : local.max_available_bits >= 8 ? 8 : local.max_available_bits >= 4 ? 4 : 2
+  nodes_newbits = local.max_available_bits >= 6 ? 6 : local.max_available_bits >= 4 ? 4 : 2
+  lb_newbits = local.max_available_bits >= 6 ? 6 : local.max_available_bits >= 4 ? 4 : 2
+  fss_newbits = local.max_available_bits >= 10 ? 10 : local.max_available_bits >= 6 ? 6 : local.max_available_bits >= 4 ? 4 : 2
+  apigw_newbits = local.max_available_bits >= 8 ? 8 : local.max_available_bits >= 4 ? 4 : 2
+  vcn_native_newbits = local.max_available_bits >= 1 ? 1 : 0
+  bastion_newbits = local.max_available_bits >= 12 ? 12 : local.max_available_bits >= 8 ? 8 : local.max_available_bits >= 4 ? 4 : 2
+  
   network_cidrs = {
-    VCN-MAIN-CIDR                                  = local.vcn_cidr_blocks[0]                     # e.g.: "10.20.0.0/16" = 65536 usable IPs
-    ENDPOINT-REGIONAL-SUBNET-CIDR                  = cidrsubnet(local.vcn_cidr_blocks[0], 12, 0)  # e.g.: "10.20.0.0/28" = 15 usable IPs
-    NODES-REGIONAL-SUBNET-CIDR                     = cidrsubnet(local.vcn_cidr_blocks[0], 6, 3)   # e.g.: "10.20.12.0/22" = 1021 usable IPs (10.20.12.0 - 10.20.15.255)
-    LB-REGIONAL-SUBNET-CIDR                        = cidrsubnet(local.vcn_cidr_blocks[0], 6, 4)   # e.g.: "10.20.16.0/22" = 1021 usable IPs (10.20.16.0 - 10.20.19.255)
-    FSS-MOUNT-TARGETS-REGIONAL-SUBNET-CIDR         = cidrsubnet(local.vcn_cidr_blocks[0], 10, 81) # e.g.: "10.20.20.64/26" = 62 usable IPs (10.20.20.64 - 10.20.20.255)
-    APIGW-FN-REGIONAL-SUBNET-CIDR                  = cidrsubnet(local.vcn_cidr_blocks[0], 8, 30)  # e.g.: "10.20.30.0/24" = 254 usable IPs (10.20.30.0 - 10.20.30.255)
-    VCN-NATIVE-POD-NETWORKING-REGIONAL-SUBNET-CIDR = cidrsubnet(local.vcn_cidr_blocks[0], 1, 1)   # e.g.: "10.20.128.0/17" = 32766 usable IPs (10.20.128.0 - 10.20.255.255)
-    BASTION-REGIONAL-SUBNET-CIDR                   = cidrsubnet(local.vcn_cidr_blocks[0], 12, 32) # e.g.: "10.20.2.0/28" = 15 usable IPs (10.20.2.0 - 10.20.2.15)
+    VCN-MAIN-CIDR                                  = local.vcn_cidr_blocks[0]                                                         # e.g.: "10.20.0.0/16" = 65536 usable IPs
+    ENDPOINT-REGIONAL-SUBNET-CIDR                  = cidrsubnet(local.vcn_cidr_blocks[0], local.endpoint_newbits, 0)                 # Flexible endpoint subnet
+    NODES-REGIONAL-SUBNET-CIDR                     = cidrsubnet(local.vcn_cidr_blocks[0], local.nodes_newbits, 1)                   # Flexible nodes subnet  
+    LB-REGIONAL-SUBNET-CIDR                        = cidrsubnet(local.vcn_cidr_blocks[0], local.lb_newbits, 2)                      # Flexible LB subnet
+    FSS-MOUNT-TARGETS-REGIONAL-SUBNET-CIDR         = cidrsubnet(local.vcn_cidr_blocks[0], local.fss_newbits, 3)                     # Flexible FSS subnet
+    APIGW-FN-REGIONAL-SUBNET-CIDR                  = cidrsubnet(local.vcn_cidr_blocks[0], local.apigw_newbits, 4)                   # Flexible API Gateway subnet
+    VCN-NATIVE-POD-NETWORKING-REGIONAL-SUBNET-CIDR = local.vcn_native_newbits > 0 ? cidrsubnet(local.vcn_cidr_blocks[0], local.vcn_native_newbits, 1) : "10.244.0.0/16" # Flexible VCN-native or fallback
+    BASTION-REGIONAL-SUBNET-CIDR                   = cidrsubnet(local.vcn_cidr_blocks[0], local.bastion_newbits, 5)                 # Flexible bastion subnet
     PODS-CIDR                                      = "10.244.0.0/16"
     KUBERNETES-SERVICE-CIDR                        = "10.96.0.0/16"
     ALL-CIDR                                       = "0.0.0.0/0"

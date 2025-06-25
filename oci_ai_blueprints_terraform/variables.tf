@@ -25,14 +25,22 @@ variable "existent_oke_load_balancer_subnet_ocid" {}
 variable "tenancy_ocid" {}
 variable "compartment_ocid" {}
 variable "region" {}
+variable "use_instance_principal" {
+  default     = false
+  description = "Use Instance Principal authentication instead of user credentials"
+  type        = bool
+}
 variable "user_ocid" {
-  default = ""
+  default     = ""
+  description = "User OCID for OCI authentication (not required when using instance principal)"
 }
 variable "fingerprint" {
-  default = ""
+  default     = ""
+  description = "Fingerprint for OCI authentication (not required when using instance principal)"
 }
 variable "private_key_path" {
-  default = ""
+  default     = ""
+  description = "Path to private key file for OCI authentication (not required when using instance principal)"
 }
 
 # -----------------------------------
@@ -228,6 +236,26 @@ variable "mlflow_enabled" {
   default = true
 }
 
+variable "cluster_load_balancer_visibility" {
+  default     = "Public"
+  description = "The Load Balancer that is created will be hosted on a public subnet with a public IP address auto-assigned or on a private subnet. This affects the Kubernetes services, ingress controller and other load balancers resources"
+  type        = string
+
+  validation {
+    condition     = var.cluster_load_balancer_visibility == "Private" || var.cluster_load_balancer_visibility == "Public"
+    error_message = "Sorry, but cluster load balancer visibility can only be Private or Public."
+  }
+
+}
+
+# Cause a failure prior to run time because cert manager requires internet access for ACME challenges which is not available in private load balancer configurations.
+locals {
+  _cert_manager_validation = (
+    var.cert_manager_enabled && var.cluster_load_balancer_visibility == "Private"
+    ? error("cert_manager_enabled cannot be true when cluster_load_balancer_visibility is 'Private' because cert manager requires internet access for ACME challenges which is not available in private load balancer configurations.")
+    : true
+  )
+}
 # -----------------------------------
 # Autonomous Database
 # -----------------------------------
