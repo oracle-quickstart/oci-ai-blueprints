@@ -20,6 +20,15 @@ variable "ingress_load_balancer_shape_flex_max" {
   default     = "100"
   description = "Enter the maximum size of the flexible shape (Should be bigger than minimum size). The maximum service limit is set by your tenancy limits."
 }
+variable "cluster_load_balancer_visibility" {
+  default     = "Public"
+  description = "The Load Balancer visibility - Private or Public"
+  
+  validation {
+    condition     = var.cluster_load_balancer_visibility == "Private" || var.cluster_load_balancer_visibility == "Public"
+    error_message = "Load balancer visibility must be either 'Private' or 'Public'."
+  }
+}
 
 ## Resource Ingress examples
 variable "ingress_hosts" {
@@ -82,6 +91,16 @@ resource "helm_release" "ingress_nginx" {
     name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/oci-load-balancer-shape-flex-max"
     value = var.ingress_load_balancer_shape_flex_max
     type  = "string"
+  }
+
+  # Conditionally set the oci-load-balancer-internal annotation when load balancer visibility is Private
+  dynamic "set" {
+    for_each = var.cluster_load_balancer_visibility == "Private" ? [1] : []
+    content {
+      name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/oci-load-balancer-internal"
+      value = "true"
+      type  = "string"
+    }
   }
 
   count = var.ingress_nginx_enabled ? 1 : 0

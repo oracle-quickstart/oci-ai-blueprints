@@ -25,6 +25,7 @@ module "cluster-tools" {
   ingress_load_balancer_shape          = var.ingress_load_balancer_shape
   ingress_load_balancer_shape_flex_min = var.ingress_load_balancer_shape_flex_min
   ingress_load_balancer_shape_flex_max = var.ingress_load_balancer_shape_flex_max
+  cluster_load_balancer_visibility     = var.cluster_load_balancer_visibility
 
   ## Ingress
   ingress_hosts                = var.ingress_hosts
@@ -93,7 +94,6 @@ variable "ingress_email_issuer" {
   default     = "no-reply@example.cloud"
   description = "You must replace this email address with your own. The certificate provider will use this to contact you about expiring certificates, and issues related to your account."
 }
-
 ## Cert Manager
 variable "cert_manager_enabled" {
   default     = false

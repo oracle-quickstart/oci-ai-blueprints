@@ -37,3 +37,4 @@ variable "region" {}
 variable "cluster_tools_namespace" {
   default = "cluster-tools"
 }
+

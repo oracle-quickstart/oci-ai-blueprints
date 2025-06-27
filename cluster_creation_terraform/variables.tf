@@ -2,6 +2,44 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at http://oss.oracle.com/licenses/upl.
 # 
 
+# Networking Configuration Mode
+variable "network_configuration_mode" {
+  default     = "create_new"
+  description = "Whether to create a new VCN or use an existing one"
+  type        = string
+
+  validation {
+    condition     = contains(["create_new", "bring_your_own"], var.network_configuration_mode)
+    error_message = "Network configuration mode must be either 'create_new' or 'bring_your_own'."
+  }
+
+}
+
+# Bring Your Own VCN Variables
+variable "existing_vcn_id" {
+  default     = ""
+  description = "OCID of the existing VCN to use. Required when network_configuration_mode is 'bring_your_own'"
+  type        = string
+}
+
+variable "existing_endpoint_subnet_id" {
+  default     = ""
+  description = "OCID of the existing subnet for the Kubernetes API endpoint. Required when network_configuration_mode is 'bring_your_own'"
+  type        = string
+}
+
+variable "existing_node_subnet_id" {
+  default     = ""
+  description = "OCID of the existing subnet for worker nodes. Required when network_configuration_mode is 'bring_your_own'"
+  type        = string
+}
+
+variable "existing_lb_subnet_id" {
+  default     = ""
+  description = "OCID of the existing subnet for load balancers. Required when network_configuration_mode is 'bring_your_own'"
+  type        = string
+}
+
 # OKE Variables
 ## OKE Cluster Details
 variable "cluster_options_add_ons_is_kubernetes_dashboard_enabled" {
@@ -20,16 +58,32 @@ variable "cluster_workers_visibility" {
   }
 }
 
-variable "cluster_endpoint_visibility" {
+variable "cluster_endpoint_visibility_new_vcn" {
   default     = "Public"
-  description = "The Kubernetes cluster that is created will be hosted on a public subnet with a public IP address auto-assigned or on a private subnet. If Private, additional configuration will be necessary to run kubectl commands"
+  description = "The Kubernetes API endpoint visibility when creating a new VCN (only Public is supported)"
+  type        = string
 
   validation {
-    condition     = var.cluster_endpoint_visibility == "Private" || var.cluster_endpoint_visibility == "Public"
-    error_message = "Sorry, but cluster endpoint visibility can only be Private or Public."
+    condition     = var.cluster_endpoint_visibility_new_vcn == "Public"
+    error_message = "When creating a new VCN, only Public endpoint visibility is supported."
   }
 }
 
+variable "cluster_endpoint_visibility_existing_vcn" {
+  default     = "Public"
+  description = "The Kubernetes API endpoint visibility when using an existing VCN"
+  type        = string
+
+  validation {
+    condition     = var.cluster_endpoint_visibility_existing_vcn == "Private" || var.cluster_endpoint_visibility_existing_vcn == "Public"
+    error_message = "Endpoint visibility must be either 'Private' or 'Public'."
+  }
+}
+
+# Combined local for backward compatibility
+locals {
+  cluster_endpoint_visibility = var.network_configuration_mode == "create_new" ? var.cluster_endpoint_visibility_new_vcn : var.cluster_endpoint_visibility_existing_vcn
+}
 
 ## OKE Node Pool Details
 variable "node_pool_name" {
@@ -93,6 +147,21 @@ locals {
   app_name               = random_string.app_name_autogen.result
   app_name_normalized    = random_string.app_name_autogen.result
   oci_ai_blueprints_link = file("${path.module}/OCI_AI_BLUEPRINTS_LINK")
+}
+
+# Networking Locals
+locals {
+  # Determine which VCN and subnets to use based on configuration mode
+  vcn_id = var.network_configuration_mode == "bring_your_own" ? var.existing_vcn_id : oci_core_virtual_network.oke_vcn[0].id
+  
+  endpoint_subnet_id = var.network_configuration_mode == "bring_your_own" ? var.existing_endpoint_subnet_id : oci_core_subnet.oke_k8s_endpoint_subnet[0].id
+  
+  node_subnet_id = var.network_configuration_mode == "bring_your_own" ? var.existing_node_subnet_id : oci_core_subnet.oke_nodes_subnet[0].id
+  
+  lb_subnet_id = var.network_configuration_mode == "bring_your_own" ? var.existing_lb_subnet_id : oci_core_subnet.oke_lb_subnet[0].id
+  
+  # Only create new network resources when in create_new mode
+  create_network_resources = var.network_configuration_mode == "create_new"
 }
 
 # Dictionary Locals

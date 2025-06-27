@@ -112,12 +112,50 @@ resource "helm_release" "kueue" {
   chart            = "kueue"
   namespace        = "kueue-system"
   create_namespace = true
-  # Need to wait for webhooks so we don't hit timing issues.
-  wait             = true
-  wait_for_jobs    = true
-  version          = "0.11.4"
+  # Critical: wait for all components including webhooks to be ready
+  wait                = true
+  wait_for_jobs       = true
+  timeout             = 600  # 10 minutes timeout to ensure webhooks are ready
+  disable_webhooks    = false # Ensure webhooks are enabled
+  verify              = false # Skip verification to avoid issues in OCI stacks
+  version             = "0.11.4"
+
+  # Ensure webhook readiness
+  set {
+    name  = "controllerManager.webhookService.port"
+    value = "9443"
+  }
+
+  # Enable health checks 
+  set {
+    name  = "controllerManager.healthProbeBindAddress"
+    value = ":8081"
+  }
+
+  # Set proper resource limits to ensure stability
+  set {
+    name  = "controllerManager.resources.limits.memory"
+    value = "512Mi"
+  }
+
+  set {
+    name  = "controllerManager.resources.requests.memory"
+    value = "256Mi"
+  }
 
   count      = var.bring_your_own_kueue ? 0 : 1
   depends_on = [module.oke-quickstart.helm_release_ingress_nginx]
+}
+
+# Data source to ensure Kueue webhook service exists before proceeding
+data "kubernetes_service" "kueue_webhook" {
+  count = var.bring_your_own_kueue ? 0 : 1
+  
+  metadata {
+    name      = "kueue-webhook-service"
+    namespace = "kueue-system"
+  }
+  
+  depends_on = [helm_release.kueue]
 }
 

@@ -31,6 +31,7 @@ Instead of creating an OKE cluster manually, you can deploy a **VCN + OKE cluste
    - Give your stack a **name** (e.g., _oke-stack_).
    - Select the **compartment** where you want OCI AI Blueprints deployed.
    - Provide any additional parameters (such as node size, node count) according to your preferences.
+      - If you'd like to deploy the OKE cluster with no public endpoint into your own private network setup, visit [this doc](./docs/advanced/deploying_blueprints_to_private_networks/README.md).
 3. Click **Next**, then **Create**, and finally choose **Run apply** to provision your cluster.
 4. Monitor the progress in **Resource Manager → Stacks**. Once the status is **Succeeded**, you have a functional VCN and an OKE cluster ready to host OCI AI Blueprints.
 
@@ -39,6 +40,8 @@ Instead of creating an OKE cluster manually, you can deploy a **VCN + OKE cluste
 ## Step 3: Deploy the OCI AI Blueprints Application
 
 Now that your cluster is ready, follow these steps to install OCI AI Blueprints onto it:
+
+**Note**: If you are deploying blueprints onto a locked down cluster with no public endpoint accessible by the internet, the stack will fail. Visit [this doc](./docs/advanced/deploying_blueprints_to_private_networks/README.md) for deployment details and necessary steps.
 
 1. Click the **Deploy to Oracle Cloud** button below to open another Resource Manager stack—this one for OCI AI Blueprints:
 
