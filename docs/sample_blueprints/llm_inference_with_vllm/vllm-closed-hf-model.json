@@ -2,7 +2,7 @@
   "recipe_id": "llm_inference_nvidia",
   "recipe_mode": "service",
   "deployment_name": "vllm-closed-hf-model",
-  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:vllmv0901",
+  "recipe_image_uri": "docker.io/vllm/vllm-openai:latest",
   "recipe_node_shape": "VM.GPU.A10.2",
   "recipe_container_env": [
     {
@@ -12,6 +12,7 @@
   ],
   "recipe_replica_count": 1,
   "recipe_container_port": "8000",
+  "recipe_prometheus_enabled": true,
   "recipe_nvidia_gpu_count": 2,
   "recipe_node_pool_size": 1,
   "recipe_node_boot_volume_size_in_gbs": 200,

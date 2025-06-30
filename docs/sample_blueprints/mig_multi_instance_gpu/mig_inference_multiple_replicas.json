@@ -2,7 +2,8 @@
     "recipe_id": "llm_inference_nvidia",
     "recipe_mode": "service",
     "deployment_name": "autoscale_mig",
-    "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:vllmv0901",
+    "recipe_image_uri": "docker.io/vllm/vllm-openai:latest",
+    "recipe_prometheus_enabled": true,
     "recipe_node_shape": "BM.GPU.H100.8",
     "recipe_container_env": [
     {
