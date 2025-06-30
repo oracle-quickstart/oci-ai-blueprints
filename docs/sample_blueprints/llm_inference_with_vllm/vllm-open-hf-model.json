@@ -2,7 +2,7 @@
   "recipe_id": "llm_inference_nvidia",
   "recipe_mode": "service",
   "deployment_name": "vllm-open-hf-model",
-  "recipe_image_uri": "docker.io/vllm/vllm-openai:latest",
+  "recipe_image_uri": "docker.io/vllm/vllm-openai:v0.9.1",
   "recipe_node_shape": "VM.GPU.A10.2",
   "recipe_prometheus_enabled": true,
   "recipe_container_env": [

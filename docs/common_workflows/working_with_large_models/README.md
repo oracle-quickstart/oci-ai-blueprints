@@ -55,7 +55,7 @@ Once the copy is done, we can now deploy the blueprint using the model, except c
   "recipe_id": "llm_inference_nvidia",
   "recipe_mode": "service",
   "deployment_name": "90bvisioninstruct",
-  "recipe_image_uri": "docker.io/vllm/vllm-openai:latest",
+  "recipe_image_uri": "docker.io/vllm/vllm-openai:v0.9.1",
   "recipe_node_shape": "BM.GPU.H100.8",
   "recipe_replica_count": 1,
   "recipe_container_port": "8000",
