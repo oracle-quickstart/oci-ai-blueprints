@@ -22,11 +22,12 @@ resource "oci_identity_policy" "oke_instances_tenancy_policy" {
   compartment_id = var.tenancy_ocid
 
   statements = [
-    "Allow dynamic-group 'Default'/'${oci_identity_dynamic_group.dyn_group[0].name}' to manage all-resources in compartment ${data.oci_identity_compartment.oci_compartment.name}",
-    "Allow dynamic-group 'Default'/'${oci_identity_dynamic_group.dyn_group[0].name}' to use all-resources in tenancy",
-    "Allow dynamic-group 'Default'/'${oci_identity_dynamic_group.dyn_group[0].name}' to manage {CLUSTER_JOIN} in compartment ${data.oci_identity_compartment.oci_compartment.name}",
-    "Allow dynamic-group 'Default'/'${oci_identity_dynamic_group.dyn_group[0].name}' to manage volumes in TENANCY where request.principal.type = 'cluster'",
-    "Allow dynamic-group 'Default'/'${oci_identity_dynamic_group.dyn_group[0].name}' to manage volume-attachments in TENANCY where request.principal.type = 'cluster'"
+    "Allow dynamic-group ${oci_identity_dynamic_group.dyn_group[0].name} to manage all-resources in compartment id ${var.compartment_ocid}",
+    "Allow dynamic-group ${oci_identity_dynamic_group.dyn_group[0].name} to use all-resources in tenancy",
+    "Allow dynamic-group ${oci_identity_dynamic_group.dyn_group[0].name} to manage cluster-node-pools in compartment id ${var.compartment_ocid}",
+    "Allow dynamic-group ${oci_identity_dynamic_group.dyn_group[0].name} to manage cluster-work-requests in compartment id ${var.compartment_ocid}",
+    "Allow dynamic-group ${oci_identity_dynamic_group.dyn_group[0].name} to manage volume-attachments in tenancy where request.principal.type = 'cluster'",
+    "Allow dynamic-group ${oci_identity_dynamic_group.dyn_group[0].name} to manage volumes in tenancy where request.principal.type = 'cluster'"
   ]
   freeform_tags = local.corrino_tags
   count         = var.policy_creation_enabled ? 1 : 0
