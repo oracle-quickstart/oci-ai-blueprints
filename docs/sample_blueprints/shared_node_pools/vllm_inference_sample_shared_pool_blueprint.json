@@ -2,7 +2,7 @@
     "recipe_id": "llm_inference_nvidia",
     "recipe_mode": "service",
     "deployment_name": "vLLM Inference Deployment",
-    "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:vllmv0901",
+    "recipe_image_uri": "docker.io/vllm/vllm-openai:v0.9.1",
     "recipe_node_shape": "BM.GPU.A10.4",
     "input_object_storage": [
         {

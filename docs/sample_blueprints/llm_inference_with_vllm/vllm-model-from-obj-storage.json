@@ -2,8 +2,9 @@
   "recipe_id": "llm_inference_nvidia",
   "recipe_mode": "service",
   "deployment_name": "vllm-model-from-obj-storage",
-  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:vllmv0901",
+  "recipe_image_uri": "docker.io/vllm/vllm-openai:v0.9.1",
   "recipe_node_shape": "VM.GPU.A10.2",
+  "recipe_prometheus_enabled": true,
   "input_object_storage": [
     {
       "par": "https://objectstorage.us-ashburn-1.oraclecloud.com/p/IFknABDAjiiF5LATogUbRCcVQ9KL6aFUC1j-P5NSeUcaB2lntXLaR935rxa-E-u1/n/iduyx1qnmway/b/corrino_hf_oss_models/o/",

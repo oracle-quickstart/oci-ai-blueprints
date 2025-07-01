@@ -2,8 +2,9 @@
   "recipe_id": "llm_inference_nvidia",
   "recipe_mode": "service",
   "deployment_name": "vllm-open-hf-model-api-key-functionality",
-  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:vllmv0901",
+  "recipe_image_uri": "docker.io/vllm/vllm-openai:v0.9.1",
   "recipe_node_shape": "VM.GPU.A10.2",
+  "recipe_prometheus_enabled": true,
   "recipe_container_env": [
     {
       "key": "VLLM_API_KEY",

@@ -30,6 +30,7 @@ RDMA is currently supported for:
 
 - BM.GPU.H100.8
 - BM.GPU.H200.8
+- BM.GPU.B200.8
 - BM.GPU.B4.8
 
 Additional shape support is coming soon.
@@ -54,9 +55,9 @@ The fine-grained policy list for blueprints can be found [here](../../iam_polici
 
 ## Import a custom image
 
-The following [oci-hpc-oke quickstart](https://github.com/oracle-quickstart/oci-hpc-oke?tab=readme-ov-file#images-to-use) provides node images with proper drivers and libraries for RDMA connectivity between nodes for various CUDA driver / toolkit versions. One of these images must be imported into your tenancy in the correct region (and possibly compartment depending on policies) to provision RDMA enabled shared node pools.
+One of the images in the table below must be imported into your tenancy in the correct region (and possibly compartment depending on policies) to provision RDMA enabled shared node pools. To import an image
 
-- Right click on the appropriate combination (IE GPU driver 560 & CUDA 12.6) and copy link to get the PAR
+- Right click on the appropriate combination (IE GPU driver 560 & CUDA 12.6) and copy link address to get the PAR
 - Login to the tenancy + region in which you'd like to import the image
 - In the console, click the hamburger in the top left -> Compute -> Instances -> Custom Images
 - Go to the Compartment in which you'd like to import the image, then click "Import image"
@@ -67,6 +68,19 @@ The following [oci-hpc-oke quickstart](https://github.com/oracle-quickstart/oci-
 - Add any tags you'd like, then click "Import Image" on the bottom
 - Once the image is done importing (30 minutes to an hour), it will be usable during cluster deployment
 - To use the image in recipes, you will need to retrieve the image OCID
+
+
+**Note**: B200 requires Driver version 570 and CUDA >= 12.8. Ensure correct PAR for compatibility with B200.
+
+| Operating System | Shape Compatibility | NVIDIA Driver Version | CUDA Version | Mellanox OFED Driver Version | Image PAR Link |
+| :--------------: | :-----------------: | :-------------------: | :----------: | :--------------------------: | :------------: |
+| Ubuntu 22.04     | B200, H200, H100, A100 | 570-open           | 12.8         | v24.10-1.1.4.0               | [Link](https://objectstorage.ca-montreal-1.oraclecloud.com/p/ts6fjAuj7hY4io5x_jfX3fyC70HRCG8-9gOFqAjuF0KE0s-6tgDZkbRRZIbMZmoN/n/hpc_limited_availability/b/images/o/Canonical-Ubuntu-22.04-2025.05.20-0-OFED-24.10-1.1.4.0-GPU-570-OPEN-CUDA-12.8-2025.06.07-0) |
+| Ubuntu 22.04     | H200, H100, A100       | 560                | 12.6         | v24.10-1.1.4.0               | [Link](https://objectstorage.ca-montreal-1.oraclecloud.com/p/ts6fjAuj7hY4io5x_jfX3fyC70HRCG8-9gOFqAjuF0KE0s-6tgDZkbRRZIbMZmoN/n/hpc_limited_availability/b/images/o/Canonical-Ubuntu-22.04-2025.05.20-0-OFED-24.10-1.1.4.0-GPU-560-CUDA-12.6-2025.06.07-0) |
+| Ubuntu 22.04     | H200, H100, A100       | 550                | 12.4         | v24.10-1.1.4.0               | [Link](https://objectstorage.ca-montreal-1.oraclecloud.com/p/ts6fjAuj7hY4io5x_jfX3fyC70HRCG8-9gOFqAjuF0KE0s-6tgDZkbRRZIbMZmoN/n/hpc_limited_availability/b/images/o/Canonical-Ubuntu-22.04-2025.05.20-0-OFED-24.10-1.1.4.0-GPU-550-CUDA-12.4-2025.06.07-0) |
+| Ubuntu 24.04     | B200, H200, H100, A100 | 570-open           | 12.8         | DOCA-OFED-2.10.0             | [Link](https://objectstorage.ca-montreal-1.oraclecloud.com/p/ts6fjAuj7hY4io5x_jfX3fyC70HRCG8-9gOFqAjuF0KE0s-6tgDZkbRRZIbMZmoN/n/hpc_limited_availability/b/images/o/Canonical-Ubuntu-24.04-2025.05.20-0-DOCA-OFED-2.10.0-GPU-570-OPEN-CUDA-12.8-2025.06.25-0) |
+| Ubuntu 24.04     | H200, H100, A100       | 560                | 12.6         | DOCA-OFED-2.10.0             | [Link](https://objectstorage.ca-montreal-1.oraclecloud.com/p/ts6fjAuj7hY4io5x_jfX3fyC70HRCG8-9gOFqAjuF0KE0s-6tgDZkbRRZIbMZmoN/n/hpc_limited_availability/b/images/o/Canonical-Ubuntu-24.04-2025.05.20-0-DOCA-OFED-2.10.0-GPU-560-CUDA-12.6-2025.06.25-0) |
+
+
 
 [This doc](https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/custom-images-import.htm#listing-custom-images) provides complete details for all image importing options.
 

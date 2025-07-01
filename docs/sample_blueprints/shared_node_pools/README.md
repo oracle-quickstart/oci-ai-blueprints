@@ -10,6 +10,21 @@ The system supports both selector-based and non-selector deployment strategies. 
 
 Shared node pools are compatible with any blueprint and support all OCI compute shapes, with special considerations for bare metal configurations that require boot volume size specifications.
 
+**Note**: The list of shapes below are supported by Blueprints, but not yet supported by OKE, requiring blueprints to treat them as self-managed nodes. These require:
+1. Specifying the Availability Domain of the instance type
+2. Specifying the custom image OCID to use for the node
+
+Additional required fields:
+
+```json
+"recipe_availability_domain": "<Availability Domain>",
+"recipe_node_image_ocid": "<ocid>"
+```
+
+See [this recipe](./shared_node_pool_B200_BM.json) as an example for these parameters.
+
+[This document section](../using_rdma_enabled_node_pools/README.md#import-a-custom-image) describes now to import a custom image and provides links to import custom images for various shapes.
+
 ## Pre-Filled Samples
 
 | Feature Showcase                                                                                  | Title                           | Description                                                                                                                                                             | Blueprint File                                                                                       |
