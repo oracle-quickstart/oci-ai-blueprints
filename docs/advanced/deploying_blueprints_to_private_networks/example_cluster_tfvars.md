@@ -4,6 +4,8 @@ region = "us-ashburn-1"
 tenancy_ocid = "ocid1.tenancy.oc1..aaaaaaaa____za"
 compartment_ocid = "ocid1.compartment.oc1..aaaaaaaa____5a"
 
+# If you want to authenticate with instance principal
+use_instance_principal = true
 
 network_configuration_mode = "bring_your_own"
 existing_vcn_id = "ocid1.vcn.oc1.iad.amaaaaaam____a"
