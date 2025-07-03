@@ -71,6 +71,7 @@ variables:
     visible: true
 
   use_instance_principal:
+    description: "Terraform provider will use Instance Principal authentication instead of user credentials. Requires the compute instance to have appropriate IAM policies."
     visible: false
 
   fingerprint:

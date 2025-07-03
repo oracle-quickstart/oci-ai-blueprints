@@ -506,6 +506,10 @@ variables:
   # --------------------
 
   use_instance_principal:
+    type: boolean
+    title: "Use Instance Principal Authentication"
+    description: "Terraform provider will use Instance Principal authentication instead of user credentials. Requires the compute instance to have appropriate IAM policies."
+    default: false
     visible: false
 
   private_key_path:
@@ -1391,6 +1395,5 @@ outputs:
   use_instance_principal:
     type: boolean
     title: "Use Instance Principal Authentication"
-    description: "Enable this to use Instance Principal authentication instead of user credentials. Requires the compute instance to have appropriate IAM policies."
-    default: false
+    description: "Terraform provider will use Instance Principal authentication instead of user credentials. Requires the compute instance to have appropriate IAM policies."
     visible: true
