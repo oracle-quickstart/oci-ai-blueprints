@@ -5,7 +5,7 @@
 # Authentication Configuration
 variable "use_instance_principal" {
   type        = bool
-  default     = true
+  default     = false
   description = "Whether to use Instance Principal for authentication. If false, user credentials will be used."
 }
 

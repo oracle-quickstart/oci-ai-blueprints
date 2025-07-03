@@ -21,6 +21,7 @@ It may be preferable for some users to deploy with terraform in the scenario whe
 7. Run a `terraform plan` to ensure nothing is missing.
 8. Run a `terraform apply` to install the Blueprints platform on your OKE cluster.
 
+**Note**: When deploying with terraform, it is important that you specify the correct stack version in the tfvars file. If you use an older version of the stack, this will be used for the blueprints version running in the control plane. If a mistake happens, it is very easy to modify the tfvars file to the correct stack version and reapply your changes, which would force an updated container pull.
 
 ## Console based deployment for OKE
 
