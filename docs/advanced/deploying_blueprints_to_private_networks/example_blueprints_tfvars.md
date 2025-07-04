@@ -9,6 +9,9 @@ corrino_admin_username = "admin" # use something else
 corrino_admin_nonce = "password" # use something else
 corrino_admin_email = "me@oracle.com"
 
+# If you want to authenticate with instance principal
+use_instance_principal = true
+
 # Leave these
 ingress_nginx_enabled = true
 cert_manager_enabled = false

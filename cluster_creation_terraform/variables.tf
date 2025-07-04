@@ -2,6 +2,25 @@
 # Licensed under the Universal Permissive License v 1.0 as shown at http://oss.oracle.com/licenses/upl.
 # 
 
+# Authentication Configuration
+variable "use_instance_principal" {
+  type        = bool
+  default     = false
+  description = "Whether to use Instance Principal for authentication. If false, user credentials will be used."
+}
+
+variable "fingerprint" {
+  type        = string
+  default     = ""
+  description = "API Key Fingerprint for user authentication. Required when use_instance_principal is false."
+}
+
+variable "private_key_path" {
+  type        = string
+  default     = ""
+  description = "Path to the private key file for user authentication. Required when use_instance_principal is false."
+}
+
 # Networking Configuration Mode
 variable "network_configuration_mode" {
   default     = "create_new"

@@ -5,22 +5,33 @@
 provider "oci" {
   tenancy_ocid = var.tenancy_ocid
   region       = var.region
+  auth         = var.use_instance_principal ? "InstancePrincipal" : null
+
+  user_ocid        = var.use_instance_principal ? null : var.user_ocid
+  fingerprint      = var.use_instance_principal ? null : var.fingerprint
+  private_key_path = var.use_instance_principal ? null : var.private_key_path
 }
 
 provider "oci" {
   alias        = "home_region"
   tenancy_ocid = var.tenancy_ocid
   region       = lookup(data.oci_identity_regions.home_region.regions[0], "name")
+  auth         = var.use_instance_principal ? "InstancePrincipal" : null
 
-  user_ocid = var.user_ocid
+  user_ocid        = var.use_instance_principal ? null : var.user_ocid
+  fingerprint      = var.use_instance_principal ? null : var.fingerprint
+  private_key_path = var.use_instance_principal ? null : var.private_key_path
 }
 
 provider "oci" {
   alias        = "current_region"
   tenancy_ocid = var.tenancy_ocid
   region       = var.region
+  auth         = var.use_instance_principal ? "InstancePrincipal" : null
 
-  user_ocid = var.user_ocid
+  user_ocid        = var.use_instance_principal ? null : var.user_ocid
+  fingerprint      = var.use_instance_principal ? null : var.fingerprint
+  private_key_path = var.use_instance_principal ? null : var.private_key_path
 }
 
 # New configuration to avoid Terraform Kubernetes provider interpolation. https://registry.terraform.io/providers/hashicorp/kubernetes/2.2.0/docs#stacking-with-managed-kubernetes-cluster-resources

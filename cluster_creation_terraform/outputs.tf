@@ -75,3 +75,25 @@ output "endpoint_subnet_id" {
   value = local.endpoint_subnet_id
 }
 
+# Authentication verification outputs
+output "authentication_method" {
+  value = var.use_instance_principal ? "InstancePrincipal" : "UserCredentials"
+  description = "The authentication method being used for OCI provider"
+}
+
+output "use_instance_principal" {
+  value = var.use_instance_principal
+  description = "Whether Instance Principal authentication is enabled"
+}
+
+output "auth_config_summary" {
+  value = {
+    use_instance_principal = var.use_instance_principal
+    auth_method           = var.use_instance_principal ? "InstancePrincipal" : "UserCredentials"
+    user_ocid_set         = var.use_instance_principal ? false : (var.user_ocid != "" && var.user_ocid != null)
+    fingerprint_set       = var.use_instance_principal ? false : (var.fingerprint != "" && var.fingerprint != null)
+    private_key_path_set  = var.use_instance_principal ? false : (var.private_key_path != "" && var.private_key_path != null)
+  }
+  description = "Summary of authentication configuration"
+}
+
