@@ -1,0 +1,218 @@
+{
+  "deployment_group": {
+    "name": "group",
+    "deployments": [
+      {
+        "name": "postgres",
+        "recipe": {
+          "recipe_id": "postgres",
+          "deployment_name": "postgres",
+          "recipe_mode": "service",
+          "recipe_node_pool_size": 1,
+          "recipe_node_shape": "VM.Standard.E4.Flex",
+          "recipe_flex_shape_ocpu_count": 2,
+          "recipe_flex_shape_memory_size_in_gbs": 16,
+          "recipe_node_boot_volume_size_in_gbs": 200,
+          "recipe_ephemeral_storage_size": 100,
+          "recipe_image_uri": "docker.io/library/postgres:latest",
+          "recipe_container_port": "5432",
+          "recipe_host_port": "5432",
+          "recipe_container_env": [
+            {
+              "key": "POSTGRES_USER",
+              "value": "llamastack"
+            },
+            {
+              "key": "POSTGRES_PASSWORD",
+              "value": "llamastack"
+            },
+            {
+              "key": "POSTGRES_DB",
+              "value": "llamastack"
+            }
+          ],
+          "recipe_replica_count": 1
+        },
+        "exports": ["internal_dns_name"]
+      },
+      {
+        "name": "chroma",
+        "recipe": {
+          "recipe_id": "chromadb",
+          "deployment_name": "chroma",
+          "recipe_mode": "service",
+          "recipe_node_pool_size": 1,
+          "recipe_node_shape": "VM.Standard.E4.Flex",
+          "recipe_flex_shape_ocpu_count": 2,
+          "recipe_flex_shape_memory_size_in_gbs": 16,
+          "recipe_node_boot_volume_size_in_gbs": 200,
+          "recipe_ephemeral_storage_size": 100,
+          "recipe_image_uri": "docker.io/chromadb/chroma:latest",
+          "recipe_container_port": "8000",
+          "recipe_host_port": "8000",
+          "recipe_container_env": [
+            {
+              "key": "IS_PERSISTENT",
+              "value": "TRUE"
+            },
+            {
+              "key": "ANONYMIZED_TELEMETRY",
+              "value": "FALSE"
+            }
+          ],
+          "recipe_replica_count": 1,
+          "output_object_storage": [
+            {
+              "bucket_name": "chromadb",
+              "mount_location": "/chroma/chroma",
+              "volume_size_in_gbs": 500
+            }
+          ]
+        },
+        "exports": ["internal_dns_name"]
+      },
+      {
+        "name": "vllm",
+        "recipe": {
+          "recipe_id": "llm_inference_nvidia",
+          "deployment_name": "vllm",
+          "recipe_mode": "service",
+          "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:vllmv0.6.6.pos1",
+          "recipe_node_shape": "VM.GPU.A10.2",
+          "input_object_storage": [
+            {
+              "par": "https://objectstorage.us-ashburn-1.oraclecloud.com/p/IFknABDAjiiF5LATogUbRCcVQ9KL6aFUC1j-P5NSeUcaB2lntXLaR935rxa-E-u1/n/iduyx1qnmway/b/corrino_hf_oss_models/o/",
+              "mount_location": "/models",
+              "volume_size_in_gbs": 500,
+              "include": ["NousResearch/Meta-Llama-3.1-8B-Instruct"]
+            }
+          ],
+          "recipe_container_env": [
+            {
+              "key": "tensor_parallel_size",
+              "value": "2"
+            },
+            {
+              "key": "model_name",
+              "value": "NousResearch/Meta-Llama-3.1-8B-Instruct"
+            },
+            {
+              "key": "Model_Path",
+              "value": "/models/NousResearch/Meta-Llama-3.1-8B-Instruct"
+            }
+          ],
+          "recipe_replica_count": 1,
+          "recipe_container_port": "8000",
+          "recipe_nvidia_gpu_count": 2,
+          "recipe_node_pool_size": 1,
+          "recipe_node_boot_volume_size_in_gbs": 200,
+          "recipe_container_command_args": [
+            "--model",
+            "$(Model_Path)",
+            "--tensor-parallel-size",
+            "$(tensor_parallel_size)"
+          ],
+          "recipe_ephemeral_storage_size": 100,
+          "recipe_shared_memory_volume_size_limit_in_mb": 200
+        },
+        "exports": ["service_url"]
+      },
+      {
+        "name": "jaeger",
+        "recipe": {
+          "recipe_id": "jaeger",
+          "deployment_name": "jaeger",
+          "recipe_mode": "service",
+          "recipe_node_pool_size": 1,
+          "recipe_node_shape": "VM.Standard.E4.Flex",
+          "recipe_flex_shape_ocpu_count": 2,
+          "recipe_flex_shape_memory_size_in_gbs": 16,
+          "recipe_node_boot_volume_size_in_gbs": 200,
+          "recipe_ephemeral_storage_size": 100,
+          "recipe_image_uri": "docker.io/jaegertracing/jaeger:latest",
+          "recipe_container_port": "16686",
+          "recipe_additional_ingress_ports": [
+            {
+              "name": "jaeger",
+              "port": 4318,
+              "path": "/jaeger"
+            }
+          ],
+          "recipe_replica_count": 1
+        },
+        "exports": ["internal_dns_name"]
+      },
+      {
+        "name": "llamastack_app",
+        "recipe": {
+          "recipe_id": "llamastack_app",
+          "deployment_name": "llamastack_app",
+          "recipe_mode": "service",
+          "recipe_node_pool_size": 1,
+          "recipe_node_shape": "VM.Standard.E4.Flex",
+          "recipe_flex_shape_ocpu_count": 2,
+          "recipe_flex_shape_memory_size_in_gbs": 16,
+          "recipe_node_boot_volume_size_in_gbs": 200,
+          "recipe_ephemeral_storage_size": 100,
+          "recipe_image_uri": "docker.io/llamastack/distribution-postgres-demo:latest",
+          "recipe_container_port": "8321",
+          "recipe_container_env": [
+            {
+              "key": "INFERENCE_MODEL",
+              "value": "/models/NousResearch/Meta-Llama-3.1-8B-Instruct"
+            },
+            {
+              "key": "VLLM_URL",
+              "value": "${vllm.service_url}/v1"
+            },
+            {
+              "key": "ENABLE_CHROMADB",
+              "value": "1"
+            },
+            {
+              "key": "CHROMADB_URL",
+              "value": "http://${chroma.internal_dns_name}:8000"
+            },
+            {
+              "key": "POSTGRES_HOST",
+              "value": "${postgres.internal_dns_name}"
+            },
+            {
+              "key": "POSTGRES_PORT",
+              "value": "5432"
+            },
+            {
+              "key": "POSTGRES_DB",
+              "value": "llamastack"
+            },
+            {
+              "key": "POSTGRES_USER",
+              "value": "llamastack"
+            },
+            {
+              "key": "POSTGRES_PASSWORD",
+              "value": "llamastack"
+            },
+            {
+              "key": "TELEMETRY_SINKS",
+              "value": "console,otel_trace"
+            },
+            {
+              "key": "OTEL_TRACE_ENDPOINT",
+              "value": "http://${jaeger.internal_dns_name}/jaeger/v1/traces"
+            }
+          ],
+          "output_object_storage": [
+            {
+              "bucket_name": "llamastack",
+              "mount_location": "/root/.llama",
+              "volume_size_in_gbs": 100
+            }
+          ],
+          "recipe_replica_count": 1
+        },
+        "depends_on": ["postgres", "chroma", "vllm", "jaeger"]
+      }
+    ]
+  }
+}

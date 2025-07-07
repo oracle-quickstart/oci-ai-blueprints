@@ -14,13 +14,9 @@ Order of Pre-Filled Sample Deployments:
 
 ## Pre-Filled Samples
 
-| Feature Showcase                                                               | Title                                     | Description                                                                                                                                                  | Blueprint File                                 |
-| ------------------------------------------------------------------------------ | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------- |
-| vLLM inference engine for large language model serving                         | vLLM Inference with Llama 3.1 8B Instruct | Deploys a vLLM inference service running NousResearch/Meta-Llama-3.1-8B-Instruct model with GPU acceleration on VM.GPU.A10.2 nodes.                          | [vllm_llama_stack.json](vllm_llama_stack.json) |
-| PostgreSQL database backend for Llama Stack data persistence                   | PostgreSQL Database for Llama Stack       | Deploys a PostgreSQL database instance that serves as the primary data store for Llama Stack application state and metadata.                                 | [postgres_db.json](postgres_db.json)           |
-| ChromaDB vector database for retrieval-augmented generation (RAG) capabilities | ChromaDB Vector Database                  | Deploys ChromaDB vector database with persistent storage for embedding storage and similarity search in RAG workflows.                                       | [chroma_db.json](chroma_db.json)               |
-| Jaeger distributed tracing for observability and telemetry                     | Jaeger Tracing Service                    | Deploys Jaeger for distributed tracing and telemetry collection to monitor and debug Llama Stack operations.                                                 | [jaegar.json](jaegar.json)                     |
-| Main Llama Stack application that orchestrates all components                  | Llama Stack Main Application              | Deploys the main Llama Stack application that connects to vLLM, PostgreSQL, ChromaDB, and Jaeger to provide a unified API for inference, RAG, and telemetry. | [llamastack.json](llamastack.json)             |
+| Feature Showcase                        | Title                                | Description                                                                         | Blueprint File                                   |
+| --------------------------------------- | ------------------------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Llama Stack Multi-Container Deployments | Full Llama Stack Basic Configuration | Deploys a Llama Stack on OCI AI Blueprints with Postgres, ChromaDB, vLLM and Jaegar | [llama_stack_basic.json](llama_stack_basic.json) |
 
 ---
 
