@@ -2,21 +2,15 @@
 
 #### Pre-packaged GenAI runtime — vLLM + ChromaDB + Postgres (optional Jaeger) ready for one-click deployment
 
-Deploy Llama Stack on OCI via OCI AI Blueprints. In order to get the full Llama Stack Application up and running, you will need to deploy the following pre-filled samples in a specific order. Before deploying the pre-filled samples, make sure to have two object storage buckets created in the same compartment that OCI AI Blueprints is deployed into named `chromadb` and `llamastack`.
+Deploy Llama Stack on OCI via OCI AI Blueprints. For more information on Llama Stack: https://github.com/meta-llama/llama-stack
 
-Order of Pre-Filled Sample Deployments:
-
-1. vLLM Inference Engine
-2. Postgres DB
-3. Chroma DB
-4. Jaegar
-5. Llama Stack Main App
+We are using Postgres for the backend store, chromaDB for the vector database, Jaeger for tracing and vLLM for inference serving.
 
 ## Pre-Filled Samples
 
-| Feature Showcase                        | Title                                | Description                                                                         | Blueprint File                                   |
-| --------------------------------------- | ------------------------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------ |
-| Llama Stack Multi-Container Deployments | Full Llama Stack Basic Configuration | Deploys a Llama Stack on OCI AI Blueprints with Postgres, ChromaDB, vLLM and Jaegar | [llama_stack_basic.json](llama_stack_basic.json) |
+| Feature Showcase                     | Title                        | Description                                                                                                                                                            | Blueprint File                                   |
+| ------------------------------------ | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Full Llama Stack Basic Configuration | Llama 3.1 8B Model with vLLM | Deploys a Llama Stack on OCI AI Blueprints with Postgres, ChromaDB, vLLM and Jaegar. Uses Llama 3.1 8B model on one A10 VM to showcase the usage of LLama Stack on OCI | [llama_stack_basic.json](llama_stack_basic.json) |
 
 ---
 
