@@ -115,7 +115,7 @@
           "recipe_ephemeral_storage_size": 100,
           "recipe_shared_memory_volume_size_limit_in_mb": 200
         },
-        "exports": ["service_url"]
+        "exports": ["internal_dns_name"]
       },
       {
         "name": "jaeger",
@@ -163,7 +163,7 @@
             },
             {
               "key": "VLLM_URL",
-              "value": "${vllm.service_url}/v1"
+              "value": "http://${vllm.internal_dns_name}/v1"
             },
             {
               "key": "ENABLE_CHROMADB",
