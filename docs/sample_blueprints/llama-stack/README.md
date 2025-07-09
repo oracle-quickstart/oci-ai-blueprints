@@ -2,25 +2,15 @@
 
 #### Pre-packaged GenAI runtime — vLLM + ChromaDB + Postgres (optional Jaeger) ready for one-click deployment
 
-Deploy Llama Stack on OCI via OCI AI Blueprints. In order to get the full Llama Stack Application up and running, you will need to deploy the following pre-filled samples in a specific order. Before deploying the pre-filled samples, make sure to have two object storage buckets created in the same compartment that OCI AI Blueprints is deployed into named `chromadb` and `llamastack`.
+Deploy Llama Stack on OCI via OCI AI Blueprints. For more information on Llama Stack: https://github.com/meta-llama/llama-stack
 
-Order of Pre-Filled Sample Deployments:
-
-1. vLLM Inference Engine
-2. Postgres DB
-3. Chroma DB
-4. Jaegar
-5. Llama Stack Main App
+We are using Postgres for the backend store, chromaDB for the vector database, Jaeger for tracing and vLLM for inference serving.
 
 ## Pre-Filled Samples
 
-| Feature Showcase                                                               | Title                                     | Description                                                                                                                                                  | Blueprint File                                 |
-| ------------------------------------------------------------------------------ | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------- |
-| vLLM inference engine for large language model serving                         | vLLM Inference with Llama 3.1 8B Instruct | Deploys a vLLM inference service running NousResearch/Meta-Llama-3.1-8B-Instruct model with GPU acceleration on VM.GPU.A10.2 nodes.                          | [vllm_llama_stack.json](vllm_llama_stack.json) |
-| PostgreSQL database backend for Llama Stack data persistence                   | PostgreSQL Database for Llama Stack       | Deploys a PostgreSQL database instance that serves as the primary data store for Llama Stack application state and metadata.                                 | [postgres_db.json](postgres_db.json)           |
-| ChromaDB vector database for retrieval-augmented generation (RAG) capabilities | ChromaDB Vector Database                  | Deploys ChromaDB vector database with persistent storage for embedding storage and similarity search in RAG workflows.                                       | [chroma_db.json](chroma_db.json)               |
-| Jaeger distributed tracing for observability and telemetry                     | Jaeger Tracing Service                    | Deploys Jaeger for distributed tracing and telemetry collection to monitor and debug Llama Stack operations.                                                 | [jaegar.json](jaegar.json)                     |
-| Main Llama Stack application that orchestrates all components                  | Llama Stack Main Application              | Deploys the main Llama Stack application that connects to vLLM, PostgreSQL, ChromaDB, and Jaeger to provide a unified API for inference, RAG, and telemetry. | [llamastack.json](llamastack.json)             |
+| Feature Showcase                     | Title                        | Description                                                                                                                                                            | Blueprint File                                   |
+| ------------------------------------ | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Full Llama Stack Basic Configuration | Llama 3.1 8B Model with vLLM | Deploys a Llama Stack on OCI AI Blueprints with Postgres, ChromaDB, vLLM and Jaegar. Uses Llama 3.1 8B model on one A10 VM to showcase the usage of LLama Stack on OCI | [llama_stack_basic.json](llama_stack_basic.json) |
 
 ---
 
