@@ -173,7 +173,7 @@ When you submit a deployment group, the system:
 
 An example can be found here: [llama-stack_blueprint](llama_stack_basic.json)
 
-### What Happens LLaMA Stack Blueprint During Deployment:
+### What Happens During LLaMA Stack Blueprint Deployment:
 
 1. **Postgres deploys first** (no dependencies)
 
