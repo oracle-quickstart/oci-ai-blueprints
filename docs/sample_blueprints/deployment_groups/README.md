@@ -191,7 +191,7 @@ An example can be found here: [llama-stack_blueprint](llama_stack_basic.json)
 
    - Exports: `internal_dns_name: "jaeger-llama-stack.default.svc.cluster.local"`
 
-5. **LLaMA Stack App deploys last** (depends on postgres and vllm)
+5. **LLaMA Stack App deploys last** (depends on postgres, vllm, chromadb and jager deployments)
    - Environment variables get resolved:
      - `VLLM_URL: "http://vllm-llama-stack.default.svc.cluster.local/v1"`
      - `POSTGRES_HOST: "postgres-llama-stack.default.svc.cluster.local"`
