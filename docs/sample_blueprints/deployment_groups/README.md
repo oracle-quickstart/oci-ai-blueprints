@@ -6,9 +6,9 @@ Deployment Groups let you spin up several deployments — each derived from its 
 
 ## Pre-Filled Samples
 
-| Feature Showcase                                                                    | Title                                   | Description                                                                                                                                                                                                                                                                                                                                                  | Blueprint File                                   |
-| ----------------------------------------------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ |
-| Create multiple deployments using deployment groups using Llama Stack as an example | Deployment Groups Showcase: Llama Stack | Deploys a Postgres, ChromaDB, vLLM and Jaegar separate deployments at once and waits until those deployments have been successfully deployed before deploying the Llama Stack deployment that depends on the initial deployments. We are also using export variables from the Postgres, ChromaDB, vLLM and Jaegar deployments in the Llama Stack deployment. | [llama_stack_basic.json](llama_stack_basic.json) |
+| Feature Showcase                                                                    | Title                                   | Description                                                                                                                                                                                                                                                                                                                                                   | Blueprint File                                   |
+| ----------------------------------------------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Create multiple deployments using deployment groups using Llama Stack as an example | Deployment Groups Showcase: Llama Stack | Deploys Postgres, ChromaDB, vLLM and Jaegar as separate deployments at once and waits until those deployments have been successfully deployed before deploying the Llama Stack deployment that depends on the initial deployments. We are also using export variables from the Postgres, ChromaDB, vLLM and Jaegar deployments in the Llama Stack deployment. | [llama_stack_basic.json](llama_stack_basic.json) |
 
 ---
 
@@ -42,8 +42,8 @@ Deployment Groups is a powerful feature that allows you to deploy multiple inter
 
 ### 4. **Backward Compatibility**
 
-- Existing single-recipe deployments continue to work unchanged
-- Same API endpoints (`/deployment`) for both single recipes and deployment groups
+- Existing single deployments continue to work unchanged
+- Same API endpoints (`/deployment`) for both single deployments and deployment groups
 - No breaking changes to current workflows
 
 ## API Endpoints
@@ -52,7 +52,7 @@ Deployment Groups is a powerful feature that allows you to deploy multiple inter
 
 | Endpoint                  | Method | Description                                           |
 | ------------------------- | ------ | ----------------------------------------------------- |
-| `/deployment`             | POST   | Create single recipe OR deployment group              |
+| `/deployment`             | POST   | Create single deployment OR deployment group          |
 | `/deployment_groups`      | GET    | List all deployment groups                            |
 | `/deployment_groups/{id}` | GET    | Get specific deployment group details                 |
 | `/undeploy`               | POST   | Undeploy single deployment OR entire deployment group |
