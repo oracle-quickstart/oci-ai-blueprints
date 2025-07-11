@@ -1,6 +1,6 @@
-# Llama Stack on OCI
+# Deployment Groups
 
-#### Pre-packaged GenAI runtime — vLLM + ChromaDB + Postgres (optional Jaeger) ready for one-click deployment
+#### Connected multi-container deployments in a single blueprint
 
 Deployment Groups let you spin up several deployments — each derived from its own blueprint — in a single `POST /deployment` request and treat them as one cohesive application. OCI AI Blueprints automatically sequences those member deployments according to the depends_on relationships you declare, publishes each deployment’s outputs (such as service URLs or internal dns name) for easy discovery, and then injects those outputs wherever you reference the placeholder `${deployment_name.export_key}` inside downstream blueprints. What once required a series of separate API calls stitched together with hard-coded endpoints can now be expressed declaratively in one step, with OCI AI Blueprints resolving every cross-service connection at runtime.
 
