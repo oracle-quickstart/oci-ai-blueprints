@@ -122,6 +122,25 @@ There are 3 blueprints that we are providing out of the box. Following are examp
 
 `GET /deployment_logs/`
 
+## List all secrets
+
+`GET /secrets/`
+
+## List namespaced secrets
+
+`GET /secrets/?namespace={namespace}`
+
+## Get secret by name
+
+`GET /secrets/{name}/`
+
+## Create, Update, Delete secrets
+
+`POST /secrets/{payload}`
+
+Details in [secrets sample blueprints](./sample_blueprints/secrets/README.md)
+
+
 ## Frequently Asked Questions
 
 **Can I deploy custom models?**
