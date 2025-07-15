@@ -138,7 +138,7 @@ There are 3 blueprints that we are providing out of the box. Following are examp
 
 `POST /secrets/{payload}`
 
-Details in [secrets sample blueprints](./sample_blueprints/secrets/README.md)
+Details in [secrets sample blueprints](./secrets/README.md)
 
 
 ## Frequently Asked Questions

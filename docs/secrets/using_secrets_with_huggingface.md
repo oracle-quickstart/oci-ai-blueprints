@@ -6,7 +6,7 @@ Since tokens are unique to a user's account, we recommend storing them as secret
 
 ### Using hf-tokens as secrets
 
-After your secret is generated, store it by posting [the following json](./hf-token-secret.json) to the `/secrets/` endpoint of your assigned API endpoint (e.g. https://api.<ip>.nip.io from your stack after deployment). Substitute your actual hf-token in the `"hf-token"` field in the data.
+After your secret token is generated, store it by posting [the following json](./hf-token-secret.json) to the `/secrets/` endpoint of your assigned API endpoint (e.g. https://api.<ip>.nip.io from your stack after deployment). Substitute your actual hf-token in the `"hf-token"` field in the data.
 
 You should get two success messages after you post secret:
 ```json
