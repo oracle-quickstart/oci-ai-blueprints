@@ -81,6 +81,5 @@ The following four examples show common workflows utilizing secrets in different
 
   - [Using Secrets with NVIDIA NIMs](./using_secrets_with_nvidia_nim.md)
   - [Using Secrets with Huggingface](./using_secrets_with_huggingface.md)
-  - [Using Secrets with Docker](./using_secrets_with_docker.md)
-  - [Using Secrets with Oracle Container Registry](./using_secrets_with_oracle_container_registry.md)
+  - [Using Secrets with Container Registries](./using_secrets_with_container_registry.md)
 
