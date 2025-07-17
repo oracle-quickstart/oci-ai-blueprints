@@ -28,6 +28,7 @@ sudo docker push iad.ocir.io/iduyx1qnmway/dktest/hfdownloader:v1
 
 Note: If the push failed, review that you were able to login successfully and you have [correct policies](https://docs.oracle.com/en-us/iaas/Content/Registry/Concepts/registrypolicyrepoaccess.htm#Policies_to_Control_Repository_Access) for pushing to your repo.
 
+
 ### Using the container
 
 Now that the container is in our private repo, we need to store the `container_registry` credentials as a secret in Blueprints by posting [this secret](container_registry_secret.json) to the `/secrets/` endpoint of your assigned API endpoint (e.g. https://api.<ip>.nip.io from your stack after deployment). Change the name, tenancy information, and email. The `"password"` field should be the auth token generated earlier.
