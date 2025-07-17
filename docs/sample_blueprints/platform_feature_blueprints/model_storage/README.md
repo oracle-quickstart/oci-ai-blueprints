@@ -31,7 +31,7 @@ OCI AI Blueprints will automatically create an ephemeral volume, mount it to the
 
 If serving large models from huggingface, it is recommended to first download them to object storage because they are loaded much more quickly from object storage than via python applications which build in the ability to pull them.
 
-To download a model from huggingface to object storage, check out [this doc](../../common_workflows/working_with_large_models/README.md#download-the-model-to-object-storage-optional-but-recommended).
+To download a model from huggingface to object storage, check out [this doc](../../../common_workflows/working_with_large_models/README.md).
 
 **Step 2:**
 

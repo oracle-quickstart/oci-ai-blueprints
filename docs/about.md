@@ -36,8 +36,8 @@
 | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
 | **Customize Blueprints**       | Tailor existing OCI AI Blueprints to suit your exact AI workload needs—everything from hyperparameters to node counts and hardware.     | [Read More](custom_blueprints/README.md)                   |
 | **Updating OCI AI Blueprints** | Keep your OCI AI Blueprints environment current with the latest control plane and portal updates.                                       | [Read More](../INSTALLING_ONTO_EXISTING_CLUSTER_README.md) |
-| **Shared Node Pool**           | Use longer-lived resources (e.g., bare metal nodes) across multiple blueprints or to persist resources after a blueprint is undeployed. | [Read More](sample_blueprints/shared_node_pools/README.md) |
-| **Auto-Scaling**               | Automatically adjust resource usage based on infrastructure or application-level metrics to optimize performance and costs.             | [Read More](sample_blueprints/auto_scaling/README.md)      |
+| **Shared Node Pool**           | Use longer-lived resources (e.g., bare metal nodes) across multiple blueprints or to persist resources after a blueprint is undeployed. | [Read More](sample_blueprints/platform_feature_blueprints/shared_node_pools/README.md) |
+| **Auto-Scaling**               | Automatically adjust resource usage based on infrastructure or application-level metrics to optimize performance and costs.             | [Read More](sample_blueprints/platform_feature_blueprints/auto_scaling/README.md)      |
 
 ---
 
@@ -76,13 +76,13 @@ A:
 A: Deploy a vLLM blueprint, then use a tool like LLMPerf to run benchmarking against your inference endpoint. Contact us for more details.
 
 **Q: Where can I see the full list of blueprints?**  
-A: All available blueprints are listed [here](sample_blueprints/exisiting_cluster_installation/README.md). If you need something custom, please let us know.
+A: All available blueprints are listed [here](sample_blueprints/platform_feature_blueprints/exisiting_cluster_installation/README.md). If you need something custom, please let us know.
 
 **Q: How do I check logs for troubleshooting?**  
 A: Use `kubectl` to inspect pod logs in your OKE cluster.
 
 **Q: Does OCI AI Blueprints support auto-scaling?**  
-A: Yes, we leverage KEDA for application-driven auto-scaling. See [documentation](sample_blueprints/auto_scaling/README.md).
+A: Yes, we leverage KEDA for application-driven auto-scaling. See [documentation](sample_blueprints/platform_feature_blueprints/auto_scaling/README.md).
 
 **Q: Which GPUs are compatible?**  
 A: Any NVIDIA GPUs available in your OCI region (A10, A100, H100, etc.).
@@ -91,4 +91,4 @@ A: Any NVIDIA GPUs available in your OCI region (A10, A100, H100, etc.).
 A: Yes, though testing on clusters running other workloads is ongoing. We recommend a clean cluster for best stability.
 
 **Q: How do I run multiple blueprints on the same node?**  
-A: Enable shared node pools. [Read more here](sample_blueprints/shared_node_pools/README.md).
+A: Enable shared node pools. [Read more here](sample_blueprints/platform_feature_blueprints/shared_node_pools/README.md).

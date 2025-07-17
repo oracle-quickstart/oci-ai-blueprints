@@ -21,4 +21,4 @@ This approach allows you to:
 | --------------------------------------------------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | Add existing cluster nodes to OCI AI Blueprints control plane for shared resource utilization | Add Existing Node to Control Plane | Configures an existing cluster node to be managed by OCI AI Blueprints, enabling shared node pool functionality and resource optimization across existing infrastructure. | [add_node_to_control_plane.json](add_node_to_control_plane.json) |
 
-For complete step-by-step instructions, see the [full installation guide](../../../INSTALLING_ONTO_EXISTING_CLUSTER_README.md).
+For complete step-by-step instructions, see the [full installation guide](../../../../INSTALLING_ONTO_EXISTING_CLUSTER_README.md).
