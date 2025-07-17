@@ -4,7 +4,668 @@
   "title": "Combined Blueprint and Payload Schema",
   "description": "Schema for creating new blueprints or updating existing blueprints with detailed payload configuration",
   "type": "object",
+  "$defs": {
+    "recipe_payload": {
+      "type": "object",
+      "properties": {
+        "pre_filled_sample_name": {
+          "type": "string",
+          "description": "Name of the pre-filled sample"
+        },
+        "recipe_id": {
+          "type": "string"
+        },
+        "recipe_compartment_ocid": {
+          "type": "string"
+        },
+        "deployment_name": {
+          "type": "string"
+        },
+        "recipe_mode": {
+          "enum": ["service", "job", "update", "shared_node_pool", "team"]
+        },
+        "recipe_replica_count": {
+          "type": "integer"
+        },
+        "recipe_node_shape": {
+          "type": "string"
+        },
+        "recipe_max_pods_per_node": {
+          "type": "integer"
+        },
+        "recipe_availability_domain": {
+          "type": "string"
+        },
+        "recipe_public_ssh_key": {
+          "type": "string"
+        },
+        "recipe_worker_subnet_nsg_ocid": {
+          "type": "string"
+        },
+        "recipe_pod_subnet_ocid": {
+          "type": "string"
+        },
+        "recipe_pod_subnet_nsg_ocid": {
+          "type": "string"
+        },
+        "recipe_node_pool_size": {
+          "type": "integer"
+        },
+        "recipe_use_shared_node_pool": {
+          "type": "boolean"
+        },
+        "recipe_shared_node_pool_selector": {
+          "type": "string"
+        },
+        "recipe_prometheus_enabled": {
+          "type": "boolean"
+        },
+        "recipe_node_boot_volume_size_in_gbs": {
+          "type": "integer"
+        },
+        "recipe_node_selector_arch": {
+          "type": "string"
+        },
+        "recipe_node_image_ocid": {
+          "type": "string"
+        },
+        "recipe_flex_shape_ocpu_count": {
+          "type": "integer"
+        },
+        "recipe_flex_shape_memory_size_in_gbs": {
+          "type": "integer"
+        },
+        "recipe_image_uri": {
+          "type": "string"
+        },
+        "recipe_container_secret_name": {
+          "type": "string",
+          "description": "Name of the container registry secret to use for pulling the image",
+          "examples": ["phx-ocir-secret", "iad-ocir-secret", "docker-secret"]
+        },
+        "recipe_environment_secrets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["envvar_name", "secret_name", "secret_key"],
+            "additionalProperties": false,
+            "properties": {
+              "envvar_name": {
+                "type": "string",
+                "description": "The exact name of the environment variable your code will read inside the container. For example, set this to “DB_PASSWORD” so your code can call `os.getenv('DB_PASSWORD')` (Python) or `process.env.DB_PASSWORD` (Node).",
+                "examples": ["DB_PASSWORD"]
+              },
+              "secret_name": {
+                "type": "string",
+                "description": "The name of the Kubernetes secret object (equal to the secret object's metadata.name) that already exists in the same namespace. Tells the kubelet which secret to look up. If the secret doesn't exist or the ServiceAccount can't read it, the Pod won't start.",
+                "examples": ["db-credentials"]
+              },
+              "secret_key": {
+                "type": "string",
+                "description": "The key inside the referenced Secret object's data: map (equal to one of the keys under the secret object's data field) that holds the specific value to inject. Tells the kubelet which base-64-encoded value to decode and pass into the environment variable. If the key is missing, the Pod won’t start.",
+                "examples": ["password"]
+              }
+            },
+            "examples": [
+              {
+                "envvar_name": "DB_PASSWORD",
+                "secret_name": "db-credentials",
+                "secret_key": "password"
+              }
+            ]
+          }
+        },
+        "recipe_container_command": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recipe_container_command_args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recipe_container_env": {
+          "type": "array",
+          "items": {
+            "additionalProperties": false,
+            "required": ["key", "value"],
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "value": {
+                "type": ["integer", "string"]
+              }
+            }
+          }
+        },
+        "recipe_additional_ingress_ports": {
+          "type": "array",
+          "items": {
+            "additionalProperties": false,
+            "required": ["name", "port", "path"],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "port": {
+                "type": "integer"
+              },
+              "path": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "recipe_node_autoscaling_params": {
+          "type": "object",
+          "properties": {
+            "min_nodes": {
+              "type": "integer"
+            },
+            "max_nodes": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false,
+          "examples": [
+            {
+              "min_nodes": 1,
+              "max_nodes": 2
+            }
+          ]
+        },
+        "recipe_pod_autoscaling_params": {
+          "type": "object",
+          "properties": {
+            "min_replicas": {
+              "type": "integer"
+            },
+            "max_replicas": {
+              "type": "integer"
+            },
+            "scaling_metric": {
+              "type": "string"
+            },
+            "collect_metrics_timespan": {
+              "type": "string"
+            },
+            "scaling_threshold": {
+              "type": "number"
+            },
+            "scaling_cooldown": {
+              "type": "integer"
+            },
+            "polling_interval": {
+              "type": "integer"
+            },
+            "stabilization_window_down": {
+              "type": "integer"
+            },
+            "scaling_period_down": {
+              "type": "integer"
+            },
+            "stabilization_window_up": {
+              "type": "integer"
+            },
+            "scaling_period_up": {
+              "type": "integer"
+            },
+            "query": {
+              "type": "string"
+            },
+            "scaler_type": {
+              "type": "string",
+              "enum": ["prometheus"]
+            },
+            "server_address": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "examples": [
+            {
+              "min_replicas": 4,
+              "max_replicas": 8,
+              "scaling_metric": "e2e_request_latency_seconds_bucket",
+              "collect_metrics_timespan": "1m",
+              "scaling_threshold": 0.6,
+              "scaling_cooldown": 60,
+              "polling_interval": 15,
+              "stabilization_window_down": 180,
+              "scaling_period_down": 90,
+              "stabilization_window_up": 120,
+              "scaling_period_up": 60,
+              "query": "1 - (sum(rate(vllm:e2e_request_latency_seconds_bucket{le='5.0', instance='recipe-vllmautowithfss.default:80'}[1m])) / sum(rate(vllm:e2e_request_latency_seconds_bucket{le='+Inf', instance='recipe-vllmautowithfss.default:80'}[1m])))",
+              "scaler_type": "prometheus",
+              "server_address": "http://prometheus-server.cluster-tools.svc.cluster.local"
+            }
+          ]
+        },
+        "recipe_liveness_probe_params": {
+          "type": "object",
+          "properties": {
+            "failure_threshold": {
+              "type": "number"
+            },
+            "endpoint_path": {
+              "type": "string"
+            },
+            "port": {
+              "type": "integer"
+            },
+            "scheme": {
+              "type": "string"
+            },
+            "initial_delay_seconds": {
+              "type": "number"
+            },
+            "period_seconds": {
+              "type": "number"
+            },
+            "success_threshold": {
+              "type": "integer"
+            },
+            "timeout_seconds": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false
+        },
+        "recipe_startup_probe_params": {
+          "type": "object",
+          "properties": {
+            "failure_threshold": {
+              "type": "number"
+            },
+            "endpoint_path": {
+              "type": "string"
+            },
+            "port": {
+              "type": "integer"
+            },
+            "scheme": {
+              "type": "string"
+            },
+            "initial_delay_seconds": {
+              "type": "number"
+            },
+            "period_seconds": {
+              "type": "number"
+            },
+            "success_threshold": {
+              "type": "integer"
+            },
+            "timeout_seconds": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false
+        },
+        "recipe_readiness_probe_params": {
+          "type": "object",
+          "properties": {
+            "failure_threshold": {
+              "type": "number"
+            },
+            "endpoint_path": {
+              "type": "string"
+            },
+            "port": {
+              "type": "integer"
+            },
+            "scheme": {
+              "type": "string"
+            },
+            "initial_delay_seconds": {
+              "type": "number"
+            },
+            "period_seconds": {
+              "type": "number"
+            },
+            "success_threshold": {
+              "type": "integer"
+            },
+            "timeout_seconds": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false
+        },
+        "recipe_container_port": {
+          "type": "string",
+          "description": "The port in the container, one which the application running inside the container listens on."
+        },
+        "recipe_host_port": {
+          "type": "string",
+          "description": "The outward-facing port, OCI AI Blueprints opens so traffic can reach your workload. This defaults to port 80 if not specified."
+        },
+        "recipe_container_command_use_shell": {
+          "type": "boolean"
+        },
+        "recipe_nvidia_gpu_count": {
+          "type": "integer"
+        },
+        "recipe_amd_gpu_count": {
+          "type": "integer"
+        },
+        "recipe_shared_memory_volume_size_limit_in_mb": {
+          "type": "integer"
+        },
+        "recipe_ephemeral_storage_size": {
+          "type": "integer"
+        },
+        "recipe_container_memory_size": {
+          "type": "integer"
+        },
+        "recipe_container_cpu_count": {
+          "type": "integer"
+        },
+        "input_object_storage": {
+          "type": "array",
+          "items": {
+            "additionalProperties": false,
+            "oneOf": [
+              {
+                "required": ["par", "mount_location", "volume_size_in_gbs"]
+              },
+              {
+                "required": [
+                  "bucket_name",
+                  "mount_location",
+                  "volume_size_in_gbs"
+                ]
+              }
+            ],
+            "properties": {
+              "par": {
+                "type": "string"
+              },
+              "bucket_name": {
+                "type": "string"
+              },
+              "mount_location": {
+                "type": "string"
+              },
+              "volume_size_in_gbs": {
+                "type": "integer"
+              },
+              "include": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "exclude": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "input_file_system": {
+          "type": "array",
+          "items": {
+            "additionalProperties": false,
+            "required": [
+              "file_system_ocid",
+              "mount_target_ocid",
+              "mount_location",
+              "volume_size_in_gbs"
+            ],
+            "properties": {
+              "file_system_ocid": {
+                "type": "string"
+              },
+              "mount_target_ocid": {
+                "type": "string"
+              },
+              "mount_location": {
+                "type": "string"
+              },
+              "volume_size_in_gbs": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "output_object_storage": {
+          "type": "array",
+          "items": {
+            "additionalProperties": false,
+            "required": ["bucket_name", "mount_location", "volume_size_in_gbs"],
+            "properties": {
+              "bucket_name": {
+                "type": "string"
+              },
+              "mount_location": {
+                "type": "string"
+              },
+              "volume_size_in_gbs": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "service_endpoint_domain": {
+          "type": "string"
+        },
+        "service_endpoint": {
+          "type": "object",
+          "properties": {
+            "domain": {
+              "type": "string"
+            },
+            "dedicated_load_balancer": {
+              "type": "boolean"
+            }
+          }
+        },
+        "shared_node_pool_selector": {
+          "type": "string"
+        },
+        "shared_node_pool_size": {
+          "type": "integer"
+        },
+        "shared_node_pool_shape": {
+          "type": "string"
+        },
+        "shared_node_pool_boot_volume_size_in_gbs": {
+          "type": "integer"
+        },
+        "shared_node_pool_flex_shape_memory_size_in_gbs": {
+          "type": "integer"
+        },
+        "shared_node_pool_flex_shape_ocpu_count": {
+          "type": "integer"
+        },
+        "shared_node_pool_mig_config": {
+          "type": "string"
+        },
+        "shared_node_pool_custom_node_selectors": {
+          "type": "array",
+          "items": {
+            "additionalProperties": false,
+            "required": ["key", "value"],
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "mig_resource_request": {
+          "type": "string"
+        },
+        "recipe_node_name": {
+          "type": "string"
+        },
+        "recipe_node_labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "multinode_num_nodes_to_use_from_shared_pool": {
+          "type": "integer"
+        },
+        "multinode_rdma_enabled_in_shared_pool": {
+          "type": "boolean"
+        },
+        "recipe_node_pool_name": {
+          "type": "string"
+        },
+        "recipe_team_info": {
+          "type": "object",
+          "properties": {
+            "team_name": {
+              "type": "string"
+            }
+          }
+        },
+        "team": {
+          "type": "object",
+          "properties": {
+            "team_name": {
+              "type": "string"
+            },
+            "priority_threshold": {
+              "type": "integer"
+            },
+            "quotas": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "shape_name": {
+                    "type": "string"
+                  },
+                  "cpu_nominal_quota": {
+                    "type": "string"
+                  },
+                  "cpu_borrowing_limit": {
+                    "type": "string"
+                  },
+                  "cpu_lending_limit": {
+                    "type": "string"
+                  },
+                  "mem_nominal_quota": {
+                    "type": "string"
+                  },
+                  "mem_borrowing_limit": {
+                    "type": "string"
+                  },
+                  "mem_lending_limit": {
+                    "type": "string"
+                  },
+                  "gpu_nominal_quota": {
+                    "type": "string"
+                  },
+                  "gpu_borrowing_limit": {
+                    "type": "string"
+                  },
+                  "gpu_lending_limit": {
+                    "type": "string"
+                  }
+                },
+                "required": ["shape_name"],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": ["team_name", "priority_threshold", "quotas"],
+          "additionalProperties": false
+        },
+        "skip_capacity_validation": {
+          "type": "boolean"
+        },
+        "skip_quota_validation": {
+          "type": "boolean"
+        }
+      },
+      "required": ["recipe_mode", "deployment_name"]
+    }
+  },
   "properties": {
+    "blueprint_category": {
+      "description": "Classifies the blueprint by intent.",
+      "oneOf": [
+        {
+          "const": "workload_blueprint",
+          "title": "Workload blueprint",
+          "description": "End‑to‑end workloads such as inference, fine‑tuning, benchmarking, or health‑checking that deliver a runnable solution."
+        },
+        {
+          "const": "platform_feature_blueprint",
+          "title": "Platform‑feature blueprint",
+          "description": "Demonstrates how to use a specific OCI AI Blueprints capability (autoscaling, shared pools, MIG, etc.) that users can copy into other blueprints."
+        }
+      ]
+    },
+    "deployment_group": {
+      "type": "object",
+      "description": "A group of dependent deployments to be deployed together.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the deployment group, used to generate unique deployment group ID"
+        },
+        "deployments": {
+          "type": "array",
+          "description": "Array of deployments in this group",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of the deployment. Must be unique within the deployment group."
+              },
+              "recipe": {
+                "$ref": "#/$defs/recipe_payload"
+              },
+              "depends_on": {
+                "type": "array",
+                "description": "Names of other deployments this deployment depends on.",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "exports": {
+                "type": "array",
+                "description": "Values this deployment exports for dependent deployments.",
+                "items": {
+                  "oneOf": [
+                    {
+                      "const": "service_url",
+                      "title": "Service URL",
+                      "description": "Public endpoint (load balancer URL) that other services/users can reach."
+                    },
+                    {
+                      "const": "internal_dns_name",
+                      "title": "Internal DNS name",
+                      "description": "Cluster-internal DNS record for service-to-service communication."
+                    }
+                  ]
+                },
+                "uniqueItems": true
+              }
+            },
+            "required": ["name", "recipe"],
+            "unevaluatedProperties": false
+          }
+        }
+      },
+      "required": ["name", "deployments"],
+      "unevaluatedProperties": false
+    },
     "blueprint_type": {
       "type": "string",
       "enum": ["oci_blueprint", "community_blueprint"],
@@ -27,490 +688,29 @@
       "description": "Pre-filled samples of blueprints.",
       "items": {
         "type": "object",
-        "properties": {
-          "pre_filled_sample_name": {
-            "type": "string",
-            "description": "Name of the pre-filled sample"
-          },
-          "recipe_id": {
-            "type": "string"
-          },
-          "recipe_compartment_ocid": {
-            "type": "string"
-          },
-          "deployment_name": {
-            "type": "string"
-          },
-          "recipe_mode": {
-            "enum": ["service", "job", "update", "shared_node_pool", "team"]
-          },
-          "recipe_replica_count": {
-            "type": "integer"
-          },
-          "recipe_node_shape": {
-            "type": "string"
-          },
-          "recipe_max_pods_per_node": {
-            "type": "integer"
-          },
-          "recipe_availability_domain": {
-            "type": "string"
-          },
-          "recipe_public_ssh_key": {
-            "type": "string"
-          },
-          "recipe_worker_subnet_nsg_ocid": {
-            "type": "string"
-          },
-          "recipe_pod_subnet_ocid": {
-            "type": "string"
-          },
-          "recipe_pod_subnet_nsg_ocid": {
-            "type": "string"
-          },
-          "recipe_node_pool_size": {
-            "type": "integer"
-          },
-          "recipe_use_shared_node_pool": {
-            "type": "boolean"
-          },
-          "recipe_shared_node_pool_selector": {
-            "type": "string"
-          },
-          "recipe_prometheus_enabled": {
-            "type": "boolean"
-          },
-          "recipe_node_boot_volume_size_in_gbs": {
-            "type": "integer"
-          },
-          "recipe_node_selector_arch": {
-            "type": "string"
-          },
-          "recipe_node_image_ocid": {
-            "type": "string"
-          },
-          "recipe_flex_shape_ocpu_count": {
-            "type": "integer"
-          },
-          "recipe_flex_shape_memory_size_in_gbs": {
-            "type": "integer"
-          },
-          "recipe_image_uri": {
-            "type": "string"
-          },
-          "recipe_container_command": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "recipe_container_command_args": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "recipe_container_env": {
-            "type": "array",
-            "items": {
-              "additionalProperties": false,
-              "required": ["key", "value"],
-              "properties": {
-                "key": {
-                  "type": "string"
-                },
-                "value": {
-                  "type": ["integer", "string"]
-                }
-              }
-            }
-          },
-          "recipe_additional_ingress_ports": {
-            "type": "array",
-            "items": {
-              "additionalProperties": false,
-              "required": ["name", "port", "path"],
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "port": {
-                  "type": "integer"
-                },
-                "path": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "recipe_node_autoscaling_params": {
-            "type": "object",
-            "properties": {
-              "min_nodes": { "type": "integer" },
-              "max_nodes": { "type": "integer" }
-            },
-            "additionalProperties": false,
-            "examples": [
-              {
-                "min_nodes": 1,
-                "max_nodes": 2
-              }
-            ]
-          },
-          "recipe_pod_autoscaling_params": {
-            "type": "object",
-            "properties": {
-              "min_replicas": { "type": "integer" },
-              "max_replicas": { "type": "integer" },
-              "scaling_metric": { "type": "string" },
-              "collect_metrics_timespan": { "type": "string" },
-              "scaling_threshold": { "type": "number" },
-              "scaling_cooldown": { "type": "integer" },
-              "polling_interval": { "type": "integer" },
-              "stabilization_window_down": { "type": "integer" },
-              "scaling_period_down": { "type": "integer" },
-              "stabilization_window_up": { "type": "integer" },
-              "scaling_period_up": { "type": "integer" },
-              "query": { "type": "string" },
-              "scaler_type": {
-                "type": "string",
-                "enum": ["prometheus"]
-              },
-              "server_address": { "type": "string" }
-            },
-            "additionalProperties": false,
-            "examples": [
-              {
-                "min_replicas": 4,
-                "max_replicas": 8,
-                "scaling_metric": "e2e_request_latency_seconds_bucket",
-                "collect_metrics_timespan": "1m",
-                "scaling_threshold": 0.6,
-                "scaling_cooldown": 60,
-                "polling_interval": 15,
-                "stabilization_window_down": 180,
-                "scaling_period_down": 90,
-                "stabilization_window_up": 120,
-                "scaling_period_up": 60,
-                "query": "1 - (sum(rate(vllm:e2e_request_latency_seconds_bucket{le='5.0', instance='recipe-vllmautowithfss.default:80'}[1m])) / sum(rate(vllm:e2e_request_latency_seconds_bucket{le='+Inf', instance='recipe-vllmautowithfss.default:80'}[1m])))",
-                "scaler_type": "prometheus",
-                "server_address": "http://prometheus-server.cluster-tools.svc.cluster.local"
-              }
-            ]
-          },
-          "recipe_liveness_probe_params": {
-            "type": "object",
-            "properties": {
-              "failure_threshold": { "type": "number" },
-              "endpoint_path": { "type": "string" },
-              "port": { "type": "integer" },
-              "scheme": { "type": "string" },
-              "initial_delay_seconds": { "type": "number" },
-              "period_seconds": { "type": "number" },
-              "success_threshold": { "type": "integer" },
-              "timeout_seconds": { "type": "number" }
-            },
-            "additionalProperties": false
-          },
-          "recipe_startup_probe_params": {
-            "type": "object",
-            "properties": {
-              "failure_threshold": { "type": "number" },
-              "endpoint_path": { "type": "string" },
-              "port": { "type": "integer" },
-              "scheme": { "type": "string" },
-              "initial_delay_seconds": { "type": "number" },
-              "period_seconds": { "type": "number" },
-              "success_threshold": { "type": "integer" },
-              "timeout_seconds": { "type": "number" }
-            },
-            "additionalProperties": false
-          },
-          "recipe_readiness_probe_params": {
-            "type": "object",
-            "properties": {
-              "failure_threshold": { "type": "number" },
-              "endpoint_path": { "type": "string" },
-              "port": { "type": "integer" },
-              "scheme": { "type": "string" },
-              "initial_delay_seconds": { "type": "number" },
-              "period_seconds": { "type": "number" },
-              "success_threshold": { "type": "integer" },
-              "timeout_seconds": { "type": "number" }
-            },
-            "additionalProperties": false
-          },
-          "recipe_container_port": {
-            "type": "string",
-            "description": "The port in the container, one which the application running inside the container listens on."
-          },
-          "recipe_host_port": {
-            "type": "string",
-            "description": "The outward-facing port, OCI AI Blueprints opens so traffic can reach your workload. This defaults to port 80 if not specified."
-          },
-          "recipe_container_command_use_shell": {
-            "type": "boolean"
-          },
-          "recipe_nvidia_gpu_count": {
-            "type": "integer"
-          },
-          "recipe_amd_gpu_count": {
-            "type": "integer"
-          },
-          "recipe_shared_memory_volume_size_limit_in_mb": {
-            "type": "integer"
-          },
-          "recipe_ephemeral_storage_size": {
-            "type": "integer"
-          },
-          "recipe_container_memory_size": {
-            "type": "integer"
-          },
-          "recipe_container_cpu_count": {
-            "type": "integer"
-          },
-          "input_object_storage": {
-            "type": "array",
-            "items": {
-              "additionalProperties": false,
-              "oneOf": [
-                {
-                  "required": ["par", "mount_location", "volume_size_in_gbs"]
-                },
-                {
-                  "required": [
-                    "bucket_name",
-                    "mount_location",
-                    "volume_size_in_gbs"
-                  ]
-                }
-              ],
-              "properties": {
-                "par": {
-                  "type": "string"
-                },
-                "bucket_name": {
-                  "type": "string"
-                },
-                "mount_location": {
-                  "type": "string"
-                },
-                "volume_size_in_gbs": {
-                  "type": "integer"
-                },
-                "include": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "exclude": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          },
-          "input_file_system": {
-            "type": "array",
-            "items": {
-              "additionalProperties": false,
-              "required": [
-                "file_system_ocid",
-                "mount_target_ocid",
-                "mount_location",
-                "volume_size_in_gbs"
-              ],
-              "properties": {
-                "file_system_ocid": {
-                  "type": "string"
-                },
-                "mount_target_ocid": {
-                  "type": "string"
-                },
-                "mount_location": {
-                  "type": "string"
-                },
-                "volume_size_in_gbs": {
-                  "type": "integer"
-                }
-              }
-            }
-          },
-          "output_object_storage": {
-            "type": "array",
-            "items": {
-              "additionalProperties": false,
-              "required": [
-                "bucket_name",
-                "mount_location",
-                "volume_size_in_gbs"
-              ],
-              "properties": {
-                "bucket_name": {
-                  "type": "string"
-                },
-                "mount_location": {
-                  "type": "string"
-                },
-                "volume_size_in_gbs": {
-                  "type": "integer"
-                }
-              }
-            }
-          },
-          "service_endpoint_domain": {
-            "type": "string"
-          },
-          "service_endpoint": {
-            "type": "object",
-            "properties": {
-              "domain": {
-                "type": "string"
-              },
-              "dedicated_load_balancer": {
-                "type": "boolean"
-              }
-            }
-          },
-          "shared_node_pool_selector": {
-            "type": "string"
-          },
-          "shared_node_pool_size": {
-            "type": "integer"
-          },
-          "shared_node_pool_shape": {
-            "type": "string"
-          },
-          "shared_node_pool_boot_volume_size_in_gbs": {
-            "type": "integer"
-          },
-          "shared_node_pool_flex_shape_memory_size_in_gbs": {
-            "type": "integer"
-          },
-          "shared_node_pool_flex_shape_ocpu_count": {
-            "type": "integer"
-          },
-          "shared_node_pool_mig_config": {
-            "type": "string"
-          },
-          "shared_node_pool_custom_node_selectors": {
-            "type": "array",
-            "items": {
-              "additionalProperties": false,
-              "required": ["key", "value"],
-              "properties": {
-                "key": {
-                  "type": "string"
-                },
-                "value": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "mig_resource_request": {
-            "type": "string"
-          },
-          "recipe_node_name": {
-            "type": "string"
-          },
-          "recipe_node_labels": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            }
-          },
-          "multinode_num_nodes_to_use_from_shared_pool": {
-            "type": "integer"
-          },
-          "multinode_rdma_enabled_in_shared_pool": {
-            "type": "boolean"
-          },
-          "recipe_node_pool_name": {
-            "type": "string"
-          },
-          "recipe_team_info": {
-            "type": "object",
-            "properties": {
-              "team_name": {
-                "type": "string"
-              }
-            }
-          },
-          "team": {
-            "type": "object",
-            "properties": {
-              "team_name": {
-                "type": "string"
-              },
-              "priority_threshold": {
-                "type": "integer"
-              },
-              "quotas": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "shape_name": {
-                      "type": "string"
-                    },
-                    "cpu_nominal_quota": {
-                      "type": "string"
-                    },
-                    "cpu_borrowing_limit": {
-                      "type": "string"
-                    },
-                    "cpu_lending_limit": {
-                      "type": "string"
-                    },
-                    "mem_nominal_quota": {
-                      "type": "string"
-                    },
-                    "mem_borrowing_limit": {
-                      "type": "string"
-                    },
-                    "mem_lending_limit": {
-                      "type": "string"
-                    },
-                    "gpu_nominal_quota": {
-                      "type": "string"
-                    },
-                    "gpu_borrowing_limit": {
-                      "type": "string"
-                    },
-                    "gpu_lending_limit": {
-                      "type": "string"
-                    }
-                  },
-                  "required": ["shape_name"],
-                  "additionalProperties": false
-                }
-              }
-            },
-            "required": ["team_name", "priority_threshold", "quotas"],
-            "additionalProperties": false
-          },
-          "skip_capacity_validation": {
-            "type": "boolean"
-          },
-          "skip_quota_validation": {
-            "type": "boolean"
+        "allOf": [
+          {
+            "$ref": "#/$defs/recipe_payload"
           }
-        },
-        "required": ["recipe_mode", "deployment_name"],
-        "additionalProperties": false
+        ],
+        "unevaluatedProperties": false
       }
     }
   },
-  "required": [
-    "blueprint_type",
-    "blueprint_title",
-    "blueprint_short_description",
-    "blueprint_long_description",
-    "pre_filled_samples"
+  "oneOf": [
+    {
+      "required": ["deployment_group", "blueprint_category"]
+    },
+    {
+      "required": [
+        "blueprint_category",
+        "blueprint_type",
+        "blueprint_title",
+        "blueprint_short_description",
+        "blueprint_long_description",
+        "pre_filled_samples"
+      ]
+    }
   ],
-  "additionalProperties": false
+  "unevaluatedProperties": false
 }
