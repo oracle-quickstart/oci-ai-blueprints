@@ -1,0 +1,35 @@
+{
+    "recipe_id": "online_infernece_llmperf",
+    "recipe_mode": "job",
+    "deployment_name": "a1",
+    "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:llm-benchmark-0409-v4",
+    "recipe_node_shape": "VM.Standard.E4.Flex",
+    "recipe_node_pool_size": 1,
+    "recipe_flex_shape_ocpu_count": 32,
+    "recipe_flex_shape_memory_size_in_gbs": 256,
+    "recipe_node_boot_volume_size_in_gbs": 200,
+    "recipe_ephemeral_storage_size": 150,
+    "input_object_storage": [
+      {
+        "par": "https://objectstorage.ap-melbourne-1.oraclecloud.com/p/0T99iRADcM08aVpumM6smqMIcnIJTFtV2D8ZIIWidUP9eL8GSRyDMxOb9Va9rmRc/n/iduyx1qnmway/b/mymodels/o/",
+        "mount_location": "/models",
+        "volume_size_in_gbs": 500,
+        "include": [
+          "llama3_public_online.yaml"
+        ]
+      }
+    ],
+    "output_object_storage": [
+      {
+        "bucket_name": "inference_output",
+        "mount_location": "/online_output",
+        "volume_size_in_gbs": 200
+      }
+    ],
+    "recipe_container_command_args": [
+      "/models/llama3_public_online.yaml"
+    ],
+    "recipe_replica_count": 1,
+    "recipe_container_port": "5678"
+  }
+  
