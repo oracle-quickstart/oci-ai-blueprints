@@ -1,4 +1,4 @@
-# Health Check
+# GPU Health Check
 
 #### Comprehensive GPU health validation and diagnostics for production readiness
 

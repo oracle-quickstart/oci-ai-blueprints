@@ -128,7 +128,7 @@ There are two ways to apply a mig configuration to a node pool.
 
 #### shared_node_pool:
 
-Apart from the existing requirements for a shared node pool found [here](../shared_node_pools/README.md), the following are additional requirements / options for MIG:
+Apart from the existing requirements for a shared node pool found [here](../../platform_features/shared_node_pools/README.md), the following are additional requirements / options for MIG:
 
 - `"shared_node_pool_mig_config"` - the mig congfiguration to apply to each node in the node pool. Possible values are in the [Mig Configurations](#mig-configurations). This will apply the node to each node in the pool, but if you want to update a specific node that can be done via the `update` mode described in the next section.
 - `"recipe_max_pods_per_node"`: [OPTIONAL: DEFAULT = 90] - by default, since MIG can slice up to 56 times for a full BM.GPU.H100.8, the default 31 pods by OKE is insufficient. As part of shared_node_pool deployment for MIG, this value is increased to 90 to fit all slice configurations + some buffer room. The maximum value is proportedly 110. It is not recommended to change this value, as it can not be modified after deployment of a pool. In order to change it, a node must be removed from the pool and re-added with the new value.
