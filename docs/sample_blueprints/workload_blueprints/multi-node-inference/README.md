@@ -53,13 +53,13 @@ Use multi-node inference whenever you are trying to use a very large model that 
 
 ## RDMA + Multinode Inference
 
-Want to use RDMA with multinode inference? [See here for details](../using_rdma_enabled_node_pools/README.md)
+Want to use RDMA with multinode inference? [See here for details](../../platform_feature_blueprints/using_rdma_enabled_node_pools/README.md)
 
 ## How to use it?
 
 We are using [vLLM](https://docs.vllm.ai/en/latest/serving/distributed_serving.html) and [Ray](https://github.com/ray-project/ray) using the [LeaderWorkerSet (LWS)](https://github.com/kubernetes-sigs/lws) to manage state between multiple nodes.
 
-In order to use multi-node inference in an OCI Blueprint, first deploy a shared node pool with blueprints using [this recipe](../shared_node_pools/shared_node_pool_A10_VM.json).
+In order to use multi-node inference in an OCI Blueprint, first deploy a shared node pool with blueprints using [this recipe](../../platform_feature_blueprints/shared_node_pools/shared_node_pool_A10_VM.json).
 
 Then, use the following blueprint to deploy serving software: [LINK](multinode_inference_VM_A10.json)
 
@@ -93,9 +93,9 @@ The following parameters are required:
 
 - `multinode_num_nodes_to_use_from_shared_pool` -> the total number of nodes (as an integer) you want to use to serve this model. This number must be less than the size of the shared node pool, and will only use schedulable nodes in the pool.
 
-- [OPTIONAL] `"multinode_rdma_enabled_in_shared_pool": true` -> If you have provisioned RDMA enabled shared node pools in your cluster - enable RDMA communication between nodes. This will fail validation if RDMA is not supported for shape type, or node is missing appropriate labels described in [linked doc](../using_rdma_enabled_node_pools/README.md).
+- [OPTIONAL] `"multinode_rdma_enabled_in_shared_pool": true` -> If you have provisioned RDMA enabled shared node pools in your cluster - enable RDMA communication between nodes. This will fail validation if RDMA is not supported for shape type, or node is missing appropriate labels described in [linked doc](../../platform_feature_blueprints/using_rdma_enabled_node_pools/README.md).
 
-- [OPTIONAL] `recipe_readiness_probe_params` -> Readiness probe to ensure that service is ready to serve requests. Parameter details found [here](../startup_liveness_readiness_probes/README.md).
+- [OPTIONAL] `recipe_readiness_probe_params` -> Readiness probe to ensure that service is ready to serve requests. Parameter details found [here](../../platform_feature_blueprints/startup_liveness_readiness_probes/README.md).
 
 ## Requirements
 
@@ -113,7 +113,7 @@ Follow these 6 simple steps to deploy your multi-node inference using OCI AI Blu
 
 1. **Deploy your shared node pool**
    - Deploy a shared node pool containing at least 2 nodes for inference. Note: Existing shared node pools can be used!
-     - as a template, follow [this BM.A10](../shared_node_pools/shared_node_pool_A10_BM.json) or [this VM.A10](../shared_node_pools/shared_node_pool_A10_VM.json).
+     - as a template, follow [this BM.A10](../../platform_feature_blueprints/shared_node_pools/shared_node_pool_A10_BM.json) or [this VM.A10](../../platform_feature_blueprints/shared_node_pools/shared_node_pool_A10_VM.json).
 2. **Create Your Deployment Blueprint**
    - Create a JSON configuration (blueprint) that defines your RayCluster. Key parameters include:
      - `"recipe_mode": "service"`
