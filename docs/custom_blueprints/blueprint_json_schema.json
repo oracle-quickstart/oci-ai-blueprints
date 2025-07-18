@@ -599,14 +599,34 @@
       "description": "Classifies the blueprint by intent.",
       "oneOf": [
         {
-          "const": "workload_blueprint",
-          "title": "Workload blueprint",
-          "description": "End‑to‑end workloads such as inference, fine‑tuning, benchmarking, or health‑checking that deliver a runnable solution."
+          "const": "gpu_benchmarking",
+          "title": "GPU Benchmarking",
+          "description": "Benchmarks for measuring GPU performance, compute throughput, memory bandwidth, and hardware utilization across different workloads and configurations."
         },
         {
-          "const": "platform_feature_blueprint",
-          "title": "Platform‑feature blueprint",
-          "description": "Demonstrates how to use a specific OCI AI Blueprints capability (autoscaling, shared pools, MIG, etc.) that users can copy into other blueprints."
+          "const": "gpu_health_check",
+          "title": "GPU Health Check",
+          "description": "Diagnostic tools and health monitoring solutions for validating GPU functionality, detecting hardware issues, and ensuring optimal GPU cluster operations."
+        },
+        {
+          "const": "model_fine_tuning",
+          "title": "Model Fine-tuning",
+          "description": "End-to-end solutions for fine-tuning pre-trained machine learning models on custom datasets, including parameter-efficient methods like LoRA and full fine-tuning approaches."
+        },
+        {
+          "const": "model_serving",
+          "title": "Model Serving",
+          "description": "Inference and model serving solutions for deploying trained models as scalable services, including real-time inference, batch processing, and multi-model serving scenarios."
+        },
+        {
+          "const": "platform_features",
+          "title": "Platform Features",
+          "description": "Demonstrations of specific OCI AI Blueprints platform capabilities such as autoscaling, shared node pools, MIG configurations, storage integrations, and networking features."
+        },
+        {
+          "const": "other",
+          "title": "Other",
+          "description": "General-purpose blueprints and specialized use cases that don't fit into the standard categories, including experimental workflows and custom integrations."
         }
       ]
     },
