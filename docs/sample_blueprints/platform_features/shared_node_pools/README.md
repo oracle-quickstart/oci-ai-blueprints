@@ -23,7 +23,7 @@ Additional required fields:
 
 See [this recipe](./shared_node_pool_B200_BM.json) as an example for these parameters.
 
-[This document section](../using_rdma_enabled_node_pools/README.md#import-a-custom-image) describes now to import a custom image and provides links to import custom images for various shapes.
+[This document section](../../other/using_rdma_enabled_node_pools/README.md) describes now to import a custom image and provides links to import custom images for various shapes.
 
 ## Pre-Filled Samples
 

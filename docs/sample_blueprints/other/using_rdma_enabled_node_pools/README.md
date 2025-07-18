@@ -88,7 +88,7 @@ One of the images in the table below must be imported into your tenancy in the c
 
 Once the image has been imported, it is now possible to deploy a shared node pool with RDMA connectivity with AI blueprints.
 
-In addition to the parameters described in [the shared node pool doc](../shared_node_pools/README.md#without-selector), the following additional parameters are required:
+In addition to the parameters described in [the shared node pool doc](../../platform_features/shared_node_pools/README.md#without-selector), the following additional parameters are required:
 
 - `"recipe_availability_domain": "<FULL AD NAME>"` -> full availability domain name where you have capacity for nodes. Examples: `"TrcQ:AP-MELBOURNE-1-AD-1"`, `"TrcQ:EU-FRANKFURT-1-AD-3"`. These can generally be found in the console via Hamburger (top left) -> Governance & Administration -> Tenancy Management -> Limits, Quotas and Usage
 
