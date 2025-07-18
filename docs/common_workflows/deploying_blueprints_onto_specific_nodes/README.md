@@ -21,7 +21,7 @@ If you have existing node pools in your original OKE cluster that you'd like Blu
 2. Go to the stack and click "Application information". Click the API Url.
 3. Login with the `Admin Username` and `Admin Password` in the Application information tab.
 4. Click the link next to "deployment" which will take you to a page with "Deployment List", and a content box.
-5. Paste in the sample blueprint json found [here](../../sample_blueprints/platform_feature_blueprints/exisiting_cluster_installation/add_node_to_control_plane.json).
+5. Paste in the sample blueprint json found [here](../../sample_blueprints/other/exisiting_cluster_installation/add_node_to_control_plane.json).
 6. Modify the "recipe_node_name" field to the private IP address you found in step 1 above.
 7. Click "POST". This is a fast operation.
 8. Wait about 20 seconds and refresh the page. It should look like:

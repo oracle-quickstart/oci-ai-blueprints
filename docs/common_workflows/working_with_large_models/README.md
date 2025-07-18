@@ -40,7 +40,7 @@ Steps:
 
 1. Create a bucket in object storage in the same region as the shared node pool (decrease copy times). In our example, we will call this something similar to the name of the model we plan to use: `llama3290Bvisioninstruct`
 
-2. Once the bucket is finished creating, deploy [this blueprint](../../sample_blueprints/platform_feature_blueprints/model_storage/download_closed_hf_model_to_object_storage.json) to copy `meta-llama/Llama-3.2-90B-Vision-Instruct` to the bucket you created.
+2. Once the bucket is finished creating, deploy [this blueprint](../../sample_blueprints/other/model_storage/download_closed_hf_model_to_object_storage.json) to copy `meta-llama/Llama-3.2-90B-Vision-Instruct` to the bucket you created.
    - **Note**: The blueprint assumes you created the bucket using the name `llama3290Bvisioninstruct`. If you changed the name, you will also need to modify it in the example blueprint.
 
 
