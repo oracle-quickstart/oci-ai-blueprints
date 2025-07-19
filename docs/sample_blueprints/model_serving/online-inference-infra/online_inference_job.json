@@ -1,0 +1,21 @@
+{
+  "recipe_id": "online_inference_benchmark",
+  "recipe_mode": "job",
+  "deployment_name": "Online Inference Benchmark",
+  "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:llm-benchmark-0409-v2",
+  "recipe_node_shape": "VM.GPU.A10.2",
+  "input_object_storage": [
+    {
+      "par": "https://objectstorage.ap-melbourne-1.oraclecloud.com/p/Z2q73uuLCAxCbGXJ99CIeTxnCTNipsE-1xHE9HYfCz0RBYPTcCbqi9KHViUEH-Wq/n/iduyx1qnmway/b/mymodels/o/",
+      "mount_location": "/models",
+      "volume_size_in_gbs": 100,
+      "include": ["example_online.yaml"]
+    }
+  ],
+  "recipe_container_command_args": ["/models/example_online.yaml"],
+  "recipe_replica_count": 1,
+  "recipe_container_port": "8000",
+  "recipe_node_pool_size": 1,
+  "recipe_node_boot_volume_size_in_gbs": 200,
+  "recipe_ephemeral_storage_size": 100
+}

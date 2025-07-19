@@ -1,0 +1,29 @@
+benchmark_type: offline
+model: /models/NousResearch/Meta-Llama-3.1-8B
+tokenizer: /models/NousResearch/Meta-Llama-3.1-8B
+
+input_len: 12
+output_len: 12
+num_prompts: 2
+seed: 42
+tensor_parallel_size: 8
+
+# vLLM-specific
+#quantization: awq
+dtype: half
+gpu_memory_utilization: 0.99
+num_scheduler_steps: 10
+device: cuda
+enforce_eager: true
+kv_cache_dtype: auto
+enable_prefix_caching: true
+distributed_executor_backend: mp
+
+# Output
+#output_json: ./128_128.json
+
+# MLflow
+mlflow_uri: http://mlflow-benchmarking.corrino-oci.com:5000
+experiment_name: test-bm-suite-doc
+run_name: llama3-vllm-test
+save_metrics_path:  /mlcommons_output/benchmark_output_llama3_vllm.json
