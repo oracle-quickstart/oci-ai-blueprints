@@ -35,6 +35,13 @@ resource "oci_containerengine_cluster" "oke_cluster" {
   count      = 1
 }
 
+resource "oci_containerengine_addon" "amd_operator_plugin" {
+  cluster_id = oci_containerengine_cluster.oke_cluster[0].id
+  addon_name = "AmdGpuPlugin"
+  remove_addon_resources_on_delete = true
+  override_existing = true
+}
+
 resource "oci_containerengine_node_pool" "oke_node_pool" {
   cluster_id         = oci_containerengine_cluster.oke_cluster[0].id
   compartment_id     = local.oke_compartment_ocid

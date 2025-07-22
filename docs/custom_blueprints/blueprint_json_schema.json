@@ -434,6 +434,24 @@
             }
           }
         },
+        "local_filesystem": {
+          "type": "array",
+          "items": {
+            "additionalProperties": false,
+            "required": [
+              "local_directory_path",
+              "mount_location"
+            ],
+            "properties": {
+              "local_directory_path": {
+                "type": "string"
+              },
+              "mount_location": {
+                "type": "string"
+              }
+            }
+          }
+        },
         "output_object_storage": {
           "type": "array",
           "items": {
