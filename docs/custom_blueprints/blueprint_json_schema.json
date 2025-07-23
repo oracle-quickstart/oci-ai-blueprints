@@ -624,6 +624,11 @@
           "description": "Demonstrations of specific OCI AI Blueprints platform capabilities such as autoscaling, shared node pools, MIG configurations, storage integrations, and networking features."
         },
         {
+          "const": "partner_blueprints",
+          "title": "Partner Blueprints",
+          "description": "Blueprints created alongside the help of our partners."
+        },
+        {
           "const": "other",
           "title": "Other",
           "description": "General-purpose blueprints and specialized use cases that don't fit into the standard categories, including experimental workflows and custom integrations."
