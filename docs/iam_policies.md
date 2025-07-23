@@ -2,7 +2,14 @@
 
 Many OCI AI Blueprints users choose to give full admin access to OCI AI Blueprints when using it for the first time or developing a POC, and making the permissions more granular overtime. We provide you with two different variations of IAM Policies for you to choose from - depending on your situation.
 
-## Step 1: Create Dynamic Group in Identity Domain
+To learn more details about the policy breakdowns, see the relevant sections below in the [Detailed Policy Breakdown](#detailed-policy-breakdown):
+  - [OKE Cluster Stack Creation Policies](#oke-cluster-creation-policies)
+  - [Blueprints App Stack Creation Policies](#blueprints-app-stack-creation-policies)
+  - [Blueprints Feature Policies](#blueprints-feature-policies)
+
+## Quickstart
+
+### Step 1: Create Dynamic Group in Identity Domain
 
 Inside the OCI console:
 
@@ -23,86 +30,195 @@ All {instance.compartment.id = '<oci-ai-blueprints_compartment_ocid>'}
 
 More info on dynamic groups can be found here: https://docs.oracle.com/en-us/iaas/Content/Identity/dynamicgroups/To_create_a_dynamic_group.htm
 
-## Step 2: Add IAM Policies To Root Compartment
+### Step 2: Add IAM Policies To Root Compartment
 
-- **Note:** `'IdentityDomainName'/'DynamicGroupName'` -> please modify this to match the dynamic group that you created in Step 1 above
+The Quickstart takes the approach of giving Blueprints full admin policies. If you would like to narrow the policies down, visit the [detailed policy breakdown](#detailed-policy-breakdown) section below.
+
+- **Note:** `'Default'/'DynamicGroupName'` -> please modify this to match the dynamic group that you created in Step 1 above
 - **Note:** All these policies will be in the root compartment of your tenancy (NOT in the OCI AI Blueprints compartment itself)
 - **Note:** If you are not an admin of your tenancy, then you will need to have an admin add the following policies for the dynamic group AND the user group that your user belongs if you are the one that will be deploying OCI AI Blueprints (aka you will have the admin create the policies below twice - once for the dynamic group you created in Step 1 and once for the user group that your user belongs to)
 
-**Option #1: Full Admin Access:**
-
 ```
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to inspect all-resources in tenancy
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage all-resources in compartment {comparment_name}
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to {CLUSTER_JOIN} in compartment {compartment_name}
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage volumes in TENANCY where request.principal.type = 'cluster'
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage volume-attachments in TENANCY where request.principal.type = 'cluster'
+Allow dynamic-group 'Default'/'DynamicGroupName' to inspect all-resources in tenancy
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage all-resources in compartment My-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage volumes in TENANCY where request.principal.type = 'cluster'
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage volume-attachments in TENANCY where request.principal.type = 'cluster'
 ```
 
-**Option #2: Fine-Grain Access:**
+----
+## Detailed Policy Breakdown
+
+The detailed policy breakdown takes the approach of enabling you to provide exactly the policies you need for both stack creation and feature usage. Therefore, this section is split into two parts:
+  - [Stack Creation Policies](#stack-creation-policies)
+    - [OKE Stack Policies](#oke-cluster-creation-policies)
+    - [Blueprints Stack Policies](#blueprints-app-stack-creation-policies)
+
+  - [Blueprints Feature Policies](#blueprints-feature-policies)
+
+### Stack Creation Policies
+The below policies are related to the terraform deployments to create each stack for the OKE cluster and the Blueprints platform. 
+
+#### OKE Cluster Creation Policies
+
+OKE Cluster creation allows for two modes:
+  - Install OKE Cluster into existing Virtual Network
+  - Create Virtual Network and Install OKE Cluster
+
+Because of this, different policy requirements exist for each mode. For specific details about the OKE verbs and virtual network verbs, visit:
+  - [OKE Verbs](https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/contengpolicyreference.htm#Details_for_Container_Engine_for_Kubernetes)
+  - [Virtual Network Verbs](https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/corepolicyreference.htm#For2)
+  - `GetNodePoolOptions/all` - API used to determine images available for nodes, requires `inspect all-resources in tenancy`.
+
+#### Bring your own network policies
+Because we are not creating the virtual network, policy usage can be minimized to "read" permissions on several of the virtual network family members compared to the create policies. The required policies are:
+
+**Note**: 'Default' is the "default" identity domain, and 'DynamicGroupName' is the name of your dynamic group. 'Dennis-Compartment' is an example compartment name. If using nested compartments, the syntax is: Dennis-Compartment:Dennis-ChildA:Dennis-ChildB
 
 ```
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to inspect all-resources in tenancy
+Allow dynamic-group 'Default'/'DynamicGroupName' to inspect all-resources in tenancy
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage clusters in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage cluster-node-pools in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to read virtual-network-family in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to use subnets in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to use vnics in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to use network-security-groups in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to use private-ips in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to read cluster-work-requests in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage instance-family in compartment Dennis-Compartment
+```
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage compute-capacity-reports in tenancy
+#### Create your network policies
+To additionally create the virtual network the policies become a bit more open as the `manage` verb encompasses all of the `use` policies above, plus a few more permissions:
+```
+Allow dynamic-group 'Default'/'DynamicGroupName' to inspect all-resources in tenancy
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage clusters in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage cluster-node-pools in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage virtual-network-family in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to read cluster-work-requests in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage instance-family in compartment Dennis-Compartment
+```
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage instance-family in compartment {compartment_name}
+### Blueprints App Stack Creation Policies
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to use subnets in compartment {compartment_name}
+Blueprints needs to use the cluster, the virtual network, inspect node pools, create and attachvolumes, and create a load balancer.
+```
+Allow dynamic-group 'Default'/'DynamicGroupName' to inspect all-resources in tenancy
+Allow dynamic-group 'Default'/'DynamicGroupName' to use virtual-network-family in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage volumes in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage volume-attachments in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage load-balancers in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to use clusters in compartment Dennis-Compartment
+```
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage virtual-network-family in compartment {compartment_name}
+### Blueprints Feature Policies
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to use vnics in compartment {compartment_name}
+Feature policies describe the policies required to enable all of the Blueprints platform features. Combined policies will be shown first which are the minimum required policies to use all Blueprints features, and then feature specific policies follow with links to documentation. This way, users can selectively opt in or opt out of certain features if policies are prohibitive.
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to use network-security-groups in compartment {compartment_name}
+**Full Feature Policies**
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage public-ips in compartment {compartment_name}
+```
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage clusters in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage cluster-node-pools in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage instance-family in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to use vnics in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to use subnets in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to read instance-images in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage compute-capacity-reports in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to read cluster-work-requests in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to read file-systems in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to read mount-targets in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to read export-sets in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to inspect private-ips in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to read buckets in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage objects in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to use volumes in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage instance-configurations in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage instance-pools in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage cluster-networks in compartment Dennis-Compartment
+```
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage cluster-family in compartment {compartment_name}
+**Minimum policies for RDMA Enabled Cluster Networks**
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage orm-stacks in compartment {compartment_name}
+https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/corepolicyreference.htm#compute-management-family
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage orm-jobs in compartment {compartment_name}
+```
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage instances in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to use vnics in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to use subnets in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to use network-security-groups in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to read instance-images in tenancy
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage volume-attachments in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to use volumes in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage instance-configurations in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage instance-pools in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage cluster-networks in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to use clusters in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to {CLUSTER_JOIN} in compartment Dennis-Compartment
+```
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage vcns in compartment {compartment_name}
+**Minimum policies for shared node pool creation**
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage subnets in compartment {compartment_name}
+https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/contengpolicyreference.htm
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage internet-gateways in compartment {compartment_name}
+```
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage cluster-node-pools in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage instance-family in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to use subnets in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to use vnics in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to read instance-images in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage compute-capacity-reports in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to read clusters in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to read cluster-work-requests in compartment Dennis-Compartment
+```
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage nat-gateways in compartment {compartment_name}
+**Any blueprint read from object storage**
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage route-tables in compartment {compartment_name}
+https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/objectstoragepolicyreference.htm
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage security-lists in compartment {compartment_name}
+```
+Allow dynamic-group 'Default'/'DynamicGroupName' to read buckets in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to read objects in compartment Dennis-Compartment
+```
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to inspect clusters in compartment {compartment_name}
+**Any blueprint to read from and write to object storage**
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to use cluster-node-pools in compartment {compartment_name}
+https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/objectstoragepolicyreference.htm
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to read cluster-work-requests in compartment {compartment_name}
+```
+Allow dynamic-group 'Default'/'DynamicGroupName' to read buckets in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage objects in compartment Dennis-Compartment
+```
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage service-gateways in compartment {compartment_name}
+**Any blueprint to provision in subcompartment. Also requires addition of subcompartment to dynamic group**
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to use cloud-shell in compartment {compartment_name}
+https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengcreatingpersistentvolumeclaim_topic-Provisioning_PVCs_on_BV.htm#Provisioning_Persistent_Volume_Claims_on_the_Block_Volume_Service
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to read vaults in compartment {compartment_name}
+```
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage volumes in TENANCY where request.principal.type = 'cluster'
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage volume-attachments in TENANCY where request.principal.type = 'cluster'
+```
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to read keys in compartment {compartment_name}
+**Any blueprint to read from or write to OCI file storage (also requires appropriate security rules)**
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to use compute-capacity-reservations in compartment {compartment_name}
+https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/filestoragepolicyreference.htm
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to read metrics in compartment {compartment_name}
+https://docs.oracle.com/en-us/iaas/Content/File/Tasks/securitylistsfilestorage.htm#Configuring_VCN_Security_Rules_for_File_Storage
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to read virtual-network-family in compartment {compartment_name}
+```
+Allow dynamic-group 'Default'/'DynamicGroupName' to read file-systems in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to read mount-targets in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to read export-sets in compartment Dennis-Compartment
+Allow dynamic-group 'Default'/'DynamicGroupName' to inspect private-ips in compartment Dennis-Compartment
+```
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to inspect compartments in compartment {compartment_name}
+**Any blueprint to autoscale nodes (not pods)**
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage cluster-node-pools in compartment {compartment_name}
+To reiterate, if you only want to autoscale pods and not nodes, and full cluster `manage` is not required. `use cluster` with `{CLUSTER_JOIN}` can be used instead.
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to {CLUSTER_JOIN} in compartment {compartment_name}
+InstallAddon, UpdateAddon, DeleteAddon APIs require `manage cluster`
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage volumes in TENANCY where request.principal.type = 'cluster'
+https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/contengpolicyreference.htm#Details_for_Container_Engine_for_Kubernetes
 
-Allow dynamic-group 'IdentityDomainName'/'DynamicGroupName' to manage volume-attachments in TENANCY where request.principal.type = 'cluster'
+```
+Allow dynamic-group 'Default'/'DynamicGroupName' to manage clusters in compartment Dennis-Compartment
 ```
