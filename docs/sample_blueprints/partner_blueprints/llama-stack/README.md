@@ -74,7 +74,7 @@ Llama Stack has many different use cases and are thoroughly detailed here, in th
 
 1. How can I configure the vLLM pre-filled sample (e.g. I want to deploy a different model with vLLM; a custom model)?
 
-- Any vLLM inference server and model that is compatible with vLLM will work with the Llama Stack implementation. Follow our [llm_inference_with_vllm blueprint](../llm_inference_with_vllm/README.md) for more details on setting up vLLM.
+- Any vLLM inference server and model that is compatible with vLLM will work with the Llama Stack implementation. Follow our [llm_inference_with_vllm blueprint](../../model_serving/llm_inference_with_vllm/README.md) for more details on setting up vLLM.
 
 2. Can I use a different inference engine than vLLM?
 

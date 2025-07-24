@@ -192,7 +192,7 @@ Pod auto-scaling allows a blueprint to scale within a single node, up to the num
 
 #### Additional Considerations:
 
-Pod autoscaling can be paired with startup and liveness probes to verify that a blueprint is both ready to receive requests and continuing to function properly. For more information, visit [our startup and liveness probe doc](../startup_liveness_readiness_probes/README.md).
+Pod autoscaling can be paired with startup and liveness probes to verify that a blueprint is both ready to receive requests and continuing to function properly. For more information, visit [our startup and liveness probe doc](../../platform_features/startup_liveness_readiness_probes/README.md).
 
 ## Node + Pod Auto-Scaling (Scaling Beyond a Single Node)
 
