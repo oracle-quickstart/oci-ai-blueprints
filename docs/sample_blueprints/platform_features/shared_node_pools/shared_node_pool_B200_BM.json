@@ -5,5 +5,5 @@
   "shared_node_pool_shape": "BM.GPU.B200.8", 
   "shared_node_pool_boot_volume_size_in_gbs": 1000,
   "recipe_availability_domain": "TrcQ:US-ASHBURN-AD-2",
-  "recipe_node_image_ocid": "ocid1.image.oc1.iad.aaaaaaaasbjq55p7d6mmbbvgt6r22fh6mko7jmh2lpaxw7rsyjqg6cpfgs2a"
+  "recipe_node_image_ocid": "ocid1.image.oc1.iad.aaaaaaaa____2a"
 }

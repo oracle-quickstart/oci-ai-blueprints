@@ -14,12 +14,22 @@ Shared node pools are compatible with any blueprint and support all OCI compute 
 1. Specifying the Availability Domain of the instance type
 2. Specifying the custom image OCID to use for the node
 
+**Note**: Clicking the Link in the table below will download a large image file to your computer (~20GB). It is best to copy the link and paste it in your conole to import the image as described in [This document section](../../other/using_rdma_enabled_node_pools/README.md).
+
+| Shape Name      | Image PAR |
+| :--------:      | :-------: |
+| BM.GPU.B200.8   | [Link](https://objectstorage.ca-montreal-1.oraclecloud.com/p/ts6fjAuj7hY4io5x_jfX3fyC70HRCG8-9gOFqAjuF0KE0s-6tgDZkbRRZIbMZmoN/n/hpc_limited_availability/b/images/o/Canonical-Ubuntu-22.04-2025.05.20-0-OFED-24.10-1.1.4.0-GPU-570-OPEN-CUDA-12.8-2025.06.07-0) |
+| BM.GPU.MI300X.8 | [Link](https://objectstorage.ca-montreal-1.oraclecloud.com/p/ts6fjAuj7hY4io5x_jfX3fyC70HRCG8-9gOFqAjuF0KE0s-6tgDZkbRRZIbMZmoN/n/hpc_limited_availability/b/images/o/Canonical-Ubuntu-22.04-2024.10.04-0-OCA-OFED-24.10-1.1.4.0-AMD-ROCM-632-2025.03.26-0) |
+
+
 Additional required fields:
 
 ```json
 "recipe_availability_domain": "<Availability Domain>",
 "recipe_node_image_ocid": "<ocid>"
 ```
+
+
 
 See [this recipe](./shared_node_pool_B200_BM.json) as an example for these parameters.
 

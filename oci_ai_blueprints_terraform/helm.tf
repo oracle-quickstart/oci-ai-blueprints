@@ -79,6 +79,23 @@ resource "helm_release" "nvidia-dcgm" {
   }
 }
 
+resource "helm_release" "amd_device_metrics_exporter" {
+  count             = 1
+  namespace         = "cluster-tools"
+  name              = "amd-device-metrics-exporter"
+  chart             = "device-metrics-exporter-charts"
+  repository        = "https://rocm.github.io/device-metrics-exporter"
+  version           = "v1.2.1"
+  values            = ["${file("./files/amd-device-metrics-exporter/values.yaml")}"]
+  create_namespace  = false
+  recreate_pods     = true
+  force_update      = true
+  dependency_update = true
+  wait              = false
+  max_history       = 1
+  depends_on = [null_resource.webhook_charts_ready]
+}
+
 resource "helm_release" "keda" {
   name             = "keda"
   repository       = "https://kedacore.github.io/charts"

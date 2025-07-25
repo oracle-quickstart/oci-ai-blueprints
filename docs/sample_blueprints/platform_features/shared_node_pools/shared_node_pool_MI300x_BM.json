@@ -1,0 +1,11 @@
+{ 
+  "deployment_name": "MI300x-bp",
+  "recipe_mode": "shared_node_pool",
+  "shared_node_pool_size": 1,
+  "shared_node_pool_shape": "BM.GPU.MI300X.8",
+  "shared_node_pool_boot_volume_size_in_gbs": 1000,
+  "skip_capacity_validation": true,
+  "recipe_node_image_ocid": "ocid1.image.oc1.iad.aaaaaaaap___ea",
+  "recipe_availability_domain": "TrcQ:US-ASHBURN-AD-3",
+  "recipe_public_ssh_key": "ssh-rsa AAAAB3NzaC___= dkennetz"
+}
