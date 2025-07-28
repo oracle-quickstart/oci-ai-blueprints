@@ -14,7 +14,7 @@
     "local_filesystem": [
         {
             "mount_location": "/models",
-            "local_directory_path": "/mnt/nvme/models"
+            "node_directory_path": "/mnt/nvme/models"
         }
     ],
     "recipe_container_env": [

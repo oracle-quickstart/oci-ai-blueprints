@@ -29,8 +29,6 @@ Additional required fields:
 "recipe_node_image_ocid": "<ocid>"
 ```
 
-
-
 See [this recipe](./shared_node_pool_B200_BM.json) as an example for these parameters.
 
 [This document section](../../other/using_rdma_enabled_node_pools/README.md) describes now to import a custom image and provides links to import custom images for various shapes.
