@@ -171,6 +171,16 @@ variable "existent_nvidia_gpu_operator_namespace" {
   default = ""
 }
 
+variable "bring_your_own_amd_metrics_exporter" {
+  type    = bool
+  default = false
+}
+
+variable "existent_amd_metrics_exporter_namespace" {
+  type    = string
+  default = ""
+}
+
 variable "bring_your_own_metrics_server" {
   type    = bool
   default = false

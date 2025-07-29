@@ -45,17 +45,18 @@ The following table describes software versions for tagged releases of this quic
 
 ### Helm Chart Versions
 
-|     Chart Name      | Version |                     Chart URL                      |
-| :-----------------: | :-----: | :------------------------------------------------: |
-|       Grafana       | 6.47.1  |       https://grafana.github.io/helm-charts        |
-|     Prometheus      | 19.0.1  | https://prometheus-community.github.io/helm-charts |
-|   Metrics Server    |  3.8.3  |  https://kubernetes-sigs.github.io/metrics-server  |
-|    Ingress Nginx    |  4.4.0  |     https://kubernetes.github.io/ingress-nginx     |
-|       MLFlow        | 0.16.5  |   https://community-charts.github.io/helm-charts   |
-| NVIDIA GPU Operator | v25.3.0 |         https://helm.ngc.nvidia.com/nvidia         |
-|        Keda         | 2.17.0  |         https://kedacore.github.io/charts          |
-|   LeaderWorkerSet   |  0.1.0  |                       local                        |
-|        Kueue        | 0.11.4  |         oci://registry.k8s.io/kueue/charts         |
+|     Chart Name       | Version |                     Chart URL                      |
+| :-----------------:  | :-----: | :------------------------------------------------: |
+|       Grafana        | 6.47.1  |       https://grafana.github.io/helm-charts        |
+|     Prometheus       | 19.0.1  | https://prometheus-community.github.io/helm-charts |
+|   Metrics Server     |  3.8.3  |  https://kubernetes-sigs.github.io/metrics-server  |
+|    Ingress Nginx     |  4.4.0  |     https://kubernetes.github.io/ingress-nginx     |
+|       MLFlow         | 0.16.5  |   https://community-charts.github.io/helm-charts   |
+| NVIDIA GPU Operator  | v25.3.0 |         https://helm.ngc.nvidia.com/nvidia         |
+|        Keda          | 2.17.0  |         https://kedacore.github.io/charts          |
+|   LeaderWorkerSet    |  0.1.0  |                       local                        |
+|        Kueue         | 0.11.4  |         oci://registry.k8s.io/kueue/charts         |
+| AMD Metrics Exporter | v1.2.1  |                       local                        |
 
 ### Container Versions
 

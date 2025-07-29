@@ -213,6 +213,8 @@ variableGroups:
     - existent_mlflow_namespace
     - bring_your_own_nvidia_gpu_operator
     - existent_nvidia_gpu_operator_namespace
+    - bring_your_own_amd_metrics_exporter
+    - existent_amd_metrics_exporter_namespace
     visible:
       and:
         - eq:
@@ -1042,6 +1044,23 @@ variables:
     visible:
       and:
         - bring_your_own_nvidia_gpu_operator
+
+  bring_your_own_amd_metrics_exporter:
+    type: boolean
+    title: "Use your own AMD GPU Metrics Exporter?"
+    description: "Only use this if you already have an AMD GPU Metrics Exporter installed on your cluster."
+    visible:
+      and:
+        - bring_your_own_cluster
+
+  existent_amd_metrics_exporter_namespace:
+    type: string
+    title: "Existing AMD GPU Metrics Exporter Namespace"
+    description: "Kubernetes namespace of existing AMD GPU Metrics Exporter Installation."
+    required: true
+    visible:
+      and:
+        - bring_your_own_amd_metrics_exporter
 
   bring_your_own_keda:
     type: boolean

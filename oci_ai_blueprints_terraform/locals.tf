@@ -27,7 +27,7 @@ locals {
   }
 
   postgres_db = {
-    host     = "postgres"
+    host     = "bp-postgres"
     port     = "5432"
     db_name  = format("%s_db", random_string.postgres_db_name.result)
     user     = format("%s_user", random_string.postgres_db_username.result)

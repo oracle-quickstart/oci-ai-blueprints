@@ -114,7 +114,7 @@ variable "k8s_version" {
   description = "Kubernetes version installed on your master and worker nodes"
 }
 variable "num_pool_workers" {
-  default     = 6
+  default     = 3
   description = "The number of worker nodes in the node pool. If select Cluster Autoscaler, will assume the minimum number of nodes configured"
 }
 

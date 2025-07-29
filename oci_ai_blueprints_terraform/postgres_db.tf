@@ -4,9 +4,9 @@
 # ConfigMap for PostgreSQL configuration
 resource "kubernetes_config_map" "postgres_secret" {
   metadata {
-    name = "postgres-secret"
+    name = "bp-postgres-secret"
     labels = {
-      app = "postgres"
+      app = "bp-postgres"
     }
   }
 
@@ -20,7 +20,7 @@ resource "kubernetes_config_map" "postgres_secret" {
 # PersistentVolumeClaim for PostgreSQL data
 resource "kubernetes_persistent_volume_claim_v1" "postgresql_pv_claim" {
   metadata {
-    name = "postgresql-pv-claim"
+    name = "bp-postgresql-pv-claim"
   }
 
   spec {
@@ -44,7 +44,7 @@ resource "kubernetes_persistent_volume_claim_v1" "postgresql_pv_claim" {
 # PostgreSQL Deployment
 resource "kubernetes_deployment" "postgres" {
   metadata {
-    name = "postgres"
+    name = "bp-postgres"
   }
 
   spec {
@@ -52,14 +52,14 @@ resource "kubernetes_deployment" "postgres" {
 
     selector {
       match_labels = {
-        app = "postgres"
+        app = "bp-postgres"
       }
     }
 
     template {
       metadata {
         labels = {
-          app = "postgres"
+          app = "bp-postgres"
         }
       }
 
@@ -76,14 +76,14 @@ resource "kubernetes_deployment" "postgres" {
           ]
 
           volume_mount {
-            name       = "postgresdata"
+            name       = "bp-postgresdata"
             mount_path = "/var/lib/postgresql/data"
           }
         }
 
         # PostgreSQL container
         container {
-          name              = "postgres"
+          name              = "bp-postgres"
           image             = "docker.io/library/postgres:14"
           image_pull_policy = "IfNotPresent"
 
@@ -103,13 +103,13 @@ resource "kubernetes_deployment" "postgres" {
           }
 
           volume_mount {
-            name       = "postgresdata"
+            name       = "bp-postgresdata"
             mount_path = "/var/lib/postgresql/data"
           }
         }
 
         volume {
-          name = "postgresdata"
+          name = "bp-postgresdata"
           persistent_volume_claim {
             claim_name = kubernetes_persistent_volume_claim_v1.postgresql_pv_claim.metadata[0].name
           }
@@ -128,9 +128,9 @@ resource "kubernetes_deployment" "postgres" {
 # Creates cluster-internal DNS name: postgres.default.svc.cluster.local
 resource "kubernetes_service" "postgres" {
   metadata {
-    name = "postgres"
+    name = "bp-postgres"
     labels = {
-      app = "postgres"
+      app = "bp-postgres"
     }
   }
 
@@ -138,7 +138,7 @@ resource "kubernetes_service" "postgres" {
     # type = "ClusterIP"  # Default type, can be omitted
     
     selector = {
-      app = "postgres"
+      app = "bp-postgres"
     }
 
     port {

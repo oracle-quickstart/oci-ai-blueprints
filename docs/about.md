@@ -45,11 +45,10 @@
 
 This repository provides comprehensive Terraform scripts that provision and configure:
 
-1. An ATP database instance
-2. Grafana & Prometheus for monitoring
-3. MLFlow for experiment tracking
-4. KEDA for dynamic auto-scaling
-5. The OCI AI Blueprints front-end and back-end in an OKE cluster of your choice
+1. Grafana & Prometheus for monitoring
+2. MLFlow for experiment tracking
+3. KEDA for dynamic auto-scaling
+4. The OCI AI Blueprints front-end and back-end in an OKE cluster of your choice
 
 Once installed, you can:
 

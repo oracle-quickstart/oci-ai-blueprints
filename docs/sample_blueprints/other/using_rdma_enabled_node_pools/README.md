@@ -32,6 +32,7 @@ RDMA is currently supported for:
 - BM.GPU.H200.8
 - BM.GPU.B200.8
 - BM.GPU.B4.8
+- BM.GPU.MI300X.8
 
 Additional shape support is coming soon.
 
@@ -69,6 +70,7 @@ One of the images in the table below must be imported into your tenancy in the c
 - Once the image is done importing (30 minutes to an hour), it will be usable during cluster deployment
 - To use the image in recipes, you will need to retrieve the image OCID
 
+**Note**: Clicking any of the links below will download a large image file to your computer (~20GB). It is best to copy the link to paste directly into the console when importing the custom image.
 
 **Note**: B200 requires Driver version 570 and CUDA >= 12.8. Ensure correct PAR for compatibility with B200.
 
@@ -80,6 +82,11 @@ One of the images in the table below must be imported into your tenancy in the c
 | Ubuntu 24.04     | B200, H200, H100, A100 | 570-open           | 12.8         | DOCA-OFED-2.10.0             | [Link](https://objectstorage.ca-montreal-1.oraclecloud.com/p/ts6fjAuj7hY4io5x_jfX3fyC70HRCG8-9gOFqAjuF0KE0s-6tgDZkbRRZIbMZmoN/n/hpc_limited_availability/b/images/o/Canonical-Ubuntu-24.04-2025.05.20-0-DOCA-OFED-2.10.0-GPU-570-OPEN-CUDA-12.8-2025.06.25-0) |
 | Ubuntu 24.04     | H200, H100, A100       | 560                | 12.6         | DOCA-OFED-2.10.0             | [Link](https://objectstorage.ca-montreal-1.oraclecloud.com/p/ts6fjAuj7hY4io5x_jfX3fyC70HRCG8-9gOFqAjuF0KE0s-6tgDZkbRRZIbMZmoN/n/hpc_limited_availability/b/images/o/Canonical-Ubuntu-24.04-2025.05.20-0-DOCA-OFED-2.10.0-GPU-560-CUDA-12.6-2025.06.25-0) |
 
+
+**Note**: Table for AMD Systems
+| Operating System | Shape Compatibility | AMD Driver Version    | ROCm Version | Mellanox OFED Driver Version | Image PAR Link |
+| :--------------: | :-----------------: | :-------------------: | :----------: | :--------------------------: | :------------: |
+| Ubuntu 22.04     | MI300X              |         6.10.5        |  6.3.2-66    |  v24.10-1.1.4.0              | [Link](https://objectstorage.ca-montreal-1.oraclecloud.com/p/ts6fjAuj7hY4io5x_jfX3fyC70HRCG8-9gOFqAjuF0KE0s-6tgDZkbRRZIbMZmoN/n/hpc_limited_availability/b/images/o/Canonical-Ubuntu-22.04-2024.10.04-0-OCA-OFED-24.10-1.1.4.0-AMD-ROCM-632-2025.03.26-0) |
 
 
 [This doc](https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/custom-images-import.htm#listing-custom-images) provides complete details for all image importing options.
