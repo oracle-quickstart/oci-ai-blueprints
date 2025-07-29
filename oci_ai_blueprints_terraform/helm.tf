@@ -80,7 +80,7 @@ resource "helm_release" "nvidia-dcgm" {
 }
 
 resource "helm_release" "amd_device_metrics_exporter" {
-  count             = 1
+  count             = var.bring_your_own_amd_metrics_exporter ? 0 : 1
   namespace         = "cluster-tools"
   name              = "amd-device-metrics-exporter"
   chart             = "device-metrics-exporter-charts"
