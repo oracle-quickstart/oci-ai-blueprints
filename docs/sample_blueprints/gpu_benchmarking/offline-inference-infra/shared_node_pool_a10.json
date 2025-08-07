@@ -1,0 +1,8 @@
+{
+  "deployment_name": "VM A10 shared pool",
+  "recipe_mode": "shared_node_pool",
+  "shared_node_pool_size": 1,
+  "shared_node_pool_shape": "VM.GPU.A10.2",
+  "shared_node_pool_boot_volume_size_in_gbs": 500,
+  "shared_node_pool_selector": "shared_pool"
+}
