@@ -439,10 +439,7 @@
           "description": "Local filesystem path to mount to container. This will be read / write path, and is local to the node the container runs on. Any written data will persist to node, and will be subject to available storage on node.",
           "items": {
             "additionalProperties": false,
-            "required": [
-              "node_directory_path",
-              "mount_location"
-            ],
+            "required": ["node_directory_path", "mount_location"],
             "properties": {
               "node_directory_path": {
                 "type": "string",
