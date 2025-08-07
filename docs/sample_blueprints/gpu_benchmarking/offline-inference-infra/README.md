@@ -45,7 +45,7 @@ Offline inference is ideal for:
 
 - Things need to run the benchmark
   - Your MLFlow URL (this can be found via the GET `workspace/` endpoint or under the `Deployments` tab if using the portal)
-  - A node pool with GPU hardware (this can be done by deploying the shared node pool pre-filled sample here)
+  - A node pool with GPU hardware (this can be done by deploying the shared node pool pre-filled sample [here](shared_node_pool_a10.json))
   - Model checkpoints pre-downloaded and stored in an object storage.
   - Make sure to get a PAR for the object storage where the models are saved. With listing, write and read perimissions
   - Configured benchmarking blueprint - make sure to update the MLFlow URL (ex `https://mlflow.121-158-72-41.nip.io`)
