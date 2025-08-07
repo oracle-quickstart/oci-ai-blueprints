@@ -54,7 +54,7 @@ This blueprint supports benchmark execution via job-mode (the benchmarking conta
 
 ---
 
-## Metrics Logged
+## Metrics Logged (will be visible in MlFlow)
 
 - `requests_per_second`
 - `input_tokens_per_second`
