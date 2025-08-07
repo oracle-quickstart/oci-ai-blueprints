@@ -50,7 +50,7 @@ Offline inference is ideal for:
   - Make sure to get a PAR for the object storage where the models are saved. With listing, write and read perimissions
   - Configured benchmarking blueprint - make sure to update the MLFlow URL (ex `https://mlflow.121-158-72-41.nip.io`)
 
-This blueprint supports benchmark execution via job-mode (the benchmarking container will spin up, benchmark, then spin down once the benchmarking is complete). The recipe mounts a model and config file from Object Storage (hence the need for a PAR link), runs offline inference, and logs metrics to MlFlow.
+This blueprint supports benchmark execution via job-mode (the benchmarking container will spin up, benchmark, then spin down once the benchmarking is complete). The recipe mounts a model from Object Storage (hence the need for a PAR link), runs offline inference, and logs metrics to MlFlow.
 
 ---
 
@@ -76,37 +76,30 @@ This blueprint supports benchmark execution via job-mode (the benchmarking conta
 
 ### Input Object Storage
 
-| Key                    | Description                                                                  |
-| ---------------------- | ---------------------------------------------------------------------------- |
-| `input_object_storage` | List of inputs to mount from Object Storage.                                 |
-| `par`                  | Pre-Authenticated Request (PAR) link to a bucket/folder.                     |
-| `mount_location`       | Files are mounted to this path inside the container.                         |
-| `volume_size_in_gbs`   | Size of the mount volume.                                                    |
-| `include`              | Only these files/folders from the bucket are mounted (e.g., model + config). |
-
-### Output Object Storage
-
-| Key                     | Description                                             |
-| ----------------------- | ------------------------------------------------------- |
-| `output_object_storage` | Where to store outputs like benchmark logs or results.  |
-| `bucket_name`           | Name of the output bucket in OCI Object Storage.        |
-| `mount_location`        | Mount point inside container where outputs are written. |
-| `volume_size_in_gbs`    | Size of this volume in GBs.                             |
+| Key                    | Description                                              |
+| ---------------------- | -------------------------------------------------------- |
+| `input_object_storage` | List of inputs to mount from Object Storage.             |
+| `par`                  | Pre-Authenticated Request (PAR) link to a bucket/folder. |
+| `mount_location`       | Files are mounted to this path inside the container.     |
+| `volume_size_in_gbs`   | Size of the mount volume.                                |
 
 ### Runtime & Infra Settings
 
-| Key                                            | Description                                                   |
-| ---------------------------------------------- | ------------------------------------------------------------- |
-| `recipe_container_command_args`                | Path to the YAML config that defines benchmark parameters.    |
-| `recipe_replica_count`                         | Number of job replicas to run (usually 1 for inference).      |
-| `recipe_container_port`                        | Port (optional for offline mode; required if API is exposed). |
-| `recipe_nvidia_gpu_count`                      | Number of GPUs allocated to this job.                         |
-| `recipe_node_pool_size`                        | Number of nodes in the pool (1 means 1 VM).                   |
-| `recipe_node_boot_volume_size_in_gbs`          | Disk size for OS + dependencies.                              |
-| `recipe_ephemeral_storage_size`                | Local scratch space in GBs.                                   |
-| `recipe_shared_memory_volume_size_limit_in_mb` | Shared memory (used by some inference engines).               |
+| Key                                            | Description                                                                                                              |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `recipe_container_command_args`                | Necessary command args that are passed to benchmarking container (and are assigned to the `recipe_container_env` values) |
+| `recipe_container_env`                         | The container environment variables that we are using to configure the benchmarking run (see below for specifics)        |
+| `recipe_replica_count`                         | Number of job replicas to run (usually 1 for inference).                                                                 |
+| `recipe_container_port`                        | Port (optional for offline mode; required if API is exposed).                                                            |
+| `recipe_nvidia_gpu_count`                      | Number of GPUs allocated to this job.                                                                                    |
+| `recipe_node_pool_size`                        | Number of nodes in the pool (1 means 1 VM).                                                                              |
+| `recipe_node_boot_volume_size_in_gbs`          | Disk size for OS + dependencies.                                                                                         |
+| `recipe_ephemeral_storage_size`                | Local scratch space in GBs.                                                                                              |
+| `recipe_shared_memory_volume_size_limit_in_mb` | Shared memory (used by some inference engines).                                                                          |
 
 ### Recipe Container Environment Variables
+
+These are the environment variables set in the `recipe_container_env` field and are used as values to the command args that are passed to the benchmarking container via the `recipe_container_command_args` field of the blueprint.
 
 | Key                    | Description                                                                                                                                                       |
 | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
