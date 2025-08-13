@@ -162,6 +162,12 @@ output "corrino_mlflow_url" {
   depends_on  = [module.oke-quickstart.helm_release_ingress_nginx]
 }
 
+output "inference_gateway_url" {
+  value       = var.bring_your_own_kong ? null : format("https://${local.domain.inference_gateway_fqdn}")
+  description = "Inference Gateway Service"
+  depends_on  = [helm_release.kong]
+}
+
 # output "autonomous_database_password" {
 #   value = random_string.autonomous_database_admin_password.result
 # }

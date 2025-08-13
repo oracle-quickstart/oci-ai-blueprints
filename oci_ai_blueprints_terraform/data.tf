@@ -36,6 +36,15 @@ data "kubernetes_service" "ingress_nginx_controller_service" {
   count = var.ingress_nginx_enabled ? 1 : 0
 }
 
+data "kubernetes_service" "kong_proxy_service" {
+  metadata {
+    name      = "kong-kong-proxy"
+    namespace = "kong"
+  }
+  depends_on = [helm_release.kong]
+  count = var.bring_your_own_kong ? 0 : 1
+}
+
 data "kubernetes_secret" "grafana_password" {
   metadata {
     name      = "grafana"

@@ -57,13 +57,14 @@ The following table describes software versions for tagged releases of this quic
 |   LeaderWorkerSet    |  0.1.0  |                       local                        |
 |        Kueue         | 0.11.4  |         oci://registry.k8s.io/kueue/charts         |
 | AMD Metrics Exporter | v1.2.1  |   https://rocm.github.io/device-metrics-exporter   |
+|         Kong         | 2.51.0  |             https://charts.konghq.com              |
 
 ### Container Versions
 
 | Container                | Version |                     Repository                     |
 | :----------------------- | :-----: | :------------------------------------------------: |
-| oci-corrino-cp           | latest  | iad.ocir.io/iduyx1qnmway/corrino-devops-repository |
-| oci-ai-blueprints-portal | latest  | iad.ocir.io/iduyx1qnmway/corrino-devops-repository |
+| oci-corrino-cp           | v1.0.7  | iad.ocir.io/iduyx1qnmway/corrino-devops-repository |
+| oci-ai-blueprints-portal | v1.0.7  | iad.ocir.io/iduyx1qnmway/corrino-devops-repository |
 
 ### Oracle Services
 

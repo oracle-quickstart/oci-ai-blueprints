@@ -22,6 +22,7 @@ resource "kubernetes_config_map" "corrino-configmap" {
     OKE_CLUSTER_ID                                 = local.oci.oke_cluster_id
     OKE_NODE_SUBNET_ID                             = local.network.oke_node_subnet_id
     PUBLIC_ENDPOINT_BASE                           = local.fqdn.name
+    INFERENCE_GATEWAY_BASE                         = local.domain.inference_gateway_fqdn
     RECIPE_BUCKET_NAME                             = local.app.recipe_bucket_name
     RECIPE_VALIDATION_ENABLED                      = local.app.recipe_validation_enabled
     RECIPE_VALIDATION_SHAPE_AVAILABILITY_ENABLED   = local.app.recipe_validation_shape_availability_enabled

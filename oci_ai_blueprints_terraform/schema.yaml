@@ -48,6 +48,7 @@ outputGroups:
       - corrino_mlflow_url
       - corrino_prometheus_url
       - external_ip
+      - inference_gateway_url
     
 
 locale: "en"
@@ -215,6 +216,8 @@ variableGroups:
     - existent_nvidia_gpu_operator_namespace
     - bring_your_own_amd_metrics_exporter
     - existent_amd_metrics_exporter_namespace
+    - bring_your_own_kong
+    - existent_kong_namespace
     visible:
       and:
         - eq:
@@ -944,6 +947,23 @@ variables:
     visible:
       and:
         - bring_your_own_cluster
+
+  bring_your_own_kong:
+    type: boolean
+    title: "Bring your own Kong installation from existing cluster?"
+    description: "Only use this if you already have Kong installed on your existing cluster."
+    visible:
+      and:
+        - bring_your_own_cluster
+
+  existent_kong_namespace:
+    type: string
+    title: "Existing Kong Namespace"
+    description: "Kubernetes namespace of existing Kong installation."
+    required: true
+    visible:
+      and:
+        - bring_your_own_kong
 
   existent_grafana_namespace:
     type: string

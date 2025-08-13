@@ -216,6 +216,15 @@ variable "existent_kueue_namespace" {
   default = ""
 }
 
+variable "bring_your_own_kong" {
+  type    = bool
+  default = false
+}
+
+variable "existent_kong_namespace" {
+  type    = string
+  default = ""
+}
 
 # -----------------------------------
 # Helm
