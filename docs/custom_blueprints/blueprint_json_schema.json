@@ -115,6 +115,42 @@
             ]
           }
         },
+        "recipe_inference_gateway": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["model_name"],
+          "properties": {
+            "model_name": {
+              "type": "string",
+              "description": "Name of model to identify it as a header in the inference gateway",
+              "examples": ["Llama-4-Maverick"]
+            },
+            "url_path": {
+              "type": "string",
+              "description": "Additional path to add to ingress for inference gateway",
+              "examples": ["/ai/models"]
+            },
+            "api_key": {
+              "type": "string",
+              "description": "API key to use for this model in the inference gateway",
+              "examples": ["1234567890"]
+            }
+          },
+          "examples": [
+            {
+              "model_name": "Llama-4-Maverick"
+            },
+            {
+              "model_name": "Llama-4-Maverick",
+              "url_path": "/models"
+            },
+            {
+              "model_name": "Llama-4-Maverick",
+              "url_path": "/ai/models",
+              "api_key": "1234567890"
+            }
+          ]
+        },
         "recipe_container_command": {
           "type": "array",
           "items": {

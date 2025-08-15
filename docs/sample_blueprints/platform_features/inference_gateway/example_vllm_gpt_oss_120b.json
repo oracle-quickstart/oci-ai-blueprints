@@ -1,0 +1,46 @@
+{
+    "recipe_id": "llm_inference_nvidia",
+    "recipe_mode": "service",
+    "deployment_name": "gpt-oss-tp2",
+    "recipe_image_uri": "docker.io/vllm/vllm-openai:gptoss",
+    "recipe_node_shape": "BM.GPU.H100.8",
+    "recipe_replica_count": 1,
+    "recipe_container_port": "8000",
+    "recipe_nvidia_gpu_count": 2,
+    "recipe_ephemeral_storage_size": 400,
+    "recipe_shared_memory_volume_size_limit_in_mb": 32768,
+    "recipe_use_shared_node_pool": true,
+    "recipe_prometheus_enabled": true,
+    "recipe_inference_gateway": {
+        "model_name": "gpt-oss-120b",
+        "url_path": "/ai/models",
+        "api_key": "<any-api-key-here>"
+    },
+    "recipe_container_command_args": [
+        "--model",
+        "openai/gpt-oss-120b",
+        "--tensor-parallel-size",
+        "2",
+        "--served-model-name",
+        "openai/gpt-oss-120b"
+    ],
+    "recipe_readiness_probe_params": {
+        "endpoint_path": "/health",
+        "port": 8000,
+        "scheme": "HTTP",
+        "initial_delay_seconds": 20,
+        "period_seconds": 30,
+        "success_threshold": 1,
+        "timeout_seconds": 10
+    },
+    "recipe_liveness_probe_params": {
+        "failure_threshold": 3,
+        "endpoint_path": "/health",
+        "port": 8000,
+        "scheme": "HTTP",
+        "initial_delay_seconds": 1200,
+        "period_seconds": 60,
+        "success_threshold": 1,
+        "timeout_seconds": 10
+    }
+}
