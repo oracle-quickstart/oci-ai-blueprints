@@ -142,9 +142,9 @@ To deploy your model behind the unified inference URL with Blueprints, the follo
 
 | Blueprint Name | Model | Shape | Description |
 | :------------: | :---: | :---: | :---------: |
-| [vLLM OpenAI/gpt-oss-120b H100](./example_vllm_gpt_oss_120b.json) | BM.GPU.H100.8 | Serves open source OpenAI Model with vLLM on NVIDIA H100 Bare metal host using 2 GPUs using the inference gateway |
-| [vLLM meta-llama/Llama-4-Scout-17B-16E-Instruct MI300x](./example_vllm_llama4_scout.json) | BM.GPU.MI300X.8 | Serves open source Llama4-Scout Model with vLLM on AMD MI300x Bare metal host using 4 GPUs using the inference gateway with model stored on Local NVMe |
-| [vLLM meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8 MI300x](./example_vllm_llama4_maverick.json) | BM.GPU.MI300X.8 | Serves open source Llama4-Maverick-fp8 Model with vLLM on AMD MI300x Bare metal host using 4 GPUs using the inference gateway with model stored on Local NVMe |
+| [vLLM OpenAI/gpt-oss-120b H100](./example_vllm_gpt_oss_120b.json) | [openai/gpt-oss-120b](https://huggingface.co/openai/gpt-oss-120b) | BM.GPU.H100.8 | Serves open source OpenAI Model with vLLM on NVIDIA H100 Bare metal host using 2 GPUs using the inference gateway |
+| [vLLM meta-llama/Llama-4-Scout-17B-16E-Instruct MI300x](./example_vllm_llama4_scout.json) |[meta-llama/Llama-4-Scout-17B-16E-Instruct](https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct) | BM.GPU.MI300X.8 | Serves open source Llama4-Scout Model with vLLM on AMD MI300x Bare metal host using 4 GPUs using the inference gateway with model stored on Local NVMe |
+| [vLLM meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8 MI300x](./example_vllm_llama4_maverick.json) | [meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8](https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8) | BM.GPU.MI300X.8 | Serves open source Llama4-Maverick-fp8 Model with vLLM on AMD MI300x Bare metal host using 4 GPUs using the inference gateway with model stored on Local NVMe |
 
 ### Accessing Deployed Models
 Once the Inference Gateway is deployed, you can access your AI models through the unified endpoint. For example, if you had all 3 blueprints above deployed and your endpoint was https://140-10-23-76.nip.io you could access all 3 models like:
