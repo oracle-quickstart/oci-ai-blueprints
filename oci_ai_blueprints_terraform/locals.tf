@@ -97,6 +97,14 @@ locals {
     oke_node_subnet_id = var.existent_oke_nodes_subnet_ocid
   }
 
+  inference_gateway = {
+    localhost          = "localhost"
+    localhost_origin   = "http://localhost"
+    loopback           = "127.0.0.1"
+    loopback_origin    = "http://127.0.0.1"
+    external_ip        = var.bring_your_own_kong ? "#Kong_Not_Deployed" : data.kubernetes_service.kong_proxy_service.0.status.0.load_balancer.0.ingress.0.ip
+  }
+
   registry = {
     subdomain                = "iad.ocir.io"
     name                     = "corrino-devops-repository"
@@ -120,6 +128,8 @@ locals {
 
     nip_io_mode = "nip.io"
     nip_io_fqdn = format("%s.nip.io", replace(local.network.external_ip, ".", "-"))
+
+    inference_gateway_fqdn = format("%s.nip.io", replace(local.inference_gateway.external_ip, ".", "-"))
 
     custom_mode = "custom"
     custom_fqdn = var.fqdn_custom_domain
@@ -285,6 +295,11 @@ locals {
       name            = "PUBLIC_ENDPOINT_BASE"
       config_map_name = "corrino-configmap"
       config_map_key  = "PUBLIC_ENDPOINT_BASE"
+    },
+    {
+      name            = "INFERENCE_GATEWAY_BASE"
+      config_map_name = "corrino-configmap"
+      config_map_key  = "INFERENCE_GATEWAY_BASE"
     },
     {
       name            = "RECIPE_BUCKET_NAME"

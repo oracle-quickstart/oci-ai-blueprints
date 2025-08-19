@@ -42,6 +42,8 @@ For autoscaling parameters, visit [autoscaling](sample_blueprints/model_serving/
 
 For multinode inference parameters, visit [multinode inference](sample_blueprints/model_serving/multi-node-inference/README.md)
 
+for inference gateway parameters, visit [inference gateway](./sample_blueprints/platform_features/inference_gateway/README.md#blueprints-api-spec)
+
 For MIG parameters, visit [MIG shared pool configurations](sample_blueprints/model_serving/mig_multi_instance_gpu/mig_inference_single_replica.json), [update MIG configuration](sample_blueprints/model_serving/mig_multi_instance_gpu/mig_inference_single_replica.json), and [MIG recipe configuration](sample_blueprints/model_serving/mig_multi_instance_gpu/mig_inference_single_replica.json).
 
 ### Blueprint Container Arguments

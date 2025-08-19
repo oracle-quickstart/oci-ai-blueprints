@@ -1,0 +1,80 @@
+{
+    "recipe_id": "llm_inference_amd",
+    "recipe_mode": "service",
+    "deployment_name": "scout",
+    "recipe_image_uri": "docker.io/rocm/vllm-dev:llama4-20250514",
+    "recipe_node_shape": "BM.GPU.MI300X.8",
+    "recipe_replica_count": 1,
+    "recipe_container_port": "8000",
+    "recipe_amd_gpu_count": 4,
+    "recipe_ephemeral_storage_size": 200,
+    "recipe_shared_memory_volume_size_limit_in_mb": 16384,
+    "recipe_use_shared_node_pool": true,
+    "recipe_prometheus_enabled": true,
+    "recipe_inference_gateway": {
+        "model_name": "scout",
+        "url_path": "/ai/models",
+        "api_key": "<any-api-key-here>"
+    },
+    "local_filesystem": [
+        {
+            "mount_location": "/models",
+            "node_directory_path": "/mnt/nvme/models"
+        }
+    ],
+    "recipe_container_env": [
+        {
+            "key": "VLLM_USE_V1",
+            "value": "1"
+        },
+        {
+            "key": "VLLM_ROCM_USE_AITER",
+            "value": "1"
+        },
+        {
+            "key": "VLLM_WORKER_MULTIPROC_METHOD",
+            "value": "spawn"
+        },
+        {
+            "key": "SAFETENSORS_FAST_GPU",
+            "value": "1"
+        }
+    ],
+    "recipe_container_command_args": [
+        "python3",
+        "-m",
+        "vllm.entrypoints.openai.api_server",
+        "--model",
+        "/models/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+        "--tensor-parallel-size",
+        "4",
+        "--disable-log-requests",
+        "--max_num_batched_tokens",
+        "32768",
+        "--max-num-seqs",
+        "1024",
+        "--max-model-len",
+        "36000",
+        "--served-model-name",
+        "Llama-4-Scout-17B-16E-Instruct"
+    ],
+    "recipe_readiness_probe_params": {
+        "endpoint_path": "/health",
+        "port": 8000,
+        "scheme": "HTTP",
+        "initial_delay_seconds": 20,
+        "period_seconds": 30,
+        "success_threshold": 1,
+        "timeout_seconds": 10
+    },
+    "recipe_liveness_probe_params": {
+        "failure_threshold": 3,
+        "endpoint_path": "/health",
+        "port": 8000,
+        "scheme": "HTTP",
+        "initial_delay_seconds": 1200,
+        "period_seconds": 60,
+        "success_threshold": 1,
+        "timeout_seconds": 10
+    }
+}

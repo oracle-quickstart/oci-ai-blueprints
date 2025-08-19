@@ -1,0 +1,78 @@
+# Kong Gateway - Clean Setup for AI Model Routing
+image:
+  repository: kong
+  tag: "3.9"
+
+# DB-less mode
+env:
+  database: "off"
+  nginx_worker_processes: "2"
+  proxy_access_log: /dev/stdout
+  admin_access_log: /dev/stdout
+  proxy_error_log: /dev/stderr
+  admin_error_log: /dev/stderr
+
+# Configure Kong Proxy Service
+proxy:
+  enabled: true
+  type: LoadBalancer
+  annotations:
+    service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "100"
+
+  http:
+    enabled: true
+    servicePort: 80
+    containerPort: 8000
+  tls:
+    enabled: true
+    servicePort: 443
+    containerPort: 8443
+
+# Configure Kong Admin Service
+admin:
+  enabled: true
+  type: ClusterIP
+  http:
+    enabled: true
+    servicePort: 8001
+    containerPort: 8001
+  tls:
+    enabled: true
+    servicePort: 8442
+    containerPort: 8442
+
+# Configure Kong Status Service
+status:
+  enabled: true
+  http:
+    enabled: true
+    servicePort: 8100
+    containerPort: 8100
+  tls:
+    enabled: true
+    servicePort: 8101
+    containerPort: 8101
+
+# Enable Kong Ingress Controller
+ingressController:
+  enabled: true
+  env:
+    kong_admin_token: kong-admin-token
+
+# Resource limits
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+
+# Autoscaling
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 70 

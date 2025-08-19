@@ -176,3 +176,27 @@ data "kubernetes_service" "kueue_webhook" {
   depends_on = [helm_release.kueue]
 }
 
+resource "helm_release" "kong" {
+  name             = "kong"
+  repository       = "https://charts.konghq.com"
+  chart            = "kong"
+  namespace        = "kong"
+  create_namespace = true
+  wait             = true # must be true so that we can get load balancer ip for url.
+  version          = "2.51.0"
+
+  values = ["${file("./files/kong/values.yaml")}"]
+
+  dynamic "set" {
+    for_each = var.cluster_load_balancer_visibility == "Private" ? [1] : []
+    content {
+      name  = "proxy.annotations.service\\.beta\\.kubernetes\\.io/oci-load-balancer-internal"
+      value = "true"
+      type  = "string"
+    }
+  }
+
+  count = var.bring_your_own_kong ? 0 : 1
+  depends_on = [null_resource.webhook_charts_ready]
+}
+
