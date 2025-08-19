@@ -4,7 +4,16 @@
 
 The Inference Gateway is a dedicated Kong-based API gateway that provides unified access, routing, and management capabilities for AI model inference endpoints deployed on the OCI AI Blueprints platform. This gateway serves as a centralized entry point for all inference requests, enabling advanced traffic management, load balancing, and API governance for your AI workloads.
 
-## What is the Inference Gateway?
+## Pre-Filled Samples
+
+| Feature Showcase                                                                                              | Title                     | Description                                                       | Blueprint File                                           |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------- |
+| Validates use of inference gateway feature set of extended url, model header based routing, and a per-model api-key | Serve OpenAI gpt-oss-120b on H100 GPUs behind inference gateway | Serve gpt-oss-120b model behind inference gateway on 2 NVIDIA H100 GPUs | [example_vllm_gpt_oss_120b.json](./example_vllm_gpt_oss_120b.json) |
+| Serve with other Llama-4 Maverick model behind inference gateway on same MI300x to validate header based routing and unique api-keys per model | Serve Llama4-Scout on MI300x GPUs behind inference gateway| Serve Llama-4-Scout-17B-16E-Instruct behind inference gateway on 4 AMD MI300x GPUs with extended url, header based routing, and model api-key | [example_vllm_llama4_scout.json](./example_vllm_llama4_scout.json) |
+| Serve with other Llama-4 Scout model behind inference gateway on same MI300x to validate header based routing and unique api-keys per model | Serve Llama4-Maverick on MI300x GPUs behind inference gateway | Serve Llama-4-Maverick-17B-128E-Instruct-FP8 behind inference gateway on 4 AMD MI300x GPUs with extended url, header based routing, and model api-key | [example_vllm_llama4_maverick.json](./example_vllm_llama4_maverick.json) |
+
+
+# What is the Inference Gateway?
 
 The Inference Gateway leverages Kong Gateway to provide a robust, scalable API management layer specifically designed for AI model inference. It acts as a reverse proxy that sits between client applications and your deployed AI models, offering features like:
 
