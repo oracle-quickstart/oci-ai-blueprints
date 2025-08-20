@@ -6,7 +6,7 @@
   "recipe_node_shape": "BM.Standard.E4.128",
   "input_object_storage": [
     {
-      "par": "https://objectstorage.us-ashburn-1.oraclecloud.com/p/3qaZRZ0A38V-k0A0eYPqx8XPB06V2WLTj6zOYXKYK97k--yNzEqcV3qsa0MdUcr3/n/iduyx1qnmway/b/ollama-models/o/",
+      "par": "https://iduyx1qnmway.objectstorage.us-ashburn-1.oci.customer-oci.com/p/ActTC68_vMHU92rTYGp-XUiGQrE_P6Jl22b5OPIlcTHMzMjSS99_TAgSVsk_8zmQ/n/iduyx1qnmway/b/ollama-models/o/",
       "mount_location": "/models",
       "volume_size_in_gbs": 20
     }
