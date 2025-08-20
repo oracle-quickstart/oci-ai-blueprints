@@ -14,7 +14,7 @@
           "recipe_flex_shape_memory_size_in_gbs": 16,
           "recipe_node_boot_volume_size_in_gbs": 200,
           "recipe_ephemeral_storage_size": 100,
-          "recipe_image_uri": "docker.io/library/postgres:latest",
+          "recipe_image_uri": "docker.io/library/postgres:13",
           "recipe_container_port": "5432",
           "recipe_host_port": "5432",
           "recipe_container_env": [
@@ -47,7 +47,7 @@
           "recipe_flex_shape_memory_size_in_gbs": 16,
           "recipe_node_boot_volume_size_in_gbs": 200,
           "recipe_ephemeral_storage_size": 100,
-          "recipe_image_uri": "docker.io/chromadb/chroma:latest",
+          "recipe_image_uri": "docker.io/chromadb/chroma:1.0.20",
           "recipe_container_port": "8000",
           "recipe_host_port": "8000",
           "recipe_container_env": [
@@ -77,7 +77,7 @@
           "recipe_id": "llm_inference_nvidia",
           "deployment_name": "vllm",
           "recipe_mode": "service",
-          "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:vllmv0.6.6.pos1",
+          "recipe_image_uri": "docker.io/vllm/vllm-openai:v0.9.1",
           "recipe_node_shape": "VM.GPU.A10.2",
           "input_object_storage": [
             {
@@ -87,20 +87,6 @@
               "include": ["NousResearch/Meta-Llama-3.1-8B-Instruct"]
             }
           ],
-          "recipe_container_env": [
-            {
-              "key": "tensor_parallel_size",
-              "value": "2"
-            },
-            {
-              "key": "model_name",
-              "value": "NousResearch/Meta-Llama-3.1-8B-Instruct"
-            },
-            {
-              "key": "Model_Path",
-              "value": "/models/NousResearch/Meta-Llama-3.1-8B-Instruct"
-            }
-          ],
           "recipe_replica_count": 1,
           "recipe_container_port": "8000",
           "recipe_nvidia_gpu_count": 2,
@@ -108,12 +94,23 @@
           "recipe_node_boot_volume_size_in_gbs": 200,
           "recipe_container_command_args": [
             "--model",
-            "$(Model_Path)",
+            "/models/NousResearch/Meta-Llama-3.1-8B-Instruct",
             "--tensor-parallel-size",
-            "$(tensor_parallel_size)"
+            "2",
+            "--served-model-name",
+            "Meta-Llama-3.1-8B-Instruct"
           ],
           "recipe_ephemeral_storage_size": 100,
-          "recipe_shared_memory_volume_size_limit_in_mb": 200
+          "recipe_shared_memory_volume_size_limit_in_mb": 200,
+          "recipe_readiness_probe_params": {
+            "endpoint_path": "/health",
+            "port": 8000,
+            "scheme": "HTTP",
+            "initial_delay_seconds": 20,
+            "period_seconds": 30,
+            "success_threshold": 1,
+            "timeout_seconds": 10
+          }
         },
         "exports": ["internal_dns_name"]
       },
@@ -129,7 +126,7 @@
           "recipe_flex_shape_memory_size_in_gbs": 16,
           "recipe_node_boot_volume_size_in_gbs": 200,
           "recipe_ephemeral_storage_size": 100,
-          "recipe_image_uri": "docker.io/jaegertracing/jaeger:latest",
+          "recipe_image_uri": "docker.io/jaegertracing/jaeger:2.9.0",
           "recipe_container_port": "16686",
           "recipe_additional_ingress_ports": [
             {
@@ -154,12 +151,12 @@
           "recipe_flex_shape_memory_size_in_gbs": 16,
           "recipe_node_boot_volume_size_in_gbs": 200,
           "recipe_ephemeral_storage_size": 100,
-          "recipe_image_uri": "docker.io/llamastack/distribution-postgres-demo:latest",
+          "recipe_image_uri": "docker.io/llamastack/distribution-postgres-demo:0.2.18",
           "recipe_container_port": "8321",
           "recipe_container_env": [
             {
               "key": "INFERENCE_MODEL",
-              "value": "/models/NousResearch/Meta-Llama-3.1-8B-Instruct"
+              "value": "Meta-Llama-3.1-8B-Instruct"
             },
             {
               "key": "VLLM_URL",
@@ -172,6 +169,10 @@
             {
               "key": "CHROMADB_URL",
               "value": "http://${chroma.internal_dns_name}:8000"
+            },
+            {
+              "key": "ENABLE_POSTGRES",
+              "value": "1"
             },
             {
               "key": "POSTGRES_HOST",
@@ -198,8 +199,8 @@
               "value": "console,otel_trace"
             },
             {
-              "key": "OTEL_TRACE_ENDPOINT",
-              "value": "http://${jaeger.internal_dns_name}/jaeger/v1/traces"
+              "key": "OTEL_EXPORTER_OTLP_ENDPOINT",
+              "value": "http://${jaeger.internal_dns_name}/jaeger/"
             }
           ],
           "output_object_storage": [
