@@ -50,7 +50,7 @@ To test your llama stack implementation please follow the steps below.
 
 2. Install uv command line interface tool via the steps [here](https://docs.astral.sh/uv/getting-started/installation/)
 
-3. Clone the following repo: [https://github.com/meta-llama/llama-stack-evals](https://github.com/meta-llama/llama-stack-evals)
+3. Clone the following repo: [https://github.com/meta-llama/llama-verifications](https://github.com/meta-llama/llama-verifications)
 
 4. Go to your llama-stack deployment and grab the `Public Endpoint` (ex: `llamastack-app7.129-213-194-241.nip.io`)
 
@@ -59,11 +59,12 @@ To test your llama stack implementation please follow the steps below.
 6. You can use llama-stack-evals repo (which you previously cloned) to run verifications / benchmark evaluations against this llama stack deployments’s OpenAI endpoint. Note: If you are using the blueprint unmodified (aka using the NousResearch/Meta-Llama-3.1-8B-Instruct model, some of the tests will fail on purpose since this tests multi-modal inputs which this model does not support)
 
 ```
-cd llama-stack-evals # make sure you are in the llama-stack-evals repo
+cd llama-verifications # make sure you are in the llama-verifications repo
 
-uvx llama-stack-evals run-tests --openai-compat-endpoint http://<llama_stack_deployment_endpoint>/v1/openai/v1 --model "<MODEL_YOU_USED_IN_VLLM_DEPLOYMENT>"
+export OPENAI_API_KEY="t" # dummy key
+uvx llama-verifications run-tests --openai-compat-endpoint http://<llama_stack_deployment_endpoint>/v1/openai/v1 --model "<MODEL_YOU_USED_IN_VLLM_DEPLOYMENT>"
 
-# ex: uvx llama-stack-evals run-tests --openai-compat-endpoint http://llamastack-app7.129-213-194-241.nip.io/v1/openai/v1 --model "NousResearch/Meta-Llama-3.1-8B-Instruct"
+# ex: uvx llama-verifications run-tests --openai-compat-endpoint http://llamastack-app7.129-213-194-241.nip.io/v1/openai/v1 --model "Meta-Llama-3.1-8B-Instruct"
 ```
 
 ## How to Use It
