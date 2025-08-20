@@ -58,6 +58,12 @@ To test your llama stack implementation please follow the steps below.
 
 6. You can use llama-stack-evals repo (which you previously cloned) to run verifications / benchmark evaluations against this llama stack deployments’s OpenAI endpoint. Note: If you are using the blueprint unmodified (aka using the NousResearch/Meta-Llama-3.1-8B-Instruct model, some of the tests will fail on purpose since this tests multi-modal inputs which this model does not support)
 
+**Note**: It is possible for this test to fail if the self-signed certificate hasn't finished generating yet. The errors indicate this like:
+```
+E           httpx.ConnectError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1010)
+```
+If you see this message, it does not mean that llama-stack isn't working, just that these tests won't succeed until certs are generated.
+
 ```
 cd llama-verifications # make sure you are in the llama-verifications repo
 
@@ -65,6 +71,18 @@ export OPENAI_API_KEY="t" # dummy key
 uvx llama-verifications run-tests --openai-compat-endpoint http://<llama_stack_deployment_endpoint>/v1/openai/v1 --model "<MODEL_YOU_USED_IN_VLLM_DEPLOYMENT>"
 
 # ex: uvx llama-verifications run-tests --openai-compat-endpoint http://llamastack-app7.129-213-194-241.nip.io/v1/openai/v1 --model "Meta-Llama-3.1-8B-Instruct"
+```
+An additional way to test with `curl` if the certs have not finished (-k allows insecure):
+```bash
+curl -Lk -X POST http://<llama_stack_deployment_endpoint>/v1/openai/v1/chat/completions -H "Content-Type: application/json" -d '{
+"model": "Meta-Llama-3.1-8B-Instruct",
+    "messages": [
+      {"role": "system", "content": "You are a helpful assistant."},
+      {"role": "user", "content": "Hello! Can you tell me a fun fact about GPUs?"}
+    ],
+    "max_tokens": 100,
+    "temperature": 0.7
+  }'
 ```
 
 ## How to Use It
