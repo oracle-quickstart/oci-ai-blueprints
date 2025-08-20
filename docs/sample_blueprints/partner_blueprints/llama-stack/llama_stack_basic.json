@@ -151,7 +151,7 @@
           "recipe_flex_shape_memory_size_in_gbs": 16,
           "recipe_node_boot_volume_size_in_gbs": 200,
           "recipe_ephemeral_storage_size": 100,
-          "recipe_image_uri": "docker.io/llamastack/distribution-postgres-demo:latest",
+          "recipe_image_uri": "docker.io/llamastack/distribution-postgres-demo:0.2.18",
           "recipe_container_port": "8321",
           "recipe_container_env": [
             {
