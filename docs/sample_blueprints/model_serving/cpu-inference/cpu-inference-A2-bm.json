@@ -1,0 +1,14 @@
+{
+  "recipe_id": "cpu_inference",
+  "recipe_mode": "service",
+  "deployment_name": "AmpereOne bare container marcel",
+  "recipe_image_uri": "ghcr.io/amperecomputingai/ollama-ampere:1.0.0-ol9",
+  "recipe_node_shape": "VM.Standard.A2.Flex",
+  "recipe_replica_count": 1,
+  "recipe_container_port": "11434",
+  "recipe_node_pool_size": 1,
+  "recipe_flex_shape_ocpu_count": 8,
+  "recipe_ephemeral_storage_size": 100,
+  "recipe_node_boot_volume_size_in_gbs": 200,
+  "recipe_flex_shape_memory_size_in_gbs": 64
+}
