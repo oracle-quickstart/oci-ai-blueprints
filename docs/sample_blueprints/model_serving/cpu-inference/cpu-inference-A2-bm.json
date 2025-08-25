@@ -1,7 +1,7 @@
 {
   "recipe_id": "cpu_inference",
   "recipe_mode": "service",
-  "deployment_name": "AmpereOne bare container marcel",
+  "deployment_name": "Cpu Inference A2",
   "recipe_image_uri": "ghcr.io/amperecomputingai/ollama-ampere:1.0.0-ol9",
   "recipe_node_shape": "VM.Standard.A2.Flex",
   "recipe_replica_count": 1,
