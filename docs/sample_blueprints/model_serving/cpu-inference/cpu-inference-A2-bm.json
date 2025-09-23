@@ -1,0 +1,35 @@
+{
+  "recipe_id": "cpu_inference",
+  "recipe_mode": "service",
+  "deployment_name": "Cpu Inference A2",
+  "recipe_image_uri": "ghcr.io/amperecomputingai/ollama-ampere:1.0.0-ol9",
+  "recipe_node_shape": "VM.Standard.A2.Flex",
+  "recipe_flex_shape_ocpu_count": 8,
+  "recipe_flex_shape_memory_size_in_gbs": 64,
+  "input_object_storage": [
+    {
+      "par": "https://objectstorage.us-ashburn-1.oraclecloud.com/p/PhxpLO7eu4bDXCB_wshp9jJXsrwxFTAJTEDY6it6tmDdEqIJf-CcZMugp3jfHnb5/n/axusxi89ppdg/b/blueprints-models/o/",
+      "mount_location": "/models",
+      "volume_size_in_gbs": 20
+    }
+  ],
+  "recipe_container_env": [
+ {
+      "key": "OLLAMA_MODELS",
+      "value": "/models"
+    },
+    {
+      "key": "MODEL_NAME",
+      "value": "llama3.1:8b-instruct-q8_0"
+    },
+    {
+      "key": "PROMPT",
+      "value": "What is the capital of Spain?"
+    }
+  ],
+  "recipe_replica_count": 1,
+  "recipe_container_port": "11434",
+  "recipe_node_pool_size": 1,
+  "recipe_node_boot_volume_size_in_gbs": 200,
+  "recipe_ephemeral_storage_size": 100
+}
