@@ -59,3 +59,7 @@ output "helm_release_ingress_nginx" {
 output "helm_release_grafana" {
   value = module.cluster-tools.helm_release_grafana
 }
+
+output "helm_release_prometheus" {
+  value = module.cluster-tools.helm_release_prometheus
+}

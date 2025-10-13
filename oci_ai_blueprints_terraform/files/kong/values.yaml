@@ -1,7 +1,7 @@
 # Kong Gateway - Clean Setup for AI Model Routing
 image:
-  repository: kong
-  tag: "3.9"
+  repository: docker.io/kong
+  tag: "3.9.1"
 
 # DB-less mode
 env:
@@ -57,6 +57,9 @@ status:
 
 # Enable Kong Ingress Controller
 ingressController:
+  image:
+    repository: docker.io/kong/kubernetes-ingress-controller
+    tag: "3.5"
   enabled: true
   env:
     kong_admin_token: kong-admin-token

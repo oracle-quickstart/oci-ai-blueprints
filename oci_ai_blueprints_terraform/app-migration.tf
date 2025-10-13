@@ -101,8 +101,8 @@ resource "kubernetes_job" "corrino_migration_job" {
   }
   wait_for_completion = true
   timeouts {
-    create = "10m"
-    update = "10m"
+    create = "20m"
+    update = "20m"
   }
 
   depends_on = [

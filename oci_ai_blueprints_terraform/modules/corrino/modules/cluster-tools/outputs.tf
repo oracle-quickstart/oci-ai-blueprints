@@ -13,3 +13,6 @@ output "helm_release_grafana" {
    value = helm_release.grafana
 }
 
+output "helm_release_prometheus" {
+   value = helm_release.prometheus
+}

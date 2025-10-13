@@ -85,7 +85,7 @@ resource "helm_release" "amd_device_metrics_exporter" {
   name              = "amd-device-metrics-exporter"
   chart             = "device-metrics-exporter-charts"
   repository        = "https://rocm.github.io/device-metrics-exporter"
-  version           = "v1.2.1"
+  version           = "v1.3.1"
   values            = ["${file("./files/amd-device-metrics-exporter/values.yaml")}"]
   create_namespace  = false
   recreate_pods     = true
@@ -93,7 +93,7 @@ resource "helm_release" "amd_device_metrics_exporter" {
   dependency_update = true
   wait              = false
   max_history       = 1
-  depends_on = [null_resource.webhook_charts_ready]
+  depends_on = [null_resource.webhook_charts_ready, module.oke-quickstart.helm_release_prometheus]
 }
 
 resource "helm_release" "keda" {
