@@ -1,0 +1,99 @@
+2025-06-01 20:13:40,071 - INFO - Total audio files to process: 1
+2025-06-01 20:13:40,071 - INFO - Validating: /home/ubuntu/whisper/dd_speaker/test.wav
+2025-06-01 20:13:40,072 - INFO - Duration of /home/ubuntu/whisper/dd_speaker/test.wav: 27.30s
+2025-06-01 20:13:40,072 - INFO - Processing: /home/ubuntu/whisper/dd_speaker/test.wav
+2025-06-01 20:13:40,150 - INFO - Running global speaker diarization...
+2025-06-01 20:13:40,150 - INFO - Running speaker diarization on: /tmp/tmp96aglawi.wav
+2025-06-01 20:13:40,562 - DEBUG - Registered checkpoint save hook for _speechbrain_save
+2025-06-01 20:13:40,562 - DEBUG - Registered checkpoint load hook for _speechbrain_load
+2025-06-01 20:13:40,562 - DEBUG - Registered checkpoint save hook for save
+2025-06-01 20:13:40,562 - DEBUG - Registered checkpoint load hook for load
+2025-06-01 20:13:40,707 - INFO - Applied quirks (see `speechbrain.utils.quirks`): [disable_jit_profiling, allow_tf32]
+2025-06-01 20:13:40,708 - INFO - Excluded quirks specified by the `SB_DISABLE_QUIRKS` environment (comma-separated list): []
+2025-06-01 20:13:40,708 - DEBUG - Registered checkpoint save hook for _save
+2025-06-01 20:13:40,708 - DEBUG - Registered checkpoint load hook for _recover
+2025-06-01 20:13:42,919 - INFO - Diarization returned 10 segments. Dumped to output_test3/diarization_debug.json.
+2025-06-01 20:13:42,919 - INFO - Diarized segment: 0.32s - 4.18s -> SPEAKER_01
+2025-06-01 20:13:42,919 - INFO - Diarized segment: 4.89s - 9.92s -> SPEAKER_00
+2025-06-01 20:13:42,920 - INFO - Diarized segment: 9.97s - 10.04s -> SPEAKER_00
+2025-06-01 20:13:42,920 - INFO - Diarized segment: 10.09s - 12.55s -> SPEAKER_00
+2025-06-01 20:13:42,920 - INFO - Diarized segment: 12.97s - 14.29s -> SPEAKER_00
+2025-06-01 20:13:42,920 - INFO - Diarized segment: 14.97s - 15.56s -> SPEAKER_00
+2025-06-01 20:13:42,920 - INFO - Diarized segment: 16.21s - 18.07s -> SPEAKER_01
+2025-06-01 20:13:42,920 - INFO - Diarized segment: 18.42s - 19.05s -> SPEAKER_00
+2025-06-01 20:13:42,920 - INFO - Diarized segment: 19.35s - 20.87s -> SPEAKER_00
+2025-06-01 20:13:42,920 - INFO - Diarized segment: 21.07s - 27.40s -> SPEAKER_00
+2025-06-01 20:13:42,920 - INFO - [DIAR] 0: 0.32s - 4.18s --> SPEAKER_01
+2025-06-01 20:13:42,920 - INFO - [DIAR] 1: 4.89s - 9.92s --> SPEAKER_00
+2025-06-01 20:13:42,920 - INFO - [DIAR] 2: 9.97s - 10.04s --> SPEAKER_00
+2025-06-01 20:13:42,920 - INFO - [DIAR] 3: 10.09s - 12.55s --> SPEAKER_00
+2025-06-01 20:13:42,920 - INFO - [DIAR] 4: 12.97s - 14.29s --> SPEAKER_00
+2025-06-01 20:13:42,920 - INFO - [DIAR] 5: 14.97s - 15.56s --> SPEAKER_00
+2025-06-01 20:13:42,920 - INFO - [DIAR] 6: 16.21s - 18.07s --> SPEAKER_01
+2025-06-01 20:13:42,920 - INFO - [DIAR] 7: 18.42s - 19.05s --> SPEAKER_00
+2025-06-01 20:13:42,920 - INFO - [DIAR] 8: 19.35s - 20.87s --> SPEAKER_00
+2025-06-01 20:13:42,920 - INFO - [DIAR] 9: 21.07s - 27.40s --> SPEAKER_00
+2025-06-01 20:13:42,921 - INFO - Global diarization complete. 10 segments.
+2025-06-01 20:13:45,108 - INFO - Running smart chunking...
+2025-06-01 20:13:45,232 - INFO - Processing audio with duration 00:27.303
+2025-06-01 20:13:45,932 - INFO - Exported chunk: output_test4/chunks/chunk_000.wav (0.00s → 3.94s)
+2025-06-01 20:13:45,933 - INFO - Exported chunk: output_test4/chunks/chunk_001.wav (4.64s → 9.34s)
+2025-06-01 20:13:45,933 - INFO - Exported chunk: output_test4/chunks/chunk_002.wav (9.82s → 15.70s)
+2025-06-01 20:13:45,933 - INFO - Exported chunk: output_test4/chunks/chunk_003.wav (15.70s → 17.84s)
+2025-06-01 20:13:45,934 - INFO - Exported chunk: output_test4/chunks/chunk_004.wav (18.22s → 26.86s)
+2025-06-01 20:13:45,934 - INFO - Total chunks: 5
+2025-06-01 20:13:47,224 - INFO - WhisperModel 'turbo' loaded on GPU 0 for thread 126507588519488
+2025-06-01 20:13:47,224 - INFO - Processing audio with duration 3.940 seconds
+2025-06-01 20:13:47,314 - INFO - WhisperModel 'turbo' loaded on GPU 1 for thread 126507578033728
+2025-06-01 20:13:47,314 - INFO - Processing audio with duration 4.700 seconds
+2025-06-01 20:13:47,432 - INFO - Processing audio with duration 00:03.940
+2025-06-01 20:13:47,535 - INFO - Processing audio with duration 00:04.700
+2025-06-01 20:13:47,569 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:13:47,728 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:13:47,736 - INFO - Speaker assignment breakdown: Counter({'Speaker 2': 1})
+2025-06-01 20:13:47,736 - INFO - Got result for chunk: output_test4/chunks/chunk_000.wav
+2025-06-01 20:13:47,736 - INFO - 
+====== Streaming Chunk 001 ======
+[2025-06-01 20:13:40] Speaker 2: So, Aaron, in your email you said you wanted to talk about the exam.
+
+2025-06-01 20:13:47,736 - INFO - Processing audio with duration 5.880 seconds
+2025-06-01 20:13:47,906 - INFO - Processing audio with duration 00:05.880
+2025-06-01 20:13:47,947 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:13:47,948 - INFO - Got result for chunk: output_test4/chunks/chunk_001.wav
+2025-06-01 20:13:47,948 - INFO - 
+====== Streaming Chunk 002 ======
+[2025-06-01 20:13:40] Speaker 1: Yeah, um, I've just never taken a class with so many different readings.
+
+2025-06-01 20:13:47,948 - INFO - Processing audio with duration 2.140 seconds
+2025-06-01 20:13:48,114 - INFO - Processing audio with duration 00:02.140
+2025-06-01 20:13:48,117 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:13:48,242 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:13:48,283 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 2})
+2025-06-01 20:13:48,283 - INFO - Got result for chunk: output_test4/chunks/chunk_002.wav
+2025-06-01 20:13:48,283 - INFO - 
+====== Streaming Chunk 003 ======
+[2025-06-01 20:13:40] Speaker 1: I've managed to keep up with all the assignments, but I'm not sure how to...
+[2025-06-01 20:13:45] Speaker 1: How to...
+
+2025-06-01 20:13:48,283 - INFO - Processing audio with duration 8.640 seconds
+2025-06-01 20:13:48,454 - INFO - Processing audio with duration 00:08.640
+2025-06-01 20:13:48,733 - INFO - Speaker assignment breakdown: Counter({'Speaker 2': 1})
+2025-06-01 20:13:48,733 - INFO - Got result for chunk: output_test4/chunks/chunk_003.wav
+2025-06-01 20:13:48,733 - INFO - 
+====== Streaming Chunk 004 ======
+[2025-06-01 20:13:40] Speaker 2: How to review everything.
+
+2025-06-01 20:13:48,844 - INFO - Detected language 'en' with probability 1.00
+2025-06-01 20:13:49,021 - INFO - Speaker assignment breakdown: Counter({'Speaker 1': 1})
+2025-06-01 20:13:49,022 - INFO - Got result for chunk: output_test4/chunks/chunk_004.wav
+2025-06-01 20:13:49,022 - INFO - 
+====== Streaming Chunk 005 ======
+[2025-06-01 20:13:40] Speaker 1: Yeah, in other classes I've had, there's usually just one book to review, not three different books, plus all those other text excerpts and video...
+
+2025-06-01 20:13:49,091 - INFO - Transcript saved to: output_test4/test_all_transcripts_20250601_201349.txt
+2025-06-01 20:13:49,091 - INFO - CUDA available before summarization: True
+2025-06-01 20:13:49,091 - INFO - Loading summarizer model from HuggingFace: mistralai/Mistral-7B-Instruct-v0.1
+2025-06-01 20:13:54,825 - INFO - Summarizing chunk 1/1
+2025-06-01 20:13:58,358 - INFO -  Summary successfully appended to transcript TXT.
+2025-06-01 20:13:58,358 - INFO - Final JSON saved to: output_test4/test_all_transcripts_20250601_201349.json
+2025-06-01 20:13:58,359 - INFO - WER (Word Error Rate) against ground truth: 61.64%
