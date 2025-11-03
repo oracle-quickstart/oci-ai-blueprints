@@ -113,7 +113,7 @@ resource "helm_release" "keda" {
 
 resource "helm_release" "lws" {
   name             = "lws"
-  repository       = "oci://registry.k8s.io/lws/charts/lws"
+  repository       = "oci://registry.k8s.io/lws/charts"
   chart            = "lws"
   namespace        = "lws-system"
   create_namespace = true
