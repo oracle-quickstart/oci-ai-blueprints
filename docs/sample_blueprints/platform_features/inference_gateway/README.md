@@ -118,13 +118,13 @@ To deploy your model behind the unified inference URL with Blueprints, the follo
  - `recipe_inference_gateway` (object) - the key required to encapsulate inference gateway features.
    - `model_name` (string) **required** - Model name which will be used as header to identify model behind the gateway - MUST BE UNIQUE per route as routes will fail if 2 models behind the same route share the same model name.
      - Example: `"model_name": "gpt-oss-120b"`
-     - Usage: `curl -X POST <gateway url> -H "X-Model: gpt-oss-120b" ...`
+     - Usage: `curl -X POST <gateway url>/v1/chat/completions -H "X-Model: gpt-oss-120b" ...`
    - `url_path` (string) **optional** - additional url path to add to gateway for this serving deployment
      - Example: `"url_path": "/ai/models"`
-     - Usage: `curl -X POST http://10-76-0-10/ai/models ...`
+     - Usage: `curl -X POST http://10-76-0-10/ai/models/v1/chat/completions ...`
    - `api_key` (string) **optional** - api key to use for this model in the inference gateway - MUST BE UNIQUE as these cannot be reused across models
      - Example: `"api_key": "123abc456ABC"`
-     - Usage: `curl -X POST <gateway url> -H "apikey: 123abc456ABC" ...`
+     - Usage: `curl -X POST <gateway url>/v1/chat/completions -H "apikey: 123abc456ABC" ...`
 
 **Minimum Requirement**:
 
@@ -159,19 +159,19 @@ To deploy your model behind the unified inference URL with Blueprints, the follo
 Once the Inference Gateway is deployed, you can access your AI models through the unified endpoint. For example, if you had all 3 blueprints above deployed and your endpoint was https://140-10-23-76.nip.io you could access all 3 models like:
 
 ```bash
-curl -X POST https://140-10-23-76.nip.io/ai/models \
+curl -X POST https://140-10-23-76.nip.io/ai/models/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "X-Model: "gpt-oss-120b"
   -H "apikey: "<api-key-from-gpt-blueprint>"
   -d '{"model": "openai/gpt-oss-120b", "messages": [{"role": "user", "content": "What is Kong Gateway?"}], "max_tokens": 200}'
 
-curl -X POST https://140-10-23-76.nip.io/ai/models \
+curl -X POST https://140-10-23-76.nip.io/ai/models/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "X-Model: "scout"
   -H "apikey: "<api-key-from-scout-blueprint>"
   -d '{"model": "Llama-4-Scout-17B-16E-Instruct", "messages": [{"role": "user", "content": "What is Kong Gateway?"}], "max_tokens": 200}'
 
-curl -X POST https://140-10-23-76.nip.io/ai/models \
+curl -X POST https://140-10-23-76.nip.io/ai/models/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "X-Model: "maverick"
   -H "apikey: "<api-key-from-maverick-blueprint>"
