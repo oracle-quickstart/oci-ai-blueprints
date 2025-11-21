@@ -1,0 +1,59 @@
+{
+  "recipe_id": "llm_inference_cpu",
+  "recipe_mode": "service",
+  "deployment_name": "vllm-open-hf-model",
+  "recipe_image_uri": "public.ecr.aws/q9t5s3a7/vllm-cpu-release-repo:latest",
+  "recipe_node_shape": "VM.Standard3.Flex.32",
+  "recipe_prometheus_enabled": true,
+  "recipe_container_env": [
+    {
+      "key": "tensor_parallel_size",
+      "value": "2"
+    },
+    {
+      "key": "model_name",
+      "value": "NousResearch/Meta-Llama-3-8B-Instruct"
+    },
+    {
+      "key": "VLLM_CPU_KVCACHE_SPACE",
+      "value": "40"
+    },
+    {
+      "key": "VLLM_RPC_TIMEOUT",
+      "value": "100000"
+    },
+    {
+      "key": "VLLM_ENGINE_ITERATION_TIMEOUT_S",
+      "value": "120"
+    },
+    {
+      "key": "VLLM_ALLOW_LONG_MAX_MODEL_LEN",
+      "value": "1"
+    }
+  ],
+  "recipe_replica_count": 1,
+  "recipe_container_port": "8000",
+  "recipe_nvidia_gpu_count": 0,
+  "recipe_node_pool_size": 1,
+  "recipe_node_boot_volume_size_in_gbs": 200,
+  "recipe_container_command_args": [
+    "--model",
+    "$(model_name)",
+    "--dtype",
+    "float32",
+    "--distributed-executor-backend",
+    "mp",
+    "--block-size",
+    "128",
+    "--trust-remote-code",
+    "--enforce-eager",
+    "--max-num-batched-tokens",
+    "2048",
+    "--max-num-seqs",
+    "256",
+    "--tensor-parallel-size",
+    "$(tensor_parallel_size)"
+  ],
+  "recipe_ephemeral_storage_size": 100,
+  "recipe_shared_memory_volume_size_limit_in_mb": 200
+}
