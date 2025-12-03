@@ -3,12 +3,12 @@
   "recipe_mode": "service",
   "deployment_name": "vllm-open-hf-model",
   "recipe_image_uri": "public.ecr.aws/q9t5s3a7/vllm-cpu-release-repo:latest",
-  "recipe_node_shape": "VM.Standard3.Flex.32",
+  "recipe_node_shape": "BM.Standard3.64",
   "recipe_prometheus_enabled": true,
   "recipe_container_env": [
     {
       "key": "tensor_parallel_size",
-      "value": "2"
+      "value": "1"
     },
     {
       "key": "model_name",
