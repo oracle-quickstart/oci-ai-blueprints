@@ -1,14 +1,13 @@
 {
   "recipe_id": "llm_inference_cpu",
   "recipe_mode": "service",
-  "deployment_name": "vllm-open-hf-model",
-  "recipe_image_uri": "public.ecr.aws/q9t5s3a7/vllm-cpu-release-repo:latest",
+  "deployment_name": "vllm-open-hf-model-on-cpu",
+  "recipe_image_uri": "public.ecr.aws/q9t5s3a7/vllm-cpu-release-repo:v0.11.2",
   "recipe_node_shape": "BM.Standard3.64",
-  "recipe_prometheus_enabled": true,
   "recipe_container_env": [
     {
       "key": "tensor_parallel_size",
-      "value": "1"
+      "value": "2"
     },
     {
       "key": "model_name",
@@ -33,9 +32,9 @@
   ],
   "recipe_replica_count": 1,
   "recipe_container_port": "8000",
-  "recipe_nvidia_gpu_count": 0,
   "recipe_node_pool_size": 1,
-  "recipe_node_boot_volume_size_in_gbs": 200,
+  "recipe_nvidia_gpu_count": 0,
+  "recipe_prometheus_enabled": true,
   "recipe_container_command_args": [
     "--model",
     "$(model_name)",
@@ -55,5 +54,6 @@
     "$(tensor_parallel_size)"
   ],
   "recipe_ephemeral_storage_size": 100,
-  "recipe_shared_memory_volume_size_limit_in_mb": 200
+  "recipe_node_boot_volume_size_in_gbs": 200,
+  "recipe_shared_memory_volume_size_limit_in_mb": 400
 }
