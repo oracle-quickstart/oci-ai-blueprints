@@ -63,7 +63,7 @@
 
 
 <details>
-<summary><strong>^5</strong></summary>
+<summary><strong>v1.0.10</strong></summary>
 
 **React & Framework**
 
@@ -115,7 +115,7 @@
 
 
 <details>
-<summary><strong>^5</strong></summary>
+<summary><strong>v1.0.9</strong></summary>
 
 **React & Framework**
 
