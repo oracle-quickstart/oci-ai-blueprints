@@ -33,7 +33,6 @@
   "recipe_replica_count": 1,
   "recipe_container_port": "8000",
   "recipe_node_pool_size": 1,
-  "recipe_nvidia_gpu_count": 0,
   "recipe_prometheus_enabled": true,
   "recipe_container_command_args": [
     "--model",
