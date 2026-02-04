@@ -3,8 +3,6 @@
 The **VSS Starter Pack** is an AI Accelerator Pack that delivers a combined **hardware and software** solution for video search and summarization on Oracle Cloud Infrastructure (OCI). It enables deployment of GPU-backed infrastructure and the full [NVIDIA Video Search and Summarization (VSS)](https://docs.nvidia.com/vss/latest/) platform in one go. 
 
 
----
-
 ## What You Get
 
 - **Hardware:** GPU-enabled OCI resources (instances and networking) sized for VSS workloads.
@@ -15,7 +13,6 @@ The **VSS Starter Pack** is an AI Accelerator Pack that delivers a combined **ha
 
 Together, the pack is a **single solution** for deploying both the GPU environment and the VSS software stack on OCI.
 
----
 
 ## Use cases
 
@@ -32,7 +29,6 @@ The stack also supports:
 
 - **Context-Aware RAG**: The Context-Aware RAG module pulls relevant context from vector and graph stores to support temporal reasoning, anomaly detection, and multi-hop reasoning over large video datasets. The context manager keeps working context using chat history (short-term) and vector/graph databases (long-term) as needed. [Documentation on Context-Aware RAG](https://docs.nvidia.com/vss/latest/content/context_aware_rag.html).
 
----
 
 ## Architecture
 
@@ -40,7 +36,6 @@ The stack also supports:
 
 For detailed component and data-flow documentation, see the [NVIDIA VSS Blueprint Architecture](https://docs.nvidia.com/vss/latest/content/architecture.html) and the rest of the [NVIDIA VSS documentation](https://docs.nvidia.com/vss/latest/).
 
----
 
 ## Deployment and access
 
