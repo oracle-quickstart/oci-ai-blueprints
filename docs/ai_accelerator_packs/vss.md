@@ -9,9 +9,9 @@ The **VSS Starter Pack** is an AI Accelerator Pack that delivers a combined **ha
 
 - **Hardware:** GPU-enabled OCI resources (instances and networking) sized for VSS workloads.
 - **Software:** The NVIDIA VSS platform, including models, pipelines, and APIs for:
-  - **Video captioning**: Generating text descriptions or summary of videos or images.
-  - **Q&A**:  Answering questions about a video’s or image's content.
-  - **Search and retrieval**: Find specific alerts and highlights by text queries(e.g., safety, compliance).
+  - **Video captioning**: Generating text descriptions or summaries of videos or images.
+  - **Q&A**: Answering questions about a video's or an image's content.
+  - **Search and retrieval**: Finding specific alerts and highlights by text queries (e.g., safety, compliance).
 
 Together, the pack is a **single solution** for deploying both the GPU environment and the VSS software stack on OCI.
 
