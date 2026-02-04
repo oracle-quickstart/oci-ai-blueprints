@@ -14,7 +14,7 @@ The **VSS Starter Pack** is an AI Accelerator Pack that delivers a combined **ha
 Together, the pack is a **single solution** for deploying both the GPU environment and the VSS software stack on OCI.
 
 
-## Use cases
+## Use Cases
 
 VSS is useful wherever you need to search, summarize, or reason over video without having to watch every minute. Typical applications include:
 
@@ -37,7 +37,7 @@ The stack also supports:
 For detailed component and data-flow documentation, see the [NVIDIA VSS Blueprint Architecture](https://docs.nvidia.com/vss/latest/content/architecture.html) and the rest of the [NVIDIA VSS documentation](https://docs.nvidia.com/vss/latest/).
 
 
-## Deployment and access
+## Deployment and Access
 
 You can deploy the VSS Starter Pack from the **OCI Console**. Under **AI Accelerator Packs**, select the VSS pack (Video Search and Summarization for Content Moderation) and choose a deployment size, add the portal credentials and click Create. The console uses the pack's sizing to provision the right GPU compute, OKE cluster, networking, and the VSS software stack.
 
