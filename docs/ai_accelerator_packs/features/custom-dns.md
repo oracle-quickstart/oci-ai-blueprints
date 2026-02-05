@@ -23,12 +23,12 @@ Before enabling custom DNS, ensure you have:
 
 Custom DNS is available for most AI Accelerator Packs:
 
-| Accelerator Pack                         | Custom DNS Support       |
-| ---------------------------------------- | ------------------------ |
-| Delivery Vehicle Route Optimizer (cuOpt) | Yes                      |
-| Video Search & Summarization (VSS)       | Yes                      |
-| AI-Q with Shared Services (PaaS RAG)     | Yes                      |
-| AI-Q Self-Hosted (Enterprise RAG)        | No - uses default nip.io |
+| Accelerator Pack                         | Custom DNS Support |
+| ---------------------------------------- | ------------------ |
+| Delivery Vehicle Route Optimizer (cuOpt) | Yes                |
+| Video Search & Summarization (VSS)       | Yes                |
+| AI-Q with Shared Services (PaaS RAG)     | Yes                |
+| Oracle-Net Self-Hosted (Enterprise RAG)  | Yes                |
 
 ## Configuration Steps
 
@@ -67,6 +67,7 @@ After the initial deployment fails, configure your DNS:
 1. **Find the Load Balancer IP**
 
    You can find the IP in one of two places:
+
    - **Application Information tab** - Look for **Load Balancer IP Address** in the **DNS Configuration Required** section
    - **Terraform logs** - Search for the DNS configuration warning message which displays the IP address
 
@@ -81,6 +82,7 @@ After the initial deployment fails, configure your DNS:
    | TTL             | 300 (or your preferred value)    |
 
    **For the Record Name:**
+
    - Start with `*` (the wildcard)
    - If your desired custom domain adds a prefix to the domain you own, include that prefix after the `*`
 
