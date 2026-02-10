@@ -51,5 +51,16 @@ For a detailed tutorial on maximizing the frontend’s capabilities, refer to th
 
    - Use the settings interface to adjust RAG configurations. For deeper customizations, consult with our support team or refer to the developer documentation.
 
-3. **What if I encounter issues during deployment or usage?**
+3. **My stack failed to destroy because of a "BucketNotEmpty" error. What should I do?**
+
+   - This is an intentional choice by the team. We use an OCI object storage bucket to backup the files uploaded to the RAG database. We know that data is precious, and it is much worse to accidentally lose wanted data, than to spend time manually deleting the objects before destroying the stack. In this we, we know that the user has intended to delete the data prior to destroying the stack. After the bucket has had all objects removed, it is simplest to just delete the bucket manually and then destroy the stack as this confirms all objects and object versions are deleted.
+
+   The error message looks like:
+   ```
+   Error: 409-BucketNotEmpty, Bucket named 'paas-rag-gzaGCN-bucket' is not empty. Delete all object versions first.
+   ```
+
+   If this is not the error you receive, please reach out to our support team.
+
+4. **What if I encounter issues during deployment or usage?**
    - Check the troubleshooting section in the documentation, verify backend service configurations, and ensure port settings are correct. Our support team is also available for assistance.
