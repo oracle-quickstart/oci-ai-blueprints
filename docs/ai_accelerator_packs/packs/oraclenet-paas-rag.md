@@ -53,7 +53,7 @@ For a detailed tutorial on maximizing the frontend’s capabilities, refer to th
 
 3. **My stack failed to destroy because of a "BucketNotEmpty" error. What should I do?**
 
-   - This is an intentional choice by the team. We use an OCI object storage bucket to backup the files uploaded to the RAG database. We know that data is precious, and it is much worse to accidentally lose wanted data, than to spend time manually deleting the objects before destroying the stack. In this we, we know that the user has intended to delete the data prior to destroying the stack. After the bucket has had all objects removed, the stack can be destroyed successfully.
+   - This is an intentional choice by the team. We use an OCI object storage bucket to backup the files uploaded to the RAG database. We know that data is precious, and it is much worse to accidentally lose wanted data, than to spend time manually deleting the objects before destroying the stack. In this we, we know that the user has intended to delete the data prior to destroying the stack. After the bucket has had all objects removed, it is simplest to just delete the bucket manually and then destroy the stack as this confirms all objects and object versions are deleted.
 
    The error message looks like:
    ```
