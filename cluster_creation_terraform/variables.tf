@@ -106,11 +106,11 @@ locals {
 
 ## OKE Node Pool Details
 variable "node_pool_name" {
-  default     = "pool1"
+  default     = "control-plane"
   description = "Name of the node pool"
 }
 variable "k8s_version" {
-  default     = "v1.31.1"
+  default     = "v1.34.1"
   description = "Kubernetes version installed on your master and worker nodes"
 }
 variable "num_pool_workers" {
@@ -121,7 +121,7 @@ variable "num_pool_workers" {
 variable "node_pool_instance_shape" {
   type = map(any)
   default = {
-    "instanceShape" = "VM.Standard.E3.Flex"
+    "instanceShape" = "VM.Standard.E5.Flex"
     "ocpus"         = 6
     "memory"        = 64
   }

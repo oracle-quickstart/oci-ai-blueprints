@@ -4,7 +4,50 @@ resource "helm_release" "mlflow" {
   chart      = "mlflow"
   namespace  = "cluster-tools"
   wait       = false
-  version    = "0.16.5"
+  version    = "1.7.4"
+
+  # Add docker.io registry prefix - required for K8s v1.34+ compatibility (image inspect error fix)
+  set {
+    name  = "image.repository"
+    value = "docker.io/burakince/mlflow"
+  }
+
+  # Basic HTTP auth - https://mlflow.org/docs/latest/self-hosting/security/basic-http-auth/
+  dynamic "set_sensitive" {
+    for_each = var.mlflow_auth_enabled ? [1] : []
+    content {
+      name  = "auth.enabled"
+      value = "true"
+    }
+  }
+  dynamic "set_sensitive" {
+    for_each = var.mlflow_auth_enabled ? [1] : []
+    content {
+      name  = "auth.adminUsername"
+      value = var.mlflow_admin_username
+    }
+  }
+  dynamic "set_sensitive" {
+    for_each = var.mlflow_auth_enabled ? [1] : []
+    content {
+      name  = "auth.adminPassword"
+      value = random_password.mlflow_admin_password.result
+    }
+  }
+  dynamic "set_sensitive" {
+    for_each = var.mlflow_auth_enabled ? [1] : []
+    content {
+      name  = "flaskServerSecretKey"
+      value = random_password.mlflow_flask_secret_key.result
+    }
+  }
+  dynamic "set" {
+    for_each = var.mlflow_auth_enabled ? [1] : []
+    content {
+      name  = "auth.sqliteFullPath"
+      value = "/mlruns/basic_auth.db"
+    }
+  }
 
   values = [
     <<EOF
@@ -17,9 +60,15 @@ extraVolumeMounts:
   - name: mlflow-volume
     mountPath: /mlruns
 
+log:
+  enabled: false
+
 extraArgs:
   backendStoreUri: file:///mlruns/store
   defaultArtifactRoot: /mlruns/artifacts
+
+extraFlags:
+  - disableSecurityMiddleware
 
 extraEnvVars:
   MLFLOW_TRACKING_URI: file:///mlruns/store
@@ -65,7 +114,7 @@ resource "helm_release" "nvidia-dcgm" {
   namespace        = "gpu-operator"
   create_namespace = true
   wait             = false
-  version          = "v25.3.0"
+  version          = "v25.10.0"
 
   # Create the release if either DCGM or MIG is enabled.
   count = var.bring_your_own_nvidia_gpu_operator ? 0 : 1

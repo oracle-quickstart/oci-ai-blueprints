@@ -1036,6 +1036,20 @@ variables:
     description: "MLflow is a versatile, expandable, open-source platform for managing workflows and artifacts across the machine learning lifecycle. It has built-in integrations with many popular ML libraries, but can be used with any library, algorithm, or deployment tool."
     visible: false
 
+  mlflow_auth_enabled:
+    type: boolean
+    title: "Enable MLflow Basic Authentication"
+    description: "When enabled, the MLflow UI and API require login with admin credentials. See https://mlflow.org/docs/latest/self-hosting/security/basic-http-auth/"
+    default: true
+    visible: false
+
+  mlflow_admin_username:
+    type: string
+    title: "MLflow Admin Username"
+    description: "Username for MLflow admin when basic auth is enabled."
+    default: "admin"
+    visible: false
+
   bring_your_own_mlflow:
     type: boolean
     title: "Use your own MLFlow installation from existing cluster?"

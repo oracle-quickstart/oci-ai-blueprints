@@ -162,6 +162,16 @@ output "corrino_mlflow_url" {
   depends_on  = [module.oke-quickstart.helm_release_ingress_nginx]
 }
 
+output "mlflow_admin_username" {
+  value       = (var.mlflow_enabled && var.mlflow_auth_enabled && !var.bring_your_own_mlflow) ? var.mlflow_admin_username : null
+  description = "MLflow admin username when basic auth is enabled."
+}
+
+output "mlflow_admin_password" {
+  value       = (var.mlflow_enabled && var.mlflow_auth_enabled && !var.bring_your_own_mlflow) ? nonsensitive(random_password.mlflow_admin_password.result) : null
+  description = "MLflow admin password when basic auth is enabled. Change it after first login."
+}
+
 output "inference_gateway_url" {
   value       = var.bring_your_own_kong ? null : format("https://${local.domain.inference_gateway_fqdn}")
   description = "Inference Gateway Service"

@@ -139,6 +139,8 @@ locals {
     var.ingress_tls ? local.ingress_nginx_annotations_tls : {},
     (var.ingress_tls && var.cert_manager_enabled) ? local.ingress_nginx_annotations_cert_manager : {}
   )
+  # Grafana needs full path pass-through (no rewrite) - path /grafana with Prefix doesn't support capture groups
+  ingress_nginx_annotations_no_rewrite = { for k, v in local.ingress_nginx_annotations : k => v if k != "nginx.ingress.kubernetes.io/rewrite-target" }
   ingress_hosts     = compact(concat(split(",", var.ingress_hosts), [local.app_nip_io_domain]))
   app_name          = var.oci_tag_values.freeformTags.AppName
   app_name_for_dns  = substr(lower(replace(local.app_name, "/\\W|_|\\s/", "")), 0, 6)

@@ -19,7 +19,7 @@ image:
   # -- metrics exporter image pullSecret name
   pullSecrets: ""
   # -- metrics exporter initContainer image
-  initContainerImage: busybox:1.36
+  initContainerImage: docker.io/busybox:1.36
 
 service:
   # -- metrics exporter service type, could be ClusterIP or NodePort

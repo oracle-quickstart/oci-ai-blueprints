@@ -21,13 +21,19 @@ resource "helm_release" "grafana" {
 
   set {
     name  = "grafana\\.ini.server.root_url"
-    value = "%(protocol)s://%(domain)s:%(http_port)s/grafana"
+    value = "%(protocol)s://%(domain)s:%(http_port)s/"
     type  = "string"
   }
 
   set {
     name  = "grafana\\.ini.server.serve_from_sub_path"
-    value = "true"
+    value = "false"
+  }
+
+  # Add docker.io registry prefix for Grafana image - required for K8s v1.34+ compatibility
+  set {
+    name  = "image.registry"
+    value = "docker.io"
   }
 
   values = [
@@ -151,8 +157,8 @@ datasources:
 EOF
   ]
 
-  depends_on = [kubernetes_persistent_volume_claim_v1.grafana]
-  count = var.grafana_enabled ? 1 : 0
+  depends_on = [kubernetes_persistent_volume_claim_v1.grafana, helm_release.prometheus]
+  count      = var.grafana_enabled ? 1 : 0
 }
 
 resource "kubernetes_config_map" "vllm_dashboard" {
@@ -198,19 +204,21 @@ resource "kubernetes_persistent_volume_claim_v1" "grafana" {
 }
 
 ## Grafana Ingress
+## Uses path /grafana with Prefix (no regex) - compatible with ingress-nginx 4.13+
+## Full path is passed through to Grafana (no rewrite) for serve_from_sub_path
 resource "kubernetes_ingress_v1" "grafana" {
   wait_for_load_balancer = true
   metadata {
     name        = "grafana"
     namespace   = kubernetes_namespace.cluster_tools.0.id
-    annotations = local.ingress_nginx_annotations
+    annotations = local.ingress_nginx_annotations_no_rewrite
   }
   spec {
     ingress_class_name = "nginx"
     rule {
       http {
         path {
-          path      = "/grafana(/|$)(.*)"
+          path      = "/grafana"
           path_type = "Prefix"
           backend {
             service {
@@ -230,7 +238,7 @@ resource "kubernetes_ingress_v1" "grafana" {
         host = rule.value
         http {
           path {
-            path      = "/grafana(/|$)(.*)"
+            path      = "/grafana"
             path_type = "Prefix"
             backend {
               service {

@@ -255,6 +255,18 @@ variable "mlflow_enabled" {
   default = true
 }
 
+variable "mlflow_auth_enabled" {
+  type        = bool
+  default     = true
+  description = "Enable MLflow basic HTTP authentication. When enabled, users must login with admin credentials to access the MLflow UI and API."
+}
+
+variable "mlflow_admin_username" {
+  type        = string
+  default     = "admin"
+  description = "MLflow admin username when basic auth is enabled."
+}
+
 variable "cluster_load_balancer_visibility" {
   default     = "Public"
   description = "The Load Balancer that is created will be hosted on a public subnet with a public IP address auto-assigned or on a private subnet. This affects the Kubernetes services, ingress controller and other load balancers resources"

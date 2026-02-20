@@ -22,8 +22,41 @@ resource "helm_release" "prometheus" {
   chart      = "prometheus"
   version    = local.helm_repository.prometheus_version
   namespace  = kubernetes_namespace.cluster_tools.0.id
-  wait       = false
+  wait       = true
 
+  # Add docker.io registry prefix for Prometheus component images - required for K8s v1.34+ compatibility
+  set {
+    name  = "server.image.registry"
+    value = "docker.io"
+  }
+  set {
+    name  = "pushgateway.image.registry"
+    value = "docker.io"
+  }
+  set {
+    name  = "nodeExporter.image.registry"
+    value = "docker.io"
+  }
+  set {
+    name  = "kubeStateMetrics.image.registry"
+    value = "docker.io"
+  }
+  set {
+    name  = "pushgateway.enabled"
+    value = "true"
+  }
+  set {
+    name  = "nodeExporter.enabled"
+    value = "true"
+  }
+  set {
+    name  = "kubeStateMetrics.enabled"
+    value = "true"
+  }
+  set {
+    name  = "server.service.type"
+    value = "ClusterIP"
+  }
 
   values = [
     <<EOF

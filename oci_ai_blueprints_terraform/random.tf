@@ -75,6 +75,28 @@ resource "random_string" "subdomain" {
 resource "random_uuid" "registration_id" {
 }
 
+# MLflow basic auth - admin password (when mlflow auth enabled)
+# No special chars: the chart's init container uses sed to substitute the password
+# into an INI file, and characters like & * # % ! are special in sed/configparser.
+resource "random_password" "mlflow_admin_password" {
+  length      = 24
+  special     = false
+  min_upper   = 4
+  min_lower   = 4
+  min_numeric = 4
+}
+
+# MLflow Flask server secret key - required for CSRF protection with basic auth
+resource "random_password" "mlflow_flask_secret_key" {
+  length           = 32
+  special          = true
+  min_upper        = 3
+  min_lower        = 3
+  min_numeric      = 3
+  min_special      = 3
+  override_special = "{}#^*<>[]%~"
+}
+
 #resource "random_string" "registration_id" {
 #  length  = 8
 #  special = false

@@ -27,7 +27,8 @@ resource "kubernetes_ingress_v1" "corrino_cp_ingress" {
       host = local.public_endpoint.api
       http {
         path {
-          path = "/"
+          path      = "/"
+          path_type = "Prefix"
           backend {
             service {
               name = kubernetes_service.corrino_cp_service.metadata.0.name
@@ -63,7 +64,8 @@ resource "kubernetes_ingress_v1" "oci_ai_blueprints_portal_ingress" {
       host = local.public_endpoint.blueprint_portal
       http {
         path {
-          path = "/"
+          path      = "/"
+          path_type = "Prefix"
           backend {
             service {
               name = kubernetes_service.oci_ai_blueprints_portal_service.metadata.0.name
@@ -86,8 +88,7 @@ resource "kubernetes_ingress_v1" "grafana_ingress" {
     name      = "grafana-ingress"
     namespace = "cluster-tools"
     annotations = {
-      "cert-manager.io/cluster-issuer"             = "letsencrypt-prod"
-      "nginx.ingress.kubernetes.io/rewrite-target" = "/"
+      "cert-manager.io/cluster-issuer" = "letsencrypt-prod"
     }
   }
   spec {
@@ -100,7 +101,8 @@ resource "kubernetes_ingress_v1" "grafana_ingress" {
       host = local.public_endpoint.grafana
       http {
         path {
-          path = "/"
+          path      = "/"
+          path_type = "Prefix"
           backend {
             service {
               name = "grafana"
@@ -114,7 +116,7 @@ resource "kubernetes_ingress_v1" "grafana_ingress" {
     }
   }
   depends_on = [null_resource.webhook_charts_ready]
-  count = var.ingress_nginx_enabled ? 1 : 0
+  count      = (var.ingress_nginx_enabled && var.grafana_enabled && !var.bring_your_own_grafana) ? 1 : 0
 }
 
 resource "kubernetes_ingress_v1" "prometheus_ingress" {
@@ -123,8 +125,7 @@ resource "kubernetes_ingress_v1" "prometheus_ingress" {
     name      = "prometheus-ingress"
     namespace = "cluster-tools"
     annotations = {
-      "cert-manager.io/cluster-issuer"             = "letsencrypt-prod"
-      "nginx.ingress.kubernetes.io/rewrite-target" = "/"
+      "cert-manager.io/cluster-issuer" = "letsencrypt-prod"
     }
   }
   spec {
@@ -137,7 +138,8 @@ resource "kubernetes_ingress_v1" "prometheus_ingress" {
       host = local.public_endpoint.prometheus
       http {
         path {
-          path = "/"
+          path      = "/"
+          path_type = "Prefix"
           backend {
             service {
               name = "prometheus-server"
@@ -151,7 +153,7 @@ resource "kubernetes_ingress_v1" "prometheus_ingress" {
     }
   }
   depends_on = [null_resource.webhook_charts_ready]
-  count = var.ingress_nginx_enabled ? 1 : 0
+  count      = (var.ingress_nginx_enabled && var.prometheus_enabled && !var.bring_your_own_prometheus) ? 1 : 0
 }
 
 resource "kubernetes_ingress_v1" "mlflow_ingress" {
@@ -160,8 +162,7 @@ resource "kubernetes_ingress_v1" "mlflow_ingress" {
     name      = "mlflow-ingress"
     namespace = "cluster-tools"
     annotations = {
-      "cert-manager.io/cluster-issuer"             = "letsencrypt-prod"
-      "nginx.ingress.kubernetes.io/rewrite-target" = "/"
+      "cert-manager.io/cluster-issuer" = "letsencrypt-prod"
     }
   }
   spec {
@@ -174,12 +175,13 @@ resource "kubernetes_ingress_v1" "mlflow_ingress" {
       host = local.public_endpoint.mlflow
       http {
         path {
-          path = "/"
+          path      = "/"
+          path_type = "Prefix"
           backend {
             service {
               name = "mlflow"
               port {
-                number = 5000
+                number = 80
               }
             }
           }
@@ -188,5 +190,5 @@ resource "kubernetes_ingress_v1" "mlflow_ingress" {
     }
   }
   depends_on = [null_resource.webhook_charts_ready]
-  count = var.ingress_nginx_enabled ? 1 : 0
+  count      = (var.ingress_nginx_enabled && var.mlflow_enabled && !var.bring_your_own_mlflow) ? 1 : 0
 }
