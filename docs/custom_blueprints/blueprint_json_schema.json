@@ -182,19 +182,54 @@
           "type": "array",
           "items": {
             "additionalProperties": false,
-            "required": ["name", "port", "path"],
+            "required": ["port_name", "port", "path"],
             "properties": {
-              "name": {
+              "port_name": {
                 "type": "string"
+              },
+              "service_name": {
+                "type": "string",
+                "description": "The name of the service to reference. If left blank, the service name will be the same as the recipe_service_name. Usually used for referencing other recipes.",
+                "examples": ["${otherrecipe.service_name}"]
               },
               "port": {
                 "type": "integer"
               },
               "path": {
                 "type": "string"
+              },
+              "path_type": {
+                "type": "string",
+                "enum": ["Prefix", "Exact", "ImplementationSpecific"],
+                "default": "Prefix",
+                "description": "Kubernetes Ingress path matching type. Defaults to Prefix if not specified."
               }
-            }
+            },
+            "examples": [
+              {
+                "port_name": "transport",
+                "port": 9300,
+                "path": "/"
+              },
+              {
+                "port_name": "transport",
+                "service_name": "${otherrecipe.service_name}",
+                "port": 9300,
+                "path": "/v1/chat/completions"
+              }
+            ]
           }
+        },
+        "recipe_ingress_rewrite_target": {
+          "type": "string",
+          "description": "Sets the nginx.ingress.kubernetes.io/rewrite-target annotation. Use capture groups like /$1 or /$2 to rewrite URL paths.",
+          "examples": ["/$2", "/", "/$1"]
+        },
+        "recipe_ingress_proxy_body_size": {
+          "type": "string",
+          "description": "Sets the nginx.ingress.kubernetes.io/proxy-body-size annotation. Controls the maximum allowed size of the client request body. Defaults to 2000m if not specified.",
+          "default": "2000m",
+          "examples": ["2000m", "100m", "500m", "0"]
         },
         "recipe_node_autoscaling_params": {
           "type": "object",
@@ -388,11 +423,22 @@
         "recipe_amd_gpu_count": {
           "type": "integer"
         },
+        "shared_pool_use_instance_pool": {
+          "type": "boolean"
+        },
+        "shared_pool_enable_nvaie": {
+          "type": "boolean"
+        },
         "recipe_shared_memory_volume_size_limit_in_mb": {
           "type": "integer"
         },
         "recipe_ephemeral_storage_size": {
           "type": "integer"
+        },
+        "recipe_storage_group_id": {
+          "type": "integer",
+          "description": "Group ID for volume ownership. When your application needs to write to mounted storage (like databases or file storage), set this to match the user ID your container runs as (typically 1000). This ensures your application has permission to read and write files on persistent volumes. Without this, you may see 'Permission Denied' errors when the application tries to save data.",
+          "examples": [1000]
         },
         "recipe_container_memory_size": {
           "type": "integer"
@@ -516,8 +562,86 @@
             }
           }
         },
+        "pvcs": {
+          "type": "object",
+          "description": "Persistent Volume Claims for stateful applications that need durable storage. Use this for databases, file storage, or any application that needs data to persist across pod restarts. Each PVC creates an OCI Block Volume that will be mounted to your container.",
+          "additionalProperties": false,
+          "required": ["retain_after_undeploy", "volumes"],
+          "properties": {
+            "retain_after_undeploy": {
+              "type": "boolean",
+              "description": "If true, ALL PVCs will not be deleted when the deployment is undeployed. Use this to preserve data for stateful applications like databases. Defaults to false.",
+              "default": false
+            },
+            "volumes": {
+              "type": "array",
+              "description": "List of persistent volumes to create for this deployment.",
+              "items": {
+                "additionalProperties": false,
+                "required": ["name", "mount_location", "volume_size_in_gbs"],
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Unique name for this PVC. This will be used as the PVC resource name in Kubernetes.",
+                    "examples": [
+                      "etcd-data",
+                      "elasticsearch-data",
+                      "postgres-data"
+                    ]
+                  },
+                  "mount_location": {
+                    "type": "string",
+                    "description": "Directory path inside the container where this volume will be mounted.",
+                    "examples": [
+                      "/data",
+                      "/var/lib/postgresql/data",
+                      "/usr/share/elasticsearch/data"
+                    ]
+                  },
+                  "volume_size_in_gbs": {
+                    "type": "integer",
+                    "description": "Size of the persistent volume in gigabytes.",
+                    "examples": [50, 100, 500]
+                  }
+                }
+              }
+            }
+          },
+          "examples": [
+            {
+              "retain_after_undeploy": false,
+              "volumes": [
+                {
+                  "name": "etcd-data",
+                  "mount_location": "/etcd",
+                  "volume_size_in_gbs": 50
+                }
+              ]
+            },
+            {
+              "retain_after_undeploy": true,
+              "volumes": [
+                {
+                  "name": "database-data",
+                  "mount_location": "/var/lib/postgresql/data",
+                  "volume_size_in_gbs": 100
+                },
+                {
+                  "name": "database-backups",
+                  "mount_location": "/backups",
+                  "volume_size_in_gbs": 200
+                }
+              ]
+            }
+          ]
+        },
         "service_endpoint_domain": {
           "type": "string"
+        },
+        "service_endpoint_subdomain": {
+          "type": "string",
+          "description": "Static override for the subdomain part of the service endpoint",
+          "examples": ["my-deployment"]
         },
         "service_endpoint": {
           "type": "object",
@@ -653,6 +777,110 @@
         },
         "skip_quota_validation": {
           "type": "boolean"
+        },
+        "recipe_configmaps": {
+          "type": "array",
+          "description": "ConfigMaps to create and mount as volumes in the container",
+          "items": {
+            "type": "object",
+            "required": ["name", "mount_location", "data"],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name identifier for the configmap (used in resource naming)"
+              },
+              "mount_location": {
+                "type": "string",
+                "description": "Path in container where configmap will be mounted"
+              },
+              "default_mode": {
+                "type": "integer",
+                "description": "File permission mode (e.g., 493 for 0755)"
+              },
+              "data": {
+                "type": "object",
+                "description": "Key-value pairs where keys are filenames and values are file contents",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "examples": [
+            [
+              {
+                "name": "scripts",
+                "mount_location": "/opt/scripts",
+                "default_mode": 493,
+                "data": {
+                  "start.sh": "#!/bin/bash\necho 'Hello World'"
+                }
+              }
+            ]
+          ]
+        },
+        "recipe_secret_mounts": {
+          "type": "array",
+          "description": "Secrets to mount as volumes in the container",
+          "items": {
+            "type": "object",
+            "required": ["name", "mount_location"],
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name identifier for the secret (used in resource naming)"
+              },
+              "mount_location": {
+                "type": "string",
+                "description": "Path in container where secret will be mounted"
+              }
+            }
+          },
+          "examples": [
+            [
+              {
+                "name": "my-secret",
+                "mount_location": "/opt/secrets"
+              }
+            ]
+          ]
+        },
+        "recipe_additional_ingress_annotations": {
+          "type": "array",
+          "description": "Additional ingress annotations to add to the ingress",
+          "items": {
+            "type": "object",
+            "required": ["key", "value"],
+            "additionalProperties": false,
+            "properties": {
+              "key": {
+                "type": "string",
+                "description": "Key for the ingress annotation"
+              },
+              "value": {
+                "type": "string",
+                "description": "Value for the ingress annotation"
+              }
+            }
+          },
+          "examples": [
+            [
+              {
+                "key": "nginx.ingress.kubernetes.io/rewrite-target",
+                "value": "/$2"
+              },
+              {
+                "key": "nginx.ingress.kubernetes.io/enable-cors",
+                "value": "true"
+              },
+              {
+                "key": "nginx.ingress.kubernetes.io/proxy-body-size",
+                "value": "2000m"
+              }
+            ]
+          ]
         }
       },
       "required": ["recipe_mode", "deployment_name"]
@@ -741,6 +969,11 @@
                       "const": "internal_dns_name",
                       "title": "Internal DNS name",
                       "description": "Cluster-internal DNS record for service-to-service communication."
+                    },
+                    {
+                      "const": "service_name",
+                      "title": "Service name",
+                      "description": "Kubernetes service name that can be used to reference the service in ingress configurations."
                     }
                   ]
                 },
