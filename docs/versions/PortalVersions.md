@@ -1,7 +1,7 @@
 # Portal Versions
 
 <details>
-<summary><strong>^5</strong></summary>
+<summary><strong>v1.0.12</strong></summary>
 
 **React & Framework**
 
