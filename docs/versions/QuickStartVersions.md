@@ -1,6 +1,78 @@
 # OCI AI Blueprints Quickstart Software Versions
 
 <details>
+<summary><strong>v1.0.12</strong></summary>
+
+## Cluster Creation Terraform
+
+### Terraform / Provider Versions
+
+| Component Type | Component Name |   Component Source   | Component Version |
+| :------------: | :------------: | :------------------: | :---------------: |
+|    Language    |   Terraform    |      hashicorp       |       >=1.5       |
+|    Provider    |      oci       |      oracle/oci      |        >=5        |
+|    Provider    |   kubernetes   | hashicorp/kubernetes |      >=2.27       |
+|    Provider    |      helm      |    hashicorp/helm    |      >=2.12       |
+|    Provider    |      tls       |    hashicorp/tls     |        >=4        |
+|    Provider    |     local      |   hashicorp/local    |       >=2.5       |
+|    Provider    |     random     |   hashicorp/random   |       >=3.6       |
+
+### Oracle Services
+
+|         Service          | Version |
+| :----------------------: | :-----: |
+| Oracle Kubernetes Engine | v1.34.1 |
+
+---
+
+---
+
+## OCI AI Blueprints Terraform
+
+### Terraform / Provider Versions
+
+| Component Type | Component Name |   Component Source   | Component Version |
+| :------------: | :------------: | :------------------: | :---------------: |
+|    Language    |   Terraform    |      hashicorp       |       >=1.5       |
+|    Provider    |      oci       |      oracle/oci      | 4 <= version < 5  |
+|    Provider    |   kubernetes   | hashicorp/kubernetes |        >=2        |
+|    Provider    |      helm      |    hashicorp/helm    |        >=2        |
+|    Provider    |      tls       |    hashicorp/tls     |        >=4        |
+|    Provider    |     local      |   hashicorp/local    |        >=2        |
+|    Provider    |     random     |   hashicorp/random   |        >=3        |
+
+### Helm Chart Versions
+
+|      Chart Name      | Version |                     Chart URL                      |
+| :------------------: | :-----: | :------------------------------------------------: |
+|       Grafana        | 10.1.4  |       https://grafana.github.io/helm-charts        |
+|      Prometheus      | 27.42.2 | https://prometheus-community.github.io/helm-charts |
+|    Metrics Server    |  3.8.3  |  https://kubernetes-sigs.github.io/metrics-server  |
+|    Ingress Nginx     |  4.13.3 |     https://kubernetes.github.io/ingress-nginx     |
+|        MLFlow        |  1.7.4  |   https://community-charts.github.io/helm-charts   |
+| NVIDIA GPU Operator  | v25.10.0|         https://helm.ngc.nvidia.com/nvidia         |
+|         Keda         | 2.17.0  |         https://kedacore.github.io/charts          |
+|         lws          |  0.7.0  |      oci://registry.k8s.io/lws/charts              |
+|        Kueue         | 0.11.4  |         oci://registry.k8s.io/kueue/charts         |
+| AMD Metrics Exporter | v1.3.1  |   https://rocm.github.io/device-metrics-exporter   |
+|         Kong         | 2.51.0  |             https://charts.konghq.com              |
+
+### Container Versions
+
+| Container                | Version |                     Repository                     |
+| :----------------------- | :-----: | :------------------------------------------------: |
+| oci-corrino-cp           | v1.0.11 | iad.ocir.io/iduyx1qnmway/corrino-devops-repository |
+| oci-ai-blueprints-portal | v1.0.11 | iad.ocir.io/iduyx1qnmway/corrino-devops-repository |
+
+### Oracle Services
+
+| Service | Version |
+| :-----: | :-----: |
+
+</details>
+
+
+<details>
 <summary><strong>v1.0.11</strong></summary>
 
 ## Cluster Creation Terraform
