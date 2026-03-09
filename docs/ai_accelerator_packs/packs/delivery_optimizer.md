@@ -4,7 +4,7 @@ The **Vehicle Route Optimizer Starter Pack** is an AI Accelerator Pack that deli
 
 ## What You Get
 
-- **Hardware:** 8 A100 GPUs (40 GB or 80GB) running on Oracle Kubernetes Engine (OKE) for a fully managed service oriented architecture.
+- **Hardware:** POC: 2 A10 GPUs (24GB), Small: 8 A100 40GB GPUs, Medium: 8 A100 80GB GPUs running on Oracle Kubernetes Engine (OKE) for a fully managed service oriented architecture.
 - **Software:** NVIDIA cuOpt route-planning server and custom interactive front-end
   - [cuOpt Server](https://github.com/NVIDIA/cuopt/tree/main/python): API server with built-in queuing for longer-running optimization jobs
   - **Interactive front-end:** Front-end user interface which allows users to interact with a pre-loaded cuOpt data set with an AI chat interface leveraging OCI GenAI PaaS models. Tool calls can directly modify the dataset and replan routes automatically.
