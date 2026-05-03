@@ -1,0 +1,30 @@
+{
+    "recipe_id": "llm_inference_nvidia",
+    "recipe_mode": "service",
+    "deployment_name": "vllm-from-hf-medium",
+    "recipe_image_uri": "iad.ocir.io/iduyx1qnmway/corrino-devops-repository:vllmv0.6.2",
+    "recipe_node_shape": "BM.GPU.B4.8",
+    "recipe_container_env": [
+        {
+            "key": "tensor_parallel_size",
+            "value": "8"
+        },
+        {
+            "key": "model_name",
+            "value": "NousResearch/Meta-Llama-3.1-70B-Instruct"
+        }
+    ],
+    "recipe_replica_count": 1,
+    "recipe_container_port": "8000",
+    "recipe_nvidia_gpu_count": 8,
+    "recipe_node_pool_size": 1,
+    "recipe_node_boot_volume_size_in_gbs": 200,
+    "recipe_container_command_args": [
+        "--model",
+        "$(model_name)",
+        "--tensor-parallel-size",
+        "$(tensor_parallel_size)"
+    ],
+    "recipe_ephemeral_storage_size": 2000,
+    "recipe_shared_memory_volume_size_limit_in_mb": 80000
+}
