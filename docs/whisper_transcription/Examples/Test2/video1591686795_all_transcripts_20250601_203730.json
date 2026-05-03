@@ -1,0 +1,1521 @@
+{
+  "chunks": {
+    "chunk_000.wav": {
+      "chunk_id": "001",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: hello everyone thank you for joining to this session this session we will talk about health",
+      "segments": [
+        {
+          "text": "hello everyone thank you for joining to this session this session we will talk about health",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_001.wav": {
+      "chunk_id": "002",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: recipe that we provided in seeds group Ammar, Soumya and me etc. we are working on this.",
+      "segments": [
+        {
+          "text": "recipe that we provided in seeds group Ammar, Soumya and me etc. we are working on this.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_002.wav": {
+      "chunk_id": "003",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: a resume and with that we can start to talk about that so the main idea of the health check",
+      "segments": [
+        {
+          "text": "a resume and with that we can start to talk about that so the main idea of the health check",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_003.wav": {
+      "chunk_id": "004",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: recipe is to make the customer confidence that they have enough resources to run heavy workloads",
+      "segments": [
+        {
+          "text": "recipe is to make the customer confidence that they have enough resources to run heavy workloads",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_004.wav": {
+      "chunk_id": "005",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: what i mean by that is that most of the customers when they want to run the llm's training find\n[2025-06-01 20:36:29] Speaker 1: you",
+      "segments": [
+        {
+          "text": "what i mean by that is that most of the customers when they want to run the llm's training find",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "you",
+          "timestamp": "2025-06-01 20:36:29",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_005.wav": {
+      "chunk_id": "006",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: tuning or any other things they need which assumed to be a heavy workload they need to have a lot of",
+      "segments": [
+        {
+          "text": "tuning or any other things they need which assumed to be a heavy workload they need to have a lot of",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_006.wav": {
+      "chunk_id": "007",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: gpus and we want to make sure that these gpus work well so they can run this recipe before starting",
+      "segments": [
+        {
+          "text": "gpus and we want to make sure that these gpus work well so they can run this recipe before starting",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_007.wav": {
+      "chunk_id": "008",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: this task and to just make sure that you know everything is working very well i'll go ahead",
+      "segments": [
+        {
+          "text": "this task and to just make sure that you know everything is working very well i'll go ahead",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_008.wav": {
+      "chunk_id": "009",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: share my screen and yeah i will start with the result of this recipe i can say that this you know",
+      "segments": [
+        {
+          "text": "share my screen and yeah i will start with the result of this recipe i can say that this you know",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_009.wav": {
+      "chunk_id": "010",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: recipe the health check recipe will provide you two different formats one is the pdf which i'm showing",
+      "segments": [
+        {
+          "text": "recipe the health check recipe will provide you two different formats one is the pdf which i'm showing",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_010.wav": {
+      "chunk_id": "011",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: to you and the other one is json one i will also go through that as well but here you can see uh what",
+      "segments": [
+        {
+          "text": "to you and the other one is json one i will also go through that as well but here you can see uh what",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_011.wav": {
+      "chunk_id": "012",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: test we are evaluating for the gpus uh we are doing bunch of uh testing like the background",
+      "segments": [
+        {
+          "text": "test we are evaluating for the gpus uh we are doing bunch of uh testing like the background",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_012.wav": {
+      "chunk_id": "013",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: compare computation compute throughput memory bandwidth error detection tensor core utilization\n[2025-06-01 20:36:17] Speaker 1: sustain workload",
+      "segments": [
+        {
+          "text": "compare computation compute throughput memory bandwidth error detection tensor core utilization",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "sustain workload",
+          "timestamp": "2025-06-01 20:36:17",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_013.wav": {
+      "chunk_id": "014",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: mixed precision, power, temperature and utilization. So these are the main tests that we are",
+      "segments": [
+        {
+          "text": "mixed precision, power, temperature and utilization. So these are the main tests that we are",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_014.wav": {
+      "chunk_id": "015",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: evaluating you can see that in this format once you know you run the health\n[2025-06-01 20:36:15] Speaker 1: show",
+      "segments": [
+        {
+          "text": "evaluating you can see that in this format once you know you run the health",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "show",
+          "timestamp": "2025-06-01 20:36:15",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_015.wav": {
+      "chunk_id": "016",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: recipe you will get the result you know everything is in a table the duration of each",
+      "segments": [
+        {
+          "text": "recipe you will get the result you know everything is in a table the duration of each",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_016.wav": {
+      "chunk_id": "017",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: test, whether it has failed or not.\n[2025-06-01 20:36:18] Speaker 1: For example, here for compute throughput,",
+      "segments": [
+        {
+          "text": "test, whether it has failed or not.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "For example, here for compute throughput,",
+          "timestamp": "2025-06-01 20:36:18",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_017.wav": {
+      "chunk_id": "018",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: has failed and i will show you uh in detail that how it works and for those customers who you know\n[2025-06-01 20:36:19] Speaker 1: maybe",
+      "segments": [
+        {
+          "text": "has failed and i will show you uh in detail that how it works and for those customers who you know",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "maybe",
+          "timestamp": "2025-06-01 20:36:19",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_018.wav": {
+      "chunk_id": "019",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: don't know what are these numbers you know they can go to the end of that we\n[2025-06-01 20:36:17] Speaker 1: have also provided a graph",
+      "segments": [
+        {
+          "text": "don't know what are these numbers you know they can go to the end of that we",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "have also provided a graph",
+          "timestamp": "2025-06-01 20:36:17",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_019.wav": {
+      "chunk_id": "020",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: I'm waiting for that. We have also provided a graph. In this graph, we have provided, you know,",
+      "segments": [
+        {
+          "text": "I'm waiting for that. We have also provided a graph. In this graph, we have provided, you know,",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_020.wav": {
+      "chunk_id": "021",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: So first what we did was that we did an extensive research from NVIDIA website articles to see what are the...",
+      "segments": [
+        {
+          "text": "So first what we did was that we did an extensive research from NVIDIA website articles to see what are the...",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_021.wav": {
+      "chunk_id": "022",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: uh you know ideal uh range for for example temperature the compute throughput memory bandwidth\n[2025-06-01 20:36:17] Speaker 1: and this type of",
+      "segments": [
+        {
+          "text": "uh you know ideal uh range for for example temperature the compute throughput memory bandwidth",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "and this type of",
+          "timestamp": "2025-06-01 20:36:17",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_022.wav": {
+      "chunk_id": "023",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: things. What is the upper threshold? What is the lower threshold? We added a 10% to each of",
+      "segments": [
+        {
+          "text": "things. What is the upper threshold? What is the lower threshold? We added a 10% to each of",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_023.wav": {
+      "chunk_id": "024",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: this once and uh we got the average of that these average are shown here as a baseline for example\n[2025-06-01 20:36:18] Speaker 1: 3000 is",
+      "segments": [
+        {
+          "text": "this once and uh we got the average of that these average are shown here as a baseline for example",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "3000 is",
+          "timestamp": "2025-06-01 20:36:18",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_024.wav": {
+      "chunk_id": "025",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: shown here as a baseline and the measured one is the for example uh the yellow one it shows that uh\n[2025-06-01 20:36:19] Speaker 1: you know",
+      "segments": [
+        {
+          "text": "shown here as a baseline and the measured one is the for example uh the yellow one it shows that uh",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "you know",
+          "timestamp": "2025-06-01 20:36:19",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_025.wav": {
+      "chunk_id": "026",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: So once we are using the test compute throughput, the measure was around 651.92, which is around 630.",
+      "segments": [
+        {
+          "text": "So once we are using the test compute throughput, the measure was around 651.92, which is around 630.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_026.wav": {
+      "chunk_id": "027",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: uh 30 which was the baseline so the main purpose of this graph is to make the customer sure that",
+      "segments": [
+        {
+          "text": "uh 30 which was the baseline so the main purpose of this graph is to make the customer sure that",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_027.wav": {
+      "chunk_id": "028",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: numbers that they are getting are in the same kind of range of you know what the\n[2025-06-01 20:36:18] Speaker 1: number should be",
+      "segments": [
+        {
+          "text": "numbers that they are getting are in the same kind of range of you know what the",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "number should be",
+          "timestamp": "2025-06-01 20:36:18",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_028.wav": {
+      "chunk_id": "029",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: With that, I can also go to the JSON file.",
+      "segments": [
+        {
+          "text": "With that, I can also go to the JSON file.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_029.wav": {
+      "chunk_id": "030",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: which we have here. I will just open one of them.",
+      "segments": [
+        {
+          "text": "which we have here. I will just open one of them.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_030.wav": {
+      "chunk_id": "031",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: So the way that they know the JSON file.",
+      "segments": [
+        {
+          "text": "So the way that they know the JSON file.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_031.wav": {
+      "chunk_id": "032",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: is working is that you know basically the same numbers are both in the PDF and the JSON file.",
+      "segments": [
+        {
+          "text": "is working is that you know basically the same numbers are both in the PDF and the JSON file.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_032.wav": {
+      "chunk_id": "033",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: The good thing about JSON file here is that, you know, for example, for compute throughput,",
+      "segments": [
+        {
+          "text": "The good thing about JSON file here is that, you know, for example, for compute throughput,",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_033.wav": {
+      "chunk_id": "034",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: it has failed if it go on each gpu one by one um based on the tensor and you know duration",
+      "segments": [
+        {
+          "text": "it has failed if it go on each gpu one by one um based on the tensor and you know duration",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_034.wav": {
+      "chunk_id": "035",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: flops bandwidth and it will uh make the comparison with the baseline and if uh for all of them it's not",
+      "segments": [
+        {
+          "text": "flops bandwidth and it will uh make the comparison with the baseline and if uh for all of them it's not",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_035.wav": {
+      "chunk_id": "036",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: in the range that you know we specify it will give us the fail. Similarly for the memory band",
+      "segments": [
+        {
+          "text": "in the range that you know we specify it will give us the fail. Similarly for the memory band",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_036.wav": {
+      "chunk_id": "037",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: it you know it has some for each gpu it will say that you know what does what are the information",
+      "segments": [
+        {
+          "text": "it you know it has some for each gpu it will say that you know what does what are the information",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_037.wav": {
+      "chunk_id": "038",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: at the end it will give whether it is ideal or not so this is the way that uh you know the",
+      "segments": [
+        {
+          "text": "at the end it will give whether it is ideal or not so this is the way that uh you know the",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_038.wav": {
+      "chunk_id": "039",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: JSON file is working. With that, I can go inside the code and I can talk a little bit more about",
+      "segments": [
+        {
+          "text": "JSON file is working. With that, I can go inside the code and I can talk a little bit more about",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_039.wav": {
+      "chunk_id": "040",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: the code what we have provided for the customer so we are we have enabled the customer to choose",
+      "segments": [
+        {
+          "text": "the code what we have provided for the customer so we are we have enabled the customer to choose",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_040.wav": {
+      "chunk_id": "041",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: what type, what D-type, you know, they can choose.\n[2025-06-01 20:36:14] Speaker 1: They can go with FV32, FV16, which is the most common one.",
+      "segments": [
+        {
+          "text": "what type, what D-type, you know, they can choose.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "They can go with FV32, FV16, which is the most common one.",
+          "timestamp": "2025-06-01 20:36:14",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_041.wav": {
+      "chunk_id": "042",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: uh fp8 uh we have also enabled them that whether they want to just choose one um uh you know one of",
+      "segments": [
+        {
+          "text": "uh fp8 uh we have also enabled them that whether they want to just choose one um uh you know one of",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_042.wav": {
+      "chunk_id": "043",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: these uh uh functions or you know all of them the default is on all of them also they can choose",
+      "segments": [
+        {
+          "text": "these uh uh functions or you know all of them the default is on all of them also they can choose",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_043.wav": {
+      "chunk_id": "044",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: to do the direction so we have provided a couple of uh you know uh parser uh so that you know",
+      "segments": [
+        {
+          "text": "to do the direction so we have provided a couple of uh you know uh parser uh so that you know",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_044.wav": {
+      "chunk_id": "045",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: can choose uh uh you know uh to play with them uh code one important thing is the tensor shape",
+      "segments": [
+        {
+          "text": "can choose uh uh you know uh to play with them uh code one important thing is the tensor shape",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_045.wav": {
+      "chunk_id": "046",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: example for a10 the tensor shape is 8192 this is the default that we have provided for all of the\n[2025-06-01 20:36:20] Speaker 1: a10",
+      "segments": [
+        {
+          "text": "example for a10 the tensor shape is 8192 this is the default that we have provided for all of the",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "a10",
+          "timestamp": "2025-06-01 20:36:20",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_046.wav": {
+      "chunk_id": "047",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: a hundred and h hundred um with this i will give you some information that we can we also measure\n[2025-06-01 20:36:20] Speaker 1: the highest",
+      "segments": [
+        {
+          "text": "a hundred and h hundred um with this i will give you some information that we can we also measure",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "the highest",
+          "timestamp": "2025-06-01 20:36:20",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_047.wav": {
+      "chunk_id": "048",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: uh tensor for example for 800 we can also use 65k for that that will take a long time so that was",
+      "segments": [
+        {
+          "text": "uh tensor for example for 800 we can also use 65k for that that will take a long time so that was",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_048.wav": {
+      "chunk_id": "049",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: reason why we wanted to go to go with something which take less time so for example",
+      "segments": [
+        {
+          "text": "reason why we wanted to go to go with something which take less time so for example",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_049.wav": {
+      "chunk_id": "050",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: the H100 with 8192 it will take around 110 seconds. A100 it will take around 492 or similar like that.",
+      "segments": [
+        {
+          "text": "the H100 with 8192 it will take around 110 seconds. A100 it will take around 492 or similar like that.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_050.wav": {
+      "chunk_id": "051",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: and for 810 it will take around 649 seconds and with that we can start to talk about the functions\n[2025-06-01 20:36:22] Speaker 1: I'm not",
+      "segments": [
+        {
+          "text": "and for 810 it will take around 649 seconds and with that we can start to talk about the functions",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "I'm not",
+          "timestamp": "2025-06-01 20:36:22",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_051.wav": {
+      "chunk_id": "052",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: going about the function again the first thing is the power the temperature and utilization",
+      "segments": [
+        {
+          "text": "going about the function again the first thing is the power the temperature and utilization",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_052.wav": {
+      "chunk_id": "053",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: So we found out what is the range of that and if the temperature, the power...",
+      "segments": [
+        {
+          "text": "So we found out what is the range of that and if the temperature, the power...",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_053.wav": {
+      "chunk_id": "054",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: visualization is in in that range you know we'll say that it has passed if not uh you know we'll say",
+      "segments": [
+        {
+          "text": "visualization is in in that range you know we'll say that it has passed if not uh you know we'll say",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_054.wav": {
+      "chunk_id": "055",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: that you know uh it has uh you know fade um these are some of the information about the gpus uh what",
+      "segments": [
+        {
+          "text": "that you know uh it has uh you know fade um these are some of the information about the gpus uh what",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_055.wav": {
+      "chunk_id": "056",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: shape is that and this type of things till we get to the background computation and compute on gpu",
+      "segments": [
+        {
+          "text": "shape is that and this type of things till we get to the background computation and compute on gpu",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_056.wav": {
+      "chunk_id": "057",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: background computation is that it's a function that it will compute uh you know a simple math mall",
+      "segments": [
+        {
+          "text": "background computation is that it's a function that it will compute uh you know a simple math mall",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_057.wav": {
+      "chunk_id": "058",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: back end so that you know we can measure the for temperature for uh you know for uh utilization",
+      "segments": [
+        {
+          "text": "back end so that you know we can measure the for temperature for uh you know for uh utilization",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_058.wav": {
+      "chunk_id": "059",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: for the power one thing that i want to mention here is that matmon why we are using in most of these",
+      "segments": [
+        {
+          "text": "for the power one thing that i want to mention here is that matmon why we are using in most of these",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_059.wav": {
+      "chunk_id": "060",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: we are using MathMol. Why we are using MathMol here? MathMol is a good simulation of fine-tuning",
+      "segments": [
+        {
+          "text": "we are using MathMol. Why we are using MathMol here? MathMol is a good simulation of fine-tuning",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_060.wav": {
+      "chunk_id": "061",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: training llms and these type of things and it's very common for that so that's the reason why we",
+      "segments": [
+        {
+          "text": "training llms and these type of things and it's very common for that so that's the reason why we",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_061.wav": {
+      "chunk_id": "062",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: I really focus on MatMod as one of the functions that we have used here a lot.",
+      "segments": [
+        {
+          "text": "I really focus on MatMod as one of the functions that we have used here a lot.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_062.wav": {
+      "chunk_id": "063",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: i can uh the next function is about compute and gpu or compute throughput as i mentioned",
+      "segments": [
+        {
+          "text": "i can uh the next function is about compute and gpu or compute throughput as i mentioned",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_063.wav": {
+      "chunk_id": "064",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: previously and this will measure the performance of the GPU cores under stress.\n[2025-06-01 20:36:22] Speaker 1: Mainly it will",
+      "segments": [
+        {
+          "text": "previously and this will measure the performance of the GPU cores under stress.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "Mainly it will",
+          "timestamp": "2025-06-01 20:36:22",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_064.wav": {
+      "chunk_id": "065",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: say that how the gpus can handle the computation and again you can see here that you know this is\n[2025-06-01 20:36:21] Speaker 1: also",
+      "segments": [
+        {
+          "text": "say that how the gpus can handle the computation and again you can see here that you know this is",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "also",
+          "timestamp": "2025-06-01 20:36:21",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_065.wav": {
+      "chunk_id": "066",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: again based on matmul function the next one is the memory bandwidth the memory bandwidth is mainly",
+      "segments": [
+        {
+          "text": "again based on matmul function the next one is the memory bandwidth the memory bandwidth is mainly",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_066.wav": {
+      "chunk_id": "067",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: um how the gpu can handle the heavy memory uh you know bound it means that you know how we can move",
+      "segments": [
+        {
+          "text": "um how the gpu can handle the heavy memory uh you know bound it means that you know how we can move",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_067.wav": {
+      "chunk_id": "068",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: the volume of data between the global memory and the compute you need. So here we are using",
+      "segments": [
+        {
+          "text": "the volume of data between the global memory and the compute you need. So here we are using",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_068.wav": {
+      "chunk_id": "069",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: uh addition b equal to a plus a\n[2025-06-01 20:36:17] Speaker 1: uh and yeah the next one is about error detection on gpus so uh here",
+      "segments": [
+        {
+          "text": "uh addition b equal to a plus a",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "uh and yeah the next one is about error detection on gpus so uh here",
+          "timestamp": "2025-06-01 20:36:17",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_069.wav": {
+      "chunk_id": "070",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: this is mainly based on the accuracy it means that one time we are using CPU for\n[2025-06-01 20:36:19] Speaker 1: you know",
+      "segments": [
+        {
+          "text": "this is mainly based on the accuracy it means that one time we are using CPU for",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "you know",
+          "timestamp": "2025-06-01 20:36:19",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_070.wav": {
+      "chunk_id": "071",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: matmol one time we are using gpus for matmol and you know we compare these numbers and we have some",
+      "segments": [
+        {
+          "text": "matmol one time we are using gpus for matmol and you know we compare these numbers and we have some",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_071.wav": {
+      "chunk_id": "072",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: threshold for that as you can see here and if that's it's uh not significant we can say that",
+      "segments": [
+        {
+          "text": "threshold for that as you can see here and if that's it's uh not significant we can say that",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_072.wav": {
+      "chunk_id": "073",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: the error detection is fine. Next thing is the tensor core utilization. This is the core",
+      "segments": [
+        {
+          "text": "the error detection is fine. Next thing is the tensor core utilization. This is the core",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_073.wav": {
+      "chunk_id": "074",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: engagement and and it emphasizes on the low precision like the fp8 or fp16 um this is a mainly",
+      "segments": [
+        {
+          "text": "engagement and and it emphasizes on the low precision like the fp8 or fp16 um this is a mainly",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_074.wav": {
+      "chunk_id": "075",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: hardware not on the software. After the Tensor Core utilization we did sustained workload and this",
+      "segments": [
+        {
+          "text": "hardware not on the software. After the Tensor Core utilization we did sustained workload and this",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_075.wav": {
+      "chunk_id": "076",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: test the long-term compute and stability. So for example here as an example we put 60 seconds.",
+      "segments": [
+        {
+          "text": "test the long-term compute and stability. So for example here as an example we put 60 seconds.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_076.wav": {
+      "chunk_id": "077",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: and we are running matmod for 60 seconds and we will see that how the gpus are working based on that",
+      "segments": [
+        {
+          "text": "and we are running matmod for 60 seconds and we will see that how the gpus are working based on that",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_077.wav": {
+      "chunk_id": "078",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: and the last one is mixed precision testing and this will validate both the performance and the",
+      "segments": [
+        {
+          "text": "and the last one is mixed precision testing and this will validate both the performance and the",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_078.wav": {
+      "chunk_id": "079",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: correctness of the GPUs again when we are using matmult here.\n[2025-06-01 20:36:19] Speaker 1: So with that, you know, we got to the",
+      "segments": [
+        {
+          "text": "correctness of the GPUs again when we are using matmult here.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "So with that, you know, we got to the",
+          "timestamp": "2025-06-01 20:36:19",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_079.wav": {
+      "chunk_id": "080",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: end of this part. I will give you an example of how this has worked previously.",
+      "segments": [
+        {
+          "text": "end of this part. I will give you an example of how this has worked previously.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_080.wav": {
+      "chunk_id": "081",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: So we had an H100 and you can see the result of the H100 here",
+      "segments": [
+        {
+          "text": "So we had an H100 and you can see the result of the H100 here",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_081.wav": {
+      "chunk_id": "082",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: And, um...",
+      "segments": [
+        {
+          "text": "And, um...",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_082.wav": {
+      "chunk_id": "083",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: We saw that the H100 is not performing very well.\n[2025-06-01 20:36:15] Speaker 1: I went and saw",
+      "segments": [
+        {
+          "text": "We saw that the H100 is not performing very well.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "I went and saw",
+          "timestamp": "2025-06-01 20:36:15",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_083.wav": {
+      "chunk_id": "084",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: specifically for gpu 4 and you can see that you know in the power the gpu 4 is uh going up very",
+      "segments": [
+        {
+          "text": "specifically for gpu 4 and you can see that you know in the power the gpu 4 is uh going up very",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_084.wav": {
+      "chunk_id": "085",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: you know fast compared to other ones but you know after that the rest of that went sharply up but this",
+      "segments": [
+        {
+          "text": "you know fast compared to other ones but you know after that the rest of that went sharply up but this",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_085.wav": {
+      "chunk_id": "086",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: one didn't go up uh so maybe that was the reason why the h100 was not performing very well then i\n[2025-06-01 20:36:18] Speaker 1: also",
+      "segments": [
+        {
+          "text": "one didn't go up uh so maybe that was the reason why the h100 was not performing very well then i",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "also",
+          "timestamp": "2025-06-01 20:36:18",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_086.wav": {
+      "chunk_id": "087",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: saw the um the temperature you can see that for gpu for the temperature again is sharply going up like\n[2025-06-01 20:36:19] Speaker 1: 80.",
+      "segments": [
+        {
+          "text": "saw the um the temperature you can see that for gpu for the temperature again is sharply going up like",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "80.",
+          "timestamp": "2025-06-01 20:36:19",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_087.wav": {
+      "chunk_id": "088",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: which is above the range that you know we specified and then you know it stays there so",
+      "segments": [
+        {
+          "text": "which is above the range that you know we specified and then you know it stays there so",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_088.wav": {
+      "chunk_id": "089",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: maybe that was the reason why you know it wasn't able to uh you know do power good and the rest of",
+      "segments": [
+        {
+          "text": "maybe that was the reason why you know it wasn't able to uh you know do power good and the rest of",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_089.wav": {
+      "chunk_id": "090",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: that you know you can see that you know it's not even close to 86 so we found out that you know the\n[2025-06-01 20:36:16] Speaker 1: gpu 4",
+      "segments": [
+        {
+          "text": "that you know you can see that you know it's not even close to 86 so we found out that you know the",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "gpu 4",
+          "timestamp": "2025-06-01 20:36:16",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_090.wav": {
+      "chunk_id": "091",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: is not working very well but one thing that you know here i want to emphasize is that this is inside",
+      "segments": [
+        {
+          "text": "is not working very well but one thing that you know here i want to emphasize is that this is inside",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_091.wav": {
+      "chunk_id": "092",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: a node so what does it mean it means that you know for example in the h100 and knows we have eight gpu",
+      "segments": [
+        {
+          "text": "a node so what does it mean it means that you know for example in the h100 and knows we have eight gpu",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_092.wav": {
+      "chunk_id": "093",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: so it will give us the result for the hgpus but we have also extended this uh code for",
+      "segments": [
+        {
+          "text": "so it will give us the result for the hgpus but we have also extended this uh code for",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_093.wav": {
+      "chunk_id": "094",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: multi-node and by that so this was this code was given to us by another team from John Shelley's",
+      "segments": [
+        {
+          "text": "multi-node and by that so this was this code was given to us by another team from John Shelley's",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_094.wav": {
+      "chunk_id": "095",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: theme and it's mainly doing some more tests about nodes between the nodes specifically it",
+      "segments": [
+        {
+          "text": "theme and it's mainly doing some more tests about nodes between the nodes specifically it",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_095.wav": {
+      "chunk_id": "096",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: It will evaluate the RDMA, the different type of errors like error correctness code.\n[2025-06-01 20:36:17] Speaker 1: It will also...",
+      "segments": [
+        {
+          "text": "It will evaluate the RDMA, the different type of errors like error correctness code.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "It will also...",
+          "timestamp": "2025-06-01 20:36:17",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_096.wav": {
+      "chunk_id": "097",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: evaluate the PCIe link and this type of things.\n[2025-06-01 20:36:17] Speaker 1: The way that our structure is working right now...",
+      "segments": [
+        {
+          "text": "evaluate the PCIe link and this type of things.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "The way that our structure is working right now...",
+          "timestamp": "2025-06-01 20:36:17",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_097.wav": {
+      "chunk_id": "098",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: is that first of all we run if you have a multi node we run this one",
+      "segments": [
+        {
+          "text": "is that first of all we run if you have a multi node we run this one",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_098.wav": {
+      "chunk_id": "099",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: uh let me show you the result or the log maybe that would help",
+      "segments": [
+        {
+          "text": "uh let me show you the result or the log maybe that would help",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_099.wav": {
+      "chunk_id": "100",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: First of all, we'll run that one. For example here I used two nodes and you can see",
+      "segments": [
+        {
+          "text": "First of all, we'll run that one. For example here I used two nodes and you can see",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_100.wav": {
+      "chunk_id": "101",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: that you know it will go and run all of these ones one by one and it will get to this end.",
+      "segments": [
+        {
+          "text": "that you know it will go and run all of these ones one by one and it will get to this end.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_101.wav": {
+      "chunk_id": "102",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: Once this is done, it will go inside each node.\n[2025-06-01 20:36:15] Speaker 1: For example, here we have the GPU 471.",
+      "segments": [
+        {
+          "text": "Once this is done, it will go inside each node.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "For example, here we have the GPU 471.",
+          "timestamp": "2025-06-01 20:36:15",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_102.wav": {
+      "chunk_id": "103",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: here everything will be saved as a json file and this multi-node result will be saved as a json",
+      "segments": [
+        {
+          "text": "here everything will be saved as a json file and this multi-node result will be saved as a json",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_103.wav": {
+      "chunk_id": "104",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: file and you can see that you know it's here",
+      "segments": [
+        {
+          "text": "file and you can see that you know it's here",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_104.wav": {
+      "chunk_id": "105",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: Again, for the other one, I think it was another GPU, which was probably the 509.",
+      "segments": [
+        {
+          "text": "Again, for the other one, I think it was another GPU, which was probably the 509.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_105.wav": {
+      "chunk_id": "106",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: and it will again all of the json file will uh you know save all of these results then it will go",
+      "segments": [
+        {
+          "text": "and it will again all of the json file will uh you know save all of these results then it will go",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_106.wav": {
+      "chunk_id": "107",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: inside the gpu 471 and inside that gpu it will run the health check that you know and we just we were",
+      "segments": [
+        {
+          "text": "inside the gpu 471 and inside that gpu it will run the health check that you know and we just we were",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_107.wav": {
+      "chunk_id": "108",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: just talking about.",
+      "segments": [
+        {
+          "text": "just talking about.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_108.wav": {
+      "chunk_id": "109",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: it will go it will do that for gpu 471 again it will do that for the other gpu gpu 507 which have",
+      "segments": [
+        {
+          "text": "it will go it will do that for gpu 471 again it will do that for the other gpu gpu 507 which have",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_109.wav": {
+      "chunk_id": "110",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: which we have here, then it will give us the result and the testing result.",
+      "segments": [
+        {
+          "text": "which we have here, then it will give us the result and the testing result.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_110.wav": {
+      "chunk_id": "111",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: so you will have um you know a pdf and a json file and a log for each of the gpu 431 and 507 here",
+      "segments": [
+        {
+          "text": "so you will have um you know a pdf and a json file and a log for each of the gpu 431 and 507 here",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_111.wav": {
+      "chunk_id": "112",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: These PDFs will be saved based on the timing and calendar.",
+      "segments": [
+        {
+          "text": "These PDFs will be saved based on the timing and calendar.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_112.wav": {
+      "chunk_id": "113",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: uh with that uh this was the main idea about the health check and you know how we are running that",
+      "segments": [
+        {
+          "text": "uh with that uh this was the main idea about the health check and you know how we are running that",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_113.wav": {
+      "chunk_id": "114",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: And I really appreciate your time.\n[2025-06-01 20:36:14] Speaker 1: And I would be happy if you can, you know, reach out.",
+      "segments": [
+        {
+          "text": "And I really appreciate your time.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        },
+        {
+          "text": "And I would be happy if you can, you know, reach out.",
+          "timestamp": "2025-06-01 20:36:14",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    },
+    "chunk_114.wav": {
+      "chunk_id": "115",
+      "transcript": "[2025-06-01 20:36:11] Speaker 1: any question about this. Thank you so much.",
+      "segments": [
+        {
+          "text": "any question about this. Thank you so much.",
+          "timestamp": "2025-06-01 20:36:11",
+          "speaker": "Speaker 1"
+        }
+      ],
+      "language": "en"
+    }
+  },
+  "transcript": "[2025-06-01 20:36:11] Speaker 1: hello everyone thank you for joining to this session this session we will talk about health\n[2025-06-01 20:36:11] Speaker 1: recipe that we provided in seeds group Ammar, Soumya and me etc. we are working on this.\n[2025-06-01 20:36:11] Speaker 1: a resume and with that we can start to talk about that so the main idea of the health check\n[2025-06-01 20:36:11] Speaker 1: recipe is to make the customer confidence that they have enough resources to run heavy workloads\n[2025-06-01 20:36:11] Speaker 1: what i mean by that is that most of the customers when they want to run the llm's training find\n[2025-06-01 20:36:29] Speaker 1: you\n[2025-06-01 20:36:11] Speaker 1: tuning or any other things they need which assumed to be a heavy workload they need to have a lot of\n[2025-06-01 20:36:11] Speaker 1: gpus and we want to make sure that these gpus work well so they can run this recipe before starting\n[2025-06-01 20:36:11] Speaker 1: this task and to just make sure that you know everything is working very well i'll go ahead\n[2025-06-01 20:36:11] Speaker 1: share my screen and yeah i will start with the result of this recipe i can say that this you know\n[2025-06-01 20:36:11] Speaker 1: recipe the health check recipe will provide you two different formats one is the pdf which i'm showing\n[2025-06-01 20:36:11] Speaker 1: to you and the other one is json one i will also go through that as well but here you can see uh what\n[2025-06-01 20:36:11] Speaker 1: test we are evaluating for the gpus uh we are doing bunch of uh testing like the background\n[2025-06-01 20:36:11] Speaker 1: compare computation compute throughput memory bandwidth error detection tensor core utilization\n[2025-06-01 20:36:17] Speaker 1: sustain workload\n[2025-06-01 20:36:11] Speaker 1: mixed precision, power, temperature and utilization. So these are the main tests that we are\n[2025-06-01 20:36:11] Speaker 1: evaluating you can see that in this format once you know you run the health\n[2025-06-01 20:36:15] Speaker 1: show\n[2025-06-01 20:36:11] Speaker 1: recipe you will get the result you know everything is in a table the duration of each\n[2025-06-01 20:36:11] Speaker 1: test, whether it has failed or not.\n[2025-06-01 20:36:18] Speaker 1: For example, here for compute throughput,\n[2025-06-01 20:36:11] Speaker 1: has failed and i will show you uh in detail that how it works and for those customers who you know\n[2025-06-01 20:36:19] Speaker 1: maybe\n[2025-06-01 20:36:11] Speaker 1: don't know what are these numbers you know they can go to the end of that we\n[2025-06-01 20:36:17] Speaker 1: have also provided a graph\n[2025-06-01 20:36:11] Speaker 1: I'm waiting for that. We have also provided a graph. In this graph, we have provided, you know,\n[2025-06-01 20:36:11] Speaker 1: So first what we did was that we did an extensive research from NVIDIA website articles to see what are the...\n[2025-06-01 20:36:11] Speaker 1: uh you know ideal uh range for for example temperature the compute throughput memory bandwidth\n[2025-06-01 20:36:17] Speaker 1: and this type of\n[2025-06-01 20:36:11] Speaker 1: things. What is the upper threshold? What is the lower threshold? We added a 10% to each of\n[2025-06-01 20:36:11] Speaker 1: this once and uh we got the average of that these average are shown here as a baseline for example\n[2025-06-01 20:36:18] Speaker 1: 3000 is\n[2025-06-01 20:36:11] Speaker 1: shown here as a baseline and the measured one is the for example uh the yellow one it shows that uh\n[2025-06-01 20:36:19] Speaker 1: you know\n[2025-06-01 20:36:11] Speaker 1: So once we are using the test compute throughput, the measure was around 651.92, which is around 630.\n[2025-06-01 20:36:11] Speaker 1: uh 30 which was the baseline so the main purpose of this graph is to make the customer sure that\n[2025-06-01 20:36:11] Speaker 1: numbers that they are getting are in the same kind of range of you know what the\n[2025-06-01 20:36:18] Speaker 1: number should be\n[2025-06-01 20:36:11] Speaker 1: With that, I can also go to the JSON file.\n[2025-06-01 20:36:11] Speaker 1: which we have here. I will just open one of them.\n[2025-06-01 20:36:11] Speaker 1: So the way that they know the JSON file.\n[2025-06-01 20:36:11] Speaker 1: is working is that you know basically the same numbers are both in the PDF and the JSON file.\n[2025-06-01 20:36:11] Speaker 1: The good thing about JSON file here is that, you know, for example, for compute throughput,\n[2025-06-01 20:36:11] Speaker 1: it has failed if it go on each gpu one by one um based on the tensor and you know duration\n[2025-06-01 20:36:11] Speaker 1: flops bandwidth and it will uh make the comparison with the baseline and if uh for all of them it's not\n[2025-06-01 20:36:11] Speaker 1: in the range that you know we specify it will give us the fail. Similarly for the memory band\n[2025-06-01 20:36:11] Speaker 1: it you know it has some for each gpu it will say that you know what does what are the information\n[2025-06-01 20:36:11] Speaker 1: at the end it will give whether it is ideal or not so this is the way that uh you know the\n[2025-06-01 20:36:11] Speaker 1: JSON file is working. With that, I can go inside the code and I can talk a little bit more about\n[2025-06-01 20:36:11] Speaker 1: the code what we have provided for the customer so we are we have enabled the customer to choose\n[2025-06-01 20:36:11] Speaker 1: what type, what D-type, you know, they can choose.\n[2025-06-01 20:36:14] Speaker 1: They can go with FV32, FV16, which is the most common one.\n[2025-06-01 20:36:11] Speaker 1: uh fp8 uh we have also enabled them that whether they want to just choose one um uh you know one of\n[2025-06-01 20:36:11] Speaker 1: these uh uh functions or you know all of them the default is on all of them also they can choose\n[2025-06-01 20:36:11] Speaker 1: to do the direction so we have provided a couple of uh you know uh parser uh so that you know\n[2025-06-01 20:36:11] Speaker 1: can choose uh uh you know uh to play with them uh code one important thing is the tensor shape\n[2025-06-01 20:36:11] Speaker 1: example for a10 the tensor shape is 8192 this is the default that we have provided for all of the\n[2025-06-01 20:36:20] Speaker 1: a10\n[2025-06-01 20:36:11] Speaker 1: a hundred and h hundred um with this i will give you some information that we can we also measure\n[2025-06-01 20:36:20] Speaker 1: the highest\n[2025-06-01 20:36:11] Speaker 1: uh tensor for example for 800 we can also use 65k for that that will take a long time so that was\n[2025-06-01 20:36:11] Speaker 1: reason why we wanted to go to go with something which take less time so for example\n[2025-06-01 20:36:11] Speaker 1: the H100 with 8192 it will take around 110 seconds. A100 it will take around 492 or similar like that.\n[2025-06-01 20:36:11] Speaker 1: and for 810 it will take around 649 seconds and with that we can start to talk about the functions\n[2025-06-01 20:36:22] Speaker 1: I'm not\n[2025-06-01 20:36:11] Speaker 1: going about the function again the first thing is the power the temperature and utilization\n[2025-06-01 20:36:11] Speaker 1: So we found out what is the range of that and if the temperature, the power...\n[2025-06-01 20:36:11] Speaker 1: visualization is in in that range you know we'll say that it has passed if not uh you know we'll say\n[2025-06-01 20:36:11] Speaker 1: that you know uh it has uh you know fade um these are some of the information about the gpus uh what\n[2025-06-01 20:36:11] Speaker 1: shape is that and this type of things till we get to the background computation and compute on gpu\n[2025-06-01 20:36:11] Speaker 1: background computation is that it's a function that it will compute uh you know a simple math mall\n[2025-06-01 20:36:11] Speaker 1: back end so that you know we can measure the for temperature for uh you know for uh utilization\n[2025-06-01 20:36:11] Speaker 1: for the power one thing that i want to mention here is that matmon why we are using in most of these\n[2025-06-01 20:36:11] Speaker 1: we are using MathMol. Why we are using MathMol here? MathMol is a good simulation of fine-tuning\n[2025-06-01 20:36:11] Speaker 1: training llms and these type of things and it's very common for that so that's the reason why we\n[2025-06-01 20:36:11] Speaker 1: I really focus on MatMod as one of the functions that we have used here a lot.\n[2025-06-01 20:36:11] Speaker 1: i can uh the next function is about compute and gpu or compute throughput as i mentioned\n[2025-06-01 20:36:11] Speaker 1: previously and this will measure the performance of the GPU cores under stress.\n[2025-06-01 20:36:22] Speaker 1: Mainly it will\n[2025-06-01 20:36:11] Speaker 1: say that how the gpus can handle the computation and again you can see here that you know this is\n[2025-06-01 20:36:21] Speaker 1: also\n[2025-06-01 20:36:11] Speaker 1: again based on matmul function the next one is the memory bandwidth the memory bandwidth is mainly\n[2025-06-01 20:36:11] Speaker 1: um how the gpu can handle the heavy memory uh you know bound it means that you know how we can move\n[2025-06-01 20:36:11] Speaker 1: the volume of data between the global memory and the compute you need. So here we are using\n[2025-06-01 20:36:11] Speaker 1: uh addition b equal to a plus a\n[2025-06-01 20:36:17] Speaker 1: uh and yeah the next one is about error detection on gpus so uh here\n[2025-06-01 20:36:11] Speaker 1: this is mainly based on the accuracy it means that one time we are using CPU for\n[2025-06-01 20:36:19] Speaker 1: you know\n[2025-06-01 20:36:11] Speaker 1: matmol one time we are using gpus for matmol and you know we compare these numbers and we have some\n[2025-06-01 20:36:11] Speaker 1: threshold for that as you can see here and if that's it's uh not significant we can say that\n[2025-06-01 20:36:11] Speaker 1: the error detection is fine. Next thing is the tensor core utilization. This is the core\n[2025-06-01 20:36:11] Speaker 1: engagement and and it emphasizes on the low precision like the fp8 or fp16 um this is a mainly\n[2025-06-01 20:36:11] Speaker 1: hardware not on the software. After the Tensor Core utilization we did sustained workload and this\n[2025-06-01 20:36:11] Speaker 1: test the long-term compute and stability. So for example here as an example we put 60 seconds.\n[2025-06-01 20:36:11] Speaker 1: and we are running matmod for 60 seconds and we will see that how the gpus are working based on that\n[2025-06-01 20:36:11] Speaker 1: and the last one is mixed precision testing and this will validate both the performance and the\n[2025-06-01 20:36:11] Speaker 1: correctness of the GPUs again when we are using matmult here.\n[2025-06-01 20:36:19] Speaker 1: So with that, you know, we got to the\n[2025-06-01 20:36:11] Speaker 1: end of this part. I will give you an example of how this has worked previously.\n[2025-06-01 20:36:11] Speaker 1: So we had an H100 and you can see the result of the H100 here\n[2025-06-01 20:36:11] Speaker 1: And, um...\n[2025-06-01 20:36:11] Speaker 1: We saw that the H100 is not performing very well.\n[2025-06-01 20:36:15] Speaker 1: I went and saw\n[2025-06-01 20:36:11] Speaker 1: specifically for gpu 4 and you can see that you know in the power the gpu 4 is uh going up very\n[2025-06-01 20:36:11] Speaker 1: you know fast compared to other ones but you know after that the rest of that went sharply up but this\n[2025-06-01 20:36:11] Speaker 1: one didn't go up uh so maybe that was the reason why the h100 was not performing very well then i\n[2025-06-01 20:36:18] Speaker 1: also\n[2025-06-01 20:36:11] Speaker 1: saw the um the temperature you can see that for gpu for the temperature again is sharply going up like\n[2025-06-01 20:36:19] Speaker 1: 80.\n[2025-06-01 20:36:11] Speaker 1: which is above the range that you know we specified and then you know it stays there so\n[2025-06-01 20:36:11] Speaker 1: maybe that was the reason why you know it wasn't able to uh you know do power good and the rest of\n[2025-06-01 20:36:11] Speaker 1: that you know you can see that you know it's not even close to 86 so we found out that you know the\n[2025-06-01 20:36:16] Speaker 1: gpu 4\n[2025-06-01 20:36:11] Speaker 1: is not working very well but one thing that you know here i want to emphasize is that this is inside\n[2025-06-01 20:36:11] Speaker 1: a node so what does it mean it means that you know for example in the h100 and knows we have eight gpu\n[2025-06-01 20:36:11] Speaker 1: so it will give us the result for the hgpus but we have also extended this uh code for\n[2025-06-01 20:36:11] Speaker 1: multi-node and by that so this was this code was given to us by another team from John Shelley's\n[2025-06-01 20:36:11] Speaker 1: theme and it's mainly doing some more tests about nodes between the nodes specifically it\n[2025-06-01 20:36:11] Speaker 1: It will evaluate the RDMA, the different type of errors like error correctness code.\n[2025-06-01 20:36:17] Speaker 1: It will also...\n[2025-06-01 20:36:11] Speaker 1: evaluate the PCIe link and this type of things.\n[2025-06-01 20:36:17] Speaker 1: The way that our structure is working right now...\n[2025-06-01 20:36:11] Speaker 1: is that first of all we run if you have a multi node we run this one\n[2025-06-01 20:36:11] Speaker 1: uh let me show you the result or the log maybe that would help\n[2025-06-01 20:36:11] Speaker 1: First of all, we'll run that one. For example here I used two nodes and you can see\n[2025-06-01 20:36:11] Speaker 1: that you know it will go and run all of these ones one by one and it will get to this end.\n[2025-06-01 20:36:11] Speaker 1: Once this is done, it will go inside each node.\n[2025-06-01 20:36:15] Speaker 1: For example, here we have the GPU 471.\n[2025-06-01 20:36:11] Speaker 1: here everything will be saved as a json file and this multi-node result will be saved as a json\n[2025-06-01 20:36:11] Speaker 1: file and you can see that you know it's here\n[2025-06-01 20:36:11] Speaker 1: Again, for the other one, I think it was another GPU, which was probably the 509.\n[2025-06-01 20:36:11] Speaker 1: and it will again all of the json file will uh you know save all of these results then it will go\n[2025-06-01 20:36:11] Speaker 1: inside the gpu 471 and inside that gpu it will run the health check that you know and we just we were\n[2025-06-01 20:36:11] Speaker 1: just talking about.\n[2025-06-01 20:36:11] Speaker 1: it will go it will do that for gpu 471 again it will do that for the other gpu gpu 507 which have\n[2025-06-01 20:36:11] Speaker 1: which we have here, then it will give us the result and the testing result.\n[2025-06-01 20:36:11] Speaker 1: so you will have um you know a pdf and a json file and a log for each of the gpu 431 and 507 here\n[2025-06-01 20:36:11] Speaker 1: These PDFs will be saved based on the timing and calendar.\n[2025-06-01 20:36:11] Speaker 1: uh with that uh this was the main idea about the health check and you know how we are running that\n[2025-06-01 20:36:11] Speaker 1: And I really appreciate your time.\n[2025-06-01 20:36:14] Speaker 1: And I would be happy if you can, you know, reach out.\n[2025-06-01 20:36:11] Speaker 1: any question about this. Thank you so much.",
+  "summary": "Key Points:\n\n* The meeting discussed a health check recipe for running heavy workloads on GPUs.\n* The recipe aims to provide customers with the confidence that they have enough resources to run workloads.\n* The recipe includes tests for compute throughput, memory bandwidth, error detection, tensor core utilization, sustain workload, mixed precision, power, temperature, and utilization.\n* The results of the tests are provided in a table format, with the duration of each test and whether it has failed or not.\n* A graph is also provided to make customers sure that the numbers they are getting are in the same kind of range as what the number should be.\n* The JSON file is used to compare the results of the tests with the baseline and to identify which tests have failed.\n* The customer can choose the type, D-type, and direction for the functions they want to use.\n* The tensor shape is an important factor in determining the performance of the functions.\n* The meeting discussed the power, temperature, and utilization of the GPUs and their ranges.\n\nAction Items:\n\n* Share the screen and provide the result of the health check recipe.\n* Provide the PDF and JSON formats of the test results.\n* Explain the tests in detail for those customers who may not understand the numbers.\n* Provide a graph to make customers sure that the numbers they are getting are in the same kind of range as what the number should be.\n* Explain the JSON file and how it works.\n* Discuss the power, temperature, and utilization of the GPUs and their ranges.\n\n---\n\nKey points:\n\n* Background computation is a function that measures temperature, utilization, power, memory bandwidth, error detection, tensor core utilization, sustained workload, and mixed precision testing on GPUs.\n* MathMol is a good simulation of fine-tuning training LLMs and other types of things and is commonly used for this purpose.\n* The next function is about compute and GPU throughput, which measures the performance of GPU cores under stress.\n* Memory bandwidth is mainly about how the GPU can handle heavy memory-bound tasks.\n* Error detection is based on accuracy and compares the performance of CPU and GPU for the same task.\n* Tensor core utilization emphasizes low precision like fp8 or fp16 and is a hardware-based measure.\n* Sustained workload tests the long-term compute and stability of GPUs.\n* Mixed precision testing validates both the performance and correctness of GPUs when using matmult.\n\nAction items:\n\n* None specified in the transcript.\n\n---\n\nKey points:\n\n* PDFs will be saved based on timing and calendar.\n* This was the main idea about the health check.\n* Speaker 1 appreciated the time spent in the meeting.\n* Speaker 1 was happy if any questions about the health check could be reached out.\n\nDecisions:\n\n* None mentioned in the transcript.\n\nAction items:\n\n* Save PDFs based on timing and calendar.\n* None mentioned in the transcript."
+}
