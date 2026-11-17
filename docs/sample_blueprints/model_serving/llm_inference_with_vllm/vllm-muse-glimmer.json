@@ -1,0 +1,46 @@
+{
+  "recipe_id": "llm_inference_nvidia",
+  "recipe_mode": "service",
+  "deployment_name": "vllm-muse-glimmer-30b",
+  "recipe_image_uri": "docker.io/vllm/vllm-openai:v0.34.0",
+  "recipe_node_shape": "BM.GPU.A10.4",
+  "recipe_prometheus_enabled": true,
+  "recipe_container_env": [
+    {
+      "key": "tensor_parallel_size",
+      "value": "4"
+    },
+    {
+      "key": "model_name",
+      "value": "meta-models/Muse-Glimmer-30B"
+    },
+    {
+      "key": "served_model_name",
+      "value": "muse-glimmer"
+    }
+  ],
+  "recipe_replica_count": 1,
+  "recipe_container_port": "8000",
+  "recipe_nvidia_gpu_count": 4,
+  "recipe_node_pool_size": 1,
+  "recipe_node_boot_volume_size_in_gbs": 300,
+  "recipe_container_command_args": [
+    "--model",
+    "$(model_name)",
+    "--served-model-name",
+    "$(served_model_name)",
+    "--tensor-parallel-size",
+    "$(tensor_parallel_size)",
+    "--max-model-len",
+    "131072",
+    "--generation-config",
+    "auto",
+    "--enable-auto-tool-choice",
+    "--tool-call-parser",
+    "muse_glimmer",
+    "--reasoning-parser",
+    "muse_glimmer"
+  ],
+  "recipe_ephemeral_storage_size": 150,
+  "recipe_shared_memory_volume_size_limit_in_mb": 1000
+}
